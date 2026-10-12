@@ -1,4 +1,4 @@
-﻿/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -8,65 +8,82 @@ export default {
     extend: {
       colors: {
         surya: {
+          terracotta: {
+            DEFAULT: '#C65332', // Primary terracotta
+            hover: '#A84328',
+            dark: '#A84328',
+            50: '#FFF8F2',
+            100: '#FCECE2',
+            200: '#F6D8C5',
+            300: '#F0D9CB',
+            400: '#D98A62',
+            500: '#C65332',
+            600: '#A84328',
+            700: '#8E341E',
+          },
+          burnt: '#A84328',       // Deep burnt orange
+          rust: '#B96645',        // Warm rust
+          muted: '#D98A62',       // Muted orange
+          peach: {
+            DEFAULT: '#F6D8C5',   // Soft peach
+            light: '#FCECE2',     // Pale peach
+            border: '#F0D9CB',    // Soft border
+          },
+          cream: '#FFF8F2',       // Warm cream
+          charcoal: '#252B33',    // Dark charcoal
+          slate: '#59616B',       // Slate gray
+          border: '#F0D9CB',      // Soft border
           navy: {
-            50: '#f0f6fa',
-            100: '#dbe8f2',
-            200: '#b9d2e6',
-            300: '#8cb4d4',
-            400: '#5c92be',
-            500: '#3975a6',
-            600: '#285b88',
-            700: '#1f486d',
-            800: '#173753',
-            900: '#0f263b',
-            950: '#091827',
+            DEFAULT: '#252B33',
+            50: '#FFF8F2',
+            100: '#FCECE2',
+            800: '#252B33',
+            900: '#1C2229',
+            950: '#15191E',
           },
-          teal: {
-            50: '#f0fdfa',
-            100: '#ccfbf1',
-            200: '#99f6e4',
-            300: '#5eead4',
-            400: '#2dd4bf',
-            500: '#14b8a6',
-            600: '#0d9488',
-            700: '#0f766e',
-            800: '#115e59',
-            900: '#134e4a',
+          blue: {
+            DEFAULT: '#C65332',
+            50: '#FCECE2',
+            100: '#F6D8C5',
+            600: '#A84328',
+            700: '#8E341E',
           },
+          cyan: {
+            DEFAULT: '#D98A62',
+            50: '#FFF8F2',
+            600: '#B96645',
+          },
+          text: {
+            primary: '#252B33',
+            secondary: '#59616B',
+            muted: '#8A929C',
+          },
+          light: '#FCECE2',
           emergency: {
-            50: '#fef2f2',
-            100: '#fee2e2',
-            200: '#fecaca',
-            500: '#ef4444',
-            600: '#dc2626',
-            700: '#b91c1c',
-            800: '#991b1b',
-          },
-          slate: {
-            50: '#f8fafc',
-            100: '#f1f5f9',
-            200: '#e2e8f0',
-            300: '#cbd5e1',
-            400: '#94a3b8',
-            500: '#64748b',
-            600: '#475569',
-            700: '#334155',
-            800: '#1e293b',
-            900: '#0f172a',
+            50: '#FDF2F0',
+            100: '#FCECE2',
+            200: '#F6D8C5',
+            500: '#C65332',
+            600: '#A84328',
+            700: '#8E341E',
+            800: '#752916',
+            900: '#5C1E0F',
+            950: '#252B33',
           },
         },
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'Cambria', 'serif'],
       },
       boxShadow: {
-        'subtle': '0 1px 3px 0 rgba(15, 38, 59, 0.05)',
-        'card': '0 2px 10px -2px rgba(15, 38, 59, 0.06), 0 1px 3px -1px rgba(15, 38, 59, 0.04)',
-        'card-hover': '0 12px 28px -4px rgba(15, 38, 59, 0.12), 0 4px 10px -2px rgba(15, 38, 59, 0.06)',
-        'emergency': '0 4px 16px 0 rgba(220, 38, 38, 0.28)',
+        'subtle': '0 1px 3px 0 rgba(37, 43, 51, 0.04)',
+        'card': '0 2px 12px -2px rgba(198, 83, 50, 0.06), 0 1px 4px -1px rgba(37, 43, 51, 0.04)',
+        'card-hover': '0 12px 28px -4px rgba(198, 83, 50, 0.12), 0 4px 10px -2px rgba(37, 43, 51, 0.06)',
+        'emergency': '0 4px 16px 0 rgba(198, 83, 50, 0.25)',
       },
       borderRadius: {
-        'card': '1rem',
+        'card': '0.875rem',
         'card-lg': '1.25rem',
       },
     },

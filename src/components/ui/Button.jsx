@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 export function Button({
   children,
@@ -15,27 +15,31 @@ export function Button({
   ...props
 }) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed select-none";
+    "inline-flex items-center justify-center font-semibold transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed select-none cursor-pointer";
 
   const sizeStyles = {
-    sm: "px-3 py-1.5 text-xs rounded-lg gap-1.5",
-    md: "px-4 py-2.5 text-sm rounded-lg gap-2",
+    sm: "px-3.5 py-1.5 text-xs rounded-lg gap-1.5",
+    md: "px-4.5 py-2.5 text-sm rounded-lg gap-2",
     lg: "px-6 py-3 text-base rounded-xl gap-2.5",
   };
 
   const variantStyles = {
     primary:
-      "bg-surya-navy-900 text-white hover:bg-surya-navy-800 active:bg-surya-navy-950 focus:ring-surya-navy-600 shadow-sm",
+      "bg-[#C65332] hover:bg-[#A84328] text-white shadow-sm focus:ring-[#C65332]",
+    terracotta:
+      "bg-[#C65332] hover:bg-[#A84328] text-white shadow-sm focus:ring-[#C65332]",
+    navy:
+      "bg-[#252B33] hover:bg-[#1C2229] text-white shadow-sm focus:ring-[#252B33]",
     accent:
-      "bg-surya-teal-600 text-white hover:bg-surya-teal-700 active:bg-surya-teal-800 focus:ring-surya-teal-500 shadow-sm",
+      "bg-[#D98A62] hover:bg-[#B96645] text-white shadow-sm focus:ring-[#D98A62]",
     emergency:
-      "bg-surya-emergency-600 text-white hover:bg-surya-emergency-700 active:bg-surya-emergency-800 focus:ring-surya-emergency-400 shadow-emergency font-semibold",
+      "bg-[#C65332] hover:bg-[#A84328] text-white shadow-emergency focus:ring-[#C65332]",
     secondary:
-      "bg-surya-slate-100 text-surya-slate-800 hover:bg-surya-slate-200 active:bg-surya-slate-300 focus:ring-surya-slate-400",
+      "bg-white border border-[#D98A62] text-[#252B33] hover:bg-[#FCECE2] hover:text-[#C65332] shadow-xs focus:ring-[#C65332]",
     outline:
-      "border border-surya-slate-300 bg-white text-surya-slate-800 hover:bg-surya-slate-50 active:bg-surya-slate-100 focus:ring-surya-navy-500",
+      "border border-[#D98A62] bg-transparent text-[#252B33] hover:bg-[#FCECE2] hover:text-[#C65332] focus:ring-[#C65332]",
     ghost:
-      "text-surya-slate-600 hover:text-surya-navy-900 hover:bg-surya-slate-100 active:bg-surya-slate-200 focus:ring-surya-slate-300",
+      "text-[#252B33] hover:bg-[#FCECE2] hover:text-[#C65332] focus:ring-[#C65332]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size] || sizeStyles.md} ${
@@ -74,3 +78,4 @@ export function Button({
     </button>
   );
 }
+export default Button;

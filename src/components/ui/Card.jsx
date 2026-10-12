@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 export function Card({
   children,
@@ -10,17 +10,17 @@ export function Card({
   const baseStyles = "rounded-card transition-all duration-200 overflow-hidden";
 
   const variantStyles = {
-    default: "bg-white border border-surya-slate-200/90 shadow-card",
+    default: "bg-white border border-[#F0D9CB] shadow-sm",
     interactive:
-      "bg-white border border-surya-slate-200/90 shadow-card hover:border-surya-teal-300 hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer",
+      "bg-white border border-[#F0D9CB] shadow-sm hover:border-[#D98A62] hover:shadow-md hover:-translate-y-0.5 cursor-pointer",
     highlight:
-      "bg-white border-2 border-surya-teal-500/80 shadow-card",
+      "bg-white border-2 border-[#C65332] shadow-sm",
     subtle:
-      "bg-surya-slate-50 border border-surya-slate-200 shadow-sm",
+      "bg-[#FFF8F2] border border-[#F0D9CB] shadow-none",
     emergency:
-      "bg-white border border-surya-emergency-200 shadow-card ring-1 ring-surya-emergency-100",
+      "bg-white border border-[#C65332]/40 shadow-sm ring-1 ring-[#C65332]/20",
     navy:
-      "bg-surya-navy-900 text-white border border-surya-navy-800 shadow-card",
+      "bg-[#252B33] text-white border border-[#3A434E] shadow-sm",
   };
 
   return (
@@ -43,7 +43,7 @@ export function CardHeader({ children, className = "" }) {
 
 export function CardTitle({ children, as: Component = "h3", className = "" }) {
   return (
-    <Component className={`text-lg sm:text-xl font-semibold tracking-tight text-surya-slate-900 ${className}`}>
+    <Component className={`text-lg sm:text-xl font-bold tracking-tight text-[#252B33] ${className}`}>
       {children}
     </Component>
   );
@@ -51,7 +51,7 @@ export function CardTitle({ children, as: Component = "h3", className = "" }) {
 
 export function CardDescription({ children, className = "" }) {
   return (
-    <p className={`text-sm text-surya-slate-600 mt-1.5 leading-relaxed ${className}`}>
+    <p className={`text-sm text-[#59616B] mt-1.5 leading-relaxed ${className}`}>
       {children}
     </p>
   );
@@ -67,7 +67,7 @@ export function CardBody({ children, className = "" }) {
 
 export function CardFooter({ children, className = "" }) {
   return (
-    <div className={`p-5 sm:p-6 pt-0 border-t border-surya-slate-100 mt-2 flex items-center justify-between ${className}`}>
+    <div className={`p-5 sm:p-6 pt-0 border-t border-[#F0D9CB]/60 mt-2 flex items-center justify-between ${className}`}>
       {children}
     </div>
   );

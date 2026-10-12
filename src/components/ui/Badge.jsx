@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 export function Badge({
   children,
@@ -16,21 +16,21 @@ export function Badge({
   };
 
   const variantStyles = {
-    default: "bg-surya-slate-100 text-surya-slate-700 border border-surya-slate-200",
-    teal: "bg-surya-teal-50 text-surya-teal-800 border border-surya-teal-200/80",
-    navy: "bg-surya-navy-50 text-surya-navy-800 border border-surya-navy-200/80",
-    emergency: "bg-surya-emergency-50 text-surya-emergency-700 border border-surya-emergency-200",
+    default: "bg-[#FFF8F2] text-[#252B33] border border-[#F0D9CB]",
+    teal: "bg-[#FCECE2] text-[#C65332] border border-[#F0D9CB]",
+    navy: "bg-[#252B33] text-white border border-[#3A434E]",
+    emergency: "bg-[#FCECE2] text-[#C65332] border border-[#F0D9CB]",
     success: "bg-emerald-50 text-emerald-800 border border-emerald-200",
-    outline: "bg-transparent text-surya-slate-600 border border-surya-slate-300",
+    outline: "bg-transparent text-[#59616B] border border-[#F0D9CB]",
   };
 
   const dotColor = {
-    default: "bg-surya-slate-400",
-    teal: "bg-surya-teal-500",
-    navy: "bg-surya-navy-600",
-    emergency: "bg-surya-emergency-600 animate-pulse",
+    default: "bg-[#D98A62]",
+    teal: "bg-[#C65332]",
+    navy: "bg-white",
+    emergency: "bg-[#C65332] animate-pulse",
     success: "bg-emerald-500",
-    outline: "bg-surya-slate-400",
+    outline: "bg-[#D98A62]",
   };
 
   return (

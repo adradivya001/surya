@@ -1,127 +1,49 @@
-import React, { useState } from "react";
-import { Header } from "./components/home/Header";
-import { HeroCarousel } from "./components/home/HeroCarousel";
-import { MovingServiceStrip } from "./components/home/MovingServiceStrip";
-import { ImageRevealIntro } from "./components/home/ImageRevealIntro";
-import { HorizontalCareSlider } from "./components/home/HorizontalCareSlider";
-import { SpecialtyCarousel } from "./components/home/SpecialtyCarousel";
-import { DoctorCarousel } from "./components/home/DoctorCarousel";
-import { FacilityMovingGallery } from "./components/home/FacilityMovingGallery";
-import { HospitalStory } from "./components/home/HospitalStory";
-import { EmergencySection } from "./components/home/EmergencySection";
-import { AppointmentJourney } from "./components/home/AppointmentJourney";
-import { TestimonialCarousel } from "./components/home/TestimonialCarousel";
-import { LocationSection } from "./components/home/LocationSection";
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
-import { AppointmentModal } from "./components/home/AppointmentModal";
-import { ContactModal } from "./components/home/ContactModal";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
+
+// Multi-page route components
+import { HomePage } from "./pages/HomePage";
+import { AboutPage } from "./pages/AboutPage";
+import { DoctorsPage } from "./pages/DoctorsPage";
+import { SpecialitiesPage } from "./pages/SpecialitiesPage";
+import { DiagnosticsPage } from "./pages/DiagnosticsPage";
+import { EmergencyPage } from "./pages/EmergencyPage";
+import { ContactPage } from "./pages/ContactPage";
+import { AppointmentPage } from "./pages/AppointmentPage";
 
 export function App() {
-  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [modalDepartment, setModalDepartment] = useState("General Medicine");
-
-  const scrollTo = (id) => {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const handleOpenAppointmentModal = (dept = "General Medicine") => {
-    setModalDepartment(dept);
-    setIsAppointmentModalOpen(true);
-  };
-
-  const handleOpenContactModal = () => {
-    setIsContactModalOpen(true);
-  };
-
   return (
-    <div className="w-full min-h-screen flex flex-col bg-surya-slate-50 text-surya-slate-800 antialiased selection:bg-surya-teal-100 selection:text-surya-teal-900 overflow-x-hidden">
-      {/* 1. Header: Transparent over Hero -> Solid sticky on scroll */}
-      <Header
-        onBookAppointment={() => scrollTo("#appointment-journey")}
-        onCallEmergency={handleOpenContactModal}
-      />
+    <BrowserRouter>
+      <div className="w-full min-h-screen flex flex-col bg-[#FFF8F2] text-[#59616B] antialiased font-sans overflow-x-hidden selection:bg-[#F6D8C5] selection:text-[#A84328]">
+        <ScrollToTop />
 
-      <main className="w-full flex-1">
-        {/* 2. Hero: Full-Screen Auto-Advancing Moving Image Carousel */}
-        <HeroCarousel
-          onBookAppointment={() => scrollTo("#appointment-journey")}
-          onFindDoctor={() => scrollTo("#doctors")}
-        />
+        {/* 4. Reusable Navbar that appears consistently on every page */}
+        <Navbar />
 
-        {/* 3. Patient Actions: Continuous Moving Horizontal Strip */}
-        <MovingServiceStrip
-          onFindDoctor={() => scrollTo("#doctors")}
-          onFindDepartment={() => scrollTo("#care-slider")}
-          onBookAppointment={() => scrollTo("#appointment-journey")}
-          onEmergencyCare={() => scrollTo("#emergency")}
-          onDiagnostics={() => scrollTo("#facilities")}
-          onLocation={() => scrollTo("#location")}
-        />
+        {/* Route Pages Container */}
+        <main className="w-full flex-1">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/doctors" element={<DoctorsPage />} />
+            <Route path="/specialities" element={<SpecialitiesPage />} />
+            <Route path="/services" element={<Navigate to="/specialities" replace />} />
+            <Route path="/diagnostics" element={<DiagnosticsPage />} />
+            <Route path="/emergency" element={<EmergencyPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/appointment" element={<AppointmentPage />} />
+            {/* Fallback to Home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
 
-        {/* 4. Introduction: Image Transition + Editorial Story */}
-        <ImageRevealIntro
-          onExploreCare={() => scrollTo("#care-slider")}
-        />
-
-        {/* 5. Comprehensive Care: Large Horizontal Slider */}
-        <HorizontalCareSlider
-          onSelectCare={() => scrollTo("#appointment-journey")}
-        />
-
-        {/* 6. Specialties: Cinematic Image Slider */}
-        <SpecialtyCarousel
-          onSelectSpecialty={() => scrollTo("#appointment-journey")}
-          onBookAppointment={(dept) => handleOpenAppointmentModal(dept)}
-        />
-
-        {/* 7. Doctors: Meet Our Specialists Moving Carousel */}
-        <DoctorCarousel
-          onBookConsultation={(dept) => handleOpenAppointmentModal(dept)}
-        />
-
-        {/* 9. Facilities: Moving Image Gallery Collage */}
-        <FacilityMovingGallery />
-
-        {/* 10. Hospital Story: Sequential Scroll Reveal */}
-        <HospitalStory />
-
-        {/* 11. 24/7 Emergency: High-Contrast Dark Navy Visual Transition */}
-        <EmergencySection
-          onCallEmergency={handleOpenContactModal}
-          onGetDirections={() => scrollTo("#location")}
-        />
-
-        {/* 12. Appointment: Interactive 4-Step Stepped Journey */}
-        <AppointmentJourney />
-
-        {/* 13. Testimonials: Moving Slider (Verified Framework) */}
-        <TestimonialCarousel />
-
-        {/* 14. Location: Campus Visual + Styled Map + Regional Connectivity */}
-        <LocationSection
-          onCallHospital={handleOpenContactModal}
-          onGetDirections={() => scrollTo("#location")}
-        />
-      </main>
-
-      {/* 15. Institutional Healthcare Footer */}
-      <Footer onOpenContact={handleOpenContactModal} />
-
-      {/* Quick Appointment Modal */}
-      <AppointmentModal
-        isOpen={isAppointmentModalOpen}
-        onClose={() => setIsAppointmentModalOpen(false)}
-        defaultDepartment={modalDepartment}
-      />
-
-      {/* Emergency & Contact Desk Modal */}
-      <ContactModal
-        isOpen={isContactModalOpen}
-        onClose={() => setIsContactModalOpen(false)}
-      />
-    </div>
+        {/* Reusable Institutional Footer on every page */}
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -48,10 +48,10 @@ export function HomeHero() {
       </div>
 
       {/* Hero Text Content: Vertically centered against visible hospital building, neatly constrained in left cream area */}
-      <Container size="wide" className="relative z-10 flex-1 flex flex-col justify-center py-4 sm:py-6 lg:py-6 xl:py-8">
+      <Container size="wide" className="relative z-10 flex-1 flex flex-col justify-center py-5 sm:py-6 lg:py-6 xl:py-8">
         <div className="relative max-w-lg lg:max-w-[480px] xl:max-w-[530px] text-left space-y-3.5 sm:space-y-4 lg:space-y-4.5">
           {/* Main Heading: Editorial Serif Typography */}
-          <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-serif font-bold text-[#1B2533] tracking-tight leading-[1.14]">
+          <h1 className="text-[28px] sm:text-4xl lg:text-[42px] xl:text-[48px] font-serif font-bold text-[#1B2533] tracking-tight leading-[1.14]">
             Better Care.
             <span className="block font-serif italic text-[#C65332] font-semibold mt-0.5 sm:mt-1">
               Healthier Lives.
@@ -65,7 +65,7 @@ export function HomeHero() {
 
           {/* Buttons */}
           <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Link to="/appointment">
+            <Link to="/appointment" className="w-full sm:w-auto">
               <button
                 type="button"
                 className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 rounded-full font-bold text-sm sm:text-[15px] bg-[#0B1320] hover:bg-[#1C2636] text-white shadow-md hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer w-full sm:w-auto"
@@ -76,7 +76,7 @@ export function HomeHero() {
               </button>
             </Link>
 
-            <Link to="/specialities">
+            <Link to="/specialities" className="w-full sm:w-auto">
               <button
                 type="button"
                 className="inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-full font-bold text-sm sm:text-[15px] bg-white/90 hover:bg-white text-[#252B33] border border-[#F0D9CB] hover:border-[#D98A62] shadow-xs hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer w-full sm:w-auto"
@@ -88,8 +88,8 @@ export function HomeHero() {
 
           {/* Leadership Trust Pill Badge */}
           <div className="pt-1">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FCECE2]/95 border border-[#F0D9CB] text-xs font-semibold text-[#252B33] shadow-2xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#C65332] shrink-0" />
+            <div className="inline-flex items-start sm:items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl sm:rounded-full bg-[#FCECE2]/95 border border-[#F0D9CB] text-xs font-semibold text-[#252B33] shadow-2xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#C65332] shrink-0 mt-0.5 sm:mt-0" />
               <span>
                 Led by <strong className="text-[#C65332]">Dr. D. Surya Prakash</strong> (M.D. Internal Medicine, Managing Director)
               </span>
@@ -101,19 +101,19 @@ export function HomeHero() {
       {/* Trust Strip: Directly below the hero content inside the hero section, fitted on one page */}
       <Container size="wide" className="relative z-10 shrink-0 pb-4 sm:pb-5 lg:pb-5 pt-2 sm:pt-3">
         <div className="w-full bg-white/95 backdrop-blur-xs rounded-2xl border border-[#F0D9CB] shadow-sm px-3.5 py-3 sm:px-5 sm:py-3.5 lg:py-3.5 lg:px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-0 lg:divide-x lg:divide-[#F0D9CB]">
+          <div className="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-0 lg:divide-x lg:divide-[#F0D9CB]">
             {trustItems.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <div
                   key={idx}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-2.5 sm:gap-3 px-1 sm:px-2 lg:px-4 xl:px-5 first:pl-1 lg:first:pl-2 last:pr-1 lg:last:pr-2"
+                  className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 px-1 sm:px-2 lg:px-4 xl:px-5 first:pl-1 lg:first:pl-2 last:pr-1 lg:last:pr-2"
                 >
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#FCECE2] border border-[#F0D9CB] flex items-center justify-center shrink-0">
-                    <Icon className="w-4.5 h-4.5 text-[#C65332]" strokeWidth={2} />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#FCECE2] border border-[#F0D9CB] flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C65332]" strokeWidth={2} />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-[13.5px] sm:text-[14.5px] lg:text-[15px] font-semibold text-[#252B33] tracking-tight leading-snug">
+                    <h3 className="text-[13px] sm:text-[14.5px] lg:text-[15px] font-semibold text-[#252B33] tracking-tight leading-snug">
                       {item.title}
                     </h3>
                     <p className="text-[11px] sm:text-[11.5px] lg:text-[12px] text-[#59616B] leading-tight sm:leading-relaxed mt-0.5">

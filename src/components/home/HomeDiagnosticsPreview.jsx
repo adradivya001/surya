@@ -30,13 +30,13 @@ export function HomeDiagnosticsPreview() {
             </p>
           </div>
 
-          <Link to="/diagnostics" className="shrink-0">
+          <Link to="/diagnostics" className="w-full sm:w-auto shrink-0">
             <Button
               variant="outline"
               size="md"
               icon={ArrowRight}
               iconPosition="right"
-              className="text-xs font-bold border-[#D98A62] hover:bg-[#FCECE2] text-[#252B33]"
+              className="text-xs font-bold border-[#D98A62] hover:bg-[#FCECE2] text-[#252B33] w-full sm:w-auto"
             >
               All Diagnostic Tests & Prep
             </Button>

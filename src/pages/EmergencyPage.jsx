@@ -44,9 +44,9 @@ export function EmergencyPage() {
             <div className="pt-2">
               <a
                 href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl text-base sm:text-lg font-black bg-[#C65332] hover:bg-[#A84328] text-white shadow-md transition transform hover:scale-102 active:scale-98"
+                className="inline-flex items-center justify-center gap-2.5 sm:gap-3 px-4 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-lg font-black bg-[#C65332] hover:bg-[#A84328] text-white shadow-md transition transform hover:scale-102 active:scale-98 w-full sm:w-auto text-center"
               >
-                <PhoneCall className="w-6 h-6 animate-pulse" />
+                <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse shrink-0" />
                 <span>Call Emergency Helpline: {HOSPITAL_INFO.phone}</span>
               </a>
             </div>
@@ -167,7 +167,7 @@ export function EmergencyPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
               <div className="p-4 rounded-xl bg-white border border-[#F0D9CB] space-y-2 shadow-2xs">
                 <span className="text-xl font-black text-[#C65332]">01</span>
                 <h4 className="font-bold text-[#252B33] text-sm">Immediate Triage</h4>

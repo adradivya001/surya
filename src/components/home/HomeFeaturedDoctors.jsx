@@ -34,13 +34,13 @@ export function HomeFeaturedDoctors() {
             </p>
           </div>
 
-          <Link to="/doctors" className="shrink-0">
+          <Link to="/doctors" className="w-full sm:w-auto shrink-0">
             <Button
               variant="outline"
               size="md"
               icon={ArrowRight}
               iconPosition="right"
-              className="text-xs font-bold border-[#D98A62] bg-white hover:bg-[#FCECE2] text-[#252B33]"
+              className="text-xs font-bold border-[#D98A62] bg-white hover:bg-[#FCECE2] text-[#252B33] w-full sm:w-auto"
             >
               View All Doctors
             </Button>
@@ -155,8 +155,8 @@ export function HomeFeaturedDoctors() {
 
       {/* Doctor Profile Modal */}
       {activeDoctorModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-[#F0D9CB] space-y-5 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-2xl border border-[#F0D9CB] space-y-5 max-h-[88vh] overflow-y-auto">
             <div className="flex items-start justify-between pb-3 border-b border-[#F0D9CB]">
               <div className="flex items-center gap-3">
                 <img
@@ -166,10 +166,10 @@ export function HomeFeaturedDoctors() {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = "/images/surya-doctor-portrait.png";
                   }}
-                  className="w-14 h-14 rounded-full object-cover border-2 border-[#C65332]"
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-[#C65332]"
                 />
                 <div>
-                  <h3 className="text-lg font-bold text-[#252B33]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#252B33]">
                     {activeDoctorModal.name}
                   </h3>
                   <p className="text-xs text-[#C65332] font-semibold">
@@ -183,6 +183,7 @@ export function HomeFeaturedDoctors() {
               <button
                 onClick={() => setActiveDoctorModal(null)}
                 className="p-1 rounded-lg text-[#59616B] hover:bg-[#FCECE2] cursor-pointer"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -220,11 +221,11 @@ export function HomeFeaturedDoctors() {
               </div>
             </div>
 
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Link
                 to={`/appointment?doctor=${encodeURIComponent(activeDoctorModal.name)}&dept=${encodeURIComponent(activeDoctorModal.department)}`}
                 onClick={() => setActiveDoctorModal(null)}
-                className="flex-1"
+                className="w-full sm:flex-1"
               >
                 <Button
                   variant="primary"
@@ -240,6 +241,7 @@ export function HomeFeaturedDoctors() {
                 variant="secondary"
                 size="md"
                 onClick={() => setActiveDoctorModal(null)}
+                className="w-full sm:w-auto"
               >
                 Close
               </Button>

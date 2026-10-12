@@ -49,13 +49,13 @@ export function HomeSpecialitiesGrid() {
             </p>
           </div>
 
-          <Link to="/specialities" className="shrink-0">
+          <Link to="/specialities" className="w-full sm:w-auto shrink-0">
             <Button
               variant="outline"
               size="md"
               icon={ArrowRight}
               iconPosition="right"
-              className="text-xs font-bold border-[#D98A62] hover:bg-[#FCECE2] text-[#252B33]"
+              className="text-xs font-bold border-[#D98A62] hover:bg-[#FCECE2] text-[#252B33] w-full sm:w-auto"
             >
               Explore Specialities
             </Button>
@@ -129,15 +129,15 @@ export function HomeSpecialitiesGrid() {
 
       {/* Speciality Quick Details Modal */}
       {selectedSpecialty && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-[#F0D9CB] space-y-4 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-2xl border border-[#F0D9CB] space-y-4 max-h-[88vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-[#F0D9CB]">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-[#F6D8C5] text-[#C65332] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#F6D8C5] text-[#C65332] flex items-center justify-center shrink-0">
                   <Stethoscope className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#252B33]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#252B33]">
                     {selectedSpecialty.name}
                   </h3>
                   <span className="text-xs text-[#B96645] font-semibold">
@@ -148,6 +148,7 @@ export function HomeSpecialitiesGrid() {
               <button
                 onClick={() => setSelectedSpecialty(null)}
                 className="p-1 rounded-lg text-[#59616B] hover:bg-[#FCECE2] cursor-pointer"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -191,11 +192,11 @@ export function HomeSpecialitiesGrid() {
               </div>
             )}
 
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <Link
                 to={`/appointment?dept=${encodeURIComponent(selectedSpecialty.name)}`}
                 onClick={() => setSelectedSpecialty(null)}
-                className="flex-1"
+                className="w-full sm:flex-1"
               >
                 <Button
                   variant="primary"
@@ -211,6 +212,7 @@ export function HomeSpecialitiesGrid() {
                 variant="secondary"
                 size="md"
                 onClick={() => setSelectedSpecialty(null)}
+                className="w-full sm:w-auto"
               >
                 Close
               </Button>

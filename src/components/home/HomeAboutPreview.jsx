@@ -67,13 +67,13 @@ export function HomeAboutPreview() {
             </div>
 
             <div className="pt-3">
-              <Link to="/about">
+              <Link to="/about" className="inline-block w-full sm:w-auto">
                 <Button
                   variant="primary"
                   size="md"
                   icon={ArrowRight}
                   iconPosition="right"
-                  className="bg-[#C65332] hover:bg-[#A84328] text-white font-bold"
+                  className="bg-[#C65332] hover:bg-[#A84328] text-white font-bold w-full sm:w-auto"
                 >
                   Read More About Us
                 </Button>

@@ -23,24 +23,24 @@ export function HomeAppointmentCta() {
           Book an appointment with our specialist physicians or consult our 24/7 emergency casualty desk in Sai Nagar, Anantapur.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-          <Link to="/appointment">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2">
+          <Link to="/appointment" className="w-full sm:w-auto">
             <Button
               variant="accent"
               size="lg"
               icon={Calendar}
-              className="bg-[#C65332] hover:bg-[#A84328] text-white font-bold shadow-md px-7"
+              className="bg-[#C65332] hover:bg-[#A84328] text-white font-bold shadow-md px-6 sm:px-7 w-full sm:w-auto"
             >
               Book an Appointment
             </Button>
           </Link>
 
-          <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
+          <a href={`tel:${HOSPITAL_INFO.phoneRaw}`} className="w-full sm:w-auto">
             <Button
               variant="secondary"
               size="lg"
               icon={PhoneCall}
-              className="bg-white hover:bg-[#FCECE2] text-[#252B33] hover:text-[#C65332] border-2 border-[#D98A62] px-7 font-bold shadow-sm"
+              className="bg-white hover:bg-[#FCECE2] text-[#252B33] hover:text-[#C65332] border-2 border-[#D98A62] px-6 sm:px-7 font-bold shadow-sm w-full sm:w-auto"
             >
               Call Hospital: {HOSPITAL_INFO.phone}
             </Button>

@@ -269,11 +269,11 @@ export function DoctorsPage() {
 
       {/* Individual Doctor Profile Modal */}
       {activeDoctorModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-[#F0D9CB] space-y-5 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-4 sm:p-8 shadow-2xl border border-[#F0D9CB] space-y-5 max-h-[88vh] overflow-y-auto">
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[#F0D9CB]">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <img
                   src={activeDoctorModal.image}
                   alt={activeDoctorModal.name}
@@ -281,7 +281,7 @@ export function DoctorsPage() {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = "/images/surya-doctor-portrait.png";
                   }}
-                  className="w-16 h-16 rounded-xl object-cover border-2 border-[#C65332]"
+                  className="w-13 h-13 sm:w-16 sm:h-16 rounded-xl object-cover border-2 border-[#C65332]"
                 />
                 <div className="text-left">
                   <h3 className="text-xl font-black text-[#252B33]">

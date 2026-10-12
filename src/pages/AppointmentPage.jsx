@@ -233,22 +233,22 @@ export function AppointmentPage() {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
-                    <Button variant="primary" size="md" icon={PhoneCall} className="bg-[#C65332] hover:bg-[#A84328] text-white">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                  <a href={`tel:${HOSPITAL_INFO.phoneRaw}`} className="w-full sm:w-auto">
+                    <Button variant="primary" size="md" icon={PhoneCall} className="w-full sm:w-auto bg-[#C65332] hover:bg-[#A84328] text-white">
                       Confirm by Phone: {HOSPITAL_INFO.phone}
                     </Button>
                   </a>
                   <Button
                     variant="outline"
                     size="md"
-                    className="border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]"
+                    className="w-full sm:w-auto border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]"
                     onClick={() => setConfirmedBooking(null)}
                   >
                     Submit Another Request
                   </Button>
-                  <Link to="/">
-                    <Button variant="ghost" size="md">
+                  <Link to="/" className="w-full sm:w-auto">
+                    <Button variant="ghost" size="md" className="w-full sm:w-auto">
                       Back to Home
                     </Button>
                   </Link>
@@ -256,7 +256,7 @@ export function AppointmentPage() {
               </div>
             ) : (
               /* Appointment Form */
-              <div className="bg-white rounded-2xl border border-[#F0D9CB] p-6 sm:p-10 shadow-sm text-left">
+              <div className="bg-white rounded-2xl border border-[#F0D9CB] p-4 sm:p-8 md:p-10 shadow-sm text-left">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Section 1: Patient Information */}
                   <div className="space-y-4">

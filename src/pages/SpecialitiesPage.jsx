@@ -199,16 +199,16 @@ export function SpecialitiesPage() {
 
       {/* Speciality Deep-Dive Detail Modal */}
       {activeSpecialty && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-[#F0D9CB] space-y-5 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl max-w-xl w-full p-4 sm:p-8 shadow-2xl border border-[#F0D9CB] space-y-5 max-h-[88vh] overflow-y-auto">
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[#F0D9CB]">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[#F6D8C5] text-[#C65332] flex items-center justify-center shrink-0">
-                  <Stethoscope className="w-6 h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#F6D8C5] text-[#C65332] flex items-center justify-center shrink-0">
+                  <Stethoscope className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-xl font-bold text-[#252B33]">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#252B33]">
                     {activeSpecialty.name}
                   </h3>
                   <span className="text-xs text-[#B96645] font-bold uppercase tracking-wider">

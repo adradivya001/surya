@@ -93,10 +93,10 @@ export function Navbar() {
             </nav>
 
             {/* Right Desktop Actions */}
-            <div className="hidden md:flex items-center gap-3 shrink-0">
+            <div className="hidden xl:flex items-center gap-3 shrink-0">
               <a
                 href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                className="hidden lg:flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-[#C65332] bg-[#FCECE2] border border-[#F0D9CB] hover:bg-[#F6D8C5] transition"
+                className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-[#C65332] bg-[#FCECE2] border border-[#F0D9CB] hover:bg-[#F6D8C5] transition"
                 title="Call 24/7 Emergency Line"
               >
                 <Phone className="w-3.5 h-3.5 text-[#C65332]" />
@@ -116,11 +116,11 @@ export function Navbar() {
             </div>
 
             {/* Mobile Actions & Hamburger */}
-            <div className="flex items-center gap-2 xl:hidden">
+            <div className="flex items-center gap-2 xl:hidden shrink-0">
               <Link to="/appointment">
                 <button
                   type="button"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#C65332] hover:bg-[#A84328] text-white shadow-2xs transition active:scale-95"
+                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold bg-[#C65332] hover:bg-[#A84328] text-white shadow-2xs transition active:scale-95"
                 >
                   <Calendar className="w-3.5 h-3.5" />
                   <span>Book OPD</span>
@@ -130,8 +130,9 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-[#252B33] hover:bg-[#FCECE2] transition border border-[#F0D9CB] active:scale-95"
+                className="p-2 rounded-lg text-[#252B33] hover:bg-[#FCECE2] transition border border-[#F0D9CB] active:scale-95 cursor-pointer"
                 aria-label="Toggle mobile menu"
+                aria-expanded={mobileMenuOpen}
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -142,7 +143,7 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white border-t border-[#F0D9CB] shadow-xl animate-fadeIn">
+        <div className="xl:hidden bg-white border-t border-[#F0D9CB] shadow-xl animate-fadeIn max-h-[calc(100vh-4.5rem)] overflow-y-auto">
           <Container className="py-4 space-y-1">
             <div className="grid grid-cols-1 gap-1">
               {navLinks.map((link) => (

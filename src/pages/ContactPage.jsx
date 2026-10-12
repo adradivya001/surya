@@ -199,7 +199,7 @@ export function ContactPage() {
             </div>
 
             {/* Right Column: Enquiry Form (7 cols) */}
-            <div className="lg:col-span-7 bg-[#FFF8F2] p-6 sm:p-8 rounded-2xl border border-[#F0D9CB] shadow-2xs text-left">
+            <div className="lg:col-span-7 bg-[#FFF8F2] p-4 sm:p-6 md:p-8 rounded-2xl border border-[#F0D9CB] shadow-2xs text-left">
               <div className="space-y-1 mb-6">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
                   GENERAL INQUIRY DESK

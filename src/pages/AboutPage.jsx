@@ -266,23 +266,23 @@ export function AboutPage() {
           </div>
 
           {/* Cross-page Navigation CTA */}
-          <div className="mt-12 p-8 rounded-2xl bg-[#252B33] border border-[#373F4A] text-white flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div className="mt-12 p-5 sm:p-8 rounded-2xl bg-[#252B33] border border-[#373F4A] text-white flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             <div className="space-y-1">
-              <h3 className="text-xl font-bold text-white">
+              <h3 className="text-lg sm:text-xl font-bold text-white">
                 Have questions about our doctors or departments?
               </h3>
               <p className="text-xs text-[#A0A8B4]">
                 Explore our full specialist roster or contact our reception desk directly.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <Link to="/doctors">
-                <Button variant="secondary" size="md" className="font-bold text-xs bg-white text-[#252B33] hover:bg-[#FCECE2]">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+              <Link to="/doctors" className="w-full sm:w-auto">
+                <Button variant="secondary" size="md" className="w-full sm:w-auto font-bold text-xs bg-white text-[#252B33] hover:bg-[#FCECE2]">
                   View Doctor Directory
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button variant="outline" size="md" className="font-bold text-xs text-white border-[#D98A62] hover:bg-white/10">
+              <Link to="/contact" className="w-full sm:w-auto">
+                <Button variant="outline" size="md" className="w-full sm:w-auto font-bold text-xs text-white border-[#D98A62] hover:bg-white/10">
                   Contact Us
                 </Button>
               </Link>

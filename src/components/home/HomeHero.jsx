@@ -42,14 +42,14 @@ export function HomeHero() {
         <img
           src="/Surya Hospital Hero Banner.png"
           alt="Surya Hospital Building Campus"
-          className="w-full h-full object-cover object-[75%_top] lg:object-right"
+          className="w-full h-full object-cover object-right hero-banner-image"
           loading="eager"
         />
       </div>
 
       {/* Hero Text Content: Vertically centered against visible hospital building, neatly constrained in left cream area */}
       <Container size="wide" className="relative z-10 flex-1 flex flex-col justify-center py-4 sm:py-6 lg:py-6 xl:py-8">
-        <div className="relative max-w-lg lg:max-w-[480px] xl:max-w-[530px] text-left space-y-3.5 sm:space-y-4 lg:space-y-4.5 bg-white/92 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none p-4 sm:p-0 rounded-2xl sm:rounded-none border border-[#F0D9CB] sm:border-transparent shadow-sm sm:shadow-none">
+        <div className="relative max-w-lg lg:max-w-[480px] xl:max-w-[530px] text-left space-y-3.5 sm:space-y-4 lg:space-y-4.5 hero-text-card">
           {/* Main Heading: Editorial Serif Typography */}
           <h1 className="text-[26px] sm:text-4xl lg:text-[42px] xl:text-[48px] font-serif font-bold text-[#1B2533] tracking-tight leading-[1.14]">
             Better Care.
@@ -99,7 +99,7 @@ export function HomeHero() {
       </Container>
 
       {/* Trust Strip: Directly below the hero content inside the hero section, fitted on one page */}
-      <Container size="wide" className="relative z-10 shrink-0 pb-24 sm:pb-5 lg:pb-5 pt-2 sm:pt-3">
+      <Container size="wide" className="relative z-10 shrink-0 pb-6 lg:pb-5 pt-2 sm:pt-3 hero-trust-container">
         <div className="w-full bg-white/95 backdrop-blur-xs rounded-2xl border border-[#F0D9CB] shadow-sm px-3.5 py-3 sm:px-5 sm:py-3.5 lg:py-3.5 lg:px-4">
           <div className="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-0 lg:divide-x lg:divide-[#F0D9CB]">
             {trustItems.map((item, idx) => {

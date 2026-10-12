@@ -68,3 +68,25 @@
     -webkit-overflow-scrolling: touch;
   }
 }
+
+/* Mobile & Tablet Hero Specific Responsiveness Overrides */
+@media (max-width: 1023px) {
+  .hero-banner-image {
+    object-position: 78% 16% !important;
+  }
+
+  .hero-text-card {
+    background-color: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid #F0D9CB !important;
+    border-radius: 1rem !important;
+    padding: 1.125rem !important;
+    box-shadow: 0 4px 16px -2px rgba(37, 43, 51, 0.08) !important;
+  }
+
+  .hero-trust-container {
+    padding-bottom: 7rem !important;
+  }
+}
+

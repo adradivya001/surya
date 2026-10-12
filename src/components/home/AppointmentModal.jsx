@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { X, AlertCircle, CheckCircle2, HeartPulse } from "lucide-react";
 import { Button } from "../ui/Button";
 
@@ -116,7 +116,7 @@ export function AppointmentModal({ isOpen, onClose, defaultDepartment = "" }) {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="input-row-half">
                 <div>
                   <label className="block text-xs font-semibold text-surya-slate-700 uppercase tracking-wider mb-1.5">
                     Department

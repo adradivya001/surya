@@ -264,7 +264,7 @@ export function AppointmentPage() {
                       1. Patient Contact Information
                     </h3>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="input-row-half">
                       {/* Patient Name */}
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-[#252B33]">
@@ -342,7 +342,7 @@ export function AppointmentPage() {
                       2. Department & Doctor Preference
                     </h3>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="input-row-half">
                       {/* Department */}
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-[#252B33]">
@@ -392,7 +392,7 @@ export function AppointmentPage() {
                       3. Date & Time Selection
                     </h3>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="datetime-selection-grid">
                       {/* Preferred Date (Min = today) */}
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-[#252B33]">

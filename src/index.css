@@ -15,6 +15,14 @@
     --color-heading: #252B33;
     --color-text: #59616B;
     --color-border: #F0D9CB;
+
+    /* Breakpoints (Documentation & Media Tokens)
+       Desktop: > 1080px
+       Small Desktop / Laptop: 1024px – 1080px
+       Tablet: 769px – 1024px
+       Mobile Landscape & Large Phones: 641px – 768px
+       Small Phones: <= 640px
+    */
   }
 
   html {
@@ -37,10 +45,94 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Sticky mobile bottom bar padding clearance on screens < 992px */
+  @media (max-width: 991px) {
+    body {
+      padding-bottom: 64px;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: #252B33;
     font-weight: 700;
     letter-spacing: -0.02em;
+  }
+}
+
+/* ============================================================
+   GLOBAL CONTAINER & RESPONSIVE PADDING
+   Transitions from desktop padding (0 2rem) to mobile (0 16px to 18px)
+   ============================================================ */
+.container,
+.global-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 768px) {
+  .container,
+  .global-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ============================================================
+   FORMS, BOOKING WIZARDS & GRID LAYOUTS
+   ============================================================ */
+
+/* 2-column input rows that collapse to 1fr on max-width: 768px */
+.input-row-half,
+.datetime-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .input-row-half,
+  .datetime-selection-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Content cards & service grids: collapse repeat(2, 1fr) / repeat(3, 1fr) to 1fr on 768px */
+@media (max-width: 768px) {
+  .service-grid-adaptive,
+  .content-cards-grid,
+  .grid-cols-1.sm\:grid-cols-2,
+  .grid-cols-1.sm\:grid-cols-3,
+  .grid-cols-1.md\:grid-cols-2,
+  .grid-cols-1.md\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Profile & Doctor Cards: avatar + bio horizontal on desktop, vertical stacked & centered on <= 640px */
+.doctor-card-profile,
+.doctor-header-bio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  .doctor-card-profile,
+  .doctor-header-bio {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .doctor-card-profile .doctor-avatar,
+  .doctor-header-bio .doctor-avatar {
+    margin: 0 auto;
   }
 }
 
@@ -68,25 +160,3 @@
     -webkit-overflow-scrolling: touch;
   }
 }
-
-/* Mobile & Tablet Hero Specific Responsiveness Overrides */
-@media (max-width: 1023px) {
-  .hero-banner-image {
-    object-position: 78% 16% !important;
-  }
-
-  .hero-text-card {
-    background-color: rgba(255, 255, 255, 0.94) !important;
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    border: 1px solid #F0D9CB !important;
-    border-radius: 1rem !important;
-    padding: 1.125rem !important;
-    box-shadow: 0 4px 16px -2px rgba(37, 43, 51, 0.08) !important;
-  }
-
-  .hero-trust-container {
-    padding-bottom: 7rem !important;
-  }
-}
-

@@ -1,10 +1,11 @@
-﻿import React from "react";
+import React from "react";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
 import { IMAGERY } from "../../constants/imagery";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
 import { Calendar, PhoneCall, ShieldCheck, Clock, MapPin, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import "./Hero.css";
 
 export function Hero({ onBookAppointment, onCallHospital }) {
   const containerVariants = {
@@ -30,10 +31,10 @@ export function Hero({ onBookAppointment, onCallHospital }) {
   return (
     <section
       id="hero"
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-surya-navy-950 text-white pt-24 pb-20"
+      className="hero-section relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-surya-navy-950 text-white pt-24 pb-20"
     >
       {/* Background Image with Slow Subtle Cinematic Scale Pan */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="hero-background-wrapper absolute inset-0 z-0 overflow-hidden">
         <motion.div
           animate={{ scale: [1, 1.06] }}
           transition={{ duration: 18, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
@@ -42,7 +43,7 @@ export function Hero({ onBookAppointment, onCallHospital }) {
           <img
             src={IMAGERY.hero.src}
             alt={IMAGERY.hero.alt}
-            className="w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08]"
+            className="hero-background-visual w-full h-full object-cover object-center filter brightness-[0.78] contrast-[1.08]"
             loading="eager"
           />
         </motion.div>
@@ -56,7 +57,7 @@ export function Hero({ onBookAppointment, onCallHospital }) {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl space-y-6 sm:space-y-8"
+          className="hero-editorial-left max-w-3xl space-y-6 sm:space-y-8"
         >
           {/* Eyebrow / 24-7 Emergency Indicator */}
           <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3">
@@ -72,7 +73,7 @@ export function Hero({ onBookAppointment, onCallHospital }) {
 
           {/* Large Editorial Headline */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08]">
+            <h1 className="hero-headline text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08]">
               Care that puts <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-surya-slate-100 to-surya-teal-300">
                 you first
@@ -92,14 +93,14 @@ export function Hero({ onBookAppointment, onCallHospital }) {
           {/* Dual CTAs */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
+            className="hero-cta-group flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2"
           >
             <Button
               variant="accent"
               size="lg"
               icon={Calendar}
               onClick={onBookAppointment}
-              className="shadow-xl font-semibold px-8 py-3.5"
+              className="shadow-xl font-semibold px-8 py-3.5 min-h-[44px]"
             >
               Book an Appointment
             </Button>
@@ -108,7 +109,7 @@ export function Hero({ onBookAppointment, onCallHospital }) {
               size="lg"
               icon={PhoneCall}
               onClick={onCallHospital}
-              className="bg-white/10 text-white border-white/25 hover:bg-white/20 backdrop-blur-md px-7 py-3.5"
+              className="bg-white/10 text-white border-white/25 hover:bg-white/20 backdrop-blur-md px-7 py-3.5 min-h-[44px]"
             >
               Call Hospital
             </Button>
@@ -143,3 +144,5 @@ export function Hero({ onBookAppointment, onCallHospital }) {
     </section>
   );
 }
+
+export default Hero;

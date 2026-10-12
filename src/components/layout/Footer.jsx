@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Container } from "../ui/Container";
 import { Phone, MapPin, Clock, Calendar } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
+import "./Footer.css";
 
 export function Footer() {
   const departmentsCol1 = [
@@ -31,12 +32,12 @@ export function Footer() {
 
   return (
     <>
-      <footer className="bg-[#0B1320] text-white border-t border-[#152236] mt-auto">
+      <footer className="ref-footer">
         {/* Main Footer Directory */}
         <Container className="pt-14 pb-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 text-left">
-            {/* Column 1: Brand & Contact Info (3.5 cols) */}
-            <div className="lg:col-span-3 space-y-4">
+          <div className="footer-directory-grid">
+            {/* Column 1: Brand & Contact Info */}
+            <div className="footer-col space-y-4">
               <Link to="/" className="inline-flex items-center gap-2 group">
                 <img
                   src="/images/surya-hospital-logo.png"
@@ -52,8 +53,8 @@ export function Footer() {
                 Trusted multi-speciality hospital in Sai Nagar, Anantapur providing expert doctor consultations, surgeries, and 24/7 care.
               </p>
 
-              <div className="space-y-2 pt-2 text-[13px] text-[#8E9CAE]">
-                <div className="flex items-center gap-2">
+              <div className="space-y-2 pt-2 text-[13px] text-[#8E9CAE] w-full">
+                <div className="footer-contact-row flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
                   <span>
                     Helpline:{" "}
@@ -66,7 +67,7 @@ export function Footer() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="footer-contact-row flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
                   <span>
                     Emergency:{" "}
@@ -81,13 +82,13 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 2: Doctor Departments (4.5 cols) */}
-            <div className="lg:col-span-4 space-y-4">
+            {/* Column 2: Doctor Departments */}
+            <div className="footer-col space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-white">
                 DOCTOR DEPARTMENTS
               </h4>
 
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-[13px] text-[#8E9CAE]">
+              <div className="footer-items-grid grid grid-cols-2 gap-x-4 gap-y-2.5 text-[13px] text-[#8E9CAE]">
                 <div className="space-y-2.5">
                   {departmentsCol1.map((item) => (
                     <div key={item.name}>
@@ -116,13 +117,13 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 3: Lab & Facilities (2.5 cols) */}
-            <div className="lg:col-span-2 space-y-4">
+            {/* Column 3: Lab & Facilities */}
+            <div className="footer-col space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-white">
                 LAB & FACILITIES
               </h4>
 
-              <div className="space-y-2.5 text-[13px] text-[#8E9CAE]">
+              <div className="space-y-2.5 text-[13px] text-[#8E9CAE] w-full">
                 {facilities.map((fac) => (
                   <div key={fac.name}>
                     <Link
@@ -136,14 +137,14 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 4: Hospital Location (2.5 cols) */}
-            <div className="lg:col-span-3 space-y-4">
+            {/* Column 4: Hospital Location */}
+            <div className="footer-col space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-white">
                 HOSPITAL LOCATION
               </h4>
 
-              <div className="space-y-3 text-[13px]">
-                <div className="flex items-start gap-2 text-[#8E9CAE]">
+              <div className="space-y-3 text-[13px] w-full">
+                <div className="footer-contact-row flex items-start gap-2 text-[#8E9CAE]">
                   <MapPin className="w-4 h-4 text-[#F43F5E] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-white block font-medium leading-snug">
@@ -157,7 +158,7 @@ export function Footer() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-1 text-[#38BDF8] font-bold text-xs">
+                <div className="footer-contact-row flex items-center gap-2 pt-1 text-[#38BDF8] font-bold text-xs">
                   <Clock className="w-3.5 h-3.5 shrink-0 text-[#38BDF8]" />
                   <span>OPD: 9:00 AM - 9:00 PM | 24/7 Emergency</span>
                 </div>
@@ -180,22 +181,24 @@ export function Footer() {
         </Container>
       </footer>
 
-      {/* Floating Action Buttons */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-5 z-40 flex flex-col items-center gap-2.5 sm:gap-3">
+      {/* Floating Action Buttons with Safe Viewport Offset */}
+      <div className="floating-side-actions" role="complementary" aria-label="Emergency and Booking Actions">
         <Link
           to="/appointment"
           title="Book an Appointment"
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#1E293B] hover:bg-[#334155] border border-[#334155] text-white flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all"
+          aria-label="Book an Appointment"
+          className="floating-action-btn bg-[#1E293B] hover:bg-[#334155] border border-[#334155] text-white"
         >
-          <Calendar className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white" />
+          <Calendar className="w-4.5 h-4.5 text-white" />
         </Link>
 
         <a
           href={`tel:${HOSPITAL_INFO.phoneRaw}`}
           title="Call Emergency / Helpline"
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white flex items-center justify-center shadow-xl shadow-rose-500/40 hover:scale-105 active:scale-95 transition-all"
+          aria-label="Call Emergency / Helpline"
+          className="floating-action-btn bg-[#E11D48] hover:bg-[#BE123C] text-white shadow-rose-500/40"
         >
-          <Phone className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white" />
+          <Phone className="w-4.5 h-4.5 text-white" />
         </a>
       </div>
     </>

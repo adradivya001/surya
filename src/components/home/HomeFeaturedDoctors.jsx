@@ -158,7 +158,7 @@ export function HomeFeaturedDoctors() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs">
           <div className="bg-white rounded-2xl max-w-lg w-full p-4 sm:p-6 shadow-2xl border border-[#F0D9CB] space-y-5 max-h-[88vh] overflow-y-auto">
             <div className="flex items-start justify-between pb-3 border-b border-[#F0D9CB]">
-              <div className="flex items-center gap-3">
+              <div className="doctor-header-bio">
                 <img
                   src={activeDoctorModal.image}
                   alt={activeDoctorModal.name}
@@ -166,7 +166,7 @@ export function HomeFeaturedDoctors() {
                     e.currentTarget.onerror = null;
                     e.currentTarget.src = "/images/surya-doctor-portrait.png";
                   }}
-                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-[#C65332]"
+                  className="doctor-avatar w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-[#C65332]"
                 />
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-[#252B33]">

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
+import { MobileBottomBar } from "./components/layout/MobileBottomBar";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
 
 // Multi-page route components
@@ -42,6 +43,9 @@ export function App() {
 
         {/* Reusable Institutional Footer on every page */}
         <Footer />
+
+        {/* Dedicated Sticky Mobile Bottom Bar (< 992px) */}
+        <MobileBottomBar />
       </div>
     </BrowserRouter>
   );

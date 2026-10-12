@@ -236,7 +236,7 @@ export function ContactPage() {
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="input-row-half">
                   {/* Full Name */}
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-[#252B33]">
@@ -280,7 +280,7 @@ export function ContactPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="input-row-half">
                   {/* Email */}
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-[#252B33]">

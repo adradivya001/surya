@@ -10,6 +10,7 @@ import {
   Building2,
   HeartHandshake,
 } from "lucide-react";
+import "./Hero.css";
 
 export function HomeHero() {
   const trustItems = [
@@ -36,22 +37,22 @@ export function HomeHero() {
   ];
 
   return (
-    <section className="relative w-full lg:h-[calc(100vh-4.5rem)] xl:h-[calc(100vh-5rem)] min-h-[600px] lg:min-h-[640px] lg:max-h-[820px] flex flex-col justify-between bg-[#FFF8F2] overflow-hidden border-b border-[#F0D9CB]">
-      {/* Hero Banner Image: Exact original image without any filters or overlays */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+    <section className="hero-section">
+      {/* Hero Banner Visual Layer */}
+      <div className="hero-background-wrapper">
         <img
           src="/Surya Hospital Hero Banner.png"
           alt="Surya Hospital Building Campus"
-          className="w-full h-full object-cover object-right hero-banner-image"
+          className="hero-background-visual"
           loading="eager"
         />
       </div>
 
-      {/* Hero Text Content: Vertically centered against visible hospital building, neatly constrained in left cream area */}
-      <Container size="wide" className="relative z-10 flex-1 flex flex-col justify-center py-4 sm:py-6 lg:py-6 xl:py-8">
-        <div className="relative max-w-lg lg:max-w-[480px] xl:max-w-[530px] text-left space-y-3.5 sm:space-y-4 lg:space-y-4.5 hero-text-card">
-          {/* Main Heading: Editorial Serif Typography */}
-          <h1 className="text-[26px] sm:text-4xl lg:text-[42px] xl:text-[48px] font-serif font-bold text-[#1B2533] tracking-tight leading-[1.14]">
+      {/* Hero Text Content (Editorial Left with Frosted Glass Card Shift on Mobile) */}
+      <Container size="wide" className="relative z-10 flex-1 flex flex-col justify-center py-4 sm:py-6 lg:py-8">
+        <div className="hero-editorial-left space-y-3.5 sm:space-y-4">
+          {/* Main Heading: Fluid Typography */}
+          <h1 className="hero-headline font-serif font-bold text-[#1B2533] tracking-tight">
             Better Care.
             <span className="block font-serif italic text-[#C65332] font-semibold mt-0.5 sm:mt-1">
               Healthier Lives.
@@ -63,23 +64,23 @@ export function HomeHero() {
             Your family deserves quality healthcare and personal attention. We are here to help you find the right care and feel confident at every step of your health journey.
           </p>
 
-          {/* Buttons */}
-          <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
+          {/* Dual CTAs */}
+          <div className="hero-cta-group pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
             <Link to="/appointment" className="w-full sm:w-auto">
               <button
                 type="button"
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full font-bold text-xs sm:text-[15px] bg-[#0B1320] hover:bg-[#1C2636] text-white shadow-md hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full font-bold text-xs sm:text-[15px] bg-[#0B1320] hover:bg-[#1C2636] text-white shadow-md hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer min-h-[44px] w-full sm:w-auto"
               >
-                <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                <Calendar className="w-4 h-4 text-white" />
                 <span>Book an Appointment</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                <ArrowRight className="w-4 h-4 text-white" />
               </button>
             </Link>
 
             <Link to="/specialities" className="w-full sm:w-auto">
               <button
                 type="button"
-                className="inline-flex items-center justify-center px-5 sm:px-7 py-2.5 sm:py-3 rounded-full font-bold text-xs sm:text-[15px] bg-white hover:bg-[#FFF8F2] text-[#252B33] border border-[#F0D9CB] hover:border-[#D98A62] shadow-2xs hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-5 sm:px-7 py-3 rounded-full font-bold text-xs sm:text-[15px] bg-white hover:bg-[#FFF8F2] text-[#252B33] border border-[#F0D9CB] hover:border-[#D98A62] shadow-2xs hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer min-h-[44px] w-full sm:w-auto"
               >
                 Explore Our Services
               </button>
@@ -87,7 +88,7 @@ export function HomeHero() {
           </div>
 
           {/* Leadership Trust Pill Badge */}
-          <div className="pt-0.5">
+          <div className="pt-0.5 w-full flex hero-trust-badge">
             <div className="inline-flex items-start sm:items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl sm:rounded-full bg-[#FCECE2] border border-[#F0D9CB] text-[11px] sm:text-xs font-semibold text-[#252B33] shadow-2xs">
               <ShieldCheck className="w-3.5 h-3.5 text-[#C65332] shrink-0 mt-0.5 sm:mt-0" />
               <span>
@@ -98,16 +99,16 @@ export function HomeHero() {
         </div>
       </Container>
 
-      {/* Trust Strip: Directly below the hero content inside the hero section, fitted on one page */}
-      <Container size="wide" className="relative z-10 shrink-0 pb-6 lg:pb-5 pt-2 sm:pt-3 hero-trust-container">
+      {/* Trust Strip: Adaptive Columns (4 col desktop, 2 col tablet/mobile, 1 col phone) */}
+      <Container size="wide" className="hero-trust-container relative z-10 shrink-0 pb-6 lg:pb-5 pt-2 sm:pt-3">
         <div className="w-full bg-white/95 backdrop-blur-xs rounded-2xl border border-[#F0D9CB] shadow-sm px-3.5 py-3 sm:px-5 sm:py-3.5 lg:py-3.5 lg:px-4">
-          <div className="grid grid-cols-1 min-[360px]:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-0 lg:divide-x lg:divide-[#F0D9CB]">
+          <div className="hero-trust-grid">
             {trustItems.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <div
                   key={idx}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 px-1 sm:px-2 lg:px-4 xl:px-5 first:pl-1 lg:first:pl-2 last:pr-1 lg:last:pr-2"
+                  className="hero-trust-item flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 px-2 lg:px-4"
                 >
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#FCECE2] border border-[#F0D9CB] flex items-center justify-center shrink-0">
                     <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C65332]" strokeWidth={2} />

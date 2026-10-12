@@ -277,7 +277,7 @@ export function AppointmentPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, patientName: e.target.value })
                           }
-                          className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
+                          className={`w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
                             errors.patientName
                               ? "border-red-400 ring-1 ring-red-300"
                               : "border-[#F0D9CB] focus:border-[#C65332]"
@@ -300,7 +300,7 @@ export function AppointmentPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })
                           }
-                          className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
+                          className={`w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
                             errors.phone
                               ? "border-red-400 ring-1 ring-red-300"
                               : "border-[#F0D9CB] focus:border-[#C65332]"
@@ -324,7 +324,7 @@ export function AppointmentPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
+                        className={`w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
                           errors.email
                             ? "border-red-400 ring-1 ring-red-300"
                             : "border-[#F0D9CB] focus:border-[#C65332]"
@@ -353,7 +353,7 @@ export function AppointmentPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, department: e.target.value })
                           }
-                          className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
+                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
                         >
                           {departmentOptions.map((dept) => (
                             <option key={dept} value={dept}>
@@ -373,7 +373,7 @@ export function AppointmentPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, preferredDoctor: e.target.value })
                           }
-                          className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
+                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
                         >
                           <option value="">Any Available Specialist</option>
                           {HOSPITAL_INFO.doctors.map((doc) => (
@@ -405,7 +405,7 @@ export function AppointmentPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, preferredDate: e.target.value })
                           }
-                          className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] focus:outline-none transition ${
+                          className={`w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border bg-white text-[#252B33] focus:outline-none transition ${
                             errors.preferredDate
                               ? "border-red-400 ring-1 ring-red-300"
                               : "border-[#F0D9CB] focus:border-[#C65332]"
@@ -429,7 +429,7 @@ export function AppointmentPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, preferredTime: e.target.value })
                           }
-                          className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
+                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
                         >
                           {timeSlots.map((slot) => (
                             <option key={slot} value={slot}>
@@ -450,7 +450,7 @@ export function AppointmentPage() {
                         placeholder="e.g. Routine consultation, post-surgical follow-up, abdominal checkup..."
                         value={formData.reason}
                         onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332] placeholder-[#808A96]"
+                        className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332] placeholder-[#808A96]"
                       />
                     </div>
 

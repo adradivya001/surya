@@ -91,8 +91,8 @@ export const HOSPITAL_INFO = {
       department: "General Surgery & Proctology",
       qualifications: "MS (General Surgery), FMAS",
       experience: "Senior Specialist in Proctology & Minimally Invasive Surgery",
-      image: "/images/surya-doctor-real.png",
-      fallbackImage: "/images/surya-doctor-portrait.png",
+      image: "/images/dr-anwar-ramadan.jpg",
+      fallbackImage: "/images/dr-anwar-ramadan.jpg",
       opdTimings: "Mon – Sat: 10:00 AM – 01:30 PM & 05:30 PM – 08:30 PM",
       status: "Verified Hospital Specialist",
       specialties: [
@@ -110,8 +110,8 @@ export const HOSPITAL_INFO = {
       department: "Orthopedic Surgery & Internal Medicine",
       qualifications: "MD (Medicine), MS (Orthopedics)",
       experience: "Consultant in Musculoskeletal Trauma & Inpatient Medical Care",
-      image: "/images/surya-doctor-portrait.png",
-      fallbackImage: "/images/surya-doctor-real.png",
+      image: "/images/dr-mohamed-ramadan.jpg",
+      fallbackImage: "/images/dr-mohamed-ramadan.jpg",
       opdTimings: "Mon – Sat: 09:30 AM – 01:00 PM & 05:00 PM – 08:00 PM",
       status: "Verified Hospital Specialist",
       specialties: [
@@ -129,8 +129,8 @@ export const HOSPITAL_INFO = {
       department: "Emergency Medicine & Critical Care",
       qualifications: "MEM / DNB (Emergency Medicine)",
       experience: "Lead Emergency Physician & Acute Resuscitation Specialist",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80",
-      fallbackImage: "/images/surya-doctor-portrait.png",
+      image: "/images/dr-omnia-ramadan.jpg",
+      fallbackImage: "/images/dr-omnia-ramadan.jpg",
       opdTimings: "24/7 Emergency Triage Roster",
       status: "Verified Hospital Specialist",
       specialties: [

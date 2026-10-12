@@ -93,7 +93,7 @@ export function Footer() {
                     <div key={item.name}>
                       <Link
                         to={item.path}
-                        className="hover:text-white transition whitespace-nowrap block"
+                        className="hover:text-white transition block leading-snug"
                       >
                         {item.name}
                       </Link>
@@ -106,7 +106,7 @@ export function Footer() {
                     <div key={item.name}>
                       <Link
                         to={item.path}
-                        className="hover:text-white transition whitespace-nowrap block"
+                        className="hover:text-white transition block leading-snug"
                       >
                         {item.name}
                       </Link>
@@ -180,22 +180,22 @@ export function Footer() {
         </Container>
       </footer>
 
-      {/* Floating Action Buttons (Pinned to bottom right as seen in reference) */}
-      <div className="fixed bottom-6 right-5 z-40 flex flex-col items-center gap-3">
+      {/* Floating Action Buttons */}
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-5 z-40 flex flex-col items-center gap-2.5 sm:gap-3">
         <Link
           to="/appointment"
           title="Book an Appointment"
-          className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1E293B] hover:bg-[#334155] border border-[#334155] text-white flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#1E293B] hover:bg-[#334155] border border-[#334155] text-white flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 transition-all"
         >
-          <Calendar className="w-5 h-5 text-white" />
+          <Calendar className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white" />
         </Link>
 
         <a
           href={`tel:${HOSPITAL_INFO.phoneRaw}`}
           title="Call Emergency / Helpline"
-          className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white flex items-center justify-center shadow-xl shadow-rose-500/40 hover:scale-105 active:scale-95 transition-all"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white flex items-center justify-center shadow-xl shadow-rose-500/40 hover:scale-105 active:scale-95 transition-all"
         >
-          <Phone className="w-5 h-5 text-white" />
+          <Phone className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-white" />
         </a>
       </div>
     </>

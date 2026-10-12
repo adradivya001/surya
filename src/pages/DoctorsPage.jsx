@@ -132,32 +132,32 @@ export function DoctorsPage() {
 
           {/* Doctors Grid */}
           {filteredDoctors.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {filteredDoctors.map((doc) => (
                 <div
                   key={doc.id}
-                  className={`bg-white rounded-2xl border shadow-2xs hover:shadow-card transition overflow-hidden flex flex-col justify-between group ${
+                  className={`bg-white rounded-xl sm:rounded-2xl border shadow-2xs hover:shadow-card transition overflow-hidden flex flex-col justify-between group ${
                     doc.isManagingDirector
                       ? "border-[#C65332]/60 ring-1 ring-[#C65332]/20"
                       : "border-[#F0D9CB] hover:border-[#C65332]"
                   }`}
                 >
                   {/* Photo Header */}
-                  <div className="relative aspect-[4/5] bg-[#FCECE2] overflow-hidden">
+                  <div className="relative aspect-[16/11] sm:aspect-[4/5] bg-[#FCECE2] overflow-hidden">
                     <img
                       src={doc.image}
                       alt={doc.name}
                       onError={(e) => {
                         e.currentTarget.onerror = null;
-                        e.currentTarget.src = doc.fallbackImage || "/images/surya-doctor-portrait.png";
+                        e.currentTarget.src = doc.fallbackImage || "/images/dr-d-surya-prakash.png";
                       }}
                       className="w-full h-full object-cover object-top group-hover:scale-103 transition duration-500"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#252B33]/85 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#252B33]/90 via-[#252B33]/20 to-transparent" />
 
                     <span
-                      className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-2xs ${
+                      className={`absolute top-2.5 left-2.5 sm:top-3 sm:left-3 text-[9.5px] sm:text-[10px] font-bold uppercase tracking-wider px-2 sm:px-2.5 py-0.5 sm:py-1 rounded shadow-2xs ${
                         doc.isManagingDirector
                           ? "bg-[#C65332] text-white"
                           : "bg-white/95 text-[#252B33]"
@@ -166,26 +166,26 @@ export function DoctorsPage() {
                       {doc.status}
                     </span>
 
-                    <div className="absolute bottom-3 left-3 right-3 text-white text-left">
-                      <span className="text-[11px] font-bold text-[#F6D8C5] block uppercase tracking-wider">
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3 sm:left-3 sm:right-3 text-white text-left">
+                      <span className="text-[10px] sm:text-[11px] font-bold text-[#F6D8C5] block uppercase tracking-wider">
                         {doc.department}
                       </span>
-                      <h3 className="text-xl font-black text-white mt-0.5 leading-snug">
+                      <h3 className="text-lg sm:text-xl font-black text-white mt-0.5 leading-snug">
                         {doc.name}
                       </h3>
                     </div>
                   </div>
 
                   {/* Body Content */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4 text-left">
-                    <div className="space-y-1.5">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between space-y-3 sm:space-y-4 text-left">
+                    <div className="space-y-1">
                       <div className="text-xs font-bold text-[#C65332]">
                         {doc.qualifications}
                       </div>
                       <div className="text-xs font-semibold text-[#252B33]">
                         {doc.designation}
                       </div>
-                      <p className="text-xs text-[#59616B] leading-relaxed pt-1">
+                      <p className="text-xs text-[#59616B] leading-relaxed pt-0.5 line-clamp-2 sm:line-clamp-none">
                         {doc.experience}
                       </p>
                     </div>
@@ -208,17 +208,17 @@ export function DoctorsPage() {
                     </div>
 
                     {/* Schedule & Buttons */}
-                    <div className="pt-3 border-t border-[#F0D9CB] space-y-3">
-                      <div className="flex items-center gap-1.5 text-xs text-[#59616B]">
-                        <Clock className="w-3.5 h-3.5 text-[#B96645] shrink-0" />
-                        <span className="text-[11px] truncate">{doc.opdTimings}</span>
+                    <div className="pt-2.5 border-t border-[#F0D9CB] space-y-2.5">
+                      <div className="flex items-start gap-1.5 text-xs text-[#59616B] leading-snug">
+                        <Clock className="w-3.5 h-3.5 text-[#B96645] shrink-0 mt-0.5" />
+                        <span className="text-[11px] leading-snug">{doc.opdTimings}</span>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-2 pt-0.5">
                         <button
                           type="button"
                           onClick={() => setActiveDoctorModal(doc)}
-                          className="w-full py-2.5 px-3 rounded-lg text-xs font-bold border border-[#F0D9CB] bg-white hover:bg-[#FCECE2] text-[#252B33] transition cursor-pointer"
+                          className="w-full py-2 px-2.5 sm:py-2.5 sm:px-3 rounded-lg text-xs font-bold border border-[#F0D9CB] bg-white hover:bg-[#FCECE2] text-[#252B33] transition cursor-pointer active:scale-95"
                         >
                           View Profile
                         </button>
@@ -231,7 +231,7 @@ export function DoctorsPage() {
                             variant="primary"
                             size="sm"
                             fullWidth
-                            className="bg-[#C65332] hover:bg-[#A84328] text-white text-xs font-bold py-2.5"
+                            className="bg-[#C65332] hover:bg-[#A84328] text-white text-xs font-bold py-2 sm:py-2.5 active:scale-95"
                           >
                             Book OPD
                           </Button>

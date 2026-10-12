@@ -39,21 +39,21 @@ export function Navbar() {
       {/* Main Navbar */}
       <div
         className={`transition-all duration-200 bg-white ${
-          isScrolled ? "py-2.5 shadow-xs" : "py-3.5"
+          isScrolled ? "py-2 shadow-xs" : "py-2.5 sm:py-3.5"
         }`}
       >
         <Container>
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-3">
             {/* Logo / Brand Anchor */}
             <Link
               to="/"
-              className="flex items-center gap-3 shrink-0 group focus:outline-none"
+              className="flex items-center gap-2 sm:gap-3 shrink-0 group focus:outline-none"
               aria-label="Surya Hospital Home"
             >
               <img
                 src="/images/surya-hospital-logo.png"
                 alt="Surya Hospital Logo"
-                className="h-14 sm:h-16 md:h-18 lg:h-20 w-auto max-h-[76px] object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="h-10 sm:h-13 md:h-16 w-auto max-h-[52px] sm:max-h-[64px] object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                   if (e.currentTarget.nextSibling) {
@@ -66,10 +66,10 @@ export function Navbar() {
                 style={{ display: "none" }}
                 className="items-center gap-2"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#C65332] text-white flex items-center justify-center shadow-sm">
+                <div className="w-9 h-9 rounded-xl bg-[#C65332] text-white flex items-center justify-center shadow-sm">
                   <HeartPulse className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-lg font-black text-[#252B33]">SURYA HOSPITAL</span>
+                <span className="text-base sm:text-lg font-black text-[#252B33]">SURYA HOSPITAL</span>
               </div>
             </Link>
 
@@ -117,23 +117,23 @@ export function Navbar() {
 
             {/* Mobile Actions & Hamburger */}
             <div className="flex items-center gap-2 xl:hidden">
-              <Link to="/appointment" className="sm:hidden">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  className="text-xs px-2.5 py-1.5 bg-[#C65332] text-white"
+              <Link to="/appointment">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#C65332] hover:bg-[#A84328] text-white shadow-2xs transition active:scale-95"
                 >
-                  Book
-                </Button>
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Book OPD</span>
+                </button>
               </Link>
 
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-[#252B33] hover:bg-[#FCECE2] transition border border-[#F0D9CB]"
+                className="p-2 rounded-lg text-[#252B33] hover:bg-[#FCECE2] transition border border-[#F0D9CB] active:scale-95"
                 aria-label="Toggle mobile menu"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>

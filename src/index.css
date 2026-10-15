@@ -4,25 +4,32 @@
 
 @layer base {
   :root {
-    --color-primary: #C65332;
-    --color-primary-dark: #A84328;
-    --color-rust: #B96645;
-    --color-orange-muted: #D98A62;
-    --color-peach: #F6D8C5;
-    --color-peach-light: #FCECE2;
-    --color-cream: #FFF8F2;
+    /* ============================================================
+       NEW EDITORIAL ARCHITECTURAL PALETTE: DEEP OXBLOOD & WARM WHITE
+       ============================================================ */
+    --color-primary: #641D2D;          /* Primary Brand — Deep Oxblood */
+    --color-primary-hover: #4E1421;    /* Hover State — Darker Oxblood */
+    --color-dark-surface: #28171D;     /* Dark Premium Surfaces */
+    --color-bg-page: #FCFAF7;          /* Warm White — Dominant page background */
+    --color-card-bg: #FFFFFF;          /* Pure White — Cards & Content Surfaces */
+    --color-rose: #E8D8D9;             /* Muted Rose — Subtle tints & chips */
+    --color-brass: #B69A65;            /* Brass Accent — High-end understated highlights */
+    --color-heading: #29252A;          /* Main Text — Rich Charcoal */
+    --color-text: #6F686B;             /* Secondary Text — Muted Warm Charcoal */
+    --color-border: #DED7D7;           /* Neutral Border */
+    
+    /* Legacy aliases mapped cleanly to new palette */
+    --color-bg-primary: #FCFAF7;
+    --color-soft-terracotta: #E8D8D9;
+    --color-icon-bg: #E8D8D9;
+    --color-section-alt: #FCFAF7;
+    --color-secondary-accent: #B69A65;
+    --color-rust: #641D2D;
+    --color-orange-muted: #B69A65;
+    --color-peach: #E8D8D9;
+    --color-peach-light: #FCFAF7;
+    --color-cream: #FCFAF7;
     --color-white: #FFFFFF;
-    --color-heading: #252B33;
-    --color-text: #59616B;
-    --color-border: #F0D9CB;
-
-    /* Breakpoints (Documentation & Media Tokens)
-       Desktop: > 1080px
-       Small Desktop / Laptop: 1024px – 1080px
-       Tablet: 769px – 1024px
-       Mobile Landscape & Large Phones: 641px – 768px
-       Small Phones: <= 640px
-    */
   }
 
   html {
@@ -31,17 +38,17 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
-    background-color: #FFF8F2;
-    color: #59616B;
+    background-color: #FCFAF7;
+    color: #6F686B;
     font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -53,9 +60,21 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: #252B33;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    color: #29252A;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  /* Accessibility: Prefers reduced motion overrides */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 

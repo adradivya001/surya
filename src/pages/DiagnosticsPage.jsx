@@ -35,20 +35,20 @@ export function DiagnosticsPage() {
     <div className="w-full">
       {/* Page Hero */}
       <PageHero
-        eyebrow="LABORATORY & RADIOLOGY"
-        title="Diagnostics & Imaging Services"
-        description="On-site clinical pathology, ultrasound sonography, digital X-Ray, and 12-lead ECG providing timely diagnostic clarity for accurate treatment in Sai Nagar, Anantapur."
+        eyebrow="LABORATORY & SCANS"
+        title="Lab Tests & Diagnostic Scans"
+        description="Fast blood tests, ultrasound scans, digital X-rays, and heart ECGs done right inside our hospital so your doctor can find the right treatment quickly."
         breadcrumbs={[{ label: "Diagnostics" }]}
-        badge="In-House Infrastructure"
+        badge="On-Campus Lab & Imaging"
       >
         <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
           <Button variant="primary" size="sm" icon={Phone} className="bg-[#C65332] hover:bg-[#A84328] text-white">
-            Call Diagnostic Desk: {HOSPITAL_INFO.phone}
+            Call Lab Desk: {HOSPITAL_INFO.phone}
           </Button>
         </a>
         <Link to="/appointment">
           <Button variant="secondary" size="sm" icon={Calendar} className="bg-white border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]">
-            Book Test Appointment
+            Book a Visit or Test
           </Button>
         </Link>
       </PageHero>
@@ -59,29 +59,29 @@ export function DiagnosticsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-3 text-left">
               <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-                DIAGNOSTIC EXCELLENCE
+                ACCURATE RESULTS YOU CAN TRUST
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
-                Accurate Investigations for Confident Medical Care
+                Clear Test Results to Guide Your Healing
               </h2>
               <p className="text-sm text-[#59616B] leading-relaxed">
-                Surya Hospital's diagnostic wing operates with calibrated clinical equipment to support our physicians and surgeons. Routine hematology and emergency diagnostic markers are supported round the clock.
+                When you or a family member feel unwell, timely test results make all the difference. Our on-site testing lab and imaging equipment deliver quick, dependable reports directly to your treating doctor.
               </p>
             </div>
 
             <div className="lg:col-span-4 p-5 rounded-2xl bg-white border border-[#F0D9CB] space-y-2 text-left">
               <span className="text-[11px] uppercase font-bold text-[#252B33] block">
-                Timings & Sample Collection:
+                Sample Collection & Lab Timings:
               </span>
               <div className="text-xs text-[#59616B] space-y-1">
                 <p>
-                  <strong>Routine Lab Testing:</strong> {HOSPITAL_INFO.timing.diagnostics}
+                  <strong>Regular Lab Tests:</strong> {HOSPITAL_INFO.timing.diagnostics}
                 </p>
                 <p>
-                  <strong>Emergency Lab Testing:</strong> 24 Hours / 7 Days a Week
+                  <strong>Emergency Lab Testing:</strong> Open 24 Hours / 7 Days
                 </p>
                 <p className="text-[11px] text-[#808A96] pt-1">
-                  Reports are coordinated with treating doctors to ensure immediate clinical review.
+                  Reports are shared with your consulting doctor as soon as they are ready.
                 </p>
               </div>
             </div>
@@ -94,10 +94,10 @@ export function DiagnosticsPage() {
         <Container>
           <div className="text-left max-w-2xl mb-10 space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-              CONFIRMED TEST CATEGORIES
+              AVAILABLE LAB TESTS & SCANS
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
-              Clinical Laboratory & Imaging Units
+              Clinical Lab & Imaging Units
             </h2>
           </div>
 
@@ -140,7 +140,7 @@ export function DiagnosticsPage() {
                             isSelected ? "text-[#F6D8C5]" : "text-[#59616B]"
                           }`}
                         >
-                          {cat.testsIncluded.length} Verified Tests
+                          {cat.testsIncluded.length} Key Tests
                         </span>
                       </div>
                     </div>
@@ -170,7 +170,7 @@ export function DiagnosticsPage() {
 
               <div className="space-y-2">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#252B33]">
-                  Overview
+                  What This Test Is For
                 </h4>
                 <p className="text-xs sm:text-sm text-[#59616B] leading-relaxed">
                   {activeCategory.shortDesc}
@@ -180,7 +180,7 @@ export function DiagnosticsPage() {
               {/* Verified Tests in this category */}
               <div className="space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#252B33]">
-                  Available Tests in this Unit
+                  Common Tests in this Unit
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {activeCategory.testsIncluded.map((test, idx) => (
@@ -199,7 +199,7 @@ export function DiagnosticsPage() {
               <div className="p-4 rounded-xl bg-[#FCECE2] border border-[#F0D9CB] space-y-1.5 text-xs text-[#252B33]">
                 <div className="flex items-center gap-2 font-bold text-[#252B33]">
                   <AlertCircle className="w-4 h-4 text-[#C65332] shrink-0" />
-                  <span>Preparation Instructions for Patients:</span>
+                  <span>How to Prepare for Your Test:</span>
                 </div>
                 <p className="leading-relaxed pl-6 text-[#59616B]">
                   {activeCategory.preparationNotice}
@@ -218,7 +218,7 @@ export function DiagnosticsPage() {
                     icon={Phone}
                     className="w-full bg-[#C65332] hover:bg-[#A84328] text-white"
                   >
-                    Enquire Test Availability: {HOSPITAL_INFO.phone}
+                    Check Test Availability: {HOSPITAL_INFO.phone}
                   </Button>
                 </a>
 
@@ -239,10 +239,10 @@ export function DiagnosticsPage() {
           <div className="max-w-3xl mx-auto space-y-6 text-left">
             <div className="text-center space-y-2">
               <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-                PATIENT GUIDANCE
+                SIMPLE 3-STEP GUIDE
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
-                How to Complete Your Diagnostic Tests
+                How to Get Your Lab Tests Done
               </h2>
             </div>
 
@@ -251,9 +251,9 @@ export function DiagnosticsPage() {
                 <span className="w-7 h-7 rounded-full bg-[#C65332] text-white flex items-center justify-center font-bold text-xs">
                   1
                 </span>
-                <h4 className="font-bold text-[#252B33] text-sm">Doctor's Prescription</h4>
+                <h4 className="font-bold text-[#252B33] text-sm">Bring Doctor's Advice</h4>
                 <p className="text-[#59616B] leading-relaxed">
-                  Bring your doctor's requisition slip or prescription indicating the required tests.
+                  Bring your doctor's prescription or slip showing which tests or scans are needed.
                 </p>
               </div>
 
@@ -261,9 +261,9 @@ export function DiagnosticsPage() {
                 <span className="w-7 h-7 rounded-full bg-[#C65332] text-white flex items-center justify-center font-bold text-xs">
                   2
                 </span>
-                <h4 className="font-bold text-[#252B33] text-sm">Fasting or Bladder Prep</h4>
+                <h4 className="font-bold text-[#252B33] text-sm">Follow Preparation Tips</h4>
                 <p className="text-[#59616B] leading-relaxed">
-                  Follow specific preparation rules (fasting for blood sugar/lipid, water hydration for ultrasound).
+                  Check if fasting (overnight without food) or drinking water (for scans) is needed before you come.
                 </p>
               </div>
 
@@ -271,9 +271,9 @@ export function DiagnosticsPage() {
                 <span className="w-7 h-7 rounded-full bg-[#C65332] text-white flex items-center justify-center font-bold text-xs">
                   3
                 </span>
-                <h4 className="font-bold text-[#252B33] text-sm">Sample & Report</h4>
+                <h4 className="font-bold text-[#252B33] text-sm">Give Sample & Get Reports</h4>
                 <p className="text-[#59616B] leading-relaxed">
-                  Provide sample at reception; reports are shared with your doctor for immediate clinical interpretation.
+                  Submit blood or urine at reception. Your doctor will review the results with you promptly.
                 </p>
               </div>
             </div>

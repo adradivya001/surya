@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Container } from "../components/ui/Container";
 import { PageHero } from "../components/ui/PageHero";
@@ -17,7 +17,7 @@ export function AppointmentPage() {
   const preselectedDept = searchParams.get("dept") || "General Medicine";
   const preselectedDoc = searchParams.get("doctor") || "";
 
-  const todayStr = useMemo(() => new Date().toISOString().split("T")[0], []);
+  const [todayStr] = useState(() => new Date().toISOString().split("T")[0]);
 
   const [formData, setFormData] = useState(() => ({
     patientName: "",
@@ -46,7 +46,6 @@ export function AppointmentPage() {
     "Laparoscopic Surgery",
     "Orthopedic Surgery & Internal Medicine",
     "Emergency & Critical Care",
-    "Diagnostic Laboratory & Imaging",
     "Physiotherapy & Rehabilitation",
     "Day-Care Surgeries",
   ];
@@ -126,126 +125,126 @@ export function AppointmentPage() {
     <div className="w-full">
       {/* Page Hero */}
       <PageHero
-        eyebrow="OUTPATIENT CONSULTATION"
-        title="Request a Doctor Appointment"
-        description="Schedule a specialist doctor consultation at Surya Hospital, Sai Nagar, Anantapur. Our desk will verify doctor schedules and reach out to confirm your visit."
+        eyebrow="DOCTOR APPOINTMENTS"
+        title="Book a Doctor Consultation"
+        description="Schedule a visit with our experienced doctors in internal medicine, general surgery, or joint and bone care. We will confirm your visiting slot promptly."
         breadcrumbs={[{ label: "Appointment" }]}
         badge="Sai Nagar Campus"
       >
         <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
           <Button variant="primary" size="sm" icon={PhoneCall} className="bg-[#C65332] hover:bg-[#A84328] text-white">
-            Urgent Booking Helpline: {HOSPITAL_INFO.phone}
+            Call for Immediate Token: {HOSPITAL_INFO.phone}
           </Button>
         </a>
       </PageHero>
 
-      <section className="py-12 md:py-16 bg-[#FFF8F2] border-b border-[#F0D9CB]">
+      <section className="py-14 md:py-20 bg-[#FCFAF7] border-b border-[#DED7D7]">
         <Container>
           <div className="max-w-4xl mx-auto">
-            {/* Demo Notice Banner */}
-            <div className="mb-8 p-4 rounded-xl bg-[#FCECE2] border border-[#F0D9CB] text-xs text-[#252B33] flex items-start gap-3">
-              <AlertCircle className="w-4 h-4 text-[#C65332] shrink-0 mt-0.5" />
+            {/* Helpful Notice Banner */}
+            <div className="mb-8 p-4 rounded-xl bg-white border border-[#DED7D7] text-xs sm:text-sm text-[#29252A] flex items-start gap-3 shadow-2xs">
+              <AlertCircle className="w-5 h-5 text-[#641D2D] shrink-0 mt-0.5" />
               <div className="space-y-1 text-left">
-                <p className="font-bold text-[#252B33]">Demonstration Flow Notice:</p>
-                <p className="text-[#59616B]">
-                  This web form demonstrates validated appointment booking. Because live EHR integration is hospital-managed, submitted requests generate a demonstration confirmation receipt. For same-day emergency or immediate confirmed OPD tokens, call <strong>{HOSPITAL_INFO.phone}</strong>.
+                <p className="font-bold text-[#29252A]">Need Same-Day or Emergency Care?</p>
+                <p className="text-[#6F686B]">
+                  For urgent health issues, severe pain, accidents, or same-day doctor visits, please call our 24/7 reception desk at <strong>{HOSPITAL_INFO.phone}</strong> or visit our hospital directly in Sai Nagar, Anantapur.
                 </p>
               </div>
             </div>
 
             {/* Success Receipt State */}
             {confirmedBooking ? (
-              <div className="bg-white rounded-2xl border border-[#F0D9CB] p-6 sm:p-10 shadow-sm text-left space-y-6 animate-fadeIn">
-                <div className="flex items-center gap-3 pb-4 border-b border-[#F0D9CB]">
-                  <div className="w-12 h-12 rounded-xl bg-[#F6D8C5] text-[#C65332] flex items-center justify-center shrink-0">
+              <div className="bg-white rounded-2xl border border-[#DED7D7] p-6 sm:p-10 shadow-sm text-left space-y-6 animate-fadeIn">
+                <div className="flex items-center gap-3 pb-4 border-b border-[#DED7D7]">
+                  <div className="w-12 h-12 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center shrink-0">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-                      REQUEST RECORDED (DEMO FLOW)
+                    <span className="text-xs font-bold uppercase tracking-widest text-[#641D2D]">
+                      APPOINTMENT REQUEST RECEIVED
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-[#252B33]">
-                      Appointment Request Summary
+                    <h3 className="text-xl sm:text-2xl font-black text-[#29252A]">
+                      We Have Received Your Booking Request
                     </h3>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs bg-[#FFF8F2] p-5 rounded-xl border border-[#F0D9CB]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm bg-[#FCFAF7] p-5 rounded-xl border border-[#DED7D7]">
                   <div>
-                    <span className="text-[#808A96] block text-[11px] uppercase font-bold">
-                      Reference Number:
+                    <span className="text-[#8A8487] block text-[11px] uppercase font-bold">
+                      Booking Reference:
                     </span>
-                    <span className="font-mono font-bold text-[#252B33] text-sm">
+                    <span className="font-mono font-bold text-[#29252A] text-sm sm:text-base">
                       {confirmedBooking.refNumber}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[#808A96] block text-[11px] uppercase font-bold">
+                    <span className="text-[#8A8487] block text-[11px] uppercase font-bold">
                       Patient Name:
                     </span>
-                    <span className="font-bold text-[#252B33] text-sm">
+                    <span className="font-bold text-[#29252A] text-sm sm:text-base">
                       {confirmedBooking.patientName}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[#808A96] block text-[11px] uppercase font-bold">
+                    <span className="text-[#8A8487] block text-[11px] uppercase font-bold">
                       Department:
                     </span>
-                    <span className="font-bold text-[#C65332]">
+                    <span className="font-bold text-[#641D2D]">
                       {confirmedBooking.department}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[#808A96] block text-[11px] uppercase font-bold">
-                      Consultant Specialist:
+                    <span className="text-[#8A8487] block text-[11px] uppercase font-bold">
+                      Doctor:
                     </span>
-                    <span className="font-bold text-[#252B33]">
+                    <span className="font-bold text-[#29252A]">
                       {confirmedBooking.doctor}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[#808A96] block text-[11px] uppercase font-bold">
-                      Preferred Date:
+                    <span className="text-[#8A8487] block text-[11px] uppercase font-bold">
+                      Requested Date:
                     </span>
-                    <span className="font-bold text-[#252B33]">
+                    <span className="font-bold text-[#29252A]">
                       {confirmedBooking.date}
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-[#808A96] block text-[11px] uppercase font-bold">
-                      Time Slot:
+                    <span className="text-[#8A8487] block text-[11px] uppercase font-bold">
+                      Preferred Time:
                     </span>
-                    <span className="font-bold text-[#252B33]">
+                    <span className="font-bold text-[#29252A]">
                       {confirmedBooking.timeSlot}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#FCECE2] border border-[#F0D9CB] text-xs text-[#252B33] space-y-1">
-                  <span className="font-bold block">Next Steps for Consultation:</span>
-                  <p className="text-[#59616B]">
-                    Please arrive 15 minutes before your slot at Surya Hospital, Sai Nagar, Anantapur. Carry previous prescriptions or diagnostic reports if available.
+                <div className="p-4 rounded-xl bg-[#E8D8D9]/40 border border-[#DED7D7] text-xs sm:text-sm text-[#29252A] space-y-1">
+                  <span className="font-bold block">Next Steps & What to Expect:</span>
+                  <p className="text-[#6F686B]">
+                    Our reception desk will call you shortly on your mobile number to confirm your exact token time. Please arrive 15 minutes before your time at Surya Hospital, Sai Nagar, Anantapur, and bring any past doctor prescriptions or medical reports with you.
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                   <a href={`tel:${HOSPITAL_INFO.phoneRaw}`} className="w-full sm:w-auto">
-                    <Button variant="primary" size="md" icon={PhoneCall} className="w-full sm:w-auto bg-[#C65332] hover:bg-[#A84328] text-white">
-                      Confirm by Phone: {HOSPITAL_INFO.phone}
+                    <Button variant="primary" size="md" icon={PhoneCall} className="w-full sm:w-auto bg-[#E56A2E] hover:bg-[#C8541D] text-white">
+                      Call Reception: {HOSPITAL_INFO.phone}
                     </Button>
                   </a>
                   <Button
                     variant="outline"
                     size="md"
-                    className="w-full sm:w-auto border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]"
+                    className="w-full sm:w-auto border-[#DED7D7] text-[#29252A] hover:bg-[#FCFAF7]"
                     onClick={() => setConfirmedBooking(null)}
                   >
-                    Submit Another Request
+                    Book Another Visit
                   </Button>
                   <Link to="/" className="w-full sm:w-auto">
                     <Button variant="ghost" size="md" className="w-full sm:w-auto">
@@ -256,12 +255,12 @@ export function AppointmentPage() {
               </div>
             ) : (
               /* Appointment Form */
-              <div className="bg-white rounded-2xl border border-[#F0D9CB] p-4 sm:p-8 md:p-10 shadow-sm text-left">
+              <div className="bg-white rounded-2xl border border-[#DED7D7] p-5 sm:p-8 md:p-10 shadow-sm text-left">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Section 1: Patient Information */}
                   <div className="space-y-4">
-                    <h3 className="text-base font-bold text-[#252B33] border-b border-[#F0D9CB] pb-2">
-                      1. Patient Contact Information
+                    <h3 className="text-base font-bold text-[#29252A] border-b border-[#DED7D7] pb-2">
+                      1. Patient Details
                     </h3>
 
                     <div className="input-row-half">
@@ -272,7 +271,7 @@ export function AppointmentPage() {
                         </label>
                         <input
                           type="text"
-                          placeholder="e.g. Ananya Rao"
+                          placeholder="e.g. Ramesh Kumar"
                           value={formData.patientName}
                           onChange={(e) =>
                             setFormData({ ...formData, patientName: e.target.value })
@@ -280,7 +279,7 @@ export function AppointmentPage() {
                           className={`w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
                             errors.patientName
                               ? "border-red-400 ring-1 ring-red-300"
-                              : "border-[#F0D9CB] focus:border-[#C65332]"
+                              : "border-[#E9D7C7] focus:border-[#C65332]"
                           }`}
                         />
                         {errors.patientName && (
@@ -303,7 +302,7 @@ export function AppointmentPage() {
                           className={`w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
                             errors.phone
                               ? "border-red-400 ring-1 ring-red-300"
-                              : "border-[#F0D9CB] focus:border-[#C65332]"
+                              : "border-[#E9D7C7] focus:border-[#C65332]"
                           }`}
                         />
                         {errors.phone && (
@@ -315,7 +314,7 @@ export function AppointmentPage() {
                     {/* Email */}
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-[#252B33]">
-                        Email Address <span className="text-[#808A96] font-normal">(Optional for confirmation receipt)</span>
+                        Email Address <span className="text-[#808A96] font-normal">(Optional)</span>
                       </label>
                       <input
                         type="email"
@@ -338,22 +337,22 @@ export function AppointmentPage() {
 
                   {/* Section 2: Clinical Department & Doctor */}
                   <div className="space-y-4 pt-2">
-                    <h3 className="text-base font-bold text-[#252B33] border-b border-[#F0D9CB] pb-2">
-                      2. Department & Doctor Preference
+                    <h3 className="text-base font-bold text-[#292D32] border-b border-[#E9D7C7] pb-2">
+                      2. Care Department & Doctor
                     </h3>
 
                     <div className="input-row-half">
                       {/* Department */}
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-[#252B33]">
-                          Clinical Department <span className="text-[#C65332]">*</span>
+                          Choose Department <span className="text-[#C65332]">*</span>
                         </label>
                         <select
                           value={formData.department}
                           onChange={(e) =>
                             setFormData({ ...formData, department: e.target.value })
                           }
-                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
+                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#E9D7C7] bg-white text-[#292D32] focus:outline-none focus:border-[#C65332]"
                         >
                           {departmentOptions.map((dept) => (
                             <option key={dept} value={dept}>
@@ -366,16 +365,16 @@ export function AppointmentPage() {
                       {/* Doctor */}
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-[#252B33]">
-                          Preferred Doctor <span className="text-[#808A96] font-normal">(Optional)</span>
+                          Choose Doctor <span className="text-[#808A96] font-normal">(Optional)</span>
                         </label>
                         <select
                           value={formData.preferredDoctor}
                           onChange={(e) =>
                             setFormData({ ...formData, preferredDoctor: e.target.value })
                           }
-                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
+                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#E9D7C7] bg-white text-[#292D32] focus:outline-none focus:border-[#C65332]"
                         >
-                          <option value="">Any Available Specialist</option>
+                          <option value="">Any Available Doctor</option>
                           {HOSPITAL_INFO.doctors.map((doc) => (
                             <option key={doc.id} value={doc.name}>
                               {doc.name} — {doc.department}
@@ -388,8 +387,8 @@ export function AppointmentPage() {
 
                   {/* Section 3: Date & Slot */}
                   <div className="space-y-4 pt-2">
-                    <h3 className="text-base font-bold text-[#252B33] border-b border-[#F0D9CB] pb-2">
-                      3. Date & Time Selection
+                    <h3 className="text-base font-bold text-[#292D32] border-b border-[#E9D7C7] pb-2">
+                      3. Date & Visiting Time
                     </h3>
 
                     <div className="datetime-selection-grid">
@@ -408,28 +407,28 @@ export function AppointmentPage() {
                           className={`w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border bg-white text-[#252B33] focus:outline-none transition ${
                             errors.preferredDate
                               ? "border-red-400 ring-1 ring-red-300"
-                              : "border-[#F0D9CB] focus:border-[#C65332]"
+                              : "border-[#E9D7C7] focus:border-[#C65332]"
                           }`}
                         />
                         {errors.preferredDate && (
                           <p className="text-[11px] text-red-500">{errors.preferredDate}</p>
                         )}
                         <span className="text-[10px] text-[#808A96] block">
-                          Past dates are disabled.
+                          Please select today or an upcoming date.
                         </span>
                       </div>
 
                       {/* Preferred Time Slot */}
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-[#252B33]">
-                          Preferred Time Slot <span className="text-[#C65332]">*</span>
+                          Preferred Time of Day <span className="text-[#C65332]">*</span>
                         </label>
                         <select
                           value={formData.preferredTime}
                           onChange={(e) =>
                             setFormData({ ...formData, preferredTime: e.target.value })
                           }
-                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
+                          className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#E9D7C7] bg-white text-[#292D32] focus:outline-none focus:border-[#C65332]"
                         >
                           {timeSlots.map((slot) => (
                             <option key={slot} value={slot}>
@@ -443,14 +442,14 @@ export function AppointmentPage() {
                     {/* Reason */}
                     <div className="space-y-1">
                       <label className="text-xs font-bold text-[#252B33]">
-                        Reason for Visit / Symptoms <span className="text-[#808A96] font-normal">(Optional)</span>
+                        Main Health Concern or Symptoms <span className="text-[#808A96] font-normal">(Optional)</span>
                       </label>
                       <textarea
                         rows={3}
-                        placeholder="e.g. Routine consultation, post-surgical follow-up, abdominal checkup..."
+                        placeholder="e.g. Fever checkup, diabetes review, knee pain, stomach ache, piles consultation..."
                         value={formData.reason}
                         onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                        className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332] placeholder-[#808A96]"
+                        className="w-full px-3.5 py-3 text-base sm:text-sm rounded-lg border border-[#E9D7C7] bg-white text-[#292D32] focus:outline-none focus:border-[#C65332] placeholder-[#808A96]"
                       />
                     </div>
 
@@ -464,7 +463,7 @@ export function AppointmentPage() {
                           className="mt-0.5 rounded text-[#C65332] focus:ring-[#C65332]"
                         />
                         <span>
-                          I acknowledge this is an appointment request subject to verification by Surya Hospital reception staff, and consent to receiving call/SMS confirmation.
+                          I agree to let Surya Hospital front desk call or message me at this phone number to confirm this doctor visit.
                         </span>
                       </label>
                       {errors.consent && (
@@ -474,7 +473,7 @@ export function AppointmentPage() {
                   </div>
 
                   {/* Submit CTA */}
-                  <div className="pt-4 border-t border-[#F0D9CB]">
+                  <div className="pt-4 border-t border-[#DED7D7]">
                     <Button
                       type="submit"
                       variant="primary"
@@ -482,9 +481,9 @@ export function AppointmentPage() {
                       disabled={isSubmitting}
                       icon={isSubmitting ? Loader2 : Calendar}
                       fullWidth
-                      className="bg-[#C65332] hover:bg-[#A84328] text-white font-bold py-3.5 text-base shadow-sm"
+                      className="bg-[#E56A2E] hover:bg-[#C8541D] text-white font-bold py-4 text-base shadow-sm"
                     >
-                      {isSubmitting ? "Processing Request..." : "Submit Appointment Request"}
+                      {isSubmitting ? "Sending Your Request..." : "Request Appointment Time"}
                     </Button>
                   </div>
                 </form>

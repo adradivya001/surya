@@ -37,13 +37,13 @@
 }
 
 .call-btn {
-  background-color: #FCECE2;
-  color: #252B33;
-  border: 1px solid #F0D9CB;
+  background-color: #F8E6DC;
+  color: #292D32;
+  border: 1px solid #E9D7C7;
 }
 
 .call-btn:hover {
-  background-color: #F6D8C5;
+  background-color: #E8D5C0;
 }
 
 .book-btn {

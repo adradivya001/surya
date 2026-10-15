@@ -23,11 +23,11 @@ export function Footer() {
   ];
 
   const facilities = [
-    { name: "Pathology Blood Test Lab", path: "/diagnostics" },
-    { name: "12-Lead ECG Testing", path: "/diagnostics" },
-    { name: "Digital X-Ray on-site", path: "/diagnostics" },
     { name: "24/7 Casualty & Emergency", path: "/emergency" },
     { name: "Sterile Operation Theatres", path: "/specialities" },
+    { name: "Laparoscopic Surgical Unit", path: "/specialities" },
+    { name: "Inpatient Patient Rooms", path: "/about" },
+    { name: "24/7 On-Site Pharmacy", path: "/contact" },
   ];
 
   return (
@@ -40,11 +40,11 @@ export function Footer() {
             <div className="footer-col space-y-4">
               <Link to="/" className="inline-flex items-center gap-2 group">
                 <img
-                  src="/images/surya-hospital-logo.png"
+                  src="/images/surya-hospital-orange-emblem-logo.png"
                   alt="Surya Hospital Logo"
-                  className="h-12 sm:h-14 w-auto object-contain"
+                  className="h-14 sm:h-16 w-auto object-contain brightness-105"
                   onError={(e) => {
-                    e.currentTarget.style.display = "none";
+                    e.currentTarget.src = "/images/surya-hospital-logo.png";
                   }}
                 />
               </Link>
@@ -55,12 +55,12 @@ export function Footer() {
 
               <div className="space-y-2 pt-2 text-[13px] text-[#8E9CAE] w-full">
                 <div className="footer-contact-row flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
+                  <Phone className="w-3.5 h-3.5 text-[#B69A65] shrink-0" />
                   <span>
                     Helpline:{" "}
                     <a
                       href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                      className="text-white font-semibold hover:text-[#38BDF8] transition"
+                      className="text-white font-semibold hover:text-[#B69A65] transition"
                     >
                       {HOSPITAL_INFO.phone}
                     </a>
@@ -68,12 +68,12 @@ export function Footer() {
                 </div>
 
                 <div className="footer-contact-row flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
+                  <Phone className="w-3.5 h-3.5 text-[#B69A65] shrink-0" />
                   <span>
                     Emergency:{" "}
                     <a
                       href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                      className="text-white font-semibold hover:text-[#38BDF8] transition"
+                      className="text-white font-semibold hover:text-[#B69A65] transition"
                     >
                       {HOSPITAL_INFO.phone}
                     </a>
@@ -117,10 +117,10 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 3: Lab & Facilities */}
+            {/* Column 3: Hospital Facilities */}
             <div className="footer-col space-y-4">
               <h4 className="text-xs font-bold uppercase tracking-wider text-white">
-                LAB & FACILITIES
+                HOSPITAL FACILITIES
               </h4>
 
               <div className="space-y-2.5 text-[13px] text-[#8E9CAE] w-full">
@@ -145,21 +145,21 @@ export function Footer() {
 
               <div className="space-y-3 text-[13px] w-full">
                 <div className="footer-contact-row flex items-start gap-2 text-[#8E9CAE]">
-                  <MapPin className="w-4 h-4 text-[#F43F5E] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[#B69A65] shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-white block font-medium leading-snug">
                       9th Cross Road, Sai Nagar
                     </strong>
                     <span className="text-[#8E9CAE] block text-xs mt-0.5 leading-relaxed">
-                      Near Sai Baba Temple Road,
+                      Behind Ambedkar Bhavan,
                       <br />
                       Anantapur, AP – 515001
                     </span>
                   </div>
                 </div>
 
-                <div className="footer-contact-row flex items-center gap-2 pt-1 text-[#38BDF8] font-bold text-xs">
-                  <Clock className="w-3.5 h-3.5 shrink-0 text-[#38BDF8]" />
+                <div className="footer-contact-row flex items-center gap-2 pt-1 text-[#E8D8D9] font-bold text-xs">
+                  <Clock className="w-3.5 h-3.5 shrink-0 text-[#B69A65]" />
                   <span>OPD: 9:00 AM - 9:00 PM | 24/7 Emergency</span>
                 </div>
               </div>
@@ -167,16 +167,16 @@ export function Footer() {
           </div>
 
           {/* Sub-footer Bar */}
-          <div className="mt-12 pt-6 border-t border-[#152236] flex flex-col sm:flex-row items-center justify-between text-xs text-[#64748B] gap-4">
-            <p>© 2026 Surya Hospital. All Rights Reserved.</p>
-            <div className="flex items-center gap-6">
-              <Link to="/contact" className="hover:text-[#94A3B8] transition">
-                Privacy Policy
-              </Link>
-              <Link to="/contact" className="hover:text-[#94A3B8] transition">
-                Terms of Service
-              </Link>
+          <div className="mt-12 pt-6 border-t border-[#3A222A] flex flex-col md:flex-row items-center justify-between text-xs text-[#8E9CAE] gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+              <Link to="/" className="hover:text-white transition">Home</Link>
+              <Link to="/about" className="hover:text-white transition">About Us</Link>
+              <Link to="/doctors" className="hover:text-white transition">Doctors</Link>
+              <Link to="/specialities" className="hover:text-white transition">Services</Link>
+              <Link to="/emergency" className="hover:text-white transition">Emergency</Link>
+              <Link to="/contact" className="hover:text-white transition">Contact Us</Link>
             </div>
+            <p>© 2026 Surya Hospital. All Rights Reserved.</p>
           </div>
         </Container>
       </footer>
@@ -187,7 +187,7 @@ export function Footer() {
           to="/appointment"
           title="Book an Appointment"
           aria-label="Book an Appointment"
-          className="floating-action-btn bg-[#1E293B] hover:bg-[#334155] border border-[#334155] text-white"
+          className="floating-action-btn bg-[#28171D] hover:bg-[#1E0F14] border border-[#3A222A] text-white"
         >
           <Calendar className="w-4.5 h-4.5 text-white" />
         </Link>
@@ -196,7 +196,7 @@ export function Footer() {
           href={`tel:${HOSPITAL_INFO.phoneRaw}`}
           title="Call Emergency / Helpline"
           aria-label="Call Emergency / Helpline"
-          className="floating-action-btn bg-[#E11D48] hover:bg-[#BE123C] text-white shadow-rose-500/40"
+          className="floating-action-btn bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-lg"
         >
           <Phone className="w-4.5 h-4.5 text-white" />
         </a>

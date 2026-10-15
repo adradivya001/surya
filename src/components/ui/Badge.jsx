@@ -16,21 +16,21 @@ export function Badge({
   };
 
   const variantStyles = {
-    default: "bg-[#FFF8F2] text-[#252B33] border border-[#F0D9CB]",
-    teal: "bg-[#FCECE2] text-[#C65332] border border-[#F0D9CB]",
-    navy: "bg-[#252B33] text-white border border-[#3A434E]",
-    emergency: "bg-[#FCECE2] text-[#C65332] border border-[#F0D9CB]",
+    default: "bg-[#FFF9F3] text-[#292D32] border border-[#E9D7C7]",
+    teal: "bg-[#F8E6DC] text-[#C65332] border border-[#E9D7C7]",
+    navy: "bg-[#292D32] text-white border border-[#3E434B]",
+    emergency: "bg-[#F8E6DC] text-[#C65332] border border-[#E9D7C7]",
     success: "bg-emerald-50 text-emerald-800 border border-emerald-200",
-    outline: "bg-transparent text-[#59616B] border border-[#F0D9CB]",
+    outline: "bg-transparent text-[#62666D] border border-[#E9D7C7]",
   };
 
   const dotColor = {
-    default: "bg-[#D98A62]",
+    default: "bg-[#C65332]",
     teal: "bg-[#C65332]",
     navy: "bg-white",
     emergency: "bg-[#C65332] animate-pulse",
     success: "bg-emerald-500",
-    outline: "bg-[#D98A62]",
+    outline: "bg-[#C65332]",
   };
 
   return (

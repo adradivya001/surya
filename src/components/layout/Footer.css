@@ -3,9 +3,9 @@
    ============================================================ */
 
 .ref-footer {
-  background-color: #0B1320;
+  background-color: #28171D;
   color: #FFFFFF;
-  border-top: 1px solid #152236;
+  border-top: 1px solid #3A222A;
   margin-top: auto;
 }
 
@@ -87,15 +87,17 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  position: relative;
 }
 
 .floating-action-btn:hover {
-  transform: scale(1.06);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 14px 30px rgba(198, 83, 50, 0.35);
 }
 
 .floating-action-btn:active {
-  transform: scale(0.94);
+  transform: translateY(0) scale(0.95);
 }
 
 /* On max-width: 991px (when MobileBottomBar is visible), lift floating buttons above the bar */

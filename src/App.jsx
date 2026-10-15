@@ -10,7 +10,6 @@ import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { DoctorsPage } from "./pages/DoctorsPage";
 import { SpecialitiesPage } from "./pages/SpecialitiesPage";
-import { DiagnosticsPage } from "./pages/DiagnosticsPage";
 import { EmergencyPage } from "./pages/EmergencyPage";
 import { ContactPage } from "./pages/ContactPage";
 import { AppointmentPage } from "./pages/AppointmentPage";
@@ -18,7 +17,7 @@ import { AppointmentPage } from "./pages/AppointmentPage";
 export function App() {
   return (
     <BrowserRouter>
-      <div className="w-full min-h-screen flex flex-col bg-[#FFF8F2] text-[#59616B] antialiased font-sans overflow-x-hidden selection:bg-[#F6D8C5] selection:text-[#A84328]">
+      <div className="w-full min-h-screen flex flex-col bg-[#FFF9F3] text-[#62666D] antialiased font-sans overflow-x-clip selection:bg-[#F8E6DC] selection:text-[#A84328]">
         <ScrollToTop />
 
         {/* 4. Reusable Navbar that appears consistently on every page */}
@@ -32,7 +31,7 @@ export function App() {
             <Route path="/doctors" element={<DoctorsPage />} />
             <Route path="/specialities" element={<SpecialitiesPage />} />
             <Route path="/services" element={<Navigate to="/specialities" replace />} />
-            <Route path="/diagnostics" element={<DiagnosticsPage />} />
+            <Route path="/diagnostics" element={<Navigate to="/specialities" replace />} />
             <Route path="/emergency" element={<EmergencyPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/appointment" element={<AppointmentPage />} />

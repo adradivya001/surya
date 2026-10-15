@@ -15,31 +15,31 @@ export function Button({
   ...props
 }) {
   const baseStyles =
-    "inline-flex items-center justify-center font-semibold transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed select-none cursor-pointer";
+    "inline-flex items-center justify-center font-bold tracking-tight transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E56A2E] disabled:opacity-60 disabled:cursor-not-allowed select-none cursor-pointer transform-gpu hover:-translate-y-0.5 active:translate-y-0 active:scale-97";
 
   const sizeStyles = {
-    sm: "px-3.5 py-1.5 text-xs rounded-lg gap-1.5",
-    md: "px-4.5 py-2.5 text-sm rounded-lg gap-2",
-    lg: "px-6 py-3 text-base rounded-xl gap-2.5",
+    sm: "px-4 py-2 text-xs rounded-lg gap-1.5",
+    md: "px-5 py-2.5 text-sm rounded-xl gap-2",
+    lg: "px-7 py-3.5 text-base rounded-xl gap-2.5",
   };
 
   const variantStyles = {
     primary:
-      "bg-[#C65332] hover:bg-[#A84328] text-white shadow-sm focus:ring-[#C65332]",
+      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-sm hover:shadow-md hover:shadow-[#E56A2E]/25 focus:ring-[#E56A2E]",
     terracotta:
-      "bg-[#C65332] hover:bg-[#A84328] text-white shadow-sm focus:ring-[#C65332]",
+      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-sm hover:shadow-md hover:shadow-[#E56A2E]/25 focus:ring-[#E56A2E]",
     navy:
-      "bg-[#252B33] hover:bg-[#1C2229] text-white shadow-sm focus:ring-[#252B33]",
+      "bg-[#28171D] hover:bg-[#1E0F14] text-white shadow-sm hover:shadow-md focus:ring-[#28171D]",
     accent:
-      "bg-[#D98A62] hover:bg-[#B96645] text-white shadow-sm focus:ring-[#D98A62]",
+      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-sm hover:shadow-md focus:ring-[#E56A2E]",
     emergency:
-      "bg-[#C65332] hover:bg-[#A84328] text-white shadow-emergency focus:ring-[#C65332]",
+      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-lg hover:shadow-xl focus:ring-[#E56A2E]",
     secondary:
-      "bg-white border border-[#D98A62] text-[#252B33] hover:bg-[#FCECE2] hover:text-[#C65332] shadow-xs focus:ring-[#C65332]",
+      "bg-white border border-[#DED7D7] text-[#29252A] hover:bg-[#FCFAF7] hover:text-[#E56A2E] hover:border-[#E56A2E] shadow-xs focus:ring-[#E56A2E]",
     outline:
-      "border border-[#D98A62] bg-transparent text-[#252B33] hover:bg-[#FCECE2] hover:text-[#C65332] focus:ring-[#C65332]",
+      "border border-[#DED7D7] bg-transparent text-[#29252A] hover:bg-[#FCFAF7] hover:text-[#E56A2E] hover:border-[#E56A2E] focus:ring-[#E56A2E]",
     ghost:
-      "text-[#252B33] hover:bg-[#FCECE2] hover:text-[#C65332] focus:ring-[#C65332]",
+      "text-[#29252A] hover:bg-[#E8D8D9]/40 hover:text-[#E56A2E] focus:ring-[#E56A2E]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size] || sizeStyles.md} ${

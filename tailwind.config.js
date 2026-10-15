@@ -8,67 +8,48 @@ export default {
     extend: {
       colors: {
         surya: {
+          /* New Editorial Architectural Palette */
+          primary: '#641D2D',         // Deep Oxblood
+          'primary-hover': '#4E1421', // Darker Oxblood
+          dark: '#28171D',            // Dark Premium Surface
+          warmWhite: '#FCFAF7',       // Warm White dominant background
+          pureWhite: '#FFFFFF',       // Pure White
+          rose: '#E8D8D9',            // Muted Rose
+          brass: '#B69A65',           // Brass Accent
+          charcoal: '#29252A',        // Main Text
+          secondaryText: '#6F686B',   // Secondary Text
+          border: '#DED7D7',          // Neutral Border
+          
+          /* Token Aliases for compatibility */
+          pageBg: '#FCFAF7',
+          card: '#FFFFFF',
+          heading: '#29252A',
+          muted: '#6F686B',
+          soft: '#E8D8D9',
           terracotta: {
-            DEFAULT: '#C65332', // Primary terracotta
-            hover: '#A84328',
-            dark: '#A84328',
-            50: '#FFF8F2',
-            100: '#FCECE2',
-            200: '#F6D8C5',
-            300: '#F0D9CB',
-            400: '#D98A62',
-            500: '#C65332',
-            600: '#A84328',
-            700: '#8E341E',
+            DEFAULT: '#641D2D',
+            hover: '#4E1421',
+            dark: '#28171D',
+            soft: '#E8D8D9',
+            50: '#FCFAF7',
+            100: '#E8D8D9',
+            200: '#DED7D7',
+            300: '#DED7D7',
+            400: '#B69A65',
+            500: '#641D2D',
+            600: '#4E1421',
+            700: '#28171D',
           },
-          burnt: '#A84328',       // Deep burnt orange
-          rust: '#B96645',        // Warm rust
-          muted: '#D98A62',       // Muted orange
-          peach: {
-            DEFAULT: '#F6D8C5',   // Soft peach
-            light: '#FCECE2',     // Pale peach
-            border: '#F0D9CB',    // Soft border
-          },
-          cream: '#FFF8F2',       // Warm cream
-          charcoal: '#252B33',    // Dark charcoal
-          slate: '#59616B',       // Slate gray
-          border: '#F0D9CB',      // Soft border
-          navy: {
-            DEFAULT: '#252B33',
-            50: '#FFF8F2',
-            100: '#FCECE2',
-            800: '#252B33',
-            900: '#1C2229',
-            950: '#15191E',
-          },
-          blue: {
-            DEFAULT: '#C65332',
-            50: '#FCECE2',
-            100: '#F6D8C5',
-            600: '#A84328',
-            700: '#8E341E',
-          },
-          cyan: {
-            DEFAULT: '#D98A62',
-            50: '#FFF8F2',
-            600: '#B96645',
+          beige: {
+            DEFAULT: '#FCFAF7',
+            light: '#FFFFFF',
+            border: '#DED7D7',
+            dark: '#E8D8D9',
           },
           text: {
-            primary: '#252B33',
-            secondary: '#59616B',
-            muted: '#8A929C',
-          },
-          light: '#FCECE2',
-          emergency: {
-            50: '#FDF2F0',
-            100: '#FCECE2',
-            200: '#F6D8C5',
-            500: '#C65332',
-            600: '#A84328',
-            700: '#8E341E',
-            800: '#752916',
-            900: '#5C1E0F',
-            950: '#252B33',
+            primary: '#29252A',
+            secondary: '#6F686B',
+            muted: '#8A8487',
           },
         },
       },

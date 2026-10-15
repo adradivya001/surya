@@ -1,132 +1,181 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "../ui/Container";
 import {
   Calendar,
-  ArrowRight,
-  ShieldCheck,
   Ambulance,
   Stethoscope,
   Building2,
   HeartHandshake,
 } from "lucide-react";
+import { HOSPITAL_INFO } from "../../constants/hospitalData";
 import "./Hero.css";
 
 export function HomeHero() {
+  const [zoomFactor, setZoomFactor] = useState(0); // 0 at top, 1 at fully zoomed
+  const heroRef = useRef(null);
+
+  // Respect reduced motion preference for the scroll zoom
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          // Calculate zoom progression over first 450px of scrolling
+          const maxScroll = 450;
+          const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+          // Smooth easeOutCubic curve for a natural, grounded motion
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          setZoomFactor(Number(eased.toFixed(4)));
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prefersReducedMotion]);
   const trustItems = [
     {
       title: "24/7 Emergency Care",
-      desc: "Immediate assistance when you need it.",
+      desc: "Immediate doctor checkup and casualty care in Sai Nagar.",
       icon: Ambulance,
     },
     {
       title: "Experienced Doctors",
-      desc: "Skilled and trusted medical professionals.",
+      desc: "General medicine, surgery, and bone care specialists.",
       icon: Stethoscope,
     },
     {
-      title: "Modern Facilities",
-      desc: "Advanced equipment and comfortable care.",
+      title: "Clean Operating Rooms",
+      desc: "Safe planned and keyhole surgeries.",
       icon: Building2,
     },
     {
-      title: "Patient-First Approach",
-      desc: "Compassionate care for every patient.",
+      title: "24/7 On-Site Pharmacy",
+      desc: "Medicines and surgical supplies available round the clock.",
       icon: HeartHandshake,
     },
   ];
 
   return (
-    <section className="hero-section">
-      {/* Hero Banner Visual Layer */}
-      <div className="hero-background-wrapper">
-        <img
-          src="/Surya Hospital Hero Banner.png"
-          alt="Surya Hospital Building Campus"
-          className="hero-background-visual"
-          loading="eager"
-        />
+    <section className="stanford-hero-section pt-0">
+      {/* 1. Full-Width Horizontal Building Video with Cinematic Overlay */}
+      <div className="stanford-hero-image-stage w-full p-0 m-0" ref={heroRef}>
+        <div className="stanford-building-fullbleed w-full max-w-none rounded-none border-none shadow-none">
+          <video
+            src="/images/surya-hospital-building.mp4"
+            poster="/images/surya-hospital-building-hero.jpg"
+            preload="metadata"
+            className="stanford-building-img w-full h-[70vh] sm:h-[78vh] lg:h-[84vh] object-cover transition-transform ease-out"
+            style={{
+              transform: prefersReducedMotion
+                ? "none"
+                : `scale(${1 + zoomFactor * 0.05}) translate3d(0, 0, 0)`,
+              transformOrigin: "center 38%",
+              willChange: prefersReducedMotion ? "auto" : "transform",
+            }}
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+          {/* Gentle cinematic scrim that keeps the video vibrant while text remains crystal clear */}
+          <div className="hero-cinematic-scrim" />
+
+          {/* Overlaid Headline & Verified Action Strip */}
+          <div className="hero-overlay-content">
+            <Container size="default">
+              <div className="max-w-3xl text-left space-y-4 sm:space-y-5">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-bold uppercase tracking-widest text-[#E8D8D9] shadow-sm">
+                    <span className="w-2 h-2 rounded-full bg-[#B69A65]" />
+                    <span>Surya Hospital • Sai Nagar, Anantapur</span>
+                  </div>
+
+                  <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4rem] font-black text-white tracking-tight leading-[1.1] drop-shadow-lg">
+                    Comprehensive Healthcare.<br />
+                    <span className="text-[#E8D8D9]">Compassionate Care.</span>
+                  </h1>
+
+                  <p className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed drop-shadow-md font-normal">
+                    Physician consultations, sterile operating theatres, fracture recovery, and 24/7 casualty response in Sai Nagar, Anantapur.
+                  </p>
+                </div>
+
+                <div className="pt-3 sm:pt-4 flex flex-wrap items-center gap-4">
+                  <Link
+                    to="/appointment"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl text-xs sm:text-sm font-bold bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-xl hover:shadow-2xl transition-all active:scale-95"
+                  >
+                    <Calendar className="w-4 h-4 text-white" />
+                    <span>Book an Appointment</span>
+                  </Link>
+
+                  <Link
+                    to="/specialities"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 sm:px-7 sm:py-4 rounded-xl text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/30 transition-all active:scale-95"
+                  >
+                    <span>Explore Our Specialities</span>
+                  </Link>
+
+                  <a
+                    href={`tel:${HOSPITAL_INFO.phoneRaw}`}
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-white/90 hover:text-white underline underline-offset-4 decoration-[#B69A65] transition-colors ml-1"
+                    title="Call 24/7 Casualty Desk"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#B69A65] animate-ping" />
+                    <span>Casualty: {HOSPITAL_INFO.phone}</span>
+                  </a>
+                </div>
+              </div>
+            </Container>
+          </div>
+        </div>
       </div>
 
-      {/* Hero Text Content (Editorial Left with Frosted Glass Card Shift on Mobile) */}
-      <Container size="wide" className="relative z-10 flex-1 flex flex-col justify-center py-4 sm:py-6 lg:py-8">
-        <div className="hero-editorial-left space-y-3.5 sm:space-y-4">
-          {/* Main Heading: Fluid Typography */}
-          <h1 className="hero-headline font-serif font-bold text-[#1B2533] tracking-tight">
-            Better Care.
-            <span className="block font-serif italic text-[#C65332] font-semibold mt-0.5 sm:mt-1">
-              Healthier Lives.
-            </span>
-          </h1>
-
-          {/* Subtext */}
-          <p className="text-xs sm:text-[15px] lg:text-[16px] text-[#3A434E] leading-relaxed max-w-[460px] font-normal">
-            Your family deserves quality healthcare and personal attention. We are here to help you find the right care and feel confident at every step of your health journey.
-          </p>
-
-          {/* Dual CTAs */}
-          <div className="hero-cta-group pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
-            <Link to="/appointment" className="w-full sm:w-auto">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center gap-2 px-5 sm:px-7 py-3 rounded-full font-bold text-xs sm:text-[15px] bg-[#0B1320] hover:bg-[#1C2636] text-white shadow-md hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer min-h-[44px] w-full sm:w-auto"
-              >
-                <Calendar className="w-4 h-4 text-white" />
-                <span>Book an Appointment</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </button>
-            </Link>
-
-            <Link to="/specialities" className="w-full sm:w-auto">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-5 sm:px-7 py-3 rounded-full font-bold text-xs sm:text-[15px] bg-white hover:bg-[#FFF8F2] text-[#252B33] border border-[#F0D9CB] hover:border-[#D98A62] shadow-2xs hover:scale-[1.01] active:scale-[0.99] transition cursor-pointer min-h-[44px] w-full sm:w-auto"
-              >
-                Explore Our Services
-              </button>
-            </Link>
-          </div>
-
-          {/* Leadership Trust Pill Badge */}
-          <div className="pt-0.5 w-full flex hero-trust-badge">
-            <div className="inline-flex items-start sm:items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl sm:rounded-full bg-[#FCECE2] border border-[#F0D9CB] text-[11px] sm:text-xs font-semibold text-[#252B33] shadow-2xs">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#C65332] shrink-0 mt-0.5 sm:mt-0" />
-              <span>
-                Led by <strong className="text-[#C65332]">Dr. D. Surya Prakash</strong> (M.D. Internal Medicine, Managing Director)
-              </span>
+      {/* 3. Sleek Integrated Trust Strip */}
+      <div className="stanford-trust-bar-wrapper">
+        <Container size="wide">
+          <div className="stanford-trust-box">
+            <div className="stanford-trust-grid">
+              {trustItems.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div key={idx} className="stanford-trust-item">
+                    <div className="stanford-trust-icon-box">
+                      <Icon className="w-4 h-4 text-[#641D2D]" strokeWidth={2.2} />
+                    </div>
+                    <div className="min-w-0 text-left">
+                      <h3 className="text-sm font-bold text-[#29252A] leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs text-[#6F686B] leading-normal mt-0.5">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-        </div>
-      </Container>
-
-      {/* Trust Strip: Adaptive Columns (4 col desktop, 2 col tablet/mobile, 1 col phone) */}
-      <Container size="wide" className="hero-trust-container relative z-10 shrink-0 pb-6 lg:pb-5 pt-2 sm:pt-3">
-        <div className="w-full bg-white/95 backdrop-blur-xs rounded-2xl border border-[#F0D9CB] shadow-sm px-3.5 py-3 sm:px-5 sm:py-3.5 lg:py-3.5 lg:px-4">
-          <div className="hero-trust-grid">
-            {trustItems.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="hero-trust-item flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 px-2 lg:px-4"
-                >
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#FCECE2] border border-[#F0D9CB] flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C65332]" strokeWidth={2} />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-[13px] sm:text-[14.5px] lg:text-[15px] font-semibold text-[#252B33] tracking-tight leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-[11px] sm:text-[11.5px] lg:text-[12px] text-[#59616B] leading-tight sm:leading-relaxed mt-0.5">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </section>
   );
 }

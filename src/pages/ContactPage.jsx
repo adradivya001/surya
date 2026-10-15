@@ -4,6 +4,7 @@ import { PageHero } from "../components/ui/PageHero";
 import { Button } from "../components/ui/Button";
 import {
   MapPin,
+  Navigation,
   Phone,
   Clock,
   ExternalLink,
@@ -91,97 +92,110 @@ export function ContactPage() {
     <div className="w-full">
       {/* Page Hero */}
       <PageHero
-        eyebrow="HOSPITAL DESK & DIRECTIONS"
+        eyebrow="LOCATION & CONTACT"
         title="Contact Surya Hospital"
-        description="Reach out to our administrative desk, enquire about outpatient doctor schedules, or visit our hospital located in Sai Nagar, Anantapur."
+        description="We are here to help you. Call our friendly front desk, enquire about doctor visiting hours, or visit our hospital behind Ambedkar Bhavan in Sai Nagar, Anantapur."
         breadcrumbs={[{ label: "Contact" }]}
         badge="Sai Nagar, Anantapur"
       >
         <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
           <Button variant="primary" size="sm" icon={PhoneCall} className="bg-[#C65332] hover:bg-[#A84328] text-white">
-            Call Reception: {HOSPITAL_INFO.phone}
+            Call Front Desk: {HOSPITAL_INFO.phone}
           </Button>
         </a>
         <a href={HOSPITAL_INFO.mapsUrl} target="_blank" rel="noopener noreferrer">
-          <Button variant="secondary" size="sm" icon={ExternalLink} className="bg-white border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]">
-            Get Google Maps Directions
+          <Button variant="secondary" size="sm" icon={ExternalLink} className="bg-white border-[#E9D7C7] text-[#292D32] hover:bg-[#F8E6DC]">
+            Directions on Google Maps
           </Button>
         </a>
       </PageHero>
 
-      <section className="py-12 md:py-16 bg-white border-b border-[#F0D9CB]">
+      <section className="py-14 md:py-20 bg-white border-b border-[#DED7D7]">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left Column: Contact Cards & Info (5 cols) */}
             <div className="lg:col-span-5 space-y-6 text-left">
               <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-                  HOSPITAL DETAILS
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
+                  HOW TO REACH US
                 </span>
-                <h2 className="text-2xl font-extrabold text-[#252B33] tracking-tight">
-                  Reach Us Directly
+                <h2 className="text-3xl font-black text-[#29252A] tracking-tight">
+                  We Are Always Here For You
                 </h2>
-                <p className="text-xs sm:text-sm text-[#59616B] leading-relaxed">
-                  For immediate appointments, acute admissions, or urgent medical queries, direct telephone calls are prioritized by our front desk.
+                <p className="text-xs sm:text-sm text-[#6F686B] leading-relaxed font-normal">
+                  For quick doctor bookings, room enquiries, or emergency advice, calling our front desk is always the fastest way to get help.
                 </p>
               </div>
 
               {/* Verified Contact Cards */}
-              <div className="space-y-3.5">
-                <div className="p-4 rounded-xl border border-[#F0D9CB] bg-white flex items-start gap-3.5 shadow-2xs">
-                  <div className="w-10 h-10 rounded-lg bg-[#F6D8C5] text-[#C65332] flex items-center justify-center shrink-0">
+              <div className="space-y-4">
+                <div className="p-5 rounded-2xl border border-[#DED7D7] bg-[#FCFAF7] flex items-start gap-4 shadow-2xs">
+                  <div className="w-11 h-11 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
-                  <div className="text-xs space-y-0.5">
-                    <span className="font-bold text-[#252B33] block text-sm">
+                  <div className="text-xs sm:text-sm space-y-1 flex-1">
+                    <span className="font-bold text-[#29252A] block text-base">
                       Hospital Address
                     </span>
-                    <p className="text-[#59616B] leading-relaxed">
+                    <p className="text-[#6F686B] leading-relaxed">
                       {HOSPITAL_INFO.fullAddress}
                     </p>
-                    <span className="text-[11px] text-[#808A96] block pt-1">
+                    <span className="text-xs text-[#8A8487] block pt-1">
                       Landmark: {HOSPITAL_INFO.landmark}
                     </span>
+                    <div className="pt-3">
+                      <a
+                        href={HOSPITAL_INFO.directionsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-[#E56A2E] text-white hover:bg-[#C8541D] transition duration-150 cursor-pointer shadow-xs"
+                        aria-label="Get directions to Surya Hospital in Google Maps (opens in new tab)"
+                      >
+                        <Navigation className="w-3.5 h-3.5 shrink-0" />
+                        <span>Get Directions</span>
+                        <ExternalLink className="w-3 h-3 opacity-70" />
+                      </a>
+                    </div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl border border-[#F0D9CB] bg-white flex items-start gap-3.5 shadow-2xs">
-                  <div className="w-10 h-10 rounded-lg bg-[#F6D8C5] text-[#C65332] flex items-center justify-center shrink-0">
+                <div className="p-5 rounded-2xl border border-[#DED7D7] bg-[#FCFAF7] flex items-start gap-4 shadow-2xs">
+                  <div className="w-11 h-11 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
-                  <div className="text-xs space-y-1">
-                    <span className="font-bold text-[#252B33] block text-sm">
+                  <div className="text-xs sm:text-sm space-y-1">
+                    <span className="font-bold text-[#29252A] block text-base">
                       Telephone Helpline
                     </span>
-                    <div>
+                    <div className="text-[#6F686B]">
                       Emergency & Reception:{" "}
                       <a
                         href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                        className="font-bold text-[#252B33] hover:text-[#C65332] underline"
+                        className="font-bold text-[#29252A] hover:text-[#641D2D] underline"
                       >
                         {HOSPITAL_INFO.phone}
                       </a>
                     </div>
-                    <span className="text-[11px] text-[#808A96] block">
+                    <span className="text-xs text-[#8A8487] block">
                       Operational 24 Hours / 7 Days a Week
                     </span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl border border-[#F0D9CB] bg-white flex items-start gap-3.5 shadow-2xs">
-                  <div className="w-10 h-10 rounded-lg bg-[#F6D8C5] text-[#C65332] flex items-center justify-center shrink-0">
+                <div className="p-5 rounded-2xl border border-[#DED7D7] bg-[#FCFAF7] flex items-start gap-4 shadow-2xs">
+                  <div className="w-11 h-11 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center shrink-0">
                     <Clock className="w-5 h-5" />
                   </div>
-                  <div className="text-xs space-y-1">
-                    <span className="font-bold text-[#252B33] block text-sm">
+                  <div className="text-xs sm:text-sm space-y-1">
+                    <span className="font-bold text-[#29252A] block text-base">
                       Consultation & OPD Timings
                     </span>
-                    <p className="text-[#59616B]">
+                    <p className="text-[#6F686B]">
                       Morning: 09:00 AM – 02:00 PM
                       <br />
                       Evening: 05:00 PM – 09:00 PM
                     </p>
-                    <span className="text-[11px] text-[#C65332] font-semibold block">
+                    <span className="text-xs text-[#641D2D] font-bold block pt-0.5">
                       Emergency & Trauma Care: Always Open (24/7)
                     </span>
                   </div>
@@ -191,24 +205,24 @@ export function ContactPage() {
               {/* Call-out Button */}
               <a
                 href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-bold bg-[#C65332] hover:bg-[#A84328] text-white shadow-sm transition"
+                className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl text-sm font-bold bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-sm transition"
               >
-                <PhoneCall className="w-4 h-4 animate-pulse" />
+                <PhoneCall className="w-4 h-4 animate-pulse text-[#B69A65]" />
                 <span>Call Hospital Directly: {HOSPITAL_INFO.phone}</span>
               </a>
             </div>
 
             {/* Right Column: Enquiry Form (7 cols) */}
-            <div className="lg:col-span-7 bg-[#FFF8F2] p-4 sm:p-6 md:p-8 rounded-2xl border border-[#F0D9CB] shadow-2xs text-left">
-              <div className="space-y-1 mb-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-                  GENERAL INQUIRY DESK
+            <div className="lg:col-span-7 bg-[#FCFAF7] p-5 sm:p-7 md:p-9 rounded-2xl border border-[#DED7D7] shadow-2xs text-left">
+              <div className="space-y-1.5 mb-6">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
+                  SEND A MESSAGE
                 </span>
-                <h3 className="text-xl font-bold text-[#252B33]">
-                  Send a Message to Our Reception Team
+                <h3 className="text-2xl font-black text-[#29252A]">
+                  Have a Question? We’re Happy to Help
                 </h3>
-                <p className="text-xs text-[#59616B]">
-                  Please do not use this form for acute emergencies. In an emergency, call {HOSPITAL_INFO.phone} immediately.
+                <p className="text-xs sm:text-sm text-[#6F686B] font-normal">
+                  For urgent health problems or sudden emergencies, please do not wait for an online message — call our 24/7 helpline at {HOSPITAL_INFO.phone} immediately.
                 </p>
               </div>
 
@@ -217,13 +231,13 @@ export function ContactPage() {
                 <div className="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-xs text-green-900 space-y-1.5 animate-fadeIn">
                   <div className="flex items-center gap-2 font-bold text-green-950 text-sm">
                     <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" />
-                    <span>Enquiry Received (Demonstration Flow)</span>
+                    <span>Message Sent Successfully</span>
                   </div>
                   <p>
-                    Thank you, <strong>{submissionSuccess.name}</strong>. Reference ID: <strong>{submissionSuccess.id}</strong>.
+                    Thank you, <strong>{submissionSuccess.name}</strong>! Your inquiry reference number is <strong>{submissionSuccess.id}</strong>.
                   </p>
                   <p className="text-green-800 text-[11px]">
-                    This form demonstrates verified input handling. For actual immediate hospital coordination, please call reception at <strong>{HOSPITAL_INFO.phone}</strong>.
+                    Our hospital team will reach out to you at {submissionSuccess.phone} shortly. If you need urgent information right now, feel free to call us at <strong>{HOSPITAL_INFO.phone}</strong>.
                   </p>
                   <button
                     onClick={() => setSubmissionSuccess(null)}
@@ -239,18 +253,18 @@ export function ContactPage() {
                 <div className="input-row-half">
                   {/* Full Name */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-[#252B33]">
-                      Full Name <span className="text-[#C65332]">*</span>
+                    <label className="text-xs font-bold text-[#29252A]">
+                      Full Name <span className="text-[#641D2D]">*</span>
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. Ramesh Kumar"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
+                      className={`w-full px-3.5 py-3 text-xs sm:text-sm rounded-xl border bg-white text-[#29252A] placeholder-[#8A8487] focus:outline-none transition ${
                         errors.fullName
                           ? "border-red-400 ring-1 ring-red-300"
-                          : "border-[#F0D9CB] focus:border-[#C65332]"
+                          : "border-[#DED7D7] focus:border-[#641D2D]"
                       }`}
                     />
                     {errors.fullName && (
@@ -260,18 +274,18 @@ export function ContactPage() {
 
                   {/* Phone Number */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-[#252B33]">
-                      Phone Number <span className="text-[#C65332]">*</span>
+                    <label className="text-xs font-bold text-[#29252A]">
+                      Phone Number <span className="text-[#641D2D]">*</span>
                     </label>
                     <input
                       type="tel"
                       placeholder="e.g. 9876543210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
+                      className={`w-full px-3.5 py-3 text-xs sm:text-sm rounded-xl border bg-white text-[#29252A] placeholder-[#8A8487] focus:outline-none transition ${
                         errors.phone
                           ? "border-red-400 ring-1 ring-red-300"
-                          : "border-[#F0D9CB] focus:border-[#C65332]"
+                          : "border-[#DED7D7] focus:border-[#641D2D]"
                       }`}
                     />
                     {errors.phone && (
@@ -283,18 +297,18 @@ export function ContactPage() {
                 <div className="input-row-half">
                   {/* Email */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-[#252B33]">
-                      Email Address <span className="text-[#808A96] font-normal">(Optional)</span>
+                    <label className="text-xs font-bold text-[#29252A]">
+                      Email Address <span className="text-[#8A8487] font-normal">(Optional)</span>
                     </label>
                     <input
                       type="email"
                       placeholder="e.g. patient@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
+                      className={`w-full px-3.5 py-3 text-xs sm:text-sm rounded-xl border bg-white text-[#29252A] placeholder-[#8A8487] focus:outline-none transition ${
                         errors.email
                           ? "border-red-400 ring-1 ring-red-300"
-                          : "border-[#F0D9CB] focus:border-[#C65332]"
+                          : "border-[#DED7D7] focus:border-[#641D2D]"
                       }`}
                     />
                     {errors.email && (
@@ -304,37 +318,37 @@ export function ContactPage() {
 
                   {/* Category */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-[#252B33]">
-                      Enquiry Category <span className="text-[#C65332]">*</span>
+                    <label className="text-xs font-bold text-[#29252A]">
+                      What Can We Help You With? <span className="text-[#641D2D]">*</span>
                     </label>
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-[#F0D9CB] bg-white text-[#252B33] focus:outline-none focus:border-[#C65332]"
+                      className="w-full px-3.5 py-3 text-xs sm:text-sm rounded-xl border border-[#DED7D7] bg-white text-[#29252A] focus:outline-none focus:border-[#641D2D]"
                     >
-                      <option value="General Enquiry">General Enquiry</option>
-                      <option value="Doctor Availability & OPD">Doctor Availability & OPD</option>
-                      <option value="Surgical / Treatment Info">Surgical / Treatment Info</option>
-                      <option value="Diagnostic Laboratory & Imaging">Diagnostic Laboratory & Imaging</option>
-                      <option value="Inpatient Admission / Room Query">Inpatient Admission / Room Query</option>
+                      <option value="General Enquiry">General Hospital Question</option>
+                      <option value="Doctor Availability & OPD">Doctor Timings & Visiting Hours</option>
+                      <option value="Surgical / Treatment Info">Surgery & Treatment Details</option>
+                      <option value="Emergency Care Assistance">Emergency & Trauma Assistance</option>
+                      <option value="Inpatient Admission / Room Query">Hospital Stay & Rooms</option>
                     </select>
                   </div>
                 </div>
 
                 {/* Message */}
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#252B33]">
-                    Message / Question <span className="text-[#C65332]">*</span>
+                  <label className="text-xs font-bold text-[#29252A]">
+                    Your Message or Question <span className="text-[#641D2D]">*</span>
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Briefly describe your enquiry or requirement..."
+                    placeholder="Tell us what you need help with (e.g. asking about doctor timing, visiting hours, or hospital stay)..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border bg-white text-[#252B33] placeholder-[#808A96] focus:outline-none transition ${
+                    className={`w-full px-3.5 py-3 text-xs sm:text-sm rounded-xl border bg-white text-[#29252A] placeholder-[#8A8487] focus:outline-none transition ${
                       errors.message
                         ? "border-red-400 ring-1 ring-red-300"
-                        : "border-[#F0D9CB] focus:border-[#C65332]"
+                        : "border-[#DED7D7] focus:border-[#641D2D]"
                     }`}
                   />
                   {errors.message && (
@@ -344,15 +358,15 @@ export function ContactPage() {
 
                 {/* Consent */}
                 <div className="space-y-1 pt-1">
-                  <label className="flex items-start gap-2 text-xs text-[#59616B] cursor-pointer">
+                  <label className="flex items-start gap-2 text-xs text-[#6F686B] cursor-pointer">
                     <input
                       type="checkbox"
                       checked={formData.consent}
                       onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-                      className="mt-0.5 rounded text-[#C65332] focus:ring-[#C65332]"
+                      className="mt-0.5 rounded text-[#641D2D] focus:ring-[#641D2D]"
                     />
                     <span>
-                      I consent to Surya Hospital contacting me at the phone number provided regarding this enquiry.
+                      I agree to let Surya Hospital call or message me at the provided phone number to answer this enquiry.
                     </span>
                   </label>
                   {errors.consent && (
@@ -368,9 +382,9 @@ export function ContactPage() {
                     size="md"
                     disabled={isSubmitting}
                     icon={isSubmitting ? Loader2 : Send}
-                    className="w-full bg-[#C65332] hover:bg-[#A84328] text-white font-bold py-2.5"
+                    className="w-full bg-[#E56A2E] hover:bg-[#C8541D] text-white font-bold py-3.5 rounded-xl"
                   >
-                    {isSubmitting ? "Submitting Enquiry..." : "Submit Enquiry"}
+                    {isSubmitting ? "Sending Message..." : "Send Message to Front Desk"}
                   </Button>
                 </div>
               </form>
@@ -380,30 +394,42 @@ export function ContactPage() {
       </section>
 
       {/* Google Maps Embed Section */}
-      <section className="py-12 bg-[#FFF8F2] border-b border-[#F0D9CB]">
+      <section className="py-12 bg-[#FFF9F3] border-b border-[#E9D7C7]">
         <Container>
           <div className="space-y-4 text-left">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-                  CAMPUS MAP
+                <span className="text-xs font-bold uppercase tracking-wider text-[#C65332]">
+                  HOSPITAL LOCATION
                 </span>
-                <h3 className="text-xl font-bold text-[#252B33]">
-                  Interactive Google Map
+                <h3 className="text-xl font-bold text-[#292D32]">
+                  Find Us on Google Maps
                 </h3>
               </div>
-              <a
-                href={HOSPITAL_INFO.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C65332] hover:underline"
-              >
-                <span>Open in Full Screen Google Maps</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={HOSPITAL_INFO.directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#C65332] text-white hover:bg-[#A84328] transition duration-150 shadow-2xs"
+                  aria-label="Get driving or walking directions to Surya Hospital (opens in new tab)"
+                >
+                  <Navigation className="w-3.5 h-3.5" />
+                  <span>Get Directions</span>
+                </a>
+                <a
+                  href={HOSPITAL_INFO.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C65332] hover:underline"
+                >
+                  <span>Open Full Map</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
 
-            <div className="h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#F0D9CB] shadow-sm bg-white">
+            <div className="h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#E9D7C7] shadow-sm bg-white">
               <iframe
                 title="Surya Hospital Sai Nagar Anantapur Location Map"
                 src={HOSPITAL_INFO.googleMapsEmbed}

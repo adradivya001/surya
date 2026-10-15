@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container } from "../ui/Container";
 import { Button } from "../ui/Button";
-import { PhoneCall, MapPin, Clock, ShieldAlert, ArrowRight, Ambulance } from "lucide-react";
+import { PhoneCall, MapPin, Clock } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
 
 export function HomeEmergencySection() {

@@ -6,10 +6,10 @@ import { Button } from "../components/ui/Button";
 import {
   ShieldCheck,
   CheckCircle2,
-  AlertCircle,
   Stethoscope,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
+import { AnimateIn } from "../components/ui/AnimateIn";
 
 export function AboutPage() {
   useEffect(() => {
@@ -32,108 +32,70 @@ export function AboutPage() {
           </Button>
         </Link>
         <Link to="/specialities">
-          <Button variant="secondary" size="sm" className="bg-white border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]">
+          <Button variant="secondary" size="sm" className="bg-white border-[#E9D7C7] text-[#292D32] hover:bg-[#F8E6DC]">
             Clinical Specialities
           </Button>
         </Link>
       </PageHero>
 
       {/* Hospital Overview */}
-      <section className="py-16 bg-[#FFF8F2] border-b border-[#F0D9CB]">
+      <section className="py-18 md:py-24 bg-[#FCFAF7] border-b border-[#DED7D7]">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Visual (5 cols) */}
             <div className="lg:col-span-5 relative">
-              <div className="rounded-2xl overflow-hidden border border-[#F0D9CB] shadow-sm bg-white p-2">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#FCECE2]">
+              <div className="rounded-2xl overflow-hidden border border-[#DED7D7] shadow-lg bg-white p-3">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#28171D]">
                   <img
                     src="/images/surya-reception.jpg"
                     alt="Surya Hospital Lobby and Reception in Sai Nagar Anantapur"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#252B33]/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 text-white text-xs font-semibold">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#28171D]/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 text-white text-xs font-bold tracking-wide">
                     Surya Hospital Campus • Sai Nagar, Anantapur
                   </div>
                 </div>
               </div>
 
               {/* Floating verified badge */}
-              <div className="hidden sm:flex absolute -bottom-4 -left-4 bg-[#252B33] text-white p-3 rounded-xl shadow-md items-center gap-2.5 text-xs font-bold border border-[#373F4A]">
-                <ShieldCheck className="w-4 h-4 text-[#D98A62]" />
-                <span>Ethical Medical Practice</span>
+              <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-[#28171D] text-white p-4 rounded-xl shadow-xl items-center gap-3 text-xs font-bold border border-[#3A222A]">
+                <ShieldCheck className="w-5 h-5 text-[#B69A65]" />
+                <span className="tracking-wide">Ethical Medical Practice</span>
               </div>
             </div>
 
             {/* Content (7 cols) */}
-            <div className="lg:col-span-7 space-y-4 text-left">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-                HOSPITAL OVERVIEW
+            <div className="lg:col-span-7 space-y-5 text-left">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
+                ABOUT SURYA HOSPITAL
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
-                Dedicated to Clinical Excellence in Anantapur
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#29252A] tracking-tight">
+                Caring Healthcare for You and Your Family
               </h2>
-              <p className="text-sm sm:text-base text-[#59616B] leading-relaxed">
+              <p className="text-base sm:text-lg text-[#6F686B] leading-relaxed font-normal">
                 {HOSPITAL_INFO.about.overview}
               </p>
-              <p className="text-sm text-[#59616B] leading-relaxed">
-                Centrally located behind Ambedkar Bhavan on 9th Cross Road, Sai Nagar, the facility is designed for easy accessibility, rapid patient triage, hygienic inpatient wards, and prompt surgical management.
+              <p className="text-sm sm:text-base text-[#6F686B] leading-relaxed">
+                Located behind Ambedkar Bhavan on 9th Cross Road in Sai Nagar, our hospital is easy to reach. We provide comfortable inpatient rooms, fully equipped operating suites, and 24/7 emergency care so you receive complete care in one visit.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-[#252B33] font-medium">
-                <div className="flex items-center gap-2 bg-white p-3 rounded-lg border border-[#F0D9CB]">
-                  <CheckCircle2 className="w-4 h-4 text-[#C65332] shrink-0" />
-                  <span>24/7 Emergency & Casualty Wing</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-3 text-xs sm:text-sm text-[#29252A] font-semibold">
+                <div className="flex items-center gap-2.5 bg-white p-3.5 rounded-xl border border-[#DED7D7] shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0" />
+                  <span>24/7 Emergency & Casualty</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white p-3 rounded-lg border border-[#F0D9CB]">
-                  <CheckCircle2 className="w-4 h-4 text-[#C65332] shrink-0" />
-                  <span>Equipped Operation Suites</span>
+                <div className="flex items-center gap-2.5 bg-white p-3.5 rounded-xl border border-[#DED7D7] shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0" />
+                  <span>Clean Operating Rooms for Safe Surgeries</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white p-3 rounded-lg border border-[#F0D9CB]">
-                  <CheckCircle2 className="w-4 h-4 text-[#C65332] shrink-0" />
-                  <span>In-House Pathology & Ultrasound</span>
+                <div className="flex items-center gap-2.5 bg-white p-3.5 rounded-xl border border-[#DED7D7] shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0" />
+                  <span>Monitored Inpatient & Recovery Rooms</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white p-3 rounded-lg border border-[#F0D9CB]">
-                  <CheckCircle2 className="w-4 h-4 text-[#C65332] shrink-0" />
-                  <span>24/7 In-House Pharmacy</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Medical Leadership & Founder Section */}
-      <section className="py-14 bg-white border-b border-[#F0D9CB]">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-[#FFF8F2] rounded-2xl border border-[#F0D9CB] p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 shadow-xs">
-              <div className="relative w-36 h-44 sm:w-44 sm:h-52 rounded-xl overflow-hidden bg-[#FCECE2] shrink-0 border border-[#F0D9CB] shadow-sm">
-                <img
-                  src="/images/dr-d-surya-prakash.png"
-                  alt="Dr. D. Surya Prakash - Managing Director & Consultant Physician"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div className="space-y-3 text-left">
-                <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-[#C65332] text-white inline-block">
-                  Managing Director & Founder
-                </span>
-                <h3 className="text-2xl font-bold text-[#252B33]">
-                  Dr. D. Surya Prakash
-                </h3>
-                <p className="text-sm font-semibold text-[#C65332]">
-                  M.D. Internal Medicine • Consultant Physician
-                </p>
-                <p className="text-xs sm:text-sm text-[#59616B] leading-relaxed">
-                  Under the clinical guidance and leadership of Dr. D. Surya Prakash, Surya Hospital is committed to compassionate patient care, ethical medical practices, and comprehensive outpatient and inpatient clinical excellence in Sai Nagar, Anantapur.
-                </p>
-                <div className="pt-1">
-                  <Link to="/doctors">
-                    <Button variant="outline" size="sm" className="text-xs font-bold border-[#D98A62] bg-white text-[#252B33] hover:bg-[#FCECE2]">
-                      View Full Clinical Profile & OPD Timings
-                    </Button>
-                  </Link>
+                <div className="flex items-center gap-2.5 bg-white p-3.5 rounded-xl border border-[#DED7D7] shadow-2xs">
+                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0" />
+                  <span>24/7 Open Medical Pharmacy</span>
                 </div>
               </div>
             </div>
@@ -141,153 +103,176 @@ export function AboutPage() {
         </Container>
       </section>
 
-      {/* Mission & Vision (Draft Copy Notice as Required) */}
-      <section className="py-16 bg-white border-b border-[#F0D9CB]">
+      {/* Medical Leadership & Founder Section - High Impact Editorial Feature Panel */}
+      <section className="py-18 sm:py-24 bg-white border-b border-[#DED7D7]">
         <Container>
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="p-3.5 rounded-xl bg-[#FCECE2] border border-[#F0D9CB] flex items-start gap-2.5 text-xs text-[#252B33]">
-              <AlertCircle className="w-4 h-4 text-[#C65332] shrink-0 mt-0.5" />
-              <span>
-                <strong>Institutional Draft Note:</strong> The mission and vision statements below are proposed draft copy under review by hospital administration to accurately reflect our institutional standards.
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-[#28171D] rounded-3xl border border-[#3A222A] p-7 sm:p-12 shadow-xl text-white">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-8 sm:gap-10">
+                {/* Doctor Portrait with subtle brass framing */}
+                <div className="relative w-44 h-56 sm:w-56 sm:h-72 rounded-2xl overflow-hidden bg-[#1E0F14] shrink-0 border-2 border-[#B69A65]/40 shadow-lg">
+                  <img
+                    src="/images/dr-d-surya-prakash.png"
+                    alt="Dr. D. Surya Prakash, M.D. Internal Medicine - Managing Director & Consultant Physician"
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#28171D]/80 via-transparent to-transparent md:hidden" />
+                  <span className="absolute bottom-2 left-2 right-2 text-center text-[10px] font-bold text-white bg-[#641D2D] py-1 rounded md:hidden">
+                    Managing Director
+                  </span>
+                </div>
+
+                {/* Leadership Bio & Clinical Responsibilities */}
+                <div className="space-y-4 text-left flex-1">
+                  <div className="space-y-1.5">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#B69A65] text-white">
+                      <span>Founder & Managing Director</span>
+                    </div>
+                    <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                      Dr. D. Surya Prakash
+                    </h3>
+                    <p className="text-sm sm:text-base font-bold text-[#E8D8D9]">
+                      M.D. Internal Medicine • Consultant Physician
+                    </p>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-[#DED7D7] leading-relaxed font-normal">
+                    As the founder and Managing Director of Surya Hospital, Dr. D. Surya Prakash oversees clinical standards, patient safety, and inpatient medical care. With deep experience in internal medicine, he guides patients through adult illness diagnosis, diabetes and blood pressure management, and post-surgical recovery.
+                  </p>
+
+                  {/* Verified Clinical Focus Pills */}
+                  <div className="space-y-2 pt-1">
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-[#B69A65] block">
+                      Clinical Focus:
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs text-white font-medium">
+                        Diabetes, BP & Cholesterol
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs text-white font-medium">
+                        Fever & Seasonal Illnesses
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs text-white font-medium">
+                        Heart & Breathing Health Checks
+                      </span>
+                      <span className="px-3 py-1.5 rounded-lg bg-white/10 border border-white/15 text-xs text-white font-medium">
+                        Inpatient Medical Care
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* OPD Schedule & Navigation Actions */}
+                  <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-white/15">
+                    <div className="text-xs text-[#E8D8D9]">
+                      <strong className="text-white">Consultation Timings:</strong> Mon – Sat: 09:30 AM – 01:30 PM & 05:00 PM – 08:30 PM
+                    </div>
+                    <Link to="/doctors" className="shrink-0">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="text-xs font-bold border-white/20 bg-white text-[#29252A] hover:bg-[#E8D8D9] w-full sm:w-auto"
+                      >
+                        All Doctors & OPD Hours
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Core Values & Commitments */}
+      <section className="py-18 sm:py-24 bg-[#FCFAF7] border-b border-[#DED7D7]">
+        <Container>
+          <div className="max-w-5xl mx-auto space-y-12">
+            <div className="text-center space-y-3 max-w-2xl mx-auto">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
+                OUR CORE VALUES
               </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#29252A] tracking-tight">
+                Clear Words, Kind Attention & Honest Advice
+              </h2>
+              <p className="text-base text-[#6F686B] leading-relaxed font-normal">
+                {HOSPITAL_INFO.about.philosophy}
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Mission Card */}
-              <div className="p-6 rounded-xl bg-[#FFF8F2] border border-[#F0D9CB] shadow-2xs space-y-3 text-left">
-                <div className="w-10 h-10 rounded-lg bg-[#F6D8C5] text-[#C65332] flex items-center justify-center font-bold">
-                  M
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {HOSPITAL_INFO.values.map((val) => (
+                <div
+                  key={val.title}
+                  className="bg-white p-7 rounded-2xl border border-[#DED7D7] shadow-2xs text-left space-y-3 flex flex-col justify-between"
+                >
+                  <div className="space-y-2.5">
+                    <div className="w-11 h-11 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center">
+                      <CheckCircle2 className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-[#29252A]">{val.title}</h3>
+                    <p className="text-xs sm:text-sm text-[#6F686B] leading-relaxed font-normal">{val.desc}</p>
+                  </div>
                 </div>
-                <span className="text-[11px] uppercase tracking-wider font-bold text-[#B96645] block">
-                  Our Mission (Draft Proposal)
-                </span>
-                <h3 className="text-lg font-bold text-[#252B33]">
-                  Accessible, Compassionate Patient Care
-                </h3>
-                <p className="text-xs sm:text-sm text-[#59616B] leading-relaxed">
-                  {HOSPITAL_INFO.about.missionDraft}
-                </p>
-              </div>
-
-              {/* Vision Card */}
-              <div className="p-6 rounded-xl bg-[#FFF8F2] border border-[#F0D9CB] shadow-2xs space-y-3 text-left">
-                <div className="w-10 h-10 rounded-lg bg-[#F6D8C5] text-[#A84328] flex items-center justify-center font-bold">
-                  V
-                </div>
-                <span className="text-[11px] uppercase tracking-wider font-bold text-[#A84328] block">
-                  Our Vision (Draft Proposal)
-                </span>
-                <h3 className="text-lg font-bold text-[#252B33]">
-                  Regional Center of Medical Excellence
-                </h3>
-                <p className="text-xs sm:text-sm text-[#59616B] leading-relaxed">
-                  {HOSPITAL_INFO.about.visionDraft}
-                </p>
-              </div>
+              ))}
             </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Patient Care Philosophy */}
-      <section className="py-16 bg-[#FFF8F2] border-b border-[#F0D9CB]">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-              CARE PHILOSOPHY
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
-              Dignified Bedside Care and Transparent Medical Advice
-            </h2>
-            <p className="text-sm sm:text-base text-[#59616B] leading-relaxed">
-              {HOSPITAL_INFO.about.philosophy}
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Core Values */}
-      <section className="py-16 bg-white border-b border-[#F0D9CB]">
-        <Container>
-          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-              GUIDING PRINCIPLES
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
-              Core Hospital Values
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {HOSPITAL_INFO.values.map((val) => (
-              <div
-                key={val.title}
-                className="bg-[#FFF8F2] p-5 rounded-xl border border-[#F0D9CB] shadow-2xs text-left space-y-2"
-              >
-                <div className="w-9 h-9 rounded-lg bg-[#F6D8C5] text-[#C65332] flex items-center justify-center">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <h3 className="text-base font-bold text-[#252B33]">{val.title}</h3>
-                <p className="text-xs text-[#59616B] leading-relaxed">{val.desc}</p>
-              </div>
-            ))}
           </div>
         </Container>
       </section>
 
       {/* Verified Facilities & Services */}
-      <section className="py-16 bg-[#FFF8F2] border-b border-[#F0D9CB]">
+      <section className="py-18 bg-white border-b border-[#DED7D7]">
         <Container>
-          <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
-              INFRASTRUCTURE
+          <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
+              HOSPITAL FACILITIES
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
-              Verified Facilities & Clinical Infrastructure
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#29252A] tracking-tight">
+              Modern Facilities for Your Comfort & Safety
             </h2>
-            <p className="text-xs sm:text-sm text-[#59616B]">
-              Equipped with necessary clinical technology to support accurate treatment and swift emergency response.
+            <p className="text-base text-[#6F686B] leading-relaxed font-normal">
+              From sterile surgical suites to 24/7 casualty and pharmacy, everything is set up to help you heal quickly.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {HOSPITAL_INFO.services.map((svc) => (
               <div
                 key={svc.id}
-                className="p-5 rounded-xl border border-[#F0D9CB] bg-white text-left space-y-2 shadow-2xs"
+                className="p-6 rounded-2xl border border-[#DED7D7] bg-[#FCFAF7] text-left space-y-2.5 shadow-2xs hover:border-[#641D2D] transition"
               >
-                <div className="text-xs font-bold text-[#C65332] uppercase tracking-wider">
+                <div className="text-[11px] font-bold text-[#641D2D] uppercase tracking-wider">
                   Verified Service
                 </div>
-                <h3 className="text-base font-bold text-[#252B33]">{svc.name}</h3>
-                <p className="text-xs text-[#59616B] leading-relaxed">{svc.details}</p>
+                <h3 className="text-base sm:text-lg font-bold text-[#29252A]">{svc.name}</h3>
+                <p className="text-xs sm:text-sm text-[#6F686B] leading-relaxed font-normal">{svc.details}</p>
               </div>
             ))}
           </div>
 
           {/* Cross-page Navigation CTA */}
-          <div className="mt-12 p-5 sm:p-8 rounded-2xl bg-[#252B33] border border-[#373F4A] text-white flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <div className="space-y-1">
-              <h3 className="text-lg sm:text-xl font-bold text-white">
+          <AnimateIn animation="pop" delay={150} className="mt-14 p-8 sm:p-12 rounded-3xl bg-[#28171D] border border-[#3A222A] text-white flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-xl">
+            <div className="space-y-1.5">
+              <h3 className="text-xl sm:text-2xl font-black text-white">
                 Have questions about our doctors or departments?
               </h3>
-              <p className="text-xs text-[#A0A8B4]">
+              <p className="text-xs sm:text-sm text-[#DED7D7] font-normal">
                 Explore our full specialist roster or contact our reception desk directly.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full md:w-auto">
               <Link to="/doctors" className="w-full sm:w-auto">
-                <Button variant="secondary" size="md" className="w-full sm:w-auto font-bold text-xs bg-white text-[#252B33] hover:bg-[#FCECE2]">
+                <Button variant="secondary" size="md" className="w-full sm:w-auto font-bold text-xs bg-white text-[#29252A] hover:bg-[#E8D8D9]">
                   View Doctor Directory
                 </Button>
               </Link>
               <Link to="/contact" className="w-full sm:w-auto">
-                <Button variant="outline" size="md" className="w-full sm:w-auto font-bold text-xs text-white border-[#D98A62] hover:bg-white/10">
+                <Button variant="outline" size="md" className="w-full sm:w-auto font-bold text-xs text-white border-white/20 hover:bg-white/10">
                   Contact Us
                 </Button>
               </Link>
             </div>
-          </div>
+          </AnimateIn>
         </Container>
       </section>
     </div>

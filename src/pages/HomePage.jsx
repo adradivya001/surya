@@ -3,7 +3,6 @@ import { HomeHero } from "../components/home/HomeHero";
 import { HomeAboutPreview } from "../components/home/HomeAboutPreview";
 import { HomeSpecialitiesGrid } from "../components/home/HomeSpecialitiesGrid";
 import { HomeFeaturedDoctors } from "../components/home/HomeFeaturedDoctors";
-import { HomeDiagnosticsPreview } from "../components/home/HomeDiagnosticsPreview";
 import { HomePatientJourney } from "../components/home/HomePatientJourney";
 import { HomeWhyChooseUs } from "../components/home/HomeWhyChooseUs";
 import { HomeAppointmentCta } from "../components/home/HomeAppointmentCta";
@@ -16,31 +15,28 @@ export function HomePage() {
 
   return (
     <div className="w-full">
-      {/* 5.A. Hero Section with Integrated Trust Strip */}
+      {/* 1. Hero Section with Integrated Trust Strip */}
       <HomeHero />
 
-      {/* 5.C. About Surya Hospital */}
+      {/* 2. About Surya Hospital */}
       <HomeAboutPreview />
 
-      {/* 5.D. Specialities Section */}
+      {/* 3. Specialities Section */}
       <HomeSpecialitiesGrid />
 
-      {/* 5.E. Featured Doctors */}
+      {/* 4. Featured Doctors */}
       <HomeFeaturedDoctors />
 
-      {/* 5.F. Diagnostic Services */}
-      <HomeDiagnosticsPreview />
-
-      {/* 5.H. Patient Journey */}
+      {/* 5. Patient Journey */}
       <HomePatientJourney />
 
-      {/* 5.I. Why Choose Us */}
+      {/* 6. Why Choose Us */}
       <HomeWhyChooseUs />
 
-      {/* 5.J. Appointment CTA */}
+      {/* 7. Appointment CTA */}
       <HomeAppointmentCta />
 
-      {/* 5.K. Contact Preview */}
+      {/* 8. Contact Preview */}
       <HomeContactPreview />
     </div>
   );

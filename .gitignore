@@ -4,3 +4,4 @@ dist/
 .env
 .env.*
 !.env.example
+gemini_generated_video_2fbbb350.mp4

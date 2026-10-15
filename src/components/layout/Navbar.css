@@ -1,61 +1,124 @@
 /* ============================================================
-   NAVBAR & RESPONSIVE HEADER STYLES
+   STANFORD MEDICINE STYLE NAVBAR & HEADER
    ============================================================ */
 
-.ref-header-fixed {
+.stanford-header {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  z-index: 9999;
   width: 100%;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #F0D9CB;
-  box-shadow: 0 2px 10px rgba(37, 43, 51, 0.04);
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #E9D7C7;
+  box-shadow: 0 1px 3px rgba(41, 45, 50, 0.04);
+  transition: box-shadow 0.25s ease;
 }
 
-.ref-navbar-main {
+.stanford-header.scrolled {
+  box-shadow: 0 4px 18px rgba(41, 45, 50, 0.08);
+}
+
+.stanford-navbar-main {
   width: 100%;
+  background-color: #FFFFFF;
+}
+
+/* Centered Hospital Logo with smooth size and transform transition */
+.stanford-logo-anchor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.stanford-navbar-logo-img {
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: height, max-height, transform;
+  transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Full Prominent Size at the top */
+.stanford-navbar-logo-img.prominent {
+  height: 48px;
+  max-height: 48px;
+}
+
+@media (min-width: 640px) {
+  .stanford-navbar-logo-img.prominent {
+    height: 64px;
+    max-height: 64px;
+  }
+}
+
+@media (min-width: 768px) {
+  .stanford-navbar-logo-img.prominent {
+    height: 76px;
+    max-height: 76px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stanford-navbar-logo-img.prominent {
+    height: 84px;
+    max-height: 84px;
+  }
+}
+
+/* Compact Size on Scroll: precisely 75% to 80% of original height, preserving crispness and aspect ratio */
+.stanford-navbar-logo-img.compact {
+  height: 38px;
+  max-height: 38px;
+}
+
+@media (min-width: 640px) {
+  .stanford-navbar-logo-img.compact {
+    height: 50px;
+    max-height: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .stanford-navbar-logo-img.compact {
+    height: 58px;
+    max-height: 58px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stanford-navbar-logo-img.compact {
+    height: 64px;
+    max-height: 64px;
+  }
+}
+
+.stanford-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* Desktop Navigation and Actions */
-.ref-desktop-menu,
-.ref-desktop-actions {
-  display: flex;
-  align-items: center;
+.stanford-menu-trigger:hover {
+  background-color: #FAF4EF;
+  border-color: #F0D9CB;
 }
 
-/* Mobile Toggle Hamburger */
-.ref-mobile-toggle {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  border-radius: 8px;
-  color: #252B33;
-  background-color: transparent;
-  border: 1px solid #F0D9CB;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.ref-mobile-toggle:hover {
-  background-color: #FCECE2;
-}
-
-.ref-mobile-toggle:active {
-  transform: scale(0.95);
-}
-
-/* Breakpoint: <= 1080px transitions to mobile header mode */
-@media (max-width: 1080px) {
-  .ref-desktop-menu,
-  .ref-desktop-actions {
-    display: none !important;
-  }
-
-  .ref-mobile-toggle {
-    display: flex !important;
-  }
+.stanford-menu-trigger:active {
+  transform: scale(0.97);
 }
 
 /* Slide-Down Mobile Menu Drawer */

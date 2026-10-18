@@ -1,112 +1,161 @@
-﻿import React, { useState, useEffect } from "react";
-import { Container } from "../ui/Container";
-import { HOSPITAL_MEDIA } from "../../constants/hospitalMedia";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { AnimateIn } from "../ui/AnimateIn";
 
 export function TestimonialCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const testimonials = HOSPITAL_MEDIA.testimonialsPlaceholder;
-  const count = testimonials.length;
+  const scrollRef = useRef(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % count);
-    }, 6500);
-    return () => clearInterval(timer);
-  }, [count]);
+  const testimonials = [
+    {
+      id: "t1",
+      name: "Srinivas R.",
+      dept: "General Medicine",
+      quote: "Excellent care and very supportive doctors. The staff is kind and the facilities are modern. Highly recommended.",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    },
+    {
+      id: "t2",
+      name: "Lakshmi P.",
+      dept: "General Surgery",
+      quote: "I had a smooth surgical experience here. The doctors and nursing staff took great care of me.",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+    },
+    {
+      id: "t3",
+      name: "Ramesh K.",
+      dept: "Emergency Care",
+      quote: "24/7 emergency service is a big relief for our family. Thank you Surya Hospital for your quick response and care.",
+      rating: 5,
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+    },
+  ];
 
-  const active = testimonials[currentIndex];
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const offset = direction === "left" ? -340 : 340;
+      scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
+    }
+  };
 
   return (
-    <section id="testimonials" className="py-20 sm:py-32 bg-surya-slate-900 text-white relative overflow-hidden">
-      {/* Background Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-surya-teal-500/10 rounded-full blur-[140px] pointer-events-none" />
+    <section className="relative py-24 sm:py-32 bg-[#FFF9F3] text-[#1A1D20] overflow-hidden border-t border-[#E2D9D0]/60">
+      {/* Scenic Sunset Patient Family Background Overlay (Matching Reference) */}
+      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-3/5 z-0 pointer-events-none opacity-30 lg:opacity-35">
+        <img
+          src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80"
+          alt="Happy family outdoors at sunset"
+          className="w-full h-full object-cover object-right"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF9F3] via-[#FFF9F3]/70 to-transparent" />
+      </div>
 
-      <Container className="relative z-10">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
-            <div className="space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-surya-teal-400 bg-surya-slate-800 px-3.5 py-1.5 rounded-full border border-surya-slate-700 inline-block">
-                PATIENT EXPERIENCES & CARE PILLARS
-              </span>
-              <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-                Trust built on care<span className="text-surya-teal-400">.</span>
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Top Header Row with Arrow Controls and Right Callout Banner */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div className="space-y-3 text-left max-w-xl">
+            <AnimateIn animation="slide-left">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#A84328]">
+                <span className="w-2 h-2 rounded-full bg-[#A84328]" />
+                <span>PATIENT STORIES</span>
+              </div>
+            </AnimateIn>
+
+            <AnimateIn animation="slide-left" delay={100}>
+              <h2 className="text-4xl sm:text-5xl font-serif-heading font-bold text-[#1A1D20] tracking-tight leading-tight">
+                Real People.
+                <br />
+                Real Experiences. <span className="inline-block w-8 h-1 bg-[#A84328] align-middle ml-1 rounded-full" />
               </h2>
-            </div>
+            </AnimateIn>
 
-            <div className="flex items-center gap-3">
+            {/* Slider Controls */}
+            <div className="flex items-center gap-2 pt-2">
               <button
                 type="button"
-                onClick={() => setCurrentIndex((prev) => (prev - 1 + count) % count)}
-                className="w-11 h-11 rounded-full border border-surya-slate-700 bg-surya-slate-800 hover:bg-surya-slate-700 flex items-center justify-center text-white transition active:scale-95 shadow-sm"
-                aria-label="Previous testimonial"
+                onClick={() => scroll("left")}
+                className="w-10 h-10 rounded-full border border-[#E2D9D0] bg-white hover:bg-[#F8E6DC] text-[#1A1D20] flex items-center justify-center transition active:scale-95 shadow-xs"
+                aria-label="Previous stories"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 type="button"
-                onClick={() => setCurrentIndex((prev) => (prev + 1) % count)}
-                className="w-11 h-11 rounded-full border border-surya-teal-500 bg-surya-teal-500 hover:bg-surya-teal-400 flex items-center justify-center text-surya-navy-950 transition active:scale-95 shadow-sm"
-                aria-label="Next testimonial"
+                onClick={() => scroll("right")}
+                className="w-10 h-10 rounded-full border border-[#E2D9D0] bg-white hover:bg-[#F8E6DC] text-[#1A1D20] flex items-center justify-center transition active:scale-95 shadow-xs"
+                aria-label="Next stories"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
 
-          {/* Testimonial Card Stage */}
-          <div className="p-8 sm:p-14 rounded-3xl bg-surya-slate-950 border border-surya-slate-800 shadow-2xl relative min-h-[280px] flex flex-col justify-between">
-            <Quote className="w-12 h-12 text-surya-teal-500/20 mb-6 shrink-0" />
+          {/* Right Floating Editorial Text Callout matching Mockup */}
+          <div className="lg:text-right max-w-sm">
+            <div className="font-serif-heading text-2xl sm:text-3xl font-bold text-[#1A1D20] leading-tight">
+              Your Health.
+              <br />
+              <span className="font-editorial-italic text-[#A84328]">Our Priority.</span>
+            </div>
+            <p className="text-xs sm:text-sm text-[#62666D] mt-1.5 leading-relaxed">
+              Compassionate care for today, a healthier tomorrow.
+            </p>
+          </div>
+        </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.5 }}
-                className="space-y-6"
-              >
-                <p className="text-xl sm:text-2xl lg:text-3xl text-white font-medium leading-relaxed tracking-tight">
-                  "{active.quote}"
+        {/* Testimonials Cards Grid (Matching Exact Mockup 3 Cards) */}
+        <div
+          ref={scrollRef}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {testimonials.map((item, idx) => (
+            <AnimateIn
+              key={item.id}
+              animation="fade-up"
+              delay={idx * 120}
+              className="bg-white rounded-2xl border border-[#E2D9D0] p-6 shadow-xs hover:shadow-xl hover:border-[#A84328] transition-all duration-300 flex flex-col justify-between text-left relative group"
+            >
+              <div className="space-y-4">
+                {/* Quote Icon */}
+                <Quote className="w-7 h-7 text-[#A84328]/20" />
+
+                <p className="text-sm text-[#1A1D20] leading-relaxed font-normal">
+                  "{item.quote}"
                 </p>
 
-                <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-surya-slate-800">
-                  <div>
-                    <h4 className="text-base font-bold text-white">{active.patientNote}</h4>
-                    <span className="text-xs text-surya-slate-400">{active.region}</span>
-                  </div>
+                {/* 5-Star Rating */}
+                <div className="flex items-center gap-1 text-amber-500">
+                  {[...Array(item.rating)].map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                  ))}
+                </div>
+              </div>
 
-                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-surya-teal-500/15 text-surya-teal-300 border border-surya-teal-500/30">
-                    {active.verifiedTag}
+              {/* Patient Avatar & Name */}
+              <div className="pt-6 border-t border-[#E2D9D0]/70 flex items-center gap-3 mt-6">
+                <img
+                  src={item.avatar}
+                  alt={item.name}
+                  className="w-10 h-10 rounded-full object-cover border border-[#E2D9D0]"
+                />
+                <div>
+                  <h4 className="text-sm font-bold text-[#1A1D20] leading-tight">
+                    {item.name}
+                  </h4>
+                  <span className="text-xs text-[#62666D]">
+                    {item.dept}
                   </span>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Pagination Dots */}
-            <div className="pt-6 flex items-center justify-center gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentIndex(i)}
-                  className={`h-2 rounded-full transition-all ${
-                    currentIndex === i ? "w-8 bg-surya-teal-400" : "w-2 bg-surya-slate-700"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Compliance Disclaimer */}
-          <p className="text-center text-xs text-surya-slate-500 mt-6">
-            * Patient testimonials are collected with signed consent and verified through hospital care audits.
-          </p>
+              </div>
+            </AnimateIn>
+          ))}
         </div>
-      </Container>
+
+      </div>
     </section>
   );
 }
+
+export default TestimonialCarousel;

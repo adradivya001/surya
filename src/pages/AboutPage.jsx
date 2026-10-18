@@ -39,19 +39,19 @@ export function AboutPage() {
       </PageHero>
 
       {/* Hospital Overview */}
-      <section className="py-18 md:py-24 bg-[#FCFAF7] border-b border-[#DED7D7]">
+      <section className="py-18 md:py-24 bg-[#FFF9F3] border-b border-[#E2D9D0]">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Visual (5 cols) */}
             <div className="lg:col-span-5 relative">
-              <div className="rounded-2xl overflow-hidden border border-[#DED7D7] shadow-lg bg-white p-3">
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#28171D]">
+              <div className="rounded-2xl overflow-hidden border border-[#E2D9D0] shadow-xl bg-white p-3">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#1A1D20]">
                   <img
                     src="/images/surya-reception.jpg"
                     alt="Surya Hospital Lobby and Reception in Sai Nagar Anantapur"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#28171D]/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A1D20]/80 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 text-white text-xs font-bold tracking-wide">
                     Surya Hospital Campus • Sai Nagar, Anantapur
                   </div>
@@ -59,24 +59,24 @@ export function AboutPage() {
               </div>
 
               {/* Floating verified badge */}
-              <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-[#28171D] text-white p-4 rounded-xl shadow-xl items-center gap-3 text-xs font-bold border border-[#3A222A]">
-                <ShieldCheck className="w-5 h-5 text-[#B69A65]" />
+              <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-[#1A1D20] text-white p-4 rounded-xl shadow-xl items-center gap-3 text-xs font-bold border border-white/20">
+                <ShieldCheck className="w-5 h-5 text-[#C85235]" />
                 <span className="tracking-wide">Ethical Medical Practice</span>
               </div>
             </div>
 
             {/* Content (7 cols) */}
             <div className="lg:col-span-7 space-y-5 text-left">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#F8E6DC] text-[#A84328] border border-[#A84328]/20">
                 ABOUT SURYA HOSPITAL
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#29252A] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif-heading font-bold text-[#1A1D20] tracking-tight">
                 Caring Healthcare for You and Your Family
               </h2>
-              <p className="text-base sm:text-lg text-[#6F686B] leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-[#62666D] leading-relaxed font-normal">
                 {HOSPITAL_INFO.about.overview}
               </p>
-              <p className="text-sm sm:text-base text-[#6F686B] leading-relaxed">
+              <p className="text-sm sm:text-base text-[#62666D] leading-relaxed">
                 Located behind Ambedkar Bhavan on 9th Cross Road in Sai Nagar, our hospital is easy to reach. We provide comfortable inpatient rooms, fully equipped operating suites, and 24/7 emergency care so you receive complete care in one visit.
               </p>
 

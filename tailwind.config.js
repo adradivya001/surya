@@ -8,54 +8,36 @@ export default {
     extend: {
       colors: {
         surya: {
-          /* New Editorial Architectural Palette */
-          primary: '#641D2D',         // Deep Oxblood
-          'primary-hover': '#4E1421', // Darker Oxblood
-          dark: '#28171D',            // Dark Premium Surface
-          warmWhite: '#FCFAF7',       // Warm White dominant background
-          pureWhite: '#FFFFFF',       // Pure White
-          rose: '#E8D8D9',            // Muted Rose
-          brass: '#B69A65',           // Brass Accent
-          charcoal: '#29252A',        // Main Text
-          secondaryText: '#6F686B',   // Secondary Text
-          border: '#DED7D7',          // Neutral Border
+          /* Brand Color Palette matching Creative Direction & Reference */
+          canvas: '#FFF9F3',          // Warm Canvas page background
+          dark: '#1A1D20',            // Primary Dark Text / Charcoal
+          muted: '#62666D',           // Secondary Body Text
+          border: '#E2D9D0',          // Warm Borders
+          terracotta: {
+            DEFAULT: '#A84328',       // Terracotta Accent
+            secondary: '#C85235',     // Secondary Terracotta
+            soft: '#F8E6DC',          // Soft Terracotta Tint
+            hover: '#8F371F',
+          },
+          teal: {
+            DEFAULT: '#0D4855',       // Deep Clinical Teal
+            dark: '#082E37',
+            light: '#E8F4F1',
+            muted: '#2A6675',
+          },
+          emergency: '#DC2626',       // Emergency Red
           
           /* Token Aliases for compatibility */
-          pageBg: '#FCFAF7',
+          pageBg: '#FFF9F3',
           card: '#FFFFFF',
-          heading: '#29252A',
-          muted: '#6F686B',
-          soft: '#E8D8D9',
-          terracotta: {
-            DEFAULT: '#641D2D',
-            hover: '#4E1421',
-            dark: '#28171D',
-            soft: '#E8D8D9',
-            50: '#FCFAF7',
-            100: '#E8D8D9',
-            200: '#DED7D7',
-            300: '#DED7D7',
-            400: '#B69A65',
-            500: '#641D2D',
-            600: '#4E1421',
-            700: '#28171D',
-          },
-          beige: {
-            DEFAULT: '#FCFAF7',
-            light: '#FFFFFF',
-            border: '#DED7D7',
-            dark: '#E8D8D9',
-          },
-          text: {
-            primary: '#29252A',
-            secondary: '#6F686B',
-            muted: '#8A8487',
-          },
+          heading: '#1A1D20',
+          secondaryText: '#62666D',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'Cambria', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Playfair Display"', '"Cormorant Garamond"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       boxShadow: {
         'subtle': '0 1px 3px 0 rgba(37, 43, 51, 0.04)',

@@ -1,96 +1,136 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container } from "../ui/Container";
-import { Button } from "../ui/Button";
-import { ArrowRight, CheckCircle2, HeartPulse } from "lucide-react";
+import { ArrowRight, Heart } from "lucide-react";
 import { AnimateIn } from "../ui/AnimateIn";
 
 export function HomeAboutPreview() {
   return (
-    <section className="py-18 md:py-28 bg-[#FCFAF7] border-b border-[#DED7D7] overflow-hidden">
-      <Container>
+    <section className="relative pt-12 pb-20 sm:pt-16 sm:pb-24 bg-[#FFF9F3] text-[#1A1D20] overflow-hidden">
+      {/* Faded Editorial Curved Ribbons in the background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <svg viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 left-0 w-full h-full opacity-40" preserveAspectRatio="none">
+          <path d="M-100,50 C280,220 540,-30 920,120 C1240,240 1420,80 1600,160" stroke="#E5B278" strokeWidth="1.5" strokeOpacity="0.4" fill="none" />
+          <path d="M-50,140 C320,320 620,40 1020,200 C1320,310 1480,180 1600,240" stroke="#F5DFD0" strokeWidth="48" strokeOpacity="0.35" fill="none" />
+          <path d="M0,280 C400,450 720,180 1100,320 C1380,420 1500,310 1600,360" stroke="#E5B278" strokeWidth="1.2" strokeOpacity="0.3" fill="none" />
+          <path d="M-80,380 C360,540 760,320 1140,460 C1380,540 1520,420 1600,480" stroke="#F8E6DC" strokeWidth="64" strokeOpacity="0.4" fill="none" />
+        </svg>
+      </div>
+      {/* Editorial Decorative Background Blur */}
+      <div className="absolute top-1/3 -left-40 w-96 h-96 bg-[#F8E6DC] rounded-full blur-3xl pointer-events-none opacity-60" />
+
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Relevant hospital photograph with dark architectural backing */}
-          <AnimateIn animation="slide-left" duration={800} className="lg:col-span-5 relative">
-            <div className="relative rounded-2xl overflow-hidden border border-[#DED7D7] shadow-lg bg-white p-3 transition-transform hover:scale-[1.01] duration-300">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-[#28171D]">
-                <img
-                  src="/images/surya-reception.jpg"
-                  alt="Surya Hospital reception lobby in Sai Nagar, Anantapur"
-                  className="w-full h-full object-cover object-center"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#28171D]/80 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 text-white text-xs font-bold tracking-wide">
-                  Surya Hospital • Sai Nagar Campus
-                </div>
-              </div>
-            </div>
-
-            {/* Accent badge - Pops up */}
-            <div className="hidden sm:flex absolute -bottom-5 -right-5 bg-[#28171D] text-white p-4 rounded-xl shadow-xl items-center gap-3 text-xs font-bold border border-[#3A222A]">
-              <HeartPulse className="w-5 h-5 text-[#B69A65] animate-pulse" />
-              <span className="tracking-wide">Ethical Patient-First Care</span>
-            </div>
-          </AnimateIn>
-
-          {/* Right Column: Heading & content */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <AnimateIn animation="slide-right" delay={100}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
+          
+          {/* Left Column: Editorial Headline & Content (6 Cols) */}
+          <div className="lg:col-span-6 space-y-6 text-left">
+            <AnimateIn animation="slide-left">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#A84328]">
+                <span className="w-2 h-2 rounded-full bg-[#A84328]" />
                 <span>ABOUT SURYA HOSPITAL</span>
               </div>
             </AnimateIn>
 
-            <AnimateIn animation="slide-right" delay={200}>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#29252A] tracking-tight leading-tight">
-                Kind Healthcare for Your Entire Family
+            <AnimateIn animation="slide-left" delay={100}>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif-heading font-bold text-[#1A1D20] tracking-tight leading-[1.1]">
+                People. Care.
+                <br />
+                Always. <span className="inline-block w-8 h-1 bg-[#A84328] align-middle ml-1 rounded-full" />
               </h2>
             </AnimateIn>
 
-            <AnimateIn animation="slide-right" delay={300}>
-              <p className="text-base sm:text-lg text-[#6F686B] leading-relaxed font-normal">
-                Surya Hospital is a patient-trusted multi-speciality hospital in Sai Nagar, Anantapur. We bring together experienced physicians, sterile surgical suites, 24/7 casualty care, and an in-house medical pharmacy so your family receives dependable care under one roof.
+            <AnimateIn animation="slide-left" delay={200}>
+              <p className="text-base sm:text-lg text-[#62666D] leading-relaxed font-normal max-w-xl">
+                Surya Hospital in Sai Nagar, Anantapur is dedicated to providing high-quality, affordable and compassionate healthcare for every patient. With experienced doctors, modern infrastructure and 24/7 emergency support, we are always here for you and your family.
               </p>
             </AnimateIn>
 
-            <AnimateIn animation="fade-up" delay={400}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-[#29252A] font-semibold bg-white p-4 rounded-xl border border-[#DED7D7] shadow-2xs hover:border-[#641D2D] transition">
-                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0 mt-0.5" />
-                  <span>Kind doctors who listen carefully to your health needs</span>
+            {/* Metric Counters (Reference: 15+ Medical Services, 1000+ Happy Patients, 24/7 Emergency Care) */}
+            <AnimateIn animation="fade-up" delay={300}>
+              <div className="grid grid-cols-3 gap-6 pt-4 border-t border-[#E2D9D0]">
+                <div>
+                  <div className="text-3xl sm:text-4xl font-serif-heading font-bold text-[#1A1D20]">
+                    15+
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#62666D] mt-1 font-medium">
+                    Medical Services
+                  </div>
                 </div>
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-[#29252A] font-semibold bg-white p-4 rounded-xl border border-[#DED7D7] shadow-2xs hover:border-[#641D2D] transition">
-                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0 mt-0.5" />
-                  <span>Clean operating rooms for safe, gentle surgeries</span>
+
+                <div>
+                  <div className="text-3xl sm:text-4xl font-serif-heading font-bold text-[#1A1D20]">
+                    1000+
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#62666D] mt-1 font-medium">
+                    Happy Patients
+                  </div>
                 </div>
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-[#29252A] font-semibold bg-white p-4 rounded-xl border border-[#DED7D7] shadow-2xs hover:border-[#641D2D] transition">
-                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0 mt-0.5" />
-                  <span>24/7 emergency doctor & round-the-clock casualty desk</span>
-                </div>
-                <div className="flex items-start gap-3 text-xs sm:text-sm text-[#29252A] font-semibold bg-white p-4 rounded-xl border border-[#DED7D7] shadow-2xs hover:border-[#641D2D] transition">
-                  <CheckCircle2 className="w-4 h-4 text-[#641D2D] shrink-0 mt-0.5" />
-                  <span>Comfortable hospital rooms & round-the-clock nursing care</span>
+
+                <div>
+                  <div className="text-3xl sm:text-4xl font-serif-heading font-bold text-[#1A1D20]">
+                    24/7
+                  </div>
+                  <div className="text-xs sm:text-sm text-[#62666D] mt-1 font-medium">
+                    Emergency Care
+                  </div>
                 </div>
               </div>
             </AnimateIn>
 
-            <AnimateIn animation="pop" delay={500} className="pt-2">
-              <Link to="/about" className="inline-block w-full sm:w-auto">
-                <Button
-                  variant="primary"
-                  size="md"
-                  icon={ArrowRight}
-                  iconPosition="right"
-                  className="bg-[#E56A2E] hover:bg-[#C8541D] text-white font-bold w-full sm:w-auto shadow-sm"
-                >
-                  Learn More About Our Hospital
-                </Button>
+            {/* Action Pill Button */}
+            <AnimateIn animation="pop" delay={400} className="pt-2">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] shadow-md hover:shadow-lg transition-all active:scale-95"
+              >
+                <span>Our Story</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </AnimateIn>
           </div>
+
+          {/* Right Column: Layered Asymmetric Editorial Imagery (6 Cols) */}
+          <div className="lg:col-span-6 relative flex items-center justify-center">
+            {/* Top Right Calligraphic Accent Text */}
+            <div className="absolute -top-10 right-4 sm:right-8 font-editorial-italic text-3xl sm:text-4xl text-[#A84328] opacity-90 select-none">
+              Care Beyond Treatment
+            </div>
+
+            <div className="relative w-full max-w-lg">
+              {/* Primary Circular / Organic Masked Image (Surgical / Doctor Scene) */}
+              <div className="relative aspect-square w-full rounded-[46%_54%_56%_44%/48%_44%_56%_52%] overflow-hidden shadow-2xl border-4 border-white/80 bg-[#0D4855]/10 p-1">
+                <img
+                  src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=1200&q=85"
+                  alt="Surya Hospital healthcare team providing compassionate patient care"
+                  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+
+              {/* Overlapping Secondary Rounded Card (Doctor consulting smiling child/family) */}
+              <div className="absolute -bottom-6 -right-2 sm:-right-6 w-3/5 sm:w-2/3 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
+                <img
+                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=85"
+                  alt="Surya Hospital doctor consulting with family"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+
+                {/* Overlaid Floating Badge */}
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-[#E2D9D0] flex items-center gap-2 shadow-sm">
+                  <div className="w-6 h-6 rounded-full bg-[#F8E6DC] text-[#A84328] flex items-center justify-center shrink-0">
+                    <Heart className="w-3.5 h-3.5 fill-[#A84328] text-[#A84328]" />
+                  </div>
+                  <span className="text-[11px] font-bold text-[#1A1D20] truncate">
+                    Compassionate Care for Every Family
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
+
+export default HomeAboutPreview;

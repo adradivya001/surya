@@ -1,224 +1,423 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { Container } from "../ui/Container";
-import { Phone, Calendar, Menu, X, ChevronRight } from "lucide-react";
+import { Phone, ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
-import "./Navbar.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
+  
+  // Reduced motion preference
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const [introFinished, setIntroFinished] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return !!sessionStorage.getItem("surya_nav_intro_seen") || !!prefersReducedMotion;
+  });
+
+  const [introPhase, setIntroPhase] = useState(() => {
+    if (typeof window === "undefined") return "settled";
+    const hasRun = !!sessionStorage.getItem("surya_nav_intro_seen") || !!prefersReducedMotion;
+    return hasRun ? "settled" : "spinning";
+  });
+
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Smoothly detect scroll after user leaves the top 20px
-      const scrolled = window.scrollY > 20;
-      setIsScrolled(scrolled);
-    };
-    
-    // Initial check
-    handleScroll();
+    if (introFinished) return;
 
+    // Phase 1: Logo 3D spin & light pulse (1.1s)
+    const t1 = setTimeout(() => {
+      setIntroPhase("unfolding");
+    }, 1100);
+
+    // Phase 2: Navigation unrolls and settles (0.8s)
+    const t2 = setTimeout(() => {
+      setIntroPhase("settled");
+      setIntroFinished(true);
+      sessionStorage.setItem("surya_nav_intro_seen", "true");
+    }, 2100);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [introFinished]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close drawer whenever location changes if it is open
   useEffect(() => {
-    if (menuOpen) {
-      setMenuOpen(false);
-    }
-  }, [location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+    setMenuOpen(false);
+    setServicesOpen(false);
+    setResourcesOpen(false);
+    setLocationsOpen(false);
+  }, [location.pathname]);
 
   const navLinks = [
-    { label: "Home", path: "/", description: "Surya Hospital, Sai Nagar, Anantapur" },
-    { label: "About Us", path: "/about", description: "Our hospital, medical team, and patient care" },
-    { label: "Doctors", path: "/doctors", description: "Meet our physicians, surgeons, and specialists" },
-    { label: "Services", path: "/specialities", description: "General medicine, surgeries, bone care & healthcare" },
-    { label: "Emergency", path: "/emergency", description: "24/7 immediate doctor checkup and casualty care" },
-    { label: "Contact Us", path: "/contact", description: "Location behind Ambedkar Bhavan, 9th Cross Road" },
-  ];
-
-  const quickNavItems = [
     { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
-    { label: "Doctors", path: "/doctors" },
-    { label: "Services", path: "/specialities" },
-    { label: "Emergency", path: "/emergency" },
-    { label: "Contact Us", path: "/contact" },
+    {
+      label: "Services",
+      path: "/specialities",
+      hasDropdown: true,
+      dropdownKey: "services",
+      items: [
+        { label: "General Medicine", path: "/specialities" },
+        { label: "General & Laparoscopic Surgery", path: "/specialities" },
+        { label: "Orthopedics & Fracture Care", path: "/specialities" },
+        { label: "24/7 Emergency Care", path: "/emergency" },
+        { label: "In-House Diagnostics & Lab", path: "/specialities" },
+        { label: "24/7 In-House Pharmacy", path: "/contact" },
+      ],
+    },
+    { label: "Our Doctors", path: "/doctors" },
+    {
+      label: "Patient Resources",
+      path: "/about",
+      hasDropdown: true,
+      dropdownKey: "resources",
+      items: [
+        { label: "Visiting Timings & OPD", path: "/contact" },
+        { label: "Inpatient Rooms & Admission", path: "/about" },
+        { label: "Insurance & Hospital Desk", path: "/contact" },
+        { label: "Emergency Guidance", path: "/emergency" },
+      ],
+    },
+    { label: "Contact", path: "/contact" },
+    {
+      label: "Locations",
+      path: "/contact",
+      hasDropdown: true,
+      dropdownKey: "locations",
+      items: [
+        { label: "Sai Nagar, Anantapur (Main Campus)", path: "/contact" },
+        { label: "Behind Ambedkar Bhavan, 9th Cross", path: "/contact" },
+      ],
+    },
   ];
 
   return (
     <>
-      <header className={`stanford-header ${isScrolled ? "scrolled shadow-xs" : ""}`}>
-        {/* Top Institutional Bar: Menu (Left), Center Logo, Search & Book (Right) */}
-        <div className={`stanford-navbar-main transition-all duration-350 ease-in-out ${
-          !isScrolled ? "py-2 sm:py-3.5" : "py-1 sm:py-1.5"
-        }`}>
-          <div className="w-full px-4 sm:px-6 lg:px-8 relative flex items-center justify-between min-h-[58px] sm:min-h-[68px]">
-            
-            {/* Left Side: MENU Button with hamburger icon (Visible on Mobile & Tablet, hidden on Desktop where sub-nav strip exists) */}
-            <div className="flex items-center gap-3 z-30 shrink-0 lg:hidden">
-              <button
-                type="button"
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="stanford-menu-trigger group"
-                aria-label="Toggle navigation menu"
-                aria-expanded={menuOpen}
-              >
-                <Menu className="w-5 h-5 text-[#29252A] group-hover:text-[#641D2D] transition-colors" />
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#29252A] group-hover:text-[#641D2D] transition-colors">
-                  Menu
-                </span>
-              </button>
-            </div>
+      {/* Intro Overlay during initial session load */}
+      <AnimatePresence>
+        {!introFinished && introPhase === "spinning" && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100000] bg-[#FFF9F3] flex flex-col items-center justify-center pointer-events-none"
+          >
+            <motion.div
+              initial={{ rotateY: 0, scale: 0.85, opacity: 0 }}
+              animate={{
+                rotateY: [0, 360],
+                scale: [0.85, 1.08, 1],
+                opacity: 1,
+              }}
+              transition={{
+                duration: 1.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="relative flex items-center justify-center"
+              style={{ perspective: 1000 }}
+            >
+              <img
+                src="/images/surya-hospital-orange-emblem-logo.png"
+                alt="Surya Hospital"
+                className="h-20 sm:h-24 w-auto object-contain drop-shadow-xl"
+              />
+              {/* Subtle light shimmer sweep */}
+              <motion.div
+                initial={{ x: "-100%", opacity: 0 }}
+                animate={{ x: "200%", opacity: [0, 0.6, 0] }}
+                transition={{ duration: 0.9, delay: 0.2, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-12 pointer-events-none"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-            {/* Exact Middle: Hospital Logo Anchor centered across entire viewport */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-30">
-              <Link
-                to="/"
-                className="stanford-logo-anchor group focus:outline-none cursor-pointer"
-                aria-label="Surya Hospital Home"
-              >
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 px-3 sm:px-5 lg:px-6 transition-all duration-300 pointer-events-none`}
+      >
+        <div
+          className={`max-w-[1440px] mx-auto pointer-events-auto flex items-center gap-3 lg:gap-4 transition-all duration-300 ${
+            isScrolled ? "justify-center" : "justify-between"
+          }`}
+        >
+          {/* Main Left/Center Navigation Pill - Collapses into centered Logo Pill on scroll matching Screenshot */}
+          <motion.div
+            layout
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className={`flex items-center gap-3 lg:gap-4 bg-white/95 backdrop-blur-md rounded-full border border-[#E2D9D0] shadow-md px-4 sm:px-6 py-2 sm:py-2.5 transition-all duration-300 ${
+              isScrolled ? "shadow-xl border-[#A84328]/30 shrink-0" : "flex-1 justify-between"
+            }`}
+          >
+            {/* 1. Left: Prominent Surya Hospital Logo matching Screenshot 2 */}
+            <div className="shrink-0 flex items-center py-0.5">
+              <Link to="/" className="inline-flex items-center group focus:outline-none" aria-label="Surya Hospital">
                 <img
                   src="/images/surya-hospital-orange-emblem-logo.png"
                   alt="Surya Hospital Logo"
-                  className={`stanford-navbar-logo-img ${
-                    !isScrolled ? "prominent group-hover:scale-102" : "compact group-hover:scale-102"
-                  }`}
-                  onError={(e) => {
-                    e.currentTarget.src = "/images/surya-hospital-horizontal-logo.png";
-                  }}
+                  className="h-10 sm:h-12 md:h-13 w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
                 />
               </Link>
             </div>
 
-            {/* Right Side: Quick Action Desk & Book Appointment */}
-            <div className="flex items-center gap-2 sm:gap-3 z-30 shrink-0">
-                <Link
-                  to="/appointment"
-                  className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-2xs transition cursor-pointer"
+            {/* 2. Middle: Desktop Navigation Links with Dropdowns - Animated Collapse on Scroll */}
+            <AnimatePresence>
+              {!isScrolled && (
+                <motion.nav
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: "auto" }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.28, ease: "easeInOut" }}
+                  className="hidden xl:flex items-center gap-1.5 2xl:gap-3 overflow-hidden whitespace-nowrap"
                 >
-                  <Calendar className="w-3.5 h-3.5 text-white" />
-                  <span>Book Appointment</span>
-                </Link>
+                  {navLinks.map((link) => {
+                    if (!link.hasDropdown) {
+                      return (
+                        <NavLink
+                          key={link.label}
+                          to={link.path}
+                          className={({ isActive }) =>
+                            `px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 ${
+                              isActive
+                                ? "text-[#1A1D20] font-bold"
+                                : "text-[#1A1D20]/90 hover:text-[#A84328]"
+                            }`
+                          }
+                        >
+                          {link.label}
+                        </NavLink>
+                      );
+                    }
 
+                    const isOpen =
+                      link.dropdownKey === "services"
+                        ? servicesOpen
+                        : link.dropdownKey === "resources"
+                        ? resourcesOpen
+                        : locationsOpen;
+
+                    const setOpen =
+                      link.dropdownKey === "services"
+                        ? setServicesOpen
+                        : link.dropdownKey === "resources"
+                        ? setResourcesOpen
+                        : setLocationsOpen;
+
+                    return (
+                      <div
+                        key={link.label}
+                        className="relative"
+                        onMouseEnter={() => setOpen(true)}
+                        onMouseLeave={() => setOpen(false)}
+                      >
+                        <button
+                          type="button"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold text-[#1A1D20]/90 hover:text-[#A84328] transition-colors focus:outline-none"
+                          onClick={() => setOpen(!isOpen)}
+                          aria-expanded={isOpen}
+                        >
+                          <span>{link.label}</span>
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 text-[#62666D] transition-transform duration-200 ${
+                              isOpen ? "rotate-180 text-[#A84328]" : ""
+                            }`}
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                              transition={{ duration: 0.15 }}
+                              className="absolute left-0 top-full pt-2 w-64 z-50"
+                            >
+                              <div className="bg-white rounded-2xl shadow-xl border border-[#E2D9D0] py-2 overflow-hidden">
+                                {link.items.map((subItem) => (
+                                  <Link
+                                    key={subItem.label}
+                                    to={subItem.path}
+                                    onClick={() => setOpen(false)}
+                                    className="block px-4 py-2 text-xs font-semibold text-[#1A1D20] hover:bg-[#F8E6DC]/40 hover:text-[#A84328] transition-colors"
+                                  >
+                                    {subItem.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </motion.nav>
+              )}
+            </AnimatePresence>
+
+            {/* Mobile Hamburger Trigger inside the main pill (< xl) */}
+            <div className="xl:hidden flex items-center">
+              <button
+                type="button"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="p-1.5 rounded-xl text-[#1A1D20] hover:bg-[#F8E6DC] transition focus:outline-none"
+                aria-label="Toggle navigation menu"
+              >
+                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Right Separate Action Pill - Displays when at top and gently hides on scroll so only centered logo pill displays */}
+          <AnimatePresence>
+            {!isScrolled && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-2 sm:gap-3 bg-white/95 backdrop-blur-md rounded-full border border-[#E2D9D0] shadow-md px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
+              >
+                {/* Phone Call Info */}
                 <a
                   href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                  className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold text-[#29252A] bg-[#FCFAF7] hover:bg-[#E8D8D9] border border-[#DED7D7] transition"
-                  title="Call 24/7 Hospital Desk"
+                  className="hidden sm:inline-flex items-center gap-2 py-1 px-1 text-left group transition-all"
+                  title="24/7 Emergency Helpline"
                 >
-                  <Phone className="w-3.5 h-3.5 text-[#641D2D]" />
-                  <span className="hidden sm:inline">Reception: {HOSPITAL_INFO.phone}</span>
-                  <span className="sm:hidden font-bold">Call</span>
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F8E6DC] text-[#A84328] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                    <Phone className="w-3.5 h-3.5 fill-current" />
+                  </div>
+                  <div className="pr-1">
+                    <span className="block text-xs font-bold text-[#1A1D20] tracking-tight leading-none">
+                      +91 85009 04999
+                    </span>
+                    <span className="block text-[10px] text-[#62666D] font-medium leading-tight mt-0.5">
+                      24/7 Emergency
+                    </span>
+                  </div>
                 </a>
-              </div>
 
-            </div>
-          </div>
-
-        {/* Secondary Sub-Navigation Strip (Direct Reference: Stanford style horizontal quick links) */}
-        <div className="hidden lg:block border-t border-[#DED7D7] bg-[#FCFAF7]">
-          <Container size="default">
-            <nav className="flex items-center justify-center gap-10 py-2.5 text-xs sm:text-[13px] font-bold text-[#6F686B]">
-              {quickNavItems.map((item) => (
-                <NavLink
-                  key={item.label}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `hover:text-[#641D2D] transition-colors py-1 ${
-                      isActive ? "text-[#641D2D] font-black border-b-2 border-[#641D2D]" : ""
-                    }`
-                  }
+                {/* Book Appointment Button */}
+                <Link
+                  to="/appointment"
+                  className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] shadow-sm hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
                 >
-                  {item.label}
-                </NavLink>
-              ))}
-            </nav>
-          </Container>
+                  <span>Book Appointment</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
         </div>
       </header>
 
-      {/* Stanford Medicine Style Slide-Over Drawer Menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true">
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-[#292D32]/50 backdrop-blur-xs transition-opacity"
-            onClick={() => setMenuOpen(false)}
-          />
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {menuOpen && (
+          <div className="fixed inset-0 z-[99999] xl:hidden overflow-hidden" role="dialog" aria-modal="true">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-xs"
+              onClick={() => setMenuOpen(false)}
+            />
 
-          <div className="fixed inset-y-0 left-0 max-w-full flex">
-            <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between overflow-y-auto">
-              
-              {/* Drawer Header */}
-              <div className="px-6 py-5 border-b border-[#DED7D7] flex items-center justify-between bg-[#FCFAF7]">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#641D2D]">
-                    Explore Surya Hospital
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setMenuOpen(false)}
-                  className="p-2 rounded-full hover:bg-[#E8D8D9] text-[#29252A] transition"
-                  aria-label="Close menu"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Navigation Section Links */}
-              <div className="px-6 py-4 flex-1 divide-y divide-[#DED7D7]">
-                {navLinks.map((item) => (
-                  <NavLink
-                    key={item.path}
-                    to={item.path}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 26, stiffness: 240 }}
+              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col justify-between overflow-y-auto"
+            >
+              <div>
+                <div className="px-6 py-5 border-b border-[#E2D9D0] flex items-center justify-between bg-[#FFF9F3]">
+                  <img
+                    src="/images/surya-hospital-horizontal-logo.png"
+                    alt="Surya Hospital"
+                    className="h-9 w-auto object-contain"
+                  />
+                  <button
+                    type="button"
                     onClick={() => setMenuOpen(false)}
-                    className={({ isActive }) =>
-                      `group py-3.5 flex items-start justify-between text-left transition ${
-                        isActive ? "text-[#641D2D]" : "text-[#29252A] hover:text-[#641D2D]"
-                      }`
-                    }
+                    className="p-2 rounded-full hover:bg-[#F8E6DC] text-[#1A1D20] transition"
                   >
-                    <div>
-                      <span className="text-base font-bold block group-hover:translate-x-1 transition-transform">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="p-6 space-y-4">
+                  <div className="space-y-1">
+                    {navLinks.map((item) => (
+                      <NavLink
+                        key={item.label}
+                        to={item.path}
+                        onClick={() => setMenuOpen(false)}
+                        className={({ isActive }) =>
+                          `block px-3 py-2.5 rounded-xl text-sm font-bold transition ${
+                            isActive
+                              ? "bg-[#F8E6DC] text-[#A84328]"
+                              : "text-[#1A1D20] hover:bg-[#FFF9F3]"
+                          }`
+                        }
+                      >
                         {item.label}
-                      </span>
-                      <span className="text-xs text-[#6F686B] block mt-0.5 font-normal">
-                        {item.description}
-                      </span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-[#641D2D] opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition shrink-0 mt-1" />
-                  </NavLink>
-                ))}
+                      </NavLink>
+                    ))}
+                  </div>
+
+                  <div className="pt-4 border-t border-[#E2D9D0] space-y-3">
+                    <a
+                      href={`tel:${HOSPITAL_INFO.phoneRaw}`}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-[#FFF9F3] border border-[#E2D9D0] text-[#1A1D20]"
+                    >
+                      <div className="w-9 h-9 rounded-full bg-[#F8E6DC] text-[#A84328] flex items-center justify-center">
+                        <Phone className="w-4 h-4 fill-current" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold">+91 85009 04999</div>
+                        <div className="text-[11px] text-[#62666D]">24/7 Emergency Casualty</div>
+                      </div>
+                    </a>
+
+                    <Link
+                      to="/appointment"
+                      onClick={() => setMenuOpen(false)}
+                      className="w-full py-3 rounded-xl text-center text-xs font-bold text-white bg-[#A84328] hover:bg-[#8F371F] block shadow-md"
+                    >
+                      Book Appointment Online
+                    </Link>
+                  </div>
+                </div>
               </div>
 
-              {/* Drawer Bottom Action Block */}
-              <div className="p-6 bg-[#FCFAF7] border-t border-[#DED7D7] space-y-3">
-                <Link
-                  to="/appointment"
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-[#E56A2E] hover:bg-[#C8541D] text-white text-sm font-bold shadow-sm transition"
-                >
-                  <Calendar className="w-4 h-4 text-white" />
-                  <span>Book an Appointment</span>
-                </Link>
-
-                <a
-                  href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white border border-[#DED7D7] hover:bg-[#E8D8D9] text-[#29252A] text-sm font-bold transition"
-                >
-                  <Phone className="w-4 h-4 text-[#641D2D]" />
-                  <span>Helpline: {HOSPITAL_INFO.phone}</span>
-                </a>
+              <div className="p-6 border-t border-[#E2D9D0] bg-[#FFF9F3] text-xs text-[#62666D]">
+                Behind Ambedkar Bhavan, 9th Cross Road, Sai Nagar, Anantapur
               </div>
-
-            </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 }

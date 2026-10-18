@@ -25,21 +25,21 @@ export function Button({
 
   const variantStyles = {
     primary:
-      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-sm hover:shadow-md hover:shadow-[#E56A2E]/25 focus:ring-[#E56A2E]",
+      "bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] text-white shadow-sm hover:shadow-md focus:ring-[#A84328]",
     terracotta:
-      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-sm hover:shadow-md hover:shadow-[#E56A2E]/25 focus:ring-[#E56A2E]",
+      "bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] text-white shadow-sm hover:shadow-md focus:ring-[#A84328]",
     navy:
-      "bg-[#28171D] hover:bg-[#1E0F14] text-white shadow-sm hover:shadow-md focus:ring-[#28171D]",
+      "bg-[#1A1D20] hover:bg-[#082E37] text-white shadow-sm hover:shadow-md focus:ring-[#1A1D20]",
     accent:
-      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-sm hover:shadow-md focus:ring-[#E56A2E]",
+      "bg-[#A84328] hover:bg-[#8F371F] text-white shadow-sm hover:shadow-md focus:ring-[#A84328]",
     emergency:
-      "bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-lg hover:shadow-xl focus:ring-[#E56A2E]",
+      "bg-[#A84328] hover:bg-[#8F371F] text-white shadow-lg hover:shadow-xl focus:ring-[#A84328]",
     secondary:
-      "bg-white border border-[#DED7D7] text-[#29252A] hover:bg-[#FCFAF7] hover:text-[#E56A2E] hover:border-[#E56A2E] shadow-xs focus:ring-[#E56A2E]",
+      "bg-white border border-[#E2D9D0] text-[#1A1D20] hover:bg-[#FFF9F3] hover:text-[#A84328] hover:border-[#A84328] shadow-xs focus:ring-[#A84328]",
     outline:
-      "border border-[#DED7D7] bg-transparent text-[#29252A] hover:bg-[#FCFAF7] hover:text-[#E56A2E] hover:border-[#E56A2E] focus:ring-[#E56A2E]",
+      "border border-[#E2D9D0] bg-transparent text-[#1A1D20] hover:bg-[#FFF9F3] hover:text-[#A84328] hover:border-[#A84328] focus:ring-[#A84328]",
     ghost:
-      "text-[#29252A] hover:bg-[#E8D8D9]/40 hover:text-[#E56A2E] focus:ring-[#E56A2E]",
+      "text-[#1A1D20] hover:bg-[#F8E6DC]/40 hover:text-[#A84328] focus:ring-[#A84328]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size] || sizeStyles.md} ${

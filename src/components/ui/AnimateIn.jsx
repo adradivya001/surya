@@ -29,7 +29,7 @@ export function AnimateIn({
   };
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(getInitialReducedMotion);
-  const [isVisible, setIsVisible] = useState(prefersReducedMotion);
+  const [isVisible, setIsVisible] = useState(true);
   const elementRef = useRef(null);
 
   useEffect(() => {
@@ -74,8 +74,8 @@ export function AnimateIn({
         }
       },
       {
-        threshold,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.05,
+        rootMargin: "50px 0px 50px 0px",
       }
     );
 

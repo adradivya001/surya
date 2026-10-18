@@ -17,21 +17,21 @@ export function EmergencyPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#FCFAF7]">
+    <div className="w-full bg-[#FFF9F3]">
       {/* High-priority Emergency Hero Banner */}
-      <section className="bg-[#28171D] text-white py-14 md:py-20 border-b border-[#3A222A]">
+      <section className="bg-[#1A1D20] text-white pt-28 sm:pt-32 pb-14 md:pb-20 border-b border-white/10">
         <Container>
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md text-xs font-bold uppercase tracking-widest bg-[#641D2D] text-white shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#A84328] text-white shadow-sm">
               <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
               <span>24/7 EMERGENCY CARE OPEN NOW</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif-heading font-bold text-white tracking-tight leading-tight">
               24/7 Emergency & Casualty Care
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-[#DED7D7] leading-relaxed max-w-3xl mx-auto font-normal">
+            <p className="text-base sm:text-lg md:text-xl text-[#E2D9D0] leading-relaxed max-w-3xl mx-auto font-normal">
               Our emergency team is open day and night for accidents, sudden chest pain, breathing difficulties, high fevers, and wound care in Sai Nagar, Anantapur.
             </p>
 
@@ -39,17 +39,17 @@ export function EmergencyPage() {
             <div className="pt-2">
               <a
                 href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                className="inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-base sm:text-lg font-black bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-xl transition transform hover:scale-[1.02] active:scale-98 w-full sm:w-auto text-center"
+                className="inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-base sm:text-lg font-bold bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] text-white shadow-xl transition transform hover:scale-[1.02] active:scale-98 w-full sm:w-auto text-center"
               >
-                <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse shrink-0 text-[#B69A65]" />
+                <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse shrink-0 text-white" />
                 <span>Call Emergency Casualty: {HOSPITAL_INFO.phone}</span>
               </a>
             </div>
 
             {/* Address & Direct Navigation */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-[13px] text-[#DED7D7]">
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-[13px] text-[#E2D9D0]">
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#B69A65] shrink-0" />
+                <MapPin className="w-4 h-4 text-[#C85235] shrink-0" />
                 <span>{HOSPITAL_INFO.fullAddress}</span>
               </div>
               <a

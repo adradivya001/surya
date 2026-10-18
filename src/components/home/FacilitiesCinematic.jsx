@@ -58,20 +58,76 @@ export function FacilitiesCinematic() {
       </div>
 
       {/* Top Organic Wave Transition from Specialties */}
-      <div className="organic-divider-top">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            {/* Top Multi-Layer Faded Organic Ribbon Frame matching screenshot */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="relative block w-full h-[65px] sm:h-[95px] md:h-[130px]">
+          <defs>
+            <linearGradient id="facTopRibbon1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.25" />
+              <stop offset="35%" stopColor="#F5DFD0" stopOpacity="0.45" />
+              <stop offset="70%" stopColor="#FFFFFF" stopOpacity="0.30" />
+              <stop offset="100%" stopColor="#EAD2C1" stopOpacity="0.55" />
+            </linearGradient>
+            <linearGradient id="facTopRibbon2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.65" />
+              <stop offset="45%" stopColor="#F9ECE2" stopOpacity="0.80" />
+              <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.90" />
+            </linearGradient>
+          </defs>
+
+          {/* Background Faded Ribbon Trail */}
           <path
-            d="M0,0 L1440,0 L1440,32 C1280,24 1060,52 820,78 C580,105 320,100 0,70 Z"
+            d="M0,0 L1440,0 L1440,110 C1220,70 1020,135 760,65 C480,0 240,120 0,60 Z"
+            fill="url(#facTopRibbon1)"
+          />
+
+          {/* Mid Faded Translucent Ambient Wave */}
+          <path
+            d="M0,0 L1440,0 L1440,85 C1240,45 1060,115 800,50 C520,0 260,100 0,45 Z"
+            fill="url(#facTopRibbon2)"
+          />
+
+          {/* Foreground Solid Pure White / Warm Canvas Frame */}
+          <path
+            d="M0,0 L1440,0 L1440,65 C1260,30 1100,85 840,40 C560,-5 280,75 0,35 Z"
             fill="#FFFFFF"
           />
         </svg>
       </div>
 
       {/* Bottom Organic Wave Transition into Doctors */}
-      <div className="organic-divider-bottom">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            {/* Bottom Multi-Layer Faded Organic Ribbon Frame matching screenshot */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="relative block w-full h-[65px] sm:h-[95px] md:h-[130px]">
+          <defs>
+            <linearGradient id="facBottomRibbon1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.30" />
+              <stop offset="30%" stopColor="#F5DFD0" stopOpacity="0.50" />
+              <stop offset="70%" stopColor="#FFF9F3" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#EAD2C1" stopOpacity="0.55" />
+            </linearGradient>
+            <linearGradient id="facBottomRibbon2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.70" />
+              <stop offset="50%" stopColor="#F9ECE2" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#FFF9F3" stopOpacity="0.95" />
+            </linearGradient>
+          </defs>
+
+          {/* Background Faded Ribbon Trail */}
           <path
-            d="M0,70 C320,100 580,105 820,78 C1060,52 1280,24 1440,32 L1440,120 L0,120 Z"
+            d="M0,70 C240,135 560,35 840,110 C1100,165 1280,85 1440,115 L1440,180 L0,180 Z"
+            fill="url(#facBottomRibbon1)"
+          />
+
+          {/* Mid Faded Translucent Ambient Wave */}
+          <path
+            d="M0,95 C260,150 580,55 860,125 C1120,175 1300,105 1440,130 L1440,180 L0,180 Z"
+            fill="url(#facBottomRibbon2)"
+          />
+
+          {/* Foreground Solid Warm Canvas Wave */}
+          <path
+            d="M0,115 C280,165 600,75 880,135 C1140,180 1320,120 1440,140 L1440,180 L0,180 Z"
             fill="#FFF9F3"
           />
         </svg>

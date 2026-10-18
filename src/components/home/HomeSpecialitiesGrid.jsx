@@ -59,7 +59,43 @@ export function HomeSpecialitiesGrid() {
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-white border-t border-[#E2D9D0]/60 relative overflow-hidden">
+    <section className="relative pt-16 pb-24 sm:pt-20 sm:pb-32 bg-[#FFF9F3] text-[#1A1D20] overflow-hidden">
+      {/* Top Multi-Layer Faded Organic Ribbon Frame matching reference */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="relative block w-full h-[60px] sm:h-[90px] md:h-[120px]">
+          <defs>
+            <linearGradient id="specTopRibbon1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.25" />
+              <stop offset="35%" stopColor="#F5DFD0" stopOpacity="0.45" />
+              <stop offset="70%" stopColor="#FFF9F3" stopOpacity="0.30" />
+              <stop offset="100%" stopColor="#EAD2C1" stopOpacity="0.55" />
+            </linearGradient>
+            <linearGradient id="specTopRibbon2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.65" />
+              <stop offset="45%" stopColor="#F9ECE2" stopOpacity="0.80" />
+              <stop offset="100%" stopColor="#FFF9F3" stopOpacity="0.90" />
+            </linearGradient>
+          </defs>
+
+          {/* Background Faded Ribbon Trail */}
+          <path
+            d="M0,0 L1440,0 L1440,95 C1220,60 1020,120 760,55 C480,0 240,105 0,50 Z"
+            fill="url(#specTopRibbon1)"
+          />
+
+          {/* Mid Faded Translucent Ambient Wave */}
+          <path
+            d="M0,0 L1440,0 L1440,75 C1240,35 1060,100 800,45 C520,0 260,85 0,38 Z"
+            fill="url(#specTopRibbon2)"
+          />
+
+          {/* Foreground Solid Warm Canvas Curve */}
+          <path
+            d="M0,0 L1440,0 L1440,55 C1260,25 1100,75 840,35 C560,-5 280,65 0,30 Z"
+            fill="#FFF9F3"
+          />
+        </svg>
+      </div>
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header with Left/Right Editorial Splitting */}
@@ -159,6 +195,42 @@ export function HomeSpecialitiesGrid() {
           ))}
         </div>
 
+      </div>
+      {/* Bottom Multi-Layer Faded Organic Ribbon Frame sweeping into next section */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+        <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="relative block w-full h-[65px] sm:h-[95px] md:h-[130px]">
+          <defs>
+            <linearGradient id="specBottomRibbon1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.30" />
+              <stop offset="30%" stopColor="#F5DFD0" stopOpacity="0.50" />
+              <stop offset="70%" stopColor="#FFF9F3" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#EAD2C1" stopOpacity="0.55" />
+            </linearGradient>
+            <linearGradient id="specBottomRibbon2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.70" />
+              <stop offset="50%" stopColor="#F9ECE2" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#FFF9F3" stopOpacity="0.95" />
+            </linearGradient>
+          </defs>
+
+          {/* Background Faded Ribbon Trail */}
+          <path
+            d="M0,70 C240,135 560,35 840,110 C1100,165 1280,85 1440,115 L1440,180 L0,180 Z"
+            fill="url(#specBottomRibbon1)"
+          />
+
+          {/* Mid Faded Translucent Ambient Wave */}
+          <path
+            d="M0,95 C260,150 580,55 860,125 C1120,175 1300,105 1440,130 L1440,180 L0,180 Z"
+            fill="url(#specBottomRibbon2)"
+          />
+
+          {/* Foreground Solid Warm Canvas Wave */}
+          <path
+            d="M0,115 C280,165 600,75 880,135 C1140,180 1320,120 1440,140 L1440,180 L0,180 Z"
+            fill="#FFF9F3"
+          />
+        </svg>
       </div>
     </section>
   );

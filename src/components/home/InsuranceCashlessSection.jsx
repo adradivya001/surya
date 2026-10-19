@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
 import { AnimateIn } from "../ui/AnimateIn";
 import { ShieldCheck } from "lucide-react";
@@ -48,22 +49,22 @@ export function InsuranceCashlessSection() {
           </AnimateIn>
         </div>
 
-        {/* 3-Column Responsive Grid on Desktop matching Reference Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-          {partners.map((partner, idx) => (
+        {/* 4 Cards Responsive Grid on Desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
+          {partners.slice(0, 4).map((partner, idx) => (
             <AnimateIn
               key={partner.id}
               animation="fade-up"
-              delay={Math.min(idx * 30, 400)}
+              delay={Math.min(idx * 40, 200)}
             >
               <div
-                className="group relative bg-white rounded-[20px] border-[1.8px] border-[#319BFF] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#1428B5] transition-all duration-300 p-2.5 sm:p-3 flex items-center justify-center min-h-[90px] sm:min-h-[110px] md:min-h-[120px]"
+                className="group relative bg-white rounded-[20px] border-[1.8px] border-[#319BFF] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#1428B5] transition-all duration-300 p-3 sm:p-4 flex items-center justify-center min-h-[95px] sm:min-h-[110px] md:min-h-[120px]"
                 title={partner.name}
               >
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="w-full h-auto max-h-[75px] sm:max-h-[90px] md:max-h-[100px] object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+                  className="w-full h-auto max-h-[70px] sm:max-h-[85px] md:max-h-[90px] object-contain transition-transform duration-300 group-hover:scale-[1.04]"
                   loading="lazy"
                 />
               </div>
@@ -71,9 +72,22 @@ export function InsuranceCashlessSection() {
           ))}
         </div>
 
+        {/* Explore All Services Tab Button */}
+        <AnimateIn animation="fade-up" delay={250}>
+          <div className="mt-10 sm:mt-12 text-center">
+            <Link
+              to="/insurance-partners"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold text-white bg-[#1428B5] hover:bg-[#0E1F96] transition-all shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <span>Explore All Services</span>
+              <span className="text-[#DDFBFF]">→</span>
+            </Link>
+          </div>
+        </AnimateIn>
+
         {/* Informational Help Note */}
         <AnimateIn animation="fade-up" delay={300}>
-          <div className="mt-12 sm:mt-14 max-w-2xl mx-auto p-4 sm:p-5 rounded-2xl bg-white/85 border border-[#319BFF]/40 backdrop-blur-xs flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-xs">
+          <div className="mt-10 sm:mt-12 max-w-2xl mx-auto p-4 sm:p-5 rounded-2xl bg-white/85 border border-[#319BFF]/40 backdrop-blur-xs flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-xs">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#DDFBFF] text-[#1428B5] flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-5 h-5" />

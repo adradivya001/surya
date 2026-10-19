@@ -35,7 +35,7 @@ export function DoctorsPage() {
     "E.N.T.",
     "Orthopedic",
     "Pulmonology",
-    "Anesthesia & Critical Care",
+    "Anesthesia & Intensivist",
     "Oncology",
     "Neurology",
     "Urology",
@@ -609,7 +609,7 @@ export function DoctorsPage() {
                   )}
                 </h3>
                 <p className="text-xs sm:text-sm text-[#62666D] max-w-md mx-auto leading-relaxed">
-                  Try searching by doctor name (e.g. <em>Dr. Surya Prakash</em>), department, or verified health concerns like <em>diabetes</em>, <em>fever</em>, <em>hernia</em>, or <em>fracture</em>.
+                  Try searching by doctor name (e.g. <em>Dr. Vamsi Krishna</em>), department, or verified health concerns like <em>heart</em>, <em>kidney</em>, <em>spine</em>, or <em>fracture</em>.
                 </p>
               </div>
 

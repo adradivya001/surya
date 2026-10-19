@@ -40,17 +40,12 @@ export function SpecialitiesPage() {
     document.title = "Clinical Specialities | Surya Hospital, Sai Nagar, Anantapur";
   }, []);
 
-  // Verified categories derived directly from HOSPITAL_INFO.specialities
+  // Categories derived directly from HOSPITAL_INFO.specialities
   const categories = [
     { id: "All", label: "All Specialities" },
-    { id: "Everyday Health", label: "Everyday Health" },
-    { id: "Surgical Care", label: "Surgical Care" },
-    { id: "Keyhole Surgery", label: "Keyhole Surgery" },
-    { id: "Bones & Joints", label: "Bones & Joints" },
-    { id: "Immediate Care", label: "Immediate Care" },
-    { id: "Specialized Clinic", label: "Specialized Clinic" },
-    { id: "Same-Day Care", label: "Same-Day Care" },
-    { id: "Recovery & Mobility", label: "Recovery & Mobility" },
+    ...Array.from(new Set(HOSPITAL_INFO.specialities.map((s) => s.category))).map(
+      (cat) => ({ id: cat, label: cat })
+    ),
   ];
 
   const filteredSpecialities = HOSPITAL_INFO.specialities.filter((spec) => {

@@ -3,7 +3,7 @@ import { HomeHero } from "../components/home/HomeHero";
 import { HomeAboutPreview } from "../components/home/HomeAboutPreview";
 import { HomeSpecialitiesGrid } from "../components/home/HomeSpecialitiesGrid";
 import { FacilitiesCinematic } from "../components/home/FacilitiesCinematic";
-import { HomeFeaturedDoctors } from "../components/home/HomeFeaturedDoctors";
+import { SpecialtiesDoctorsPoster } from "../components/home/SpecialtiesDoctorsPoster";
 import { TestimonialCarousel } from "../components/home/TestimonialCarousel";
 import { InsuranceCashlessSection } from "../components/home/InsuranceCashlessSection";
 import { HomeAppointmentCta } from "../components/home/HomeAppointmentCta";
@@ -27,8 +27,8 @@ export function HomePage() {
       {/* 4. Advanced Technology & Facilities Section in Deep Clinical Teal */}
       <FacilitiesCinematic />
 
-      {/* 5. Experienced Doctors Editorial Section */}
-      <HomeFeaturedDoctors />
+      {/* 5. Complete 12 Specialties & 19 Doctors Section matching reference poster */}
+      <SpecialtiesDoctorsPoster />
 
       {/* 6. Patient Stories & Testimonials 3-Card Carousel */}
       <TestimonialCarousel />

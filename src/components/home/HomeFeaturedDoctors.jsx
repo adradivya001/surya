@@ -46,9 +46,9 @@ export function HomeFeaturedDoctors() {
             </AnimateIn>
           </div>
 
-          {/* 4 Doctor Cards Grid (8 cols on lg screens, 4 columns of cards) */}
+          {/* Featured Doctor Cards Grid (8 cols on lg screens, 4 columns of cards) */}
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {HOSPITAL_INFO.doctors.map((doc, idx) => (
+            {HOSPITAL_INFO.doctors.slice(0, 4).map((doc, idx) => (
               <AnimateIn
                 key={doc.id}
                 animation="fade-up"

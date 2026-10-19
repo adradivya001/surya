@@ -29,94 +29,160 @@ export function DoctorsPage() {
 
   const departments = [
     "All",
-    "General Surgery & Proctology",
-    "Orthopedic Surgery & Internal Medicine",
-    "Emergency Medicine & Critical Care",
+    "Cardiology",
+    "Gastroenterology",
+    "Nephrology",
+    "E.N.T.",
+    "Orthopedic",
+    "Pulmonology",
   ];
 
   // Approved, verified clinical keywords mapped strictly to verified doctors and hospital data
   const CLINICAL_FOCUS_KEYWORDS = {
-    "dr-d-surya-prakash": [
-      "diabetes",
-      "sugar",
-      "blood pressure",
-      "bp",
+    "dr-k-vamsi-krishna": [
+      "heart",
+      "cardiology",
+      "angiography",
+      "angioplasty",
+      "heart attack",
       "hypertension",
-      "cholesterol",
-      "fever",
-      "infections",
-      "seasonal illness",
-      "cough",
-      "cold",
-      "flu",
-      "internal medicine",
-      "general physician",
-      "thyroid",
-      "fatigue",
-      "weakness",
-      "inpatient care",
-      "managing director",
+      "heart failure",
+      "echo",
+      "ecg",
+      "chest pain",
     ],
-    "dr-anwar-ramadan": [
-      "piles",
-      "fissure",
-      "fistula",
-      "proctology",
-      "hemorrhoids",
-      "hernia",
-      "appendix",
-      "appendicitis",
-      "gallbladder",
-      "gallstones",
-      "keyhole",
-      "laparoscopic",
-      "general surgery",
-      "surgeon",
-      "skin cyst",
-      "lipoma",
-      "abscess",
-      "day care surgery",
-      "minor surgery",
+    "dr-k-spandana": [
+      "heart",
+      "cardiology",
+      "echo",
+      "2d echo",
+      "arrhythmia",
+      "palpitations",
+      "preventive heart",
+      "cardiovascular",
     ],
-    "dr-mohamed-ramadan": [
+    "dr-s-t-rajaneesh-reddy": [
+      "gastro",
+      "gastroenterology",
+      "endoscopy",
+      "colonoscopy",
+      "liver",
+      "jaundice",
+      "cirrhosis",
+      "gerd",
+      "acid reflux",
+      "acidity",
+      "gastritis",
+      "ulcer",
+      "stomach pain",
+      "digestion",
+    ],
+    "dr-m-v-k-hareesh": [
+      "nephro",
+      "nephrology",
+      "kidney",
+      "renal",
+      "dialysis",
+      "hemodialysis",
+      "ckd",
+      "diabetic nephropathy",
+      "creatinine",
+    ],
+    "dr-v-badarinath-reddy": [
+      "nephro",
+      "nephrology",
+      "kidney",
+      "renal",
+      "kidney stones",
+      "proteinuria",
+      "dialysis",
+      "blood in urine",
+    ],
+    "dr-p-lakshmi-narasimha-rao": [
+      "ent",
+      "ear",
+      "nose",
+      "throat",
+      "hearing loss",
+      "sinus",
+      "fess",
+      "tonsils",
+      "tonsillectomy",
+      "adenoids",
+      "snoring",
+    ],
+    "dr-krishna-sai": [
+      "ent",
+      "ear",
+      "nose",
+      "throat",
+      "sinusitis",
+      "allergic rhinitis",
+      "vertigo",
+      "balance",
+      "ear infection",
+      "tinnitus",
+    ],
+    "dr-m-diwakar": [
+      "ortho",
+      "orthopedic",
+      "spine",
+      "back pain",
+      "sciatica",
+      "disc",
+      "neck pain",
+      "lumbar",
+      "fracture",
+      "trauma",
+    ],
+    "dr-shanthi-swaroop": [
+      "ortho",
+      "orthopedic",
+      "joint replacement",
+      "knee replacement",
+      "hip replacement",
+      "arthritis",
+      "knee pain",
+      "sports injury",
+      "acl",
+      "ligament",
+      "fracture",
+    ],
+    "dr-raghavendra-raju": [
+      "ortho",
+      "orthopedic",
       "fracture",
       "broken bone",
-      "bone",
-      "plaster",
-      "plaster cast",
-      "joint",
+      "trauma",
+      "shoulder pain",
+      "elbow pain",
+      "osteoporosis",
       "joint pain",
-      "knee",
-      "knee pain",
-      "hip",
-      "shoulder",
-      "back pain",
-      "neck pain",
-      "spine",
-      "sprain",
-      "arthritis",
-      "trauma",
-      "accident",
-      "mobility",
-      "orthopedics",
-      "orthopedic surgeon",
     ],
-    "dr-omnia-ramadan": [
-      "emergency",
-      "casualty",
-      "accident",
-      "trauma",
-      "chest pain",
-      "breathing",
+    "dr-sudhindra": [
+      "pulmonology",
+      "chest",
+      "lungs",
+      "asthma",
+      "allergy",
+      "copd",
+      "tuberculosis",
+      "tb",
+      "cough",
       "breathing difficulty",
-      "fainting",
-      "seizure",
-      "first aid",
-      "critical care",
-      "triage",
-      "acute illness",
-      "24/7",
-      "urgent care",
+      "pneumonia",
+    ],
+    "dr-k-muralidhar-reddy": [
+      "pulmonology",
+      "lungs",
+      "chest",
+      "ild",
+      "fibrosis",
+      "bronchoscopy",
+      "breathlessness",
+      "chronic cough",
+      "respiratory",
+      "icu",
     ],
   };
 
@@ -146,11 +212,7 @@ export function DoctorsPage() {
     // 1. Check department filter
     const matchesDept =
       selectedDepartment === "All" ||
-      doc.department.toLowerCase().includes(selectedDepartment.toLowerCase()) ||
-      (selectedDepartment === "Orthopedic Surgery & Internal Medicine" &&
-        (doc.department.includes("Orthopedics") || doc.department.includes("General Medicine"))) ||
-      (selectedDepartment === "Emergency Medicine & Critical Care" &&
-        doc.department.includes("Emergency"));
+      doc.department.toLowerCase() === selectedDepartment.toLowerCase();
 
     if (!matchesDept) return false;
 
@@ -190,8 +252,8 @@ export function DoctorsPage() {
       {/* Page Hero */}
       <PageHero
         eyebrow="DOCTORS & SPECIALISTS"
-        title="Meet Our Doctors"
-        description="Consult with caring, experienced doctors in internal medicine, general surgery, bone and joint care, and emergency medicine right here in Anantapur."
+        title="Meet Our Doctors & Specialists"
+        description="Our highly experienced medical team is here to provide expert care across Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedic, and Pulmonology right here in Anantapur."
         breadcrumbs={[{ label: "Doctors" }]}
         badge="Experienced Medical Team"
       >
@@ -215,7 +277,7 @@ export function DoctorsPage() {
             <div className="space-y-1 text-left">
               <p className="font-bold text-[#29252A]">Doctor Availability & Booking Help:</p>
               <p className="text-[#6F686B]">
-                Surya Hospital is guided by Managing Director & Physician <strong>Dr. D. Surya Prakash (M.D. Internal Medicine)</strong>, alongside experienced general surgeons, orthopedic specialists, and emergency doctors. Need help choosing the right doctor or checking today's visiting hours? Call our front desk at {HOSPITAL_INFO.phone}.
+                Surya Hospital's team of super-specialists across <strong>Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedics, and Pulmonology</strong> are available for regular outpatient consultations and inpatient treatment. Need help choosing the right specialist or checking today's visiting hours? Call our front desk at {HOSPITAL_INFO.phone}.
               </p>
             </div>
           </div>

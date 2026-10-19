@@ -128,27 +128,41 @@ export function HomeHero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#1A1D20] text-white">
-      {/* 1. Full-Bleed Hospital Exterior Video / Photo Backdrop with Cinematic Scrim */}
-      <div className="relative w-full min-h-[760px] lg:min-h-[860px] flex flex-col justify-between pt-28 sm:pt-32 lg:pt-36 pb-28 sm:pb-32">
-        {/* Background Media - High-Resolution Hospital Building Exterior with Sunset Lighting */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-
-          <video src="/images/surya-hospital-building.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover object-[55%_30%] filter brightness-[0.96] contrast-[1.08] saturate-[1.20] scale-[1.05] origin-center transition-transform" />
-          {/* Reference Warm Sunset Editorial Scrim: Warm golden light on left, crystal clear building on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FFF9F3]/95 via-[#FFF9F3]/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
+      {/* 1. Full-Bleed Hospital Exterior with Cinematic Scrim */}
+      <div className="relative w-full min-h-[820px] lg:min-h-[880px] flex flex-col justify-between pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20">
+        {/* Background Media - High-Resolution Hospital Building Exterior with Subtle Cinematic Zoom */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.img
+            src="/images/modern-surya-hospital-facade.png"
+            alt="Surya Hospital Modern Facade"
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.02 }}
+            transition={{ duration: 18, ease: "easeOut", repeat: Infinity, repeatType: "reverse" }}
+            className="w-full h-full object-cover object-[50%_42%] filter brightness-[0.98] contrast-[1.04]"
+            loading="eager"
+          />
+          {/* Natural Soft Warm-White Scrim: Reduced central haze for crystal clear architectural facade and signage */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(250, 245, 238, 0.88) 0%, rgba(250, 245, 238, 0.68) 26%, rgba(250, 245, 238, 0.32) 46%, rgba(250, 245, 238, 0.08) 64%, rgba(250, 245, 238, 0) 85%)",
+            }}
+          />
+          {/* Subtle bottom shadow gradient to ground the stats bar cleanly without harsh lines */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10 pointer-events-none" />
         </div>
 
-        {/* 2. Overlaid Hero Content Container */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12">
+        {/* 2. Overlaid Hero Content Container - Explicit top clearance below floating navbar pill */}
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-14 mb-6 sm:mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            {/* Left Column: Editorial Headline & Actions (7 Cols) */}
-            <div className="lg:col-span-7 xl:col-span-8 text-left space-y-5 sm:space-y-6">
+            {/* Left Column: Editorial Headline & Actions (7 Cols on LG, 7 on XL for balanced width constraint) */}
+            <div className="lg:col-span-7 xl:col-span-7 text-left space-y-4 sm:space-y-4.5 max-w-2xl">
               
-              {/* Subtle Location Tag */}
+              {/* Location Badge */}
               <motion.div
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#A84328]"
@@ -157,70 +171,68 @@ export function HomeHero() {
                 <span>SURYA HOSPITAL • ANANTAPUR</span>
               </motion.div>
 
-              {/* Main Headline with Editorial Italic Second Line matching Mockup */}
+              {/* Main Headline with Editorial Italic Second Line - Proportionally Balanced */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="space-y-1"
+                className="space-y-0.5 sm:space-y-1"
               >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-serif-heading font-bold text-[#1A1D20] tracking-tight leading-[1.08]">
-                  Comprehensive
+                <h1
+                  className="font-serif-heading font-bold text-[#1A1D20] tracking-tight leading-[1.05]"
+                  style={{ fontSize: "clamp(2rem, 4.2vw, 3.65rem)" }}
+                >
+                  Excellence in
                   <br />
                   Healthcare.
                 </h1>
-                <p className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-editorial-italic text-[#A84328] tracking-tight leading-[1.08]">
-                  Compassionate Care.
+                <p
+                  className="font-editorial-italic text-[#A84328] tracking-tight leading-[1.05]"
+                  style={{ fontSize: "clamp(1.85rem, 3.8vw, 3.35rem)" }}
+                >
+                  Care at Every Step.
                 </p>
               </motion.div>
 
-              {/* Supporting Subtitle */}
+              {/* Supporting Subtitle - Exact Refined Description */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-base sm:text-lg text-[#1A1D20]/90 max-w-xl font-normal leading-relaxed drop-shadow-xs"
               >
-                Advanced medical treatment, experienced doctors, modern facilities and 24/7 emergency services — all under one roof.
+                Quality medical care delivered by experienced doctors, supported by modern facilities and 24/7 emergency services for you and your family.
               </motion.p>
 
-              {/* Action Buttons: Book an Appointment + Explore Our Services + Video Play */}
+              {/* Action Buttons: Book an Appointment + Explore Our Services + Video Tour */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4"
+                className="pt-1.5 flex flex-wrap items-center gap-3 sm:gap-3.5"
               >
                 <Link
                   to="/appointment"
-                  className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] shadow-lg hover:shadow-xl transition-all active:scale-95 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#C85235] focus:ring-offset-2"
                 >
                   <span>Book an Appointment</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
 
                 <Link
                   to="/specialities"
-                  className="inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-bold text-[#1A1D20] bg-white/90 hover:bg-white backdrop-blur-md border border-[#E2D9D0] shadow-md transition-all active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold text-[#1A1D20] bg-white/95 hover:bg-white backdrop-blur-md border border-[#E2D9D0] shadow-sm hover:shadow-md transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#A84328]/40"
                 >
                   <span>Explore Our Services</span>
                 </Link>
-
-                {/* Video Play Circle Button (Reference Mockup) */}
-                <button
-                  type="button"
-                  onClick={() => setVideoModalOpen(true)}
-                  className="w-12 h-12 rounded-full bg-white text-[#A84328] shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center border border-[#E2D9D0] group"
-                  aria-label="Watch hospital tour video"
-                  title="Watch Hospital Video"
-                >
-                  <Play className="w-4 h-4 fill-current ml-0.5 group-hover:scale-110 transition-transform" />
-                </button>
               </motion.div>
             </div>
 
-            {/* Right Side Docked Drawer Tabs: Only icons visible at the right border by default; expand on click/touch with blinking border */}
-            <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 flex flex-col items-end gap-3 pointer-events-auto select-none">
+            {/* Right Side Docked Drawer Tabs: Refined clean circular buttons on desktop, non-intrusive drawer */}
+            <aside
+              aria-label="Quick hospital services"
+              className="hidden sm:flex fixed right-0 top-1/2 -translate-y-1/2 z-40 flex-col items-end gap-2.5 pointer-events-auto select-none"
+            >
               {floatingBadges.map((badge, idx) => {
                 const Icon = badge.icon;
                 const isExpanded = activeTab === badge.id;
@@ -229,29 +241,39 @@ export function HomeHero() {
                   <motion.div
                     key={badge.id}
                     layout
-                    initial={{ x: 60, opacity: 0 }}
+                    initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.15 + idx * 0.06 }}
+                    transition={{ duration: 0.4, delay: 0.15 + idx * 0.05 }}
                     className="flex justify-end"
                   >
                     <div
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={isExpanded}
+                      aria-label={`${badge.title} quick action`}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setActiveTab(isExpanded ? null : badge.id);
+                        }
+                      }}
                       onClick={() => setActiveTab(isExpanded ? null : badge.id)}
-                      className={`cursor-pointer rounded-l-full border border-r-0 backdrop-blur-xl transition-all duration-300 ease-out flex items-center shadow-2xl ${
+                      className={`cursor-pointer rounded-l-full border border-r-0 backdrop-blur-xl transition-all duration-300 ease-out flex items-center shadow-md focus:outline-none focus:ring-2 focus:ring-[#A84328] ${
                         isExpanded
-                          ? `bg-gradient-to-r ${badge.gradient} text-white border-white/80 animate-border-blink pl-4 pr-6 py-3 max-w-[340px] sm:max-w-[420px]`
-                          : "bg-white/95 hover:bg-white text-[#1A1D20] border-white/80 hover:border-[#C85235]/40 pl-3 pr-2 py-2.5 shadow-[0_8px_25px_-4px_rgba(0,0,0,0.18)]"
+                          ? `bg-gradient-to-r ${badge.gradient} text-white border-white/80 pl-3.5 pr-5 py-2.5 max-w-[340px] sm:max-w-[400px]`
+                          : "bg-white/95 hover:bg-white text-[#1A1D20] border-[#E2D9D0] hover:border-[#C85235]/40 pl-2.5 pr-2 py-2 shadow-sm"
                       }`}
                     >
-                      {/* Left Circular Badge with Realistic Icon */}
+                      {/* Left Circular Badge with Centered Icon */}
                       <div
-                        className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 shadow-md ${
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
                           isExpanded
                             ? "bg-white/20 text-white scale-105"
                             : `${badge.iconBg} ${badge.iconColor} hover:scale-105`
                         }`}
                         title={badge.title}
                       >
-                        <Icon className="w-6 h-6 stroke-[2.2]" />
+                        <Icon className="w-5 h-5 stroke-[2.2]" />
                       </div>
 
                       {/* Expanded Content: Matter, Title, Description, and Link */}
@@ -261,11 +283,11 @@ export function HomeHero() {
                             initial={{ opacity: 0, width: 0 }}
                             animate={{ opacity: 1, width: "auto" }}
                             exit={{ opacity: 0, width: 0 }}
-                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                            className="overflow-hidden flex flex-col text-left pl-3.5 pr-2"
+                            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden flex flex-col text-left pl-3 pr-2"
                           >
                             <div className="flex items-center gap-2">
-                              <span className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug whitespace-nowrap">
+                              <span className="text-sm font-bold text-white tracking-tight leading-snug whitespace-nowrap">
                                 {badge.title}
                               </span>
                               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-white/20 text-white shrink-0">
@@ -273,20 +295,20 @@ export function HomeHero() {
                               </span>
                             </div>
 
-                            <p className="text-[11px] sm:text-xs text-white/90 font-normal leading-relaxed mt-1 line-clamp-2 max-w-[280px]">
+                            <p className="text-[11px] text-white/90 font-normal leading-relaxed mt-1 line-clamp-2 max-w-[260px]">
                               {badge.desc}
                             </p>
 
-                            <div className="mt-2.5 flex items-center gap-2">
+                            <div className="mt-2 flex items-center gap-2">
                               <Link
                                 to={badge.link}
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold text-[#1A1D20] bg-white hover:bg-[#FFF9F3] shadow-md transition-all active:scale-95"
+                                className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] font-bold text-[#1A1D20] bg-white hover:bg-[#FFF9F3] shadow-xs transition-all active:scale-95"
                               >
                                 <span>{badge.action}</span>
                                 <ArrowRight className="w-3 h-3 text-[#A84328]" />
                               </Link>
-                              <span className="text-[10px] text-white/70 italic">
+                              <span className="text-[10px] text-white/75 italic">
                                 Tap to close
                               </span>
                             </div>
@@ -297,22 +319,27 @@ export function HomeHero() {
                   </motion.div>
                 );
               })}
-            </div>
+            </aside>
 
           </div>
         </div>
 
-        {/* 3. Bottom Translucent Stats Bar (Exact Reference Mockup Layout) */}
-        <div className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-auto mb-6 sm:mb-8">
-          <div className="w-full rounded-2xl bg-gradient-to-r from-[#2A1E17]/80 via-[#36261E]/70 to-[#2A1E17]/85 backdrop-blur-xl border border-[#E5B278]/25 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.6),0_0_30px_0_rgba(217,155,90,0.12)_inset] px-5 sm:px-8 py-3.5 sm:py-4 flex flex-col lg:flex-row items-center justify-between gap-5 sm:gap-6">
+        {/* 3. Bottom Translucent Stats Bar — Compact Dark Glassmorphism */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-auto mb-3 sm:mb-5"
+        >
+          <div className="w-full rounded-2xl bg-[#1C1613]/80 backdrop-blur-md border border-[#E5B278]/20 shadow-[0_10px_28px_-6px_rgba(0,0,0,0.55),0_0_20px_0_rgba(217,155,90,0.08)_inset] px-3.5 sm:px-6 lg:px-7 py-2.5 sm:py-3 flex flex-col lg:flex-row items-center justify-between gap-3.5 sm:gap-4">
             
-            {/* Left 4 Stats with Vertical Glass Dividers matching 2nd screenshot */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-2 flex-1 w-full items-center">
+            {/* Left 4 Stats with Subtle Dividers */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-1.5 flex-1 w-full items-center">
               {trustHighlights.map((stat, i) => (
-                <div key={i} className="flex items-center gap-3 sm:gap-3.5 px-2 sm:px-4 border-r-0 sm:border-r border-white/10 last:border-r-0">
+                <div key={i} className="flex items-center gap-2.5 sm:gap-3 px-1 sm:px-2.5 border-r-0 sm:border-r border-white/10 last:border-r-0">
                   {stat.iconSvg}
                   <div className="text-left select-none">
-                    <div className="text-base sm:text-lg font-bold text-white tracking-tight leading-tight drop-shadow-sm">
+                    <div className="text-base sm:text-lg font-bold text-white tracking-tight leading-tight">
                       {stat.label}
                     </div>
                     <div className="text-[11px] sm:text-xs text-[#E5D7CE]/80 font-medium leading-tight whitespace-nowrap mt-0.5">
@@ -323,18 +350,18 @@ export function HomeHero() {
               ))}
             </div>
 
-            {/* Right Location Pill Card with Glowing Dark Pill and White Location Pin matching 2nd screenshot */}
-            <div className="w-full lg:w-auto shrink-0 flex items-center justify-start lg:justify-end border-t lg:border-t-0 border-white/10 pt-3 lg:pt-0">
-              <div className="flex items-center gap-3.5 rounded-xl bg-black/40 border border-white/15 px-4 py-2 sm:px-4 sm:py-2.5 backdrop-blur-md shadow-inner">
+            {/* Right Location Pill Card — Compact & Integrated with Generous Breathing Room */}
+            <div className="w-full lg:w-auto shrink-0 flex items-center justify-start lg:justify-end border-t lg:border-t-0 border-white/10 pt-2 lg:pt-0 lg:pl-4">
+              <div className="flex items-center gap-3 rounded-xl bg-black/40 border border-white/15 px-3.5 py-2 backdrop-blur-sm shadow-inner">
                 {/* Outlined White Pin in Soft Circle */}
-                <div className="w-9 h-9 rounded-full bg-white/15 text-white flex items-center justify-center shrink-0 border border-white/20 shadow-sm">
-                  <MapPin className="w-4 h-4 text-white fill-white/20" />
+                <div className="w-8 h-8 rounded-full bg-white/15 text-white flex items-center justify-center shrink-0 border border-white/20 shadow-xs">
+                  <MapPin className="w-3.5 h-3.5 text-white fill-white/20" />
                 </div>
                 <div className="text-left select-none">
-                  <div className="text-xs sm:text-[13px] font-bold text-white leading-tight">
+                  <div className="text-xs font-bold text-white leading-tight">
                     Sai Nagar, Anantapur
                   </div>
-                  <div className="text-[10px] sm:text-[11px] text-[#E5D7CE]/85 leading-tight mt-0.5 whitespace-nowrap">
+                  <div className="text-[10px] sm:text-[11px] text-[#E5D7CE]/80 leading-tight mt-0.5 whitespace-nowrap">
                     Behind Ambedkar Bhavan 9th Cross Road
                   </div>
                 </div>
@@ -342,7 +369,7 @@ export function HomeHero() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* 4. Organic Flowing Bottom Wave Divider sweeping into About Section (Exact Reference Contour) */}
         <div className="curve-hero-bottom">

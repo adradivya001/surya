@@ -7,54 +7,34 @@ import { motion, AnimatePresence } from "framer-motion";
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState("up"); // "up" | "down"
+  const [isHovered, setIsHovered] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   
-  // Reduced motion preference
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  const [introFinished, setIntroFinished] = useState(() => {
-    if (typeof window === "undefined") return true;
-    return !!sessionStorage.getItem("surya_nav_intro_seen") || !!prefersReducedMotion;
-  });
-
-  const [introPhase, setIntroPhase] = useState(() => {
-    if (typeof window === "undefined") return "settled";
-    const hasRun = !!sessionStorage.getItem("surya_nav_intro_seen") || !!prefersReducedMotion;
-    return hasRun ? "settled" : "spinning";
-  });
-
   const location = useLocation();
 
   useEffect(() => {
-    if (introFinished) return;
+    let lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
 
-    // Phase 1: Logo 3D spin & light pulse (1.1s)
-    const t1 = setTimeout(() => {
-      setIntroPhase("unfolding");
-    }, 1100);
-
-    // Phase 2: Navigation unrolls and settles (0.8s)
-    const t2 = setTimeout(() => {
-      setIntroPhase("settled");
-      setIntroFinished(true);
-      sessionStorage.setItem("surya_nav_intro_seen", "true");
-    }, 2100);
-
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, [introFinished]);
-
-  useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 30);
+
+      // Require meaningful scroll delta to avoid micro jitter
+      if (Math.abs(currentScrollY - lastScrollY) > 8) {
+        if (currentScrollY > lastScrollY && currentScrollY > 120) {
+          // Scrolling down
+          setScrollDirection("down");
+        } else {
+          // Scrolling up
+          setScrollDirection("up");
+        }
+        lastScrollY = currentScrollY;
+      }
     };
+
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -110,78 +90,44 @@ export function Navbar() {
     },
   ];
 
+  // Navbar stays normal at top, or when hovered, or when scrolling upwards.
+  // It only minimizes into compact mode when actively scrolled downwards past the threshold.
+  const isCollapsed = isScrolled && scrollDirection === "down" && !isHovered;
+
   return (
     <>
-      {/* Intro Overlay during initial session load */}
-      <AnimatePresence>
-        {!introFinished && introPhase === "spinning" && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[100000] bg-[#FFF9F3] flex flex-col items-center justify-center pointer-events-none"
-          >
-            <motion.div
-              initial={{ rotateY: 0, scale: 0.85, opacity: 0 }}
-              animate={{
-                rotateY: [0, 360],
-                scale: [0.85, 1.08, 1],
-                opacity: 1,
-              }}
-              transition={{
-                duration: 1.1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="relative flex items-center justify-center"
-              style={{ perspective: 1000 }}
-            >
-              <img
-                src="/images/surya-hospital-orange-emblem-logo.png"
-                alt="Surya Hospital"
-                className="h-20 sm:h-24 w-auto object-contain drop-shadow-xl"
-              />
-              {/* Subtle light shimmer sweep */}
-              <motion.div
-                initial={{ x: "-100%", opacity: 0 }}
-                animate={{ x: "200%", opacity: [0, 0.6, 0] }}
-                transition={{ duration: 0.9, delay: 0.2, ease: "easeInOut" }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-12 pointer-events-none"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 px-3 sm:px-5 lg:px-6 transition-all duration-300 pointer-events-none`}
       >
         <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           className={`max-w-[1440px] mx-auto pointer-events-auto flex items-center gap-3 lg:gap-4 transition-all duration-300 ${
-            isScrolled ? "justify-center" : "justify-between"
+            isCollapsed ? "justify-center" : "justify-between"
           }`}
         >
-          {/* Main Left/Center Navigation Pill - Collapses into centered Logo Pill on scroll matching Screenshot */}
+          {/* Main Left/Center Navigation Pill - Collapses into centered Logo Pill only on downward scroll, expands on hover / scroll up */}
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`flex items-center gap-3 lg:gap-4 bg-white/95 backdrop-blur-md rounded-full border border-[#E2D9D0] shadow-md px-4 sm:px-6 py-2 sm:py-2.5 transition-all duration-300 ${
-              isScrolled ? "shadow-xl border-[#A84328]/30 shrink-0" : "flex-1 justify-between"
+            className={`flex items-center gap-3 lg:gap-4 bg-white/98 backdrop-blur-xl rounded-full border border-[#E2D9D0] shadow-[0_8px_30px_rgb(0,0,0,0.12)] px-4 sm:px-6 py-2 sm:py-2.5 transition-all duration-300 ${
+              isCollapsed ? "shadow-2xl border-[#A84328]/40 shrink-0" : "flex-1 justify-between"
             }`}
           >
-            {/* 1. Left: Prominent Surya Hospital Logo matching Screenshot 2 */}
+            {/* 1. Left: Surya Hospital Official Brand Logo */}
             <div className="shrink-0 flex items-center py-0.5">
               <Link to="/" className="inline-flex items-center group focus:outline-none" aria-label="Surya Hospital">
                 <img
                   src="/images/surya-hospital-orange-emblem-logo.png"
                   alt="Surya Hospital Logo"
-                  className="h-10 sm:h-12 md:h-13 w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
+                  className="h-12 sm:h-14 md:h-16 lg:h-16 w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
                 />
               </Link>
             </div>
 
-            {/* 2. Middle: Desktop Navigation Links with Dropdowns - Animated Collapse on Scroll */}
+            {/* 2. Middle: Desktop Navigation Links with Dropdowns - Animated Collapse on downward scroll */}
             <AnimatePresence>
-              {!isScrolled && (
+              {!isCollapsed && (
                 <motion.nav
                   initial={{ opacity: 0, width: 0 }}
                   animate={{ opacity: 1, width: "auto" }}
@@ -287,15 +233,15 @@ export function Navbar() {
             </div>
           </motion.div>
 
-          {/* Right Separate Action Pill - Displays when at top and gently hides on scroll so only centered logo pill displays */}
+          {/* Right Separate Action Pill - Displays when at top, hovered, or scrolling up, and gently hides on downward scroll */}
           <AnimatePresence>
-            {!isScrolled && (
+            {!isCollapsed && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-2 sm:gap-3 bg-white/95 backdrop-blur-md rounded-full border border-[#E2D9D0] shadow-md px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
+                className="flex items-center gap-2 sm:gap-3 bg-white/98 backdrop-blur-xl rounded-full border border-[#E2D9D0] shadow-[0_8px_30px_rgb(0,0,0,0.12)] px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
               >
                 {/* Phone Call Info */}
                 <a

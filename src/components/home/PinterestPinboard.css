@@ -1,0 +1,297 @@
+/* ============================================================
+   PINTEREST-INSPIRED HEALTHCARE PINBOARD / MASONRY STYLING
+   ============================================================ */
+
+.pinterest-board-section {
+  position: relative;
+  width: 100%;
+  background-color: #FAF8F6;
+  padding: 4.5rem 0 6rem;
+  border-bottom: 1px solid #ECE6E2;
+}
+
+/* Category Filter Chips Bar */
+.pinterest-chips-scroll {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pinterest-chips-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.pinterest-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border: 1px solid #E5DCD6;
+  background-color: #FFFFFF;
+  color: #4A4A4A;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pinterest-chip:hover {
+  background-color: #F5EBE6;
+  border-color: #D9C2B8;
+  color: #641D2D;
+  transform: translateY(-1px);
+}
+
+.pinterest-chip.active {
+  background-color: #641D2D;
+  border-color: #641D2D;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(100, 29, 45, 0.25);
+}
+
+/* Masonry Multi-Column Grid */
+.pinterest-masonry-grid {
+  column-count: 1;
+  column-gap: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .pinterest-masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pinterest-masonry-grid {
+    column-count: 3;
+    column-gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .pinterest-masonry-grid {
+    column-count: 4;
+    column-gap: 1.75rem;
+  }
+}
+
+/* Individual Masonry Pin Card */
+.pinterest-pin {
+  break-inside: avoid;
+  margin-bottom: 1.75rem;
+  border-radius: 1.35rem;
+  background-color: #FFFFFF;
+  border: 1px solid #ECE4DF;
+  overflow: hidden;
+  box-shadow: 0 4px 18px -2px rgba(40, 23, 29, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pinterest-pin:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 44px -10px rgba(40, 23, 29, 0.16), 0 4px 12px rgba(100, 29, 45, 0.06);
+  border-color: #C89B9B;
+}
+
+/* Media Box with Floating Tag & Hover Actions */
+.pin-media-box {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #1F1519;
+}
+
+.pin-media-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pinterest-pin:hover .pin-media-box img {
+  transform: scale(1.04);
+}
+
+/* Floating Status Pill */
+.pin-status-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #29252A;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pin-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #22C55E;
+}
+
+.pin-status-dot.red {
+  background-color: #EF4444;
+}
+
+/* Floating Hover Overlay Action Button (Pinterest style) */
+.pin-hover-action-bar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+}
+
+.pinterest-pin:hover .pin-hover-action-bar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pin-save-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  background-color: #641D2D;
+  color: #FFFFFF !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(100, 29, 45, 0.35);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.pin-save-btn:hover {
+  background-color: #4E1421;
+  transform: scale(1.03);
+}
+
+/* Pin Content Body */
+.pin-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.pin-type-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #91465E;
+}
+
+.pin-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #29252A;
+  line-height: 1.3;
+  margin: 0;
+  transition: color 0.15s ease;
+}
+
+.pinterest-pin:hover .pin-title {
+  color: #641D2D;
+}
+
+.pin-description {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #6F686B;
+  margin: 0;
+}
+
+/* Feature/Bullet List inside Pin */
+.pin-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pin-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #4A4A4A;
+  line-height: 1.4;
+}
+
+.pin-bullet-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #B69A65;
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
+/* Pin Footer with Consultation Time & Action */
+.pin-footer {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid #F0ECE9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pin-meta-note {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6F686B;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pin-btn-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #E56A2E;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.pin-btn-text:hover {
+  color: #C8541D;
+  transform: translateX(2px);
+}

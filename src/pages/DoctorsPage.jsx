@@ -35,6 +35,12 @@ export function DoctorsPage() {
     "E.N.T.",
     "Orthopedic",
     "Pulmonology",
+    "Anesthesia & Critical Care",
+    "Oncology",
+    "Neurology",
+    "Urology",
+    "General Surgery",
+    "Psychiatry",
   ];
 
   // Approved, verified clinical keywords mapped strictly to verified doctors and hospital data
@@ -184,6 +190,93 @@ export function DoctorsPage() {
       "respiratory",
       "icu",
     ],
+    "dr-v-gowtham": [
+      "anesthesia",
+      "intensivist",
+      "icu",
+      "critical care",
+      "pain management",
+      "sedation",
+      "emergency resuscitation",
+      "perioperative",
+    ],
+    "dr-vishnupriya": [
+      "oncology",
+      "cancer",
+      "chemotherapy",
+      "tumor",
+      "malignancy",
+      "immunotherapy",
+      "palliative care",
+      "biopsy",
+    ],
+    "dr-thirupati-kedar": [
+      "neurology",
+      "neuro",
+      "brain",
+      "stroke",
+      "paralysis",
+      "seizure",
+      "epilepsy",
+      "headache",
+      "migraine",
+      "parkinsons",
+      "nerve",
+    ],
+    "dr-y-harinath-reddy": [
+      "urology",
+      "kidney stones",
+      "bladder",
+      "prostate",
+      "bph",
+      "turp",
+      "urine infection",
+      "urinary",
+      "andrology",
+    ],
+    "dr-b-rajashekar": [
+      "urology",
+      "kidney stones",
+      "laser surgery",
+      "rirs",
+      "pcnl",
+      "bladder",
+      "prostate",
+      "urinary tract",
+    ],
+    "dr-sai-swaroop": [
+      "general surgery",
+      "laparoscopic",
+      "keyhole",
+      "appendix",
+      "gallbladder",
+      "hernia",
+      "piles",
+      "fissure",
+      "fistula",
+    ],
+    "dr-sushanth": [
+      "general surgery",
+      "trauma surgery",
+      "diabetic foot",
+      "wound care",
+      "thyroid",
+      "lump",
+      "abscess",
+      "emergency surgery",
+    ],
+    "dr-v-sashanka": [
+      "psychiatry",
+      "mental health",
+      "depression",
+      "anxiety",
+      "panic",
+      "stress",
+      "sleep",
+      "insomnia",
+      "ocd",
+      "counseling",
+    ],
   };
 
   const EMERGENCY_SEARCH_KEYWORDS = [
@@ -253,7 +346,7 @@ export function DoctorsPage() {
       <PageHero
         eyebrow="DOCTORS & SPECIALISTS"
         title="Meet Our Doctors & Specialists"
-        description="Our highly experienced medical team is here to provide expert care across Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedic, and Pulmonology right here in Anantapur."
+        description="Our highly experienced medical team is here to provide expert care across a wide range of specialties including Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedic, Pulmonology, Neurology, Oncology, Urology, General Surgery, and Psychiatry."
         breadcrumbs={[{ label: "Doctors" }]}
         badge="Experienced Medical Team"
       >
@@ -277,7 +370,7 @@ export function DoctorsPage() {
             <div className="space-y-1 text-left">
               <p className="font-bold text-[#29252A]">Doctor Availability & Booking Help:</p>
               <p className="text-[#6F686B]">
-                Surya Hospital's team of super-specialists across <strong>Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedics, and Pulmonology</strong> are available for regular outpatient consultations and inpatient treatment. Need help choosing the right specialist or checking today's visiting hours? Call our front desk at {HOSPITAL_INFO.phone}.
+                Surya Hospital's team of super-specialists across <strong>Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedics, Pulmonology, Neurology, Oncology, Urology, General Surgery, and Psychiatry</strong> are available for regular outpatient consultations and inpatient treatment. Need help choosing the right specialist or checking today's visiting hours? Call our front desk at {HOSPITAL_INFO.phone}.
               </p>
             </div>
           </div>

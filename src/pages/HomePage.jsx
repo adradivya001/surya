@@ -5,6 +5,7 @@ import { HomeSpecialitiesGrid } from "../components/home/HomeSpecialitiesGrid";
 import { FacilitiesCinematic } from "../components/home/FacilitiesCinematic";
 import { HomeFeaturedDoctors } from "../components/home/HomeFeaturedDoctors";
 import { TestimonialCarousel } from "../components/home/TestimonialCarousel";
+import { InsuranceCashlessSection } from "../components/home/InsuranceCashlessSection";
 import { HomeAppointmentCta } from "../components/home/HomeAppointmentCta";
 
 export function HomePage() {
@@ -32,7 +33,10 @@ export function HomePage() {
       {/* 6. Patient Stories & Testimonials 3-Card Carousel */}
       <TestimonialCarousel />
 
-      {/* 7. Take the First Step Appointment Booking CTA Section */}
+      {/* 7. Insurance & Cashless Facility Section (24 Partners Grid) */}
+      <InsuranceCashlessSection />
+
+      {/* 8. Take the First Step Appointment Booking CTA Section */}
       <HomeAppointmentCta />
     </div>
   );

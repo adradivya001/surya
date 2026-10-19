@@ -41,7 +41,7 @@ export function Footer() {
             <div className="flex items-start gap-2.5 text-xs text-[#62666D] pt-2">
               <MapPin className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
               <p className="leading-relaxed">
-                12-3-367, 9th Cross Road, behind Ambedkar Bhavan, Sai Nagar, Anantapur, Andhra Pradesh 515001
+                #12-3-367, 9th Cross, Sai Nagar, Ananthapuramu - 515004
               </p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
                 <div>
                   <a href={`tel:${HOSPITAL_INFO.phoneRaw}`} className="font-bold text-[#1A1D20] hover:text-[#A84328]">
-                    +91 85009 04999
+                    8500904999
                   </a>
                   <p className="text-[11px] text-[#62666D]">24 Hours / 7 Days (Emergency)</p>
                 </div>
@@ -84,8 +84,8 @@ export function Footer() {
 
               <div className="flex items-start gap-2">
                 <Mail className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
-                <a href="mailto:info@suryahospital.com" className="hover:text-[#A84328]">
-                  info@suryahospital.com
+                <a href="mailto:insurancedesksuryahospital@gmail.com" className="hover:text-[#A84328] break-all">
+                  insurancedesksuryahospital@gmail.com
                 </a>
               </div>
 

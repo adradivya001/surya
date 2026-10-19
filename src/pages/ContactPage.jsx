@@ -6,6 +6,7 @@ import {
   MapPin,
   Navigation,
   Phone,
+  Mail,
   Clock,
   ExternalLink,
   Send,
@@ -178,6 +179,28 @@ export function ContactPage() {
                     </div>
                     <span className="text-xs text-[#8A8487] block">
                       Operational 24 Hours / 7 Days a Week
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl border border-[#DED7D7] bg-[#FCFAF7] flex items-start gap-4 shadow-2xs">
+                  <div className="w-11 h-11 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div className="text-xs sm:text-sm space-y-1">
+                    <span className="font-bold text-[#29252A] block text-base">
+                      Email Address
+                    </span>
+                    <div className="text-[#6F686B]">
+                      <a
+                        href={`mailto:${HOSPITAL_INFO.email}`}
+                        className="font-bold text-[#29252A] hover:text-[#641D2D] underline break-all"
+                      >
+                        {HOSPITAL_INFO.email}
+                      </a>
+                    </div>
+                    <span className="text-xs text-[#8A8487] block">
+                      Official Correspondence & Insurance Desk
                     </span>
                   </div>
                 </div>

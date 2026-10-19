@@ -11,7 +11,6 @@ export function Navbar() {
   const [isHovered, setIsHovered] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [locationsOpen, setLocationsOpen] = useState(false);
   
   const location = useLocation();
 
@@ -44,7 +43,6 @@ export function Navbar() {
     setMenuOpen(false);
     setServicesOpen(false);
     setResourcesOpen(false);
-    setLocationsOpen(false);
   }, [location.pathname]);
 
   const navLinks = [
@@ -67,7 +65,7 @@ export function Navbar() {
     { label: "Our Doctors", path: "/doctors" },
     {
       label: "Patient Resources",
-      path: "/about",
+      path: "/insurance-partners",
       hasDropdown: true,
       dropdownKey: "resources",
       items: [
@@ -78,16 +76,6 @@ export function Navbar() {
       ],
     },
     { label: "Contact", path: "/contact" },
-    {
-      label: "Locations",
-      path: "/contact",
-      hasDropdown: true,
-      dropdownKey: "locations",
-      items: [
-        { label: "Sai Nagar, Anantapur (Main Campus)", path: "/contact" },
-        { label: "Behind Ambedkar Bhavan, 9th Cross", path: "/contact" },
-      ],
-    },
   ];
 
   // Navbar stays normal at top, or when hovered, or when scrolling upwards.
@@ -131,11 +119,11 @@ export function Navbar() {
             <AnimatePresence>
               {!isCollapsed && (
                 <motion.nav
-                  initial={{ opacity: 0, width: 0 }}
-                  animate={{ opacity: 1, width: "auto" }}
-                  exit={{ opacity: 0, width: 0 }}
-                  transition={{ duration: 0.28, ease: "easeInOut" }}
-                  className="hidden xl:flex items-center gap-1.5 2xl:gap-3 overflow-hidden whitespace-nowrap"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 whitespace-nowrap"
                 >
                   {navLinks.map((link) => {
                     if (!link.hasDropdown) {
@@ -146,8 +134,8 @@ export function Navbar() {
                           className={({ isActive }) =>
                             `px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 ${
                               isActive
-                                ? "text-[#1A1D20] font-bold"
-                                : "text-[#1A1D20]/90 hover:text-[#A84328]"
+                                ? "text-[#1A1D20] font-bold bg-[#F8E6DC]/40"
+                                : "text-[#1A1D20]/90 hover:text-[#A84328] hover:bg-[#F8E6DC]/20"
                             }`
                           }
                         >
@@ -159,16 +147,12 @@ export function Navbar() {
                     const isOpen =
                       link.dropdownKey === "services"
                         ? servicesOpen
-                        : link.dropdownKey === "resources"
-                        ? resourcesOpen
-                        : locationsOpen;
+                        : resourcesOpen;
 
                     const setOpen =
                       link.dropdownKey === "services"
                         ? setServicesOpen
-                        : link.dropdownKey === "resources"
-                        ? setResourcesOpen
-                        : setLocationsOpen;
+                        : setResourcesOpen;
 
                     return (
                       <div
@@ -179,7 +163,7 @@ export function Navbar() {
                       >
                         <button
                           type="button"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold text-[#1A1D20]/90 hover:text-[#A84328] transition-colors focus:outline-none"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold text-[#1A1D20]/90 hover:text-[#A84328] hover:bg-[#F8E6DC]/20 transition-colors focus:outline-none cursor-pointer"
                           onClick={() => setOpen(!isOpen)}
                           aria-expanded={isOpen}
                         >
@@ -194,19 +178,19 @@ export function Navbar() {
                         <AnimatePresence>
                           {isOpen && (
                             <motion.div
-                              initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                              initial={{ opacity: 0, y: 6, scale: 0.98 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                              exit={{ opacity: 0, y: 4, scale: 0.98 }}
                               transition={{ duration: 0.15 }}
-                              className="absolute left-0 top-full pt-2 w-64 z-50"
+                              className="absolute left-0 top-full pt-2 w-64 z-[9999]"
                             >
-                              <div className="bg-white rounded-2xl shadow-xl border border-[#E2D9D0] py-2 overflow-hidden">
+                              <div className="bg-white rounded-2xl shadow-2xl border border-[#E2D9D0] py-2 overflow-hidden">
                                 {link.items.map((subItem) => (
                                   <Link
                                     key={subItem.label}
                                     to={subItem.path}
                                     onClick={() => setOpen(false)}
-                                    className="block px-4 py-2 text-xs font-semibold text-[#1A1D20] hover:bg-[#F8E6DC]/40 hover:text-[#A84328] transition-colors"
+                                    className="block px-4 py-2.5 text-xs font-semibold text-[#1A1D20] hover:bg-[#F8E6DC]/50 hover:text-[#A84328] transition-colors"
                                   >
                                     {subItem.label}
                                   </Link>
@@ -222,8 +206,8 @@ export function Navbar() {
               )}
             </AnimatePresence>
 
-            {/* Mobile Hamburger Trigger inside the main pill (< xl) */}
-            <div className="xl:hidden flex items-center">
+            {/* Mobile Hamburger Trigger inside the main pill (< lg) */}
+            <div className="lg:hidden flex items-center">
               <button
                 type="button"
                 onClick={() => setMenuOpen(!menuOpen)}

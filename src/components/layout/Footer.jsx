@@ -13,7 +13,7 @@ export function Footer() {
     { name: "About Us", path: "/about" },
     { name: "Services", path: "/specialities" },
     { name: "Our Doctors", path: "/doctors" },
-    { name: "Patient Resources", path: "/about" },
+    { name: "Insurance Partners", path: "/insurance-partners" },
     { name: "Contact Us", path: "/contact" },
   ];
 

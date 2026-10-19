@@ -71,9 +71,9 @@ export function Navbar() {
       hasDropdown: true,
       dropdownKey: "resources",
       items: [
+        { label: "Insurance Partners", path: "/insurance-partners" },
         { label: "Visiting Timings & OPD", path: "/contact" },
         { label: "Inpatient Rooms & Admission", path: "/about" },
-        { label: "Insurance & Hospital Desk", path: "/contact" },
         { label: "Emergency Guidance", path: "/emergency" },
       ],
     },

@@ -13,6 +13,7 @@ import { SpecialitiesPage } from "./pages/SpecialitiesPage";
 import { EmergencyPage } from "./pages/EmergencyPage";
 import { ContactPage } from "./pages/ContactPage";
 import { AppointmentPage } from "./pages/AppointmentPage";
+import { InsurancePartnersPage } from "./pages/InsurancePartnersPage";
 
 export function App() {
   return (
@@ -33,6 +34,8 @@ export function App() {
             <Route path="/services" element={<Navigate to="/specialities" replace />} />
             <Route path="/diagnostics" element={<Navigate to="/specialities" replace />} />
             <Route path="/emergency" element={<EmergencyPage />} />
+            <Route path="/insurance-partners" element={<InsurancePartnersPage />} />
+            <Route path="/insurance" element={<Navigate to="/insurance-partners" replace />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/appointment" element={<AppointmentPage />} />
             {/* Fallback to Home */}

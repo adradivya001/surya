@@ -128,8 +128,8 @@ export function HomeHero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#1A1D20] text-white">
-      {/* 1. Full-Bleed Hospital Exterior with Cinematic Scrim */}
-      <div className="relative w-full min-h-[820px] lg:min-h-[880px] flex flex-col justify-between pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20">
+      {/* 1. Full-Bleed Hospital Exterior with Cinematic Scrim — Fitted to Single Viewport Height */}
+      <div className="relative w-full min-h-screen lg:h-screen lg:max-h-[1080px] flex flex-col justify-between pt-24 sm:pt-28 lg:pt-28 pb-14 sm:pb-16 lg:pb-12">
         {/* Background Media - High-Resolution Hospital Building Exterior with Subtle Cinematic Zoom */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.img
@@ -154,11 +154,11 @@ export function HomeHero() {
         </div>
 
         {/* 2. Overlaid Hero Content Container - Explicit top clearance below floating navbar pill */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-14 mb-6 sm:mb-8">
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-6 mb-2 sm:mb-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Left Column: Editorial Headline & Actions (7 Cols on LG, 7 on XL for balanced width constraint) */}
-            <div className="lg:col-span-7 xl:col-span-7 text-left space-y-4 sm:space-y-4.5 max-w-2xl">
+            <div className="lg:col-span-7 xl:col-span-7 text-left space-y-3 sm:space-y-3.5 max-w-2xl">
               
               {/* Location Badge */}
               <motion.div
@@ -176,19 +176,19 @@ export function HomeHero() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="space-y-0.5 sm:space-y-1"
+                className="space-y-0.5"
               >
                 <h1
-                  className="font-serif-heading font-bold text-[#1A1D20] tracking-tight leading-[1.05]"
-                  style={{ fontSize: "clamp(2rem, 4.2vw, 3.65rem)" }}
+                  className="font-serif-heading font-bold text-[#1A1D20] tracking-tight leading-[1.08]"
+                  style={{ fontSize: "clamp(2rem, 3.6vw, 3.25rem)" }}
                 >
                   Excellence in
                   <br />
                   Healthcare.
                 </h1>
                 <p
-                  className="font-editorial-italic text-[#A84328] tracking-tight leading-[1.05]"
-                  style={{ fontSize: "clamp(1.85rem, 3.8vw, 3.35rem)" }}
+                  className="font-editorial-italic text-[#A84328] tracking-tight leading-[1.08]"
+                  style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.95rem)" }}
                 >
                   Care at Every Step.
                 </p>
@@ -199,21 +199,21 @@ export function HomeHero() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-base sm:text-lg text-[#1A1D20]/90 max-w-xl font-normal leading-relaxed drop-shadow-xs"
+                className="text-sm sm:text-base text-[#1A1D20]/90 max-w-xl font-normal leading-relaxed drop-shadow-xs"
               >
                 Quality medical care delivered by experienced doctors, supported by modern facilities and 24/7 emergency services for you and your family.
               </motion.p>
 
-              {/* Action Buttons: Book an Appointment + Explore Our Services + Video Tour */}
+              {/* Action Buttons: Book an Appointment + Explore Our Services */}
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="pt-1.5 flex flex-wrap items-center gap-3 sm:gap-3.5"
+                className="pt-1 flex flex-wrap items-center gap-3 sm:gap-3.5"
               >
                 <Link
                   to="/appointment"
-                  className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#C85235] focus:ring-offset-2"
+                  className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] shadow-md hover:shadow-lg transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#C85235] focus:ring-offset-2"
                 >
                   <span>Book an Appointment</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -221,7 +221,7 @@ export function HomeHero() {
 
                 <Link
                   to="/specialities"
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold text-[#1A1D20] bg-white/95 hover:bg-white backdrop-blur-md border border-[#E2D9D0] shadow-sm hover:shadow-md transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#A84328]/40"
+                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-[#1A1D20] bg-white/95 hover:bg-white backdrop-blur-md border border-[#E2D9D0] shadow-sm hover:shadow-md transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#A84328]/40"
                 >
                   <span>Explore Our Services</span>
                 </Link>
@@ -329,7 +329,7 @@ export function HomeHero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-auto mb-3 sm:mb-5"
+          className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-auto mb-2 sm:mb-3 lg:mb-2"
         >
           <div className="w-full rounded-2xl bg-[#1C1613]/80 backdrop-blur-md border border-[#E5B278]/20 shadow-[0_10px_28px_-6px_rgba(0,0,0,0.55),0_0_20px_0_rgba(217,155,90,0.08)_inset] px-3.5 sm:px-6 lg:px-7 py-2.5 sm:py-3 flex flex-col lg:flex-row items-center justify-between gap-3.5 sm:gap-4">
             

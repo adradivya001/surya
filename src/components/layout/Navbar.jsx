@@ -97,7 +97,9 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 px-3 sm:px-5 lg:px-6 transition-all duration-300 pointer-events-none`}
+        className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 pb-2 px-3 sm:px-5 lg:px-6 transition-all duration-300 pointer-events-none ${
+          isScrolled ? "bg-gradient-to-b from-[#FFF9F3]/90 via-[#FFF9F3]/50 to-transparent backdrop-blur-[6px]" : ""
+        }`}
       >
         <div
           onMouseEnter={() => setIsHovered(true)}

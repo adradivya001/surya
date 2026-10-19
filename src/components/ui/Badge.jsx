@@ -16,21 +16,21 @@ export function Badge({
   };
 
   const variantStyles = {
-    default: "bg-[#FFF9F3] text-[#292D32] border border-[#E9D7C7]",
-    teal: "bg-[#F8E6DC] text-[#C65332] border border-[#E9D7C7]",
-    navy: "bg-[#292D32] text-white border border-[#3E434B]",
-    emergency: "bg-[#F8E6DC] text-[#C65332] border border-[#E9D7C7]",
+    default: "bg-[#FFF0E6] text-[#C63D1B] border border-[#E9D8CE]",
+    teal: "bg-[#FFF0E6] text-[#E94B1C] border border-[#FF8A3D]/40",
+    navy: "bg-[#E94B1C] text-white border border-[#E94B1C]",
+    emergency: "bg-[#FFF0E6] text-[#C63D1B] border border-[#C63D1B]/30",
     success: "bg-emerald-50 text-emerald-800 border border-emerald-200",
-    outline: "bg-transparent text-[#62666D] border border-[#E9D7C7]",
+    outline: "bg-transparent text-[#756860] border border-[#E9D8CE]",
   };
 
   const dotColor = {
-    default: "bg-[#C65332]",
-    teal: "bg-[#C65332]",
+    default: "bg-[#E94B1C]",
+    teal: "bg-[#FF8A3D]",
     navy: "bg-white",
-    emergency: "bg-[#C65332] animate-pulse",
+    emergency: "bg-[#C63D1B] animate-pulse",
     success: "bg-emerald-500",
-    outline: "bg-[#C65332]",
+    outline: "bg-[#E94B1C]",
   };
 
   return (

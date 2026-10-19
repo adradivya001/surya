@@ -10,17 +10,17 @@ export function Card({
   const baseStyles = "rounded-card transition-all duration-200 overflow-hidden";
 
   const variantStyles = {
-    default: "bg-white border border-[#E9D7C7] shadow-sm",
+    default: "bg-white border border-[#E9D8CE] shadow-xs",
     interactive:
-      "bg-white border border-[#E9D7C7] shadow-sm hover:border-[#C65332] hover:shadow-md hover:-translate-y-0.5 cursor-pointer",
+      "bg-white border border-[#E9D8CE] shadow-xs hover:border-[#E94B1C] hover:shadow-md hover:-translate-y-0.5 cursor-pointer",
     highlight:
-      "bg-white border-2 border-[#C65332] shadow-sm",
+      "bg-white border-2 border-[#E94B1C] shadow-xs",
     subtle:
-      "bg-[#FFF9F3] border border-[#E9D7C7] shadow-none",
+      "bg-[#FFF0E6] border border-[#E9D8CE] shadow-none",
     emergency:
-      "bg-white border border-[#C65332]/40 shadow-sm ring-1 ring-[#C65332]/20",
+      "bg-white border border-[#C63D1B]/40 shadow-xs ring-1 ring-[#C63D1B]/20",
     navy:
-      "bg-[#292D32] text-white border border-[#3E434B] shadow-sm",
+      "bg-white border border-[#E9D8CE] shadow-xs",
   };
 
   return (

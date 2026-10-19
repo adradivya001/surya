@@ -15,6 +15,7 @@ import {
   Phone,
   PhoneCall,
   CheckCircle2,
+  User,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
 
@@ -341,7 +342,7 @@ export function DoctorsPage() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-[#FAFCFE]">
       {/* Page Hero */}
       <PageHero
         eyebrow="DOCTORS & SPECIALISTS"
@@ -351,52 +352,62 @@ export function DoctorsPage() {
         badge="Experienced Medical Team"
       >
         <Link to="/appointment">
-          <Button variant="primary" size="sm" icon={Calendar} className="bg-[#C65332] hover:bg-[#A84328] text-white">
+          <Button
+            variant="primary"
+            size="sm"
+            icon={Calendar}
+            className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold shadow-sm"
+          >
             Book an Appointment
           </Button>
         </Link>
         <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
-          <Button variant="secondary" size="sm" icon={Phone} className="bg-white border-[#E9D7C7] text-[#292D32] hover:bg-[#F8E6DC]">
+          <Button
+            variant="secondary"
+            size="sm"
+            icon={Phone}
+            className="bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] font-semibold"
+          >
             Call Reception: {HOSPITAL_INFO.phone}
           </Button>
         </a>
       </PageHero>
 
-      <section className="py-14 md:py-20 bg-white border-b border-[#DED7D7]">
+      <section className="py-14 md:py-20 bg-[#FFF9F3] border-b border-[#F0E2D9]">
         <Container>
           {/* Hospital Leadership & Help Box */}
-          <div className="mb-8 p-4 rounded-xl bg-[#FCFAF7] border border-[#DED7D7] flex items-start gap-3 text-xs sm:text-sm text-[#29252A]">
-            <AlertCircle className="w-5 h-5 text-[#641D2D] shrink-0 mt-0.5" />
+          <div className="mb-8 p-4 rounded-xl bg-white border border-[#E9D8CE] shadow-xs flex items-start gap-3 text-xs sm:text-sm text-[#262626]">
+            <AlertCircle className="w-5 h-5 text-[#E94B1C] shrink-0 mt-0.5" />
             <div className="space-y-1 text-left">
-              <p className="font-bold text-[#29252A]">Doctor Availability & Booking Help:</p>
-              <p className="text-[#6F686B]">
+              <p className="font-bold text-[#C63D1B]">Doctor Availability & Booking Help:</p>
+              <p className="text-[#756860] leading-relaxed">
                 Surya Hospital's team of super-specialists across <strong>Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedics, Pulmonology, Neurology, Oncology, Urology, General Surgery, and Psychiatry</strong> are available for regular outpatient consultations and inpatient treatment. Need help choosing the right specialist or checking today's visiting hours? Call our front desk at {HOSPITAL_INFO.phone}.
               </p>
             </div>
           </div>
 
           {/* Search & Filter Toolbar */}
-          <div className="bg-[#FCFAF7] p-5 sm:p-7 rounded-2xl border border-[#DED7D7] mb-10 space-y-4 shadow-2xs">
+          <div className="bg-white p-5 sm:p-7 rounded-2xl border border-[#E9D8CE] mb-10 space-y-4 shadow-xs">
             <div className="flex flex-col md:flex-row gap-3.5 items-stretch md:items-center justify-between">
               {/* Search input with label & clear button */}
               <div className="relative flex-1">
                 <label htmlFor="doctor-search" className="sr-only">
                   Search doctors by name, medical specialty, or clinical health problem
                 </label>
-                <Search className="w-4 h-4 text-[#8A8487] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Search className="w-4 h-4 text-[#756860] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   id="doctor-search"
                   type="text"
-                  placeholder="Search by doctor name, health problem (e.g. fever, diabetes, hernia, fracture)..."
+                  placeholder="Search by doctor name, health problem (e.g. heart, kidney, spine, fracture)..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-9 py-3 text-xs sm:text-sm rounded-xl border border-[#DED7D7] bg-white text-[#29252A] placeholder-[#8A8487] focus:outline-none focus:ring-2 focus:ring-[#641D2D]/20 focus:border-[#641D2D] transition"
+                  className="w-full pl-10 pr-9 py-3 text-xs sm:text-sm rounded-xl border border-[#E9D8CE] bg-white text-[#262626] placeholder-[#756860] focus:outline-none focus:ring-2 focus:ring-[#E94B1C]/20 focus:border-[#E94B1C] transition"
                 />
                 {searchQuery && (
                   <button
                     type="button"
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#8A8487] hover:text-[#641D2D] rounded-full focus:outline-none focus:ring-2 focus:ring-[#641D2D]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#756860] hover:text-[#C63D1B] rounded-full focus:outline-none focus:ring-2 focus:ring-[#E94B1C]"
                     aria-label="Clear search input"
                   >
                     <X className="w-4 h-4" />
@@ -406,14 +417,14 @@ export function DoctorsPage() {
 
               {/* Status and Reset Toolbar Actions */}
               <div className="flex items-center justify-between md:justify-end gap-3 shrink-0">
-                <div className="text-xs text-[#6F686B] font-medium">
-                  Showing <strong className="text-[#29252A]">{filteredDoctors.length}</strong> {filteredDoctors.length === 1 ? "doctor" : "doctors"}
+                <div className="text-xs text-[#756860] font-medium">
+                  Showing <strong className="text-[#C63D1B]">{filteredDoctors.length}</strong> {filteredDoctors.length === 1 ? "doctor" : "doctors"}
                 </div>
                 {(searchQuery || selectedDepartment !== "All") && (
                   <button
                     type="button"
                     onClick={handleResetSearch}
-                    className="text-xs font-bold text-[#641D2D] hover:underline cursor-pointer"
+                    className="text-xs font-bold text-[#C63D1B] hover:underline cursor-pointer"
                   >
                     Reset all filters
                   </button>
@@ -423,18 +434,18 @@ export function DoctorsPage() {
 
             {/* Department Filter Chips */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs" role="region" aria-label="Department filters">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#8A8487] shrink-0 mr-1 flex items-center gap-1">
-                <Filter className="w-3 h-3" /> Department:
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#756860] shrink-0 mr-1 flex items-center gap-1">
+                <Filter className="w-3.5 h-3.5 text-[#E94B1C]" /> Department:
               </span>
               {departments.map((dept) => (
                 <button
                   key={dept}
                   type="button"
                   onClick={() => setSelectedDepartment(dept)}
-                  className={`px-3.5 py-1.5 rounded-lg font-bold transition whitespace-nowrap cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full font-bold transition whitespace-nowrap cursor-pointer ${
                     selectedDepartment === dept
-                      ? "bg-[#641D2D] text-white shadow-2xs"
-                      : "bg-white text-[#6F686B] border border-[#DED7D7] hover:bg-[#E8D8D9]/40"
+                      ? "bg-[#E94B1C] text-white shadow-xs"
+                      : "bg-[#FFF0E6]/60 text-[#262626] border border-[#E9D8CE] hover:bg-[#FFF0E6]"
                   }`}
                 >
                   {dept}
@@ -480,80 +491,68 @@ export function DoctorsPage() {
             )}
 
             {/* Non-Diagnostic Directory Note */}
-            <div className="pt-2 border-t border-[#E9D7C7]/80 text-[11px] text-[#808A96] flex items-start gap-1.5 leading-relaxed">
-              <span className="font-semibold text-[#62666D] shrink-0">Directory Notice:</span>
+            <div className="pt-2 border-t border-[#F0E2D9] text-[11px] text-[#756860] flex items-start gap-1.5 leading-relaxed">
+              <span className="font-semibold text-[#C63D1B] shrink-0">Directory Notice:</span>
               <span>
                 Search matches doctors by verified department, qualifications, and known clinical areas of care. This directory is provided for informational convenience and is not a medical diagnostic or triage tool. If you are unsure which specialist to consult, please call our reception desk at {HOSPITAL_INFO.phone} for guidance.
               </span>
             </div>
           </div>
 
-          {/* Doctors Grid */}
+          {/* Doctors Grid: 4 columns desktop, 2 tablet, 1-2 mobile */}
           {filteredDoctors.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
               {filteredDoctors.map((doc) => (
                 <div
                   key={doc.id}
-                  className={`bg-white rounded-2xl border shadow-2xs hover:shadow-card transition overflow-hidden flex flex-col justify-between group ${
+                  className={`bg-white rounded-2xl border border-[#E9D8CE] shadow-xs hover:border-[#E94B1C] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between group ${
                     doc.isManagingDirector
-                      ? "border-[#641D2D]/60 ring-1 ring-[#641D2D]/20"
-                      : "border-[#DED7D7] hover:border-[#641D2D]"
+                      ? "ring-1 ring-[#E94B1C]/30"
+                      : ""
                   }`}
                 >
-                  {/* Photo Header */}
-                  <div className="relative aspect-[4/5] bg-[#28171D] overflow-hidden">
-                    <img
-                      src={doc.image}
-                      alt={doc.name}
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = doc.fallbackImage || "/images/dr-d-surya-prakash.png";
-                      }}
-                      className="w-full h-full object-cover object-top group-hover:scale-103 transition duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#28171D]/90 via-[#28171D]/20 to-transparent" />
-
-                    <span
-                      className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-2xs ${
-                        doc.isManagingDirector
-                          ? "bg-[#641D2D] text-white"
-                          : "bg-white/95 text-[#29252A]"
-                      }`}
-                    >
-                      {doc.status}
-                    </span>
-
-                    <div className="absolute bottom-3 left-3 right-3 text-white text-left">
-                      <span className="text-[11px] font-bold text-[#E8D8D9] block uppercase tracking-wider">
+                  {/* Clean Text-Focused Header without photo */}
+                  <div className="p-5 pb-3.5 bg-gradient-to-br from-white via-[#FFF0E6]/20 to-[#FFF0E6]/50 border-b border-[#F0E2D9]">
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <span className="text-[10px] sm:text-[11px] font-bold text-[#C63D1B] uppercase tracking-wider bg-[#FFF0E6] px-2.5 py-1 rounded-md border border-[#E9D8CE]">
                         {doc.department}
                       </span>
-                      <h3 className="text-xl font-black text-white mt-0.5 leading-snug">
-                        {doc.name}
-                      </h3>
+                      <span
+                        className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                          doc.isManagingDirector
+                            ? "bg-[#E94B1C] text-white"
+                            : "bg-white text-[#756860] border border-[#E9D8CE]"
+                        }`}
+                      >
+                        {doc.status}
+                      </span>
                     </div>
+
+                    <h3 className="text-lg sm:text-xl font-black text-[#C63D1B] leading-snug group-hover:text-[#A83218] transition-colors">
+                      {doc.name}
+                    </h3>
                   </div>
 
                   {/* Body Content */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4 text-left">
+                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4 text-left">
                     <div className="space-y-1">
-                      <div className="text-sm font-bold text-[#641D2D]">
+                      <div className="text-xs sm:text-sm font-bold text-[#C63D1B]">
                         {doc.qualifications}
                       </div>
-                      <div className="text-sm font-semibold text-[#29252A]">
+                      <div className="text-xs font-semibold text-[#262626]">
                         {doc.designation}
                       </div>
-                      <p className="text-xs sm:text-[13px] text-[#6F686B] leading-relaxed pt-0.5">
+                      <p className="text-xs text-[#756860] leading-relaxed pt-0.5 line-clamp-2">
                         {doc.experience}
                       </p>
                     </div>
 
                     {/* Key Areas of Care - clean and concise */}
-                    <div className="pt-2.5 border-t border-[#DED7D7] space-y-1.5">
-                      <ul className="space-y-1.5 text-xs text-[#6F686B]">
+                    <div className="pt-2.5 border-t border-[#F0E2D9] space-y-1.5">
+                      <ul className="space-y-1.5 text-xs text-[#756860]">
                         {doc.specialties.slice(0, 3).map((spec, i) => (
                           <li key={i} className="flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#641D2D] shrink-0 mt-1.5" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#E94B1C] shrink-0 mt-1.5" />
                             <span className="leading-snug">{spec}</span>
                           </li>
                         ))}
@@ -561,17 +560,17 @@ export function DoctorsPage() {
                     </div>
 
                     {/* Consultation Schedule & Dual Actions */}
-                    <div className="pt-2.5 border-t border-[#DED7D7] space-y-3">
-                      <div className="flex items-start gap-2 text-xs text-[#6F686B]">
-                        <Clock className="w-4 h-4 text-[#641D2D] shrink-0 mt-0.5" />
-                        <span className="text-xs leading-snug">{doc.opdTimings}</span>
+                    <div className="pt-2.5 border-t border-[#F0E2D9] space-y-3">
+                      <div className="flex items-start gap-2 text-xs text-[#756860]">
+                        <Clock className="w-3.5 h-3.5 text-[#FF8A3D] shrink-0 mt-0.5" />
+                        <span className="text-[11px] leading-snug">{doc.opdTimings}</span>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-2.5 pt-0.5">
+                      <div className="grid grid-cols-2 gap-2 pt-0.5">
                         <button
                           type="button"
                           onClick={() => setActiveDoctorModal(doc)}
-                          className="w-full py-2.5 px-3 rounded-xl text-xs font-bold border border-[#DED7D7] bg-white hover:bg-[#FCFAF7] text-[#29252A] transition cursor-pointer active:scale-95 shadow-2xs"
+                          className="w-full py-2 px-2.5 rounded-full text-xs font-bold border border-[#E9D8CE] bg-white hover:bg-[#FFF0E6] text-[#C63D1B] transition cursor-pointer active:scale-95 shadow-2xs"
                         >
                           View Profile
                         </button>
@@ -584,7 +583,7 @@ export function DoctorsPage() {
                             variant="primary"
                             size="sm"
                             fullWidth
-                            className="bg-[#E56A2E] hover:bg-[#C8541D] text-white text-xs font-bold py-2.5 active:scale-95 shadow-sm"
+                            className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-xs font-bold py-2 rounded-full active:scale-95 shadow-xs"
                           >
                             Book Visit
                           </Button>
@@ -596,19 +595,19 @@ export function DoctorsPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 sm:py-16 px-4 bg-[#FFF9F3] rounded-2xl border border-[#E9D7C7] space-y-4 max-w-2xl mx-auto shadow-2xs">
-              <div className="w-12 h-12 rounded-xl bg-[#F8E6DC] text-[#C65332] flex items-center justify-center mx-auto">
+            <div className="text-center py-12 sm:py-16 px-4 bg-white rounded-2xl border border-[#E9D8CE] space-y-4 max-w-2xl mx-auto shadow-xs">
+              <div className="w-12 h-12 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center mx-auto border border-[#E9D8CE]">
                 <Stethoscope className="w-6 h-6" />
               </div>
               <div className="space-y-1.5">
-                <h3 className="text-lg font-bold text-[#292D32]">
+                <h3 className="text-lg font-bold text-[#C63D1B]">
                   {searchQuery ? (
-                    <>No doctors found matching &ldquo;<span className="text-[#C65332]">{searchQuery}</span>&rdquo;</>
+                    <>No doctors found matching &ldquo;<span className="text-[#FF8A3D]">{searchQuery}</span>&rdquo;</>
                   ) : (
                     "No doctors found for this department."
                   )}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#62666D] max-w-md mx-auto leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#756860] max-w-md mx-auto leading-relaxed">
                   Try searching by doctor name (e.g. <em>Dr. Vamsi Krishna</em>), department, or verified health concerns like <em>heart</em>, <em>kidney</em>, <em>spine</em>, or <em>fracture</em>.
                 </p>
               </div>
@@ -617,7 +616,7 @@ export function DoctorsPage() {
                 <Button
                   variant="primary"
                   size="sm"
-                  className="bg-[#C65332] hover:bg-[#A84328] text-white text-xs font-bold"
+                  className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-xs font-bold rounded-full"
                   onClick={handleResetSearch}
                 >
                   Show All Doctors
@@ -627,7 +626,7 @@ export function DoctorsPage() {
                     variant="secondary"
                     size="sm"
                     icon={Phone}
-                    className="bg-white border-[#E9D7C7] text-[#292D32] hover:bg-[#F8E6DC] text-xs font-bold"
+                    className="bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] text-xs font-bold rounded-full"
                   >
                     Help Me Choose: {HOSPITAL_INFO.phone}
                   </Button>
@@ -640,35 +639,30 @@ export function DoctorsPage() {
 
       {/* Individual Doctor Profile Modal */}
       {activeDoctorModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs transition-opacity duration-200">
-          <div className="bg-white rounded-2xl max-w-xl w-full p-4 sm:p-8 shadow-2xl border border-[#E9D7C7] space-y-5 max-h-[88vh] overflow-y-auto transform transition-all duration-300 ease-out animate-in fade-in zoom-in-95">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs transition-opacity duration-200" onClick={() => setActiveDoctorModal(null)}>
+          <div className="bg-white rounded-2xl max-w-xl w-full p-5 sm:p-8 shadow-2xl border border-[#E9D8CE] space-y-5 max-h-[88vh] overflow-y-auto transform transition-all duration-300 ease-out animate-in fade-in zoom-in-95 text-left" onClick={(e) => e.stopPropagation()}>
             {/* Header */}
-            <div className="flex items-start justify-between pb-4 border-b border-[#E9D7C7]">
-              <div className="doctor-header-bio">
-                <img
-                  src={activeDoctorModal.image}
-                  alt={activeDoctorModal.name}
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/images/surya-doctor-portrait.png";
-                  }}
-                  className="doctor-avatar w-13 h-13 sm:w-16 sm:h-16 rounded-xl object-cover border-2 border-[#C65332]"
-                />
+            <div className="flex items-start justify-between pb-4 border-b border-[#F0E2D9]">
+              <div className="flex items-center gap-3.5">
+                <div className="w-13 h-13 sm:w-16 sm:h-16 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 border border-[#E9D8CE]">
+                  <User className="w-7 h-7 sm:w-8 sm:h-8" />
+                </div>
                 <div>
-                  <h3 className="text-xl font-black text-[#292D32]">
+                  <h3 className="text-xl font-black text-[#C63D1B]">
                     {activeDoctorModal.name}
                   </h3>
-                  <p className="text-xs text-[#C65332] font-bold">
+                  <p className="text-xs text-[#FF8A3D] font-bold">
                     {activeDoctorModal.qualifications}
                   </p>
-                  <p className="text-xs text-[#62666D]">
+                  <p className="text-xs text-[#756860]">
                     {activeDoctorModal.designation}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setActiveDoctorModal(null)}
-                className="p-1 rounded-lg text-[#62666D] hover:bg-[#F8E6DC] cursor-pointer"
+                className="p-1 rounded-lg text-[#756860] hover:text-[#C63D1B] hover:bg-[#FFF0E6] cursor-pointer transition-colors"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -677,45 +671,45 @@ export function DoctorsPage() {
             {/* Profile Content */}
             <div className="space-y-4 text-left">
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#292D32] mb-1">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#C63D1B] mb-1">
                   Department & Role
                 </h4>
-                <p className="text-xs sm:text-sm text-[#62666D] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#756860] leading-relaxed">
                   {activeDoctorModal.department} • {activeDoctorModal.experience}
                 </p>
               </div>
 
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#292D32] mb-1">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#C63D1B] mb-1">
                   About the Doctor & Patient Approach
                 </h4>
-                <p className="text-xs sm:text-sm text-[#62666D] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#756860] leading-relaxed">
                   {activeDoctorModal.bio}
                 </p>
               </div>
 
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#292D32] mb-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#C63D1B] mb-2">
                   Conditions Treated & Treatments Offered
                 </h4>
-                <ul className="space-y-1.5 text-xs text-[#62666D]">
+                <ul className="space-y-1.5 text-xs text-[#756860]">
                   {activeDoctorModal.specialties.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#C65332] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#E94B1C] shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[#FFF9F3] border border-[#E9D7C7] text-xs space-y-1">
-                <span className="font-bold text-[#292D32] block">
+              <div className="p-3.5 rounded-xl bg-[#FFF0E6]/50 border border-[#E9D8CE] text-xs space-y-1">
+                <span className="font-bold text-[#C63D1B] block">
                   Visiting Hours & Location:
                 </span>
-                <p className="text-[#62666D]">
+                <p className="text-[#756860]">
                   {activeDoctorModal.opdTimings}
                 </p>
-                <p className="text-[11px] text-[#808A96] pt-1">
+                <p className="text-[11px] text-[#756860] pt-1">
                   Consultation Rooms, Surya Hospital, Sai Nagar, Anantapur.
                 </p>
               </div>
@@ -733,7 +727,7 @@ export function DoctorsPage() {
                   size="md"
                   icon={Calendar}
                   fullWidth
-                  className="bg-[#C65332] hover:bg-[#A84328] text-white font-bold"
+                  className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold rounded-full py-2.5 shadow-sm"
                 >
                   Book with {activeDoctorModal.name}
                 </Button>
@@ -747,7 +741,7 @@ export function DoctorsPage() {
                   variant="secondary"
                   size="md"
                   icon={Phone}
-                  className="w-full text-xs bg-white border-[#E9D7C7] text-[#292D32] hover:bg-[#F8E6DC]"
+                  className="w-full text-xs bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] rounded-full py-2.5"
                 >
                   Call Front Desk
                 </Button>
@@ -757,7 +751,7 @@ export function DoctorsPage() {
                 variant="outline"
                 size="md"
                 onClick={() => setActiveDoctorModal(null)}
-                className="w-full sm:w-auto text-xs border-[#E9D7C7]"
+                className="w-full sm:w-auto text-xs border-[#E9D8CE] text-[#756860] rounded-full py-2.5 cursor-pointer"
               >
                 Close
               </Button>

@@ -205,21 +205,21 @@ export function PinterestPinboard() {
         {/* Section Editorial Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 text-left">
           <div className="space-y-3 max-w-2xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#E8D8D9] text-[#641D2D] border border-[#DED7D7]">
-              <Sparkles className="w-3.5 h-3.5 text-[#B69A65]" />
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#FFF0E6] text-[#C63D1B] border border-[#E9D8CE]">
+              <Sparkles className="w-3.5 h-3.5 text-[#E94B1C]" />
               HEALTHCARE DISCOVERY PINBOARD
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#29252A] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#C63D1B] tracking-tight">
               Explore Surya Hospital at a Glance
             </h2>
-            <p className="text-base text-[#6F686B] leading-relaxed font-normal">
+            <p className="text-base text-[#756860] leading-relaxed font-normal">
               Browse our verified medical specialists, advanced operating suites, diagnostic facilities, and 24/7 casualty desk in Sai Nagar, Anantapur.
             </p>
           </div>
 
           <Link
             to="/appointment"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#E56A2E] hover:bg-[#C8541D] text-white shadow-md transition shrink-0"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-md transition shrink-0"
           >
             <Calendar className="w-3.5 h-3.5" />
             <span>Book Doctor Consultation</span>
@@ -293,7 +293,7 @@ export function PinterestPinboard() {
                 {/* Footer Note and Link */}
                 <div className="pin-footer">
                   <div className="pin-meta-note">
-                    <Clock className="w-3.5 h-3.5 text-[#B69A65]" />
+                    <Clock className="w-3.5 h-3.5 text-[#FF8A3D]" />
                     <span>{pin.meta}</span>
                   </div>
 

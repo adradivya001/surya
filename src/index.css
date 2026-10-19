@@ -4,19 +4,22 @@
 
 @layer base {
   :root {
-    /* Brand Design Tokens */
-    --color-bg-page: #FFF9F3;          /* Warm Canvas */
-    --color-primary: #A84328;          /* Terracotta Accent */
-    --color-primary-hover: #8F371F;    /* Terracotta Dark Hover */
-    --color-secondary-terracotta: #C85235; /* Bright Terracotta */
-    --color-soft-terracotta: #F8E6DC;  /* Soft Terracotta Tint */
-    --color-teal-dark: #0D4855;        /* Deep Clinical Teal */
-    --color-teal-light: #E8F4F1;       /* Light Teal / Sage */
-    --color-emergency: #DC2626;        /* Emergency Red */
-    --color-heading: #1A1D20;          /* Charcoal Headings */
-    --color-text: #62666D;             /* Muted Secondary Text */
-    --color-border: #E2D9D0;           /* Warm Border */
-    --color-card-bg: #FFFFFF;          /* Pure White */
+    /* Official Surya Hospital Orange-Only Brand Design Tokens */
+    --color-primary: #E94B1C;              /* Primary Brand Orange */
+    --color-primary-deep: #C63D1B;         /* Deep Orange */
+    --color-primary-hover: #A83218;        /* Dark Orange Hover */
+    --color-warm-orange: #F26A21;          /* Warm Orange */
+    --color-accent-orange: #FF8A3D;        /* Bright Orange Accent */
+    --color-soft-peach: #FFF0E6;           /* Soft Peach */
+    --color-bg-page: #FFF9F3;              /* Pale Warm Cream */
+    --color-card-bg: #FFFFFF;              /* Pure White */
+    --color-border: #E9D8CE;               /* Neutral Border */
+    --color-border-subtle: #F0E2D9;        /* Subtle Divider */
+    --color-heading: #262626;              /* Primary Text */
+    --color-text-secondary: #4A403B;       /* Secondary Text */
+    --color-text: #756860;                 /* Muted Text */
+    --color-emergency: #C63D1B;            /* Deep Orange Emergency Action */
+    --color-whatsapp: #00A884;             /* WhatsApp Assistance */
   }
 
   html {
@@ -30,7 +33,7 @@
 
   body {
     background-color: #FFF9F3;
-    color: #62666D;
+    color: #4A403B;
     font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;

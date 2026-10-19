@@ -37,23 +37,24 @@
 }
 
 .call-btn {
-  background-color: #F8E6DC;
-  color: #292D32;
-  border: 1px solid #E9D7C7;
+  background-color: #FFFFFF;
+  color: #262626;
+  border: 1.5px solid #E9D8CE;
 }
 
 .call-btn:hover {
-  background-color: #E8D5C0;
+  background-color: #FFF0E6;
+  border-color: #E94B1C;
 }
 
 .book-btn {
-  background-color: #C65332;
+  background-color: #E94B1C;
   color: #FFFFFF;
-  box-shadow: 0 4px 12px rgba(198, 83, 50, 0.25);
+  box-shadow: 0 4px 14px rgba(233, 75, 28, 0.28);
 }
 
 .book-btn:hover {
-  background-color: #A84328;
+  background-color: #A83218;
 }
 
 @media (min-width: 992px) {

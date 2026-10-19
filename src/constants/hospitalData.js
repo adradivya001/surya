@@ -470,199 +470,370 @@ export const HOSPITAL_INFO = {
     },
   ],
 
-  // Verified Hospital Specialities - 12 Core Clinical Departments
+  // Verified Hospital Specialities - 12 Core Clinical Departments matching exact prompt specifications
   specialities: [
     {
       id: "cardiology",
       name: "Cardiology",
       category: "Heart & Vascular",
       iconName: "HeartPulse",
-      shortDesc: "Complete cardiac evaluation, echocardiography, angiography, hypertension, and emergency heart care.",
-      image: "https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&w=1000&q=80",
-      overview: "Our Cardiology department offers comprehensive preventive and emergency cardiovascular care, diagnostic non-invasive cardiac evaluation, and personalized management for blood pressure, arrhythmias, and heart disease.",
-      keyTreatments: [
-        "Coronary Angiography & Heart Failure Care",
-        "Echocardiography (2D Echo) & ECG",
-        "Hypertension & Preventive Heart Checks",
-        "Arrhythmia & Palpitation Evaluations",
+      shortDescription:
+        "Comprehensive cardiac care, including evaluation of heart conditions, cardiovascular risk assessment, and guidance on heart health.",
+      overview:
+        "The Cardiology Department focuses on the assessment and management of conditions affecting the heart and blood vessels. Doctors evaluate symptoms, medical history, and relevant investigations to recommend appropriate care.",
+      conditions: [
+        "High blood pressure and high cholesterol.",
+        "Coronary artery disease.",
+        "Irregular heartbeat.",
+        "Heart failure and related symptoms.",
+        "Chest discomfort and breathlessness requiring cardiac assessment.",
       ],
-      relatedDoctor: "Dr. K. Vamsi Krishna & Dr. K. Spandana",
+      services: [
+        "Cardiovascular risk assessment.",
+        "Cardiology consultations.",
+        "Review of ECG, echocardiography, and other reports when available.",
+        "Medical management and follow-up guidance.",
+        "Recommendations for further cardiac investigations when needed.",
+      ],
+      whenToConsult:
+        "Consult a doctor for recurring chest discomfort, palpitations, unexplained breathlessness, or persistent cardiovascular risk factors. Severe chest pain or sudden breathing difficulty requires emergency assessment.",
+      consultants: [
+        { name: "Dr. K. Vamsi Krishna", qualifications: "MD, DM (OSM)" },
+        { name: "Dr. K. Spandana", qualifications: "MD, DM" },
+      ],
     },
     {
       id: "gastroenterology",
       name: "Gastroenterology",
       category: "Digestive & Liver",
       iconName: "Activity",
-      shortDesc: "Advanced endoscopy, colonoscopy, liver disease care, acid reflux, and chronic gastrointestinal treatments.",
-      image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=1000&q=80",
-      overview: "Specialized diagnostics and therapies for diseases of the esophagus, stomach, intestines, liver, pancreas, and biliary system with modern endoscopy suites.",
-      keyTreatments: [
-        "Diagnostic & Therapeutic Endoscopy",
-        "Liver Health, Jaundice & Cirrhosis",
-        "GERD, Gastritis & Peptic Ulcers",
-        "IBD, Colitis & Chronic Digestive Disorders",
+      shortDescription:
+        "Specialist evaluation of digestive disorders affecting the stomach, intestines, liver, and related organs.",
+      overview:
+        "Gastroenterology focuses on the assessment and management of digestive system conditions. The specialist reviews symptoms, medical history, and relevant investigations to recommend appropriate treatment.",
+      conditions: [
+        "Acidity, heartburn, and acid reflux.",
+        "Abdominal pain and bloating.",
+        "Persistent constipation or diarrhoea.",
+        "Liver-related conditions.",
+        "Selected intestinal disorders.",
+        "Digestive symptoms requiring further investigation.",
       ],
-      relatedDoctor: "Dr. S.T. Rajaneesh Reddy",
+      services: [
+        "Gastroenterology consultations.",
+        "Assessment of digestive symptoms.",
+        "Review of laboratory and imaging reports.",
+        "Recommendations for appropriate investigations.",
+        "Treatment planning and follow-up.",
+      ],
+      whenToConsult:
+        "Consider a consultation for persistent digestive discomfort, recurring acidity, unexplained changes in bowel habits, or ongoing abdominal symptoms.",
+      consultants: [
+        { name: "Dr. S.T. Rajaneesh Reddy", qualifications: "DM Gastro" },
+      ],
     },
     {
       id: "nephrology",
       name: "Nephrology",
       category: "Kidney & Dialysis",
       iconName: "Shield",
-      shortDesc: "Comprehensive kidney care, hemodialysis, chronic renal management, and kidney stone evaluation.",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1000&q=80",
-      overview: "Our Nephrology unit delivers expert renal care, state-of-the-art dialysis oversight, and management of acute and chronic kidney conditions, proteinuria, and renal complications.",
-      keyTreatments: [
-        "Chronic Kidney Disease (CKD) Care",
-        "Hemodialysis Unit & Monitoring",
-        "Diabetic Nephropathy & Hypertension",
-        "Kidney Stone Evaluation & Medical Care",
+      shortDescription:
+        "Specialized medical care for kidney conditions, kidney function monitoring, and related health concerns.",
+      overview:
+        "Nephrology focuses on the medical assessment and management of kidney disorders. Diabetes, high blood pressure, and other medical conditions can affect kidney health.",
+      conditions: [
+        "Chronic kidney disease.",
+        "Reduced kidney function.",
+        "Protein or blood in urine.",
+        "Kidney-related complications of diabetes.",
+        "Kidney-related complications of hypertension.",
+        "Fluid and electrolyte imbalances.",
       ],
-      relatedDoctor: "Dr. M.V.K. Hareesh & Dr. V. Badarinath Reddy",
+      services: [
+        "Kidney health consultations.",
+        "Review of blood and urine tests.",
+        "Assessment of kidney function.",
+        "Monitoring and management guidance.",
+        "Coordination with other specialists when needed.",
+      ],
+      whenToConsult:
+        "Seek medical advice for abnormal kidney test results, persistent urine abnormalities, or medical conditions that may affect kidney function.",
+      consultants: [
+        { name: "Dr. M.V.K. Hareesh", qualifications: "DM Nephro" },
+        { name: "Dr. V. Badarinath Reddy", qualifications: "MD, DNB" },
+      ],
     },
     {
       id: "ent",
       name: "E.N.T.",
       category: "Ear, Nose & Throat",
       iconName: "Stethoscope",
-      shortDesc: "Microsurgical ear procedures, sinus FESS surgery, hearing evaluation, tonsillectomy, and allergy relief.",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1000&q=80",
-      overview: "Specialized clinical and surgical treatment for ear infections, hearing loss, sinus blockages, nasal deformities, vertigo, and throat and voice conditions.",
-      keyTreatments: [
-        "Endoscopic Sinus Surgery (FESS) & DNS",
-        "Microscopic Ear Surgery & Hearing Checks",
-        "Tonsils, Adenoids & Snoring Treatment",
-        "Vertigo, Balance & Tinnitus Care",
+      shortDescription:
+        "Medical evaluation and treatment of conditions affecting the ears, nose, throat, and related structures.",
+      overview:
+        "E.N.T. care focuses on hearing, balance, nasal breathing, sinus, throat, and voice-related concerns. The specialist evaluates symptoms and recommends appropriate treatment.",
+      conditions: [
+        "Ear pain and ear infections.",
+        "Hearing difficulties.",
+        "Sinusitis and nasal congestion.",
+        "Allergic nasal symptoms.",
+        "Throat pain and recurring tonsil problems.",
+        "Voice and swallowing concerns.",
       ],
-      relatedDoctor: "Dr. P. Lakshmi Narasimha Rao & Dr. Krishna Sai",
+      services: [
+        "Ear, nose, and throat consultations.",
+        "Clinical examination.",
+        "Assessment of hearing and nasal symptoms.",
+        "Treatment recommendations.",
+        "Further investigation or procedure planning when indicated.",
+      ],
+      whenToConsult:
+        "Consult an E.N.T. specialist for persistent ear pain, hearing changes, recurring sinus symptoms, or ongoing throat discomfort.",
+      consultants: [
+        { name: "Dr. P. Lakshmi Narasimha Rao", qualifications: "MS (E.N.T)" },
+        { name: "Dr. Krishna Sai", qualifications: "DNB (E.N.T)" },
+      ],
     },
     {
       id: "orthopedic",
       name: "Orthopedic",
       category: "Bones & Joints",
       iconName: "Activity",
-      shortDesc: "Spine surgery, joint replacement, accidental bone fracture management, and sports injury rehabilitation.",
-      image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80",
-      overview: "Complete bone, spine, and joint care providing both surgical procedures and non-invasive recovery for accidental injuries, back pain, and joint mobility disorders.",
-      keyTreatments: [
-        "Spine Decompression & Disc Treatments",
-        "Joint Replacement (Knee & Hip Arthroplasty)",
-        "Complex Trauma, Bone Fractures & Plaster Care",
-        "Arthritis Care & Sports Ligament Reconstruction",
+      shortDescription:
+        "Care for bone, joint, muscle, and spine conditions, including injuries and movement-related problems.",
+      overview:
+        "Orthopedics focuses on the musculoskeletal system, including bones, joints, muscles, tendons, ligaments, and the spine. Specialists evaluate pain, injuries, and mobility limitations.",
+      conditions: [
+        "Bone fractures and injuries.",
+        "Knee, shoulder, and other joint pain.",
+        "Arthritis-related symptoms.",
+        "Back and neck pain.",
+        "Sports injuries.",
+        "Selected spine and mobility conditions.",
       ],
-      relatedDoctor: "Dr. M. Diwakar, Dr. Shanthi Swaroop & Dr. Raghavendra Raju",
+      services: [
+        "Orthopedic consultations.",
+        "Assessment of joint and bone conditions.",
+        "Review of X-rays and other imaging reports.",
+        "Recommendations for medical or surgical management.",
+        "Recovery and rehabilitation guidance.",
+      ],
+      whenToConsult:
+        "Consult an orthopedic specialist for persistent joint pain, reduced mobility, recurring back pain, or suspected bone or ligament injuries.",
+      consultants: [
+        { name: "Dr. M. Diwakar", qualifications: "MS Ortho & Spine" },
+        { name: "Dr. Shanthi Swaroop", qualifications: "MS Ortho" },
+        { name: "Dr. Raghavendra Raju", qualifications: "MS Ortho" },
+      ],
     },
     {
       id: "pulmonology",
       name: "Pulmonology",
       category: "Chest & Lungs",
       iconName: "HeartPulse",
-      shortDesc: "Asthma, tuberculosis (TB), chronic cough, pneumonia, COPD, and diagnostic bronchoscopy.",
-      image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1000&q=80",
-      overview: "Dedicated respiratory and chest medicine specialists handling allergy-induced breathlessness, respiratory infections, TB treatments, and critical lung conditions.",
-      keyTreatments: [
-        "Asthma, Allergy & COPD Management",
-        "Tuberculosis (TB) Diagnosis & Care",
-        "Bronchoscopy & Pleural Fluid Care",
-        "Sleep Apnea & Pulmonary Function Testing",
+      shortDescription:
+        "Specialist care for respiratory conditions affecting the lungs, airways, and breathing.",
+      overview:
+        "Pulmonology focuses on the assessment and management of respiratory diseases. The specialist evaluates breathing difficulties, persistent cough, and other lung-related symptoms.",
+      conditions: [
+        "Asthma.",
+        "Persistent or recurring cough.",
+        "Selected respiratory infections.",
+        "Chronic obstructive pulmonary disease (COPD).",
+        "Breathlessness requiring investigation.",
+        "Selected chronic lung conditions.",
       ],
-      relatedDoctor: "Dr. Sudhindra & Dr. K. Muralidhar Reddy",
+      services: [
+        "Respiratory consultations.",
+        "Assessment of breathing-related symptoms.",
+        "Review of relevant test results.",
+        "Recommendations for further investigations.",
+        "Treatment and follow-up planning.",
+      ],
+      whenToConsult:
+        "Seek consultation for persistent cough, recurring wheezing, or unexplained breathlessness. Severe breathing difficulty requires emergency medical attention.",
+      consultants: [
+        { name: "Dr. Sudhindra", qualifications: "MD TB & RD" },
+        { name: "Dr. K. Muralidhar Reddy", qualifications: "DNB" },
+      ],
     },
     {
       id: "anesthesia-intensivist",
       name: "Anesthesia & Intensivist",
       category: "Critical Care & Anesthesia",
       iconName: "AlertTriangle",
-      shortDesc: "Perioperative anesthesia safety, Intensive Care Unit (ICU), acute pain control, and resuscitation.",
-      image: "https://images.unsplash.com/photo-1587745416684-47953f16f02f?auto=format&fit=crop&w=1000&q=80",
-      overview: "Round-the-clock intensive care unit support and advanced surgical anesthesia ensuring maximum patient stability during critical surgical procedures.",
-      keyTreatments: [
-        "Surgical Anesthesia & Monitoring",
-        "Intensive Care Unit (ICU) Management",
-        "Acute & Post-Operative Pain Relief",
-        "Emergency Resuscitation & Airway Support",
+      shortDescription:
+        "Medical support for anesthesia, patient monitoring, perioperative safety, and critical care when required.",
+      overview:
+        "Anesthesiology focuses on anesthesia, pain control, and patient safety during surgical and other appropriate medical procedures. Critical care involves the close monitoring and management of seriously ill patients.",
+      conditions: [
+        "Pre-anesthesia assessment.",
+        "Anesthesia planning for eligible procedures.",
+        "Monitoring of vital signs during procedures.",
+        "Perioperative pain management.",
+        "Assessment and stabilization of critically ill patients.",
+        "Coordination with surgical and medical teams.",
       ],
-      relatedDoctor: "Dr. V. Gowtham",
+      services: [
+        "Before a procedure, the anesthesia team reviews the patient's medical history, medications, allergies, and relevant investigations to plan appropriate care.",
+        "Continuous patient vital monitoring and hemodynamic stabilization.",
+        "Intensive care management for post-surgical and critical patients.",
+      ],
+      whenToConsult:
+        "Anesthesia assessment may be required before a planned procedure. Intensive care may be needed when a patient's condition requires close monitoring or advanced medical support.",
+      consultants: [
+        { name: "Dr. V. Gowtham", qualifications: "MD" },
+      ],
     },
     {
       id: "oncology",
       name: "Oncology",
       category: "Cancer Care",
       iconName: "Shield",
-      shortDesc: "Chemotherapy, targeted immunotherapy, comprehensive tumor screening, and supportive palliative care.",
-      image: "https://images.unsplash.com/photo-1594824813583-057088bdf20a?auto=format&fit=crop&w=1000&q=80",
-      overview: "Compassionate, modern medical oncology care guiding patients and families through scientific diagnostic staging, chemotherapy protocols, and recovery.",
-      keyTreatments: [
-        "Chemotherapy & Targeted Immunotherapy",
-        "Comprehensive Cancer Screening & Staging",
-        "Solid Tumors & Hematological Care",
-        "Supportive Care & Symptom Relief",
+      shortDescription:
+        "Specialist evaluation and treatment planning for cancer, with care tailored to the patient's diagnosis.",
+      overview:
+        "Oncology focuses on the assessment and management of cancer. Treatment planning depends on the cancer type, stage, investigation results, and the patient's overall health.",
+      conditions: [
+        "Assessment of suspected or diagnosed cancers.",
+        "Review of biopsy and imaging reports.",
+        "Evaluation of disease stage where appropriate.",
+        "Discussion of suitable treatment options.",
+        "Follow-up and supportive care planning.",
       ],
-      relatedDoctor: "Dr. Vishnupriya",
+      services: [
+        "Oncology consultations.",
+        "Review of pathology and imaging reports.",
+        "Treatment planning and coordination.",
+        "Monitoring during treatment where available.",
+        "Follow-up and supportive care guidance.",
+      ],
+      whenToConsult:
+        "Seek specialist advice when referred for an abnormal investigation, suspected malignancy, or follow-up after a cancer diagnosis.",
+      consultants: [
+        { name: "Dr. Vishnupriya", qualifications: "DM Oncology" },
+      ],
     },
     {
       id: "neurology",
       name: "Neurology",
       category: "Brain & Nerves",
       iconName: "Eye",
-      shortDesc: "Acute brain stroke care, epilepsy, severe headaches, migraine, neuropathy, and movement disorders.",
-      image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1000&q=80",
-      overview: "Specialized clinical diagnosis and management of brain, spine, and peripheral nerve disorders, providing urgent stroke interventions and seizure therapies.",
-      keyTreatments: [
-        "Acute Brain Stroke & Paralysis Care",
-        "Epilepsy & Seizure Management",
-        "Chronic Migraine & Headache Clinic",
-        "Neuropathy & Parkinson's Evaluation",
+      shortDescription:
+        "Specialist assessment of disorders affecting the brain, spinal cord, nerves, and nervous system.",
+      overview:
+        "Neurology focuses on conditions affecting the nervous system. Specialists assess neurological symptoms, perform clinical examinations, and recommend appropriate investigations or treatment.",
+      conditions: [
+        "Migraine and recurring headaches.",
+        "Seizures and epilepsy.",
+        "Numbness and tingling.",
+        "Selected nerve disorders.",
+        "Tremors and movement disorders.",
+        "Certain memory and neurological problems.",
       ],
-      relatedDoctor: "Dr. Thirupati Kedar",
+      services: [
+        "Neurological consultations.",
+        "Assessment of neurological symptoms.",
+        "Review of brain imaging and other reports.",
+        "Recommendations for further testing.",
+        "Treatment and follow-up guidance.",
+      ],
+      whenToConsult:
+        "Seek consultation for recurring headaches, unexplained numbness, tremors, or seizures. Sudden facial drooping, one-sided weakness, or difficulty speaking requires immediate emergency care.",
+      consultants: [
+        { name: "Dr. Thirupati Kedar", qualifications: "DM Neuro" },
+      ],
     },
     {
       id: "urology",
       name: "Urology",
       category: "Urinary & Andrology",
       iconName: "Activity",
-      shortDesc: "Laser kidney stone removal, prostate enlargement (BPH), urinary tract health, and andrology care.",
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=1000&q=80",
-      overview: "Advanced minimally invasive urology, laser kidney stone fragmentation, and comprehensive medical and surgical management for prostate and urinary health.",
-      keyTreatments: [
-        "Laser Stone Fragmentation (URSL, PCNL, RIRS)",
-        "Prostate Care & TURP Surgeries",
-        "Urinary Incontinence & Infection Care",
-        "Men's Health & Andrology",
+      shortDescription:
+        "Specialist care for urinary tract conditions and selected male reproductive health concerns.",
+      overview:
+        "Urology focuses on the urinary system, including the kidneys, ureters, bladder, and urethra, as well as selected conditions affecting the male reproductive system.",
+      conditions: [
+        "Kidney and urinary stones.",
+        "Urinary tract symptoms.",
+        "Difficulty or discomfort during urination.",
+        "Selected bladder conditions.",
+        "Prostate-related urinary problems.",
+        "Certain male reproductive health concerns.",
       ],
-      relatedDoctor: "Dr. Y. Harinath Reddy & Dr. B. Rajashekar",
+      services: [
+        "Urology consultations.",
+        "Assessment of urinary symptoms.",
+        "Review of urine tests and imaging.",
+        "Recommendations for appropriate treatment.",
+        "Follow-up and procedural planning where indicated.",
+      ],
+      whenToConsult:
+        "Consult a urologist for recurring urinary symptoms, suspected urinary stones, or persistent difficulty passing urine. Inability to urinate requires urgent medical assessment.",
+      consultants: [
+        { name: "Dr. Y. Harinath Reddy", qualifications: "MS, MCH (Urology)" },
+        { name: "Dr. B. Rajashekar", qualifications: "MS, MCH (Urology)" },
+      ],
     },
     {
       id: "general-surgery",
       name: "General Surgery",
       category: "Surgical Care",
       iconName: "Scissors",
-      shortDesc: "Keyhole laparoscopic gallbladder & appendix surgery, hernia repairs, trauma, and day-care procedures.",
-      image: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?auto=format&fit=crop&w=1000&q=80",
-      overview: "Sterile, equipped operating theatres providing minimally invasive laparoscopic and open surgical interventions with meticulous post-operative wound healing.",
-      keyTreatments: [
-        "Laparoscopic Appendix & Gallbladder Removals",
-        "Modern Mesh Hernia Repair Surgeries",
-        "Piles, Fissures & Fistula Care",
-        "Trauma & Emergency Surgical Interventions",
+      shortDescription:
+        "Surgical evaluation and management of selected abdominal, soft-tissue, and other conditions requiring surgical assessment.",
+      overview:
+        "General surgery involves evaluating conditions that may require a surgical procedure or another appropriate treatment approach. The surgeon reviews symptoms, clinical findings, and investigations before recommending a plan.",
+      conditions: [
+        "Hernias.",
+        "Selected gallbladder conditions.",
+        "Certain abdominal conditions.",
+        "Selected skin and soft-tissue lumps.",
+        "Wounds and conditions requiring surgical assessment.",
       ],
-      relatedDoctor: "Dr. Sai Swaroop & Dr. Sushanth",
+      services: [
+        "General surgical consultations.",
+        "Pre-operative assessment.",
+        "Review of investigations.",
+        "Discussion of surgical and non-surgical options.",
+        "Post-operative follow-up guidance.",
+      ],
+      whenToConsult:
+        "Consult a surgeon when referred for a condition that may need surgery or when a persistent lump, hernia, or abdominal problem requires evaluation. Severe abdominal pain requires urgent assessment.",
+      consultants: [
+        { name: "Dr. Sai Swaroop", qualifications: "MS General Surgery" },
+        { name: "Dr. Sushanth", qualifications: "MS General Surgery" },
+      ],
     },
     {
       id: "psychiatry",
       name: "Psychiatry",
       category: "Mental Health",
       iconName: "Stethoscope",
-      shortDesc: "Compassionate mental wellness care for anxiety, depression, sleep disorders, stress, and behavioral health.",
-      image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1000&q=80",
-      overview: "Confidential and supportive psychiatric consultations helping patients achieve emotional well-being, healthy sleep cycles, and stress stability.",
-      keyTreatments: [
-        "Depression, Anxiety & Panic Disorders",
-        "Stress Management & Insomnia Relief",
-        "OCD, Phobias & Mood Stability Support",
-        "Counseling & Habit De-addiction Support",
+      shortDescription:
+        "Professional assessment and treatment of mental health conditions with an emphasis on compassionate, individualized care.",
+      overview:
+        "Psychiatry focuses on assessing, diagnosing, and managing mental health conditions. The psychiatrist considers symptoms, personal history, daily functioning, and other relevant factors when developing a care plan.",
+      conditions: [
+        "Anxiety disorders.",
+        "Depression and persistent low mood.",
+        "Sleep-related concerns associated with mental health.",
+        "Stress-related difficulties.",
+        "Selected mood disorders.",
+        "Other mental health concerns requiring specialist assessment.",
       ],
-      relatedDoctor: "Dr. V. Sashanka",
+      services: [
+        "Psychiatric consultations.",
+        "Assessment of symptoms and mental well-being.",
+        "Individualized treatment planning.",
+        "Medication management when appropriate.",
+        "Follow-up and ongoing care guidance.",
+      ],
+      whenToConsult:
+        "Consider professional support when emotional distress, anxiety, changes in mood, or sleep difficulties persist and interfere with everyday life.",
+      consultants: [
+        { name: "Dr. V. Sashanka", qualifications: "MD Psychiatry" },
+      ],
     },
   ],
 

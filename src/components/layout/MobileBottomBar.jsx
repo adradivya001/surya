@@ -12,7 +12,7 @@ export function MobileBottomBar() {
         className="mobile-bar-btn call-btn"
         aria-label="Call Hospital Desk"
       >
-        <Phone className="w-4 h-4 text-[#C65332]" />
+        <Phone className="w-4 h-4 text-[#C63D1B]" />
         <span>Call Desk</span>
       </a>
 

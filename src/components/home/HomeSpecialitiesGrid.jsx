@@ -1,104 +1,131 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { AnimateIn } from "../ui/AnimateIn";
-import { ArrowRight } from "lucide-react";
+import {
+  Clock,
+  HeartPulse,
+  ClipboardCheck,
+  Stethoscope,
+  TestTube,
+  Activity,
+  Pill,
+  Scissors,
+  Scan,
+  Droplets,
+  Brain,
+  Bone,
+  Wind,
+  ChevronRight,
+} from "lucide-react";
 
 export function HomeSpecialitiesGrid() {
-  // Exact 15 services in specified order
+  // Exact 15 services in specified order with relevant outline icons
   const specialties = [
-    "24 Hour Care",
-    "Health Care Service",
-    "Diagnosis Service",
-    "Specialist Doctors",
-    "Blood Test",
-    "Physicals",
-    "General Medicine",
-    "General Surgery",
-    "Gastroenterology",
-    "Dermatology",
-    "Nephrology",
-    "Neurology",
-    "Orthopedic",
-    "Pulmonology",
-    "Urology",
+    { name: "24 Hour Care", icon: Clock },
+    { name: "Health Care Service", icon: HeartPulse },
+    { name: "Diagnosis Service", icon: ClipboardCheck },
+    { name: "Specialist Doctors", icon: Stethoscope },
+    { name: "Blood Test", icon: TestTube },
+    { name: "Physicals", icon: Activity },
+    { name: "General Medicine", icon: Pill },
+    { name: "General Surgery", icon: Scissors },
+    { name: "Gastroenterology", icon: Activity },
+    { name: "Dermatology", icon: Scan },
+    { name: "Nephrology", icon: Droplets },
+    { name: "Neurology", icon: Brain },
+    { name: "Orthopedic", icon: Bone },
+    { name: "Pulmonology", icon: Wind },
+    { name: "Urology", icon: Scan },
   ];
 
   return (
-    <section id="specialties" className="relative py-20 sm:py-28 bg-[#DDFBFF]/45 text-[#1A1D20] overflow-hidden">
-      {/* Decorative Subtle Medical Plus & Dot accents */}
-      <div className="absolute top-12 left-6 sm:left-12 opacity-35 pointer-events-none select-none text-[#319BFF]">
+    <section id="specialties" className="relative py-20 sm:py-28 bg-[#FFF0E6]/50 text-[#262626] overflow-hidden">
+      {/* Decorative Subtle Dot accents matching orange theme */}
+      <div className="absolute top-12 left-6 sm:left-12 opacity-35 pointer-events-none select-none text-[#FF8A3D]">
         <div className="grid grid-cols-2 gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
         </div>
       </div>
-      <div className="absolute bottom-12 right-6 sm:right-12 opacity-35 pointer-events-none select-none text-[#319BFF]">
+      <div className="absolute bottom-12 right-6 sm:right-12 opacity-35 pointer-events-none select-none text-[#FF8A3D]">
         <div className="grid grid-cols-2 gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#319BFF]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF8A3D]" />
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Heading & Thin Divider */}
+        {/* Section Heading & Centered Description */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <AnimateIn animation="fade-up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#1428B5] leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#C63D1B] leading-tight">
               OUR EXPERT SPECIALTIES
             </h2>
           </AnimateIn>
 
-          {/* Thin horizontal divider underneath heading */}
+          {/* Thin horizontal orange underline */}
           <AnimateIn animation="fade-up" delay={100}>
-            <div className="w-24 sm:w-32 h-[3px] bg-[#1428B5] mx-auto mt-4 mb-5 rounded-full" />
+            <div className="w-24 sm:w-32 h-[3px] bg-[#E94B1C] mx-auto mt-4 mb-5 rounded-full" />
           </AnimateIn>
 
           <AnimateIn animation="fade-up" delay={150}>
-            <p className="text-sm sm:text-base md:text-lg text-[#2A2E34] font-medium leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-[#4A403B] font-medium leading-relaxed max-w-2xl mx-auto">
               Our hospital provides complete multi-speciality consultations, diagnostic services, and advanced surgical care under one roof.
             </p>
           </AnimateIn>
         </div>
 
-        {/* 2-Column Responsive Grid on Desktop / Tablet (Urology centered in the last row) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 max-w-4xl mx-auto">
+        {/* Refined 15 Specialty Cards: 3 columns Desktop, 2-3 columns Tablet, 1-2 columns Mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto">
           {specialties.map((item, idx) => {
-            const isLast = idx === specialties.length - 1; // 15th item: Urology
+            const Icon = item.icon;
 
             return (
               <AnimateIn
-                key={item}
+                key={item.name}
                 animation="fade-up"
-                delay={Math.min(idx * 30, 350)}
-                className={`w-full ${isLast ? "md:col-span-2 md:w-1/2 md:mx-auto" : ""}`}
+                delay={Math.min(idx * 25, 300)}
+                className="w-full"
               >
                 <Link
                   to="/specialities"
-                  className="group relative flex items-center justify-center text-center px-6 py-4 sm:py-5 min-h-[64px] sm:min-h-[72px] rounded-[18px] sm:rounded-[22px] bg-[#1428B5] text-white border-[1.8px] border-[#319BFF] shadow-sm hover:shadow-xl hover:bg-[#0E1F96] hover:scale-[1.015] active:scale-[0.98] transition-all duration-200"
+                  className="group relative flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs hover:shadow-lg hover:border-[#E94B1C] hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#E94B1C]/40"
+                  aria-label={`${item.name} department details`}
                 >
-                  <span className="text-sm sm:text-base md:text-lg font-bold tracking-wide text-white group-hover:text-[#DDFBFF] transition-colors leading-snug">
-                    {item}
-                  </span>
+                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+                    {/* Outline Icon in subtle themed container */}
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 border border-[#FF8A3D]/30 transition-transform duration-300 group-hover:scale-105">
+                      <Icon className="w-5 h-5 text-[#E94B1C]" strokeWidth={2.2} />
+                    </div>
+
+                    {/* Specialty Name */}
+                    <span className="text-sm sm:text-base font-bold text-[#262626] group-hover:text-[#E94B1C] transition-colors leading-snug truncate">
+                      {item.name}
+                    </span>
+                  </div>
+
+                  {/* Subtle navigation cue arrow */}
+                  <ChevronRight className="w-4 h-4 text-[#FF8A3D] opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all shrink-0 ml-2" />
                 </Link>
               </AnimateIn>
             );
           })}
         </div>
 
-        {/* Optional Explore All Services Link */}
-        <AnimateIn animation="fade-up" delay={300}>
+        {/* Explore All Specialties Tab Button */}
+        <AnimateIn animation="fade-up" delay={250}>
           <div className="mt-12 text-center">
             <Link
               to="/specialities"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold text-[#1428B5] bg-white border border-[#319BFF] hover:bg-[#1428B5] hover:text-white transition-all shadow-xs"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-all shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#E94B1C]/50"
             >
-              <span>Explore Department Details</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Explore All Specialties</span>
+              <span className="text-[#FFF0E6]">→</span>
             </Link>
           </div>
         </AnimateIn>

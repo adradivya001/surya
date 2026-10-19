@@ -4,6 +4,7 @@ import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { MobileBottomBar } from "./components/layout/MobileBottomBar";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
+import { FloatingActionButtons } from "./components/layout/FloatingActionButtons";
 
 // Multi-page route components
 import { HomePage } from "./pages/HomePage";
@@ -45,6 +46,9 @@ export function App() {
 
         {/* Reusable Institutional Footer on every page */}
         <Footer />
+
+        {/* Floating Action Buttons (Right-side on every page) */}
+        <FloatingActionButtons />
 
         {/* Dedicated Sticky Mobile Bottom Bar (< 992px) */}
         <MobileBottomBar />

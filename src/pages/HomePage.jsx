@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { HomeHero } from "../components/home/HomeHero";
-import { HomeAboutPreview } from "../components/home/HomeAboutPreview";
 import { HomeSpecialitiesGrid } from "../components/home/HomeSpecialitiesGrid";
 import { FacilitiesCinematic } from "../components/home/FacilitiesCinematic";
 import { SpecialtiesDoctorsPoster } from "../components/home/SpecialtiesDoctorsPoster";
@@ -18,10 +17,7 @@ export function HomePage() {
       {/* 1. Hero Section with Integrated Stats & Organic Flowing Bottom Wave */}
       <HomeHero />
 
-      {/* 2. Editorial About Section with Circular Masked Imagery & Metrics */}
-      <HomeAboutPreview />
-
-      {/* 3. Services Section with 6 Horizontal Panels & Navigation Controls */}
+      {/* 2. Services Section with 15 Expert Specialties Grid */}
       <HomeSpecialitiesGrid />
 
       {/* 4. Advanced Technology & Facilities Section in Deep Clinical Teal */}

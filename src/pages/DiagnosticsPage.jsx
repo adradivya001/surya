@@ -42,45 +42,45 @@ export function DiagnosticsPage() {
         badge="On-Campus Lab & Imaging"
       >
         <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
-          <Button variant="primary" size="sm" icon={Phone} className="bg-[#C65332] hover:bg-[#A84328] text-white">
+          <Button variant="primary" size="sm" icon={Phone} className="bg-[#E94B1C] hover:bg-[#A83218] text-white">
             Call Lab Desk: {HOSPITAL_INFO.phone}
           </Button>
         </a>
         <Link to="/appointment">
-          <Button variant="secondary" size="sm" icon={Calendar} className="bg-white border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]">
+          <Button variant="secondary" size="sm" icon={Calendar} className="bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6]">
             Book a Visit or Test
           </Button>
         </Link>
       </PageHero>
 
       {/* Diagnostics Overview */}
-      <section className="py-12 bg-[#FFF8F2] border-b border-[#F0D9CB]">
+      <section className="py-12 bg-[#FFF9F3] border-b border-[#E9D8CE]">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-3 text-left">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF8A3D]">
                 ACCURATE RESULTS YOU CAN TRUST
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#C63D1B] tracking-tight">
                 Clear Test Results to Guide Your Healing
               </h2>
-              <p className="text-sm text-[#59616B] leading-relaxed">
+              <p className="text-sm text-[#4A403B] leading-relaxed">
                 When you or a family member feel unwell, timely test results make all the difference. Our on-site testing lab and imaging equipment deliver quick, dependable reports directly to your treating doctor.
               </p>
             </div>
 
-            <div className="lg:col-span-4 p-5 rounded-2xl bg-white border border-[#F0D9CB] space-y-2 text-left">
-              <span className="text-[11px] uppercase font-bold text-[#252B33] block">
+            <div className="lg:col-span-4 p-5 rounded-2xl bg-white border border-[#E9D8CE] space-y-2 text-left shadow-xs">
+              <span className="text-[11px] uppercase font-bold text-[#E94B1C] block">
                 Sample Collection & Lab Timings:
               </span>
-              <div className="text-xs text-[#59616B] space-y-1">
+              <div className="text-xs text-[#756860] space-y-1">
                 <p>
-                  <strong>Regular Lab Tests:</strong> {HOSPITAL_INFO.timing.diagnostics}
+                  <strong className="text-[#262626]">Regular Lab Tests:</strong> {HOSPITAL_INFO.timing.diagnostics}
                 </p>
                 <p>
-                  <strong>Emergency Lab Testing:</strong> Open 24 Hours / 7 Days
+                  <strong className="text-[#262626]">Emergency Lab Testing:</strong> Open 24 Hours / 7 Days
                 </p>
-                <p className="text-[11px] text-[#808A96] pt-1">
+                <p className="text-[11px] text-[#756860] pt-1">
                   Reports are shared with your consulting doctor as soon as they are ready.
                 </p>
               </div>
@@ -90,13 +90,13 @@ export function DiagnosticsPage() {
       </section>
 
       {/* Confirmed Test Categories & Tab Detail */}
-      <section className="py-16 bg-white border-b border-[#F0D9CB]">
+      <section className="py-16 bg-white border-b border-[#E9D8CE]">
         <Container>
           <div className="text-left max-w-2xl mb-10 space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#FF8A3D]">
               AVAILABLE LAB TESTS & SCANS
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#C63D1B] tracking-tight">
               Clinical Lab & Imaging Units
             </h2>
           </div>
@@ -113,16 +113,16 @@ export function DiagnosticsPage() {
                     onClick={() => setActiveCategory(cat)}
                     className={`w-full p-4 rounded-xl text-left transition flex items-center justify-between border cursor-pointer ${
                       isSelected
-                        ? "bg-[#252B33] text-white border-[#252B33] shadow-md ring-1 ring-[#252B33]"
-                        : "bg-white text-[#252B33] border-[#F0D9CB] hover:bg-[#FCECE2] hover:border-[#D98A62]"
+                        ? "bg-[#E94B1C] text-white border-[#E94B1C] shadow-md ring-1 ring-[#E94B1C]"
+                        : "bg-white text-[#262626] border-[#E9D8CE] hover:bg-[#FFF0E6] hover:border-[#FF8A3D]"
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                           isSelected
-                            ? "bg-[#C65332] text-white"
-                            : "bg-[#FCECE2] text-[#C65332]"
+                            ? "bg-white text-[#E94B1C]"
+                            : "bg-[#FFF0E6] text-[#E94B1C]"
                         }`}
                       >
                         <Icon className="w-5 h-5" />
@@ -130,14 +130,14 @@ export function DiagnosticsPage() {
                       <div>
                         <h4
                           className={`text-sm font-bold leading-snug transition-colors ${
-                            isSelected ? "text-white" : "text-[#252B33]"
+                            isSelected ? "text-white" : "text-[#262626]"
                           }`}
                         >
                           {cat.name}
                         </h4>
                         <span
                           className={`text-[11px] font-medium transition-colors ${
-                            isSelected ? "text-[#F6D8C5]" : "text-[#59616B]"
+                            isSelected ? "text-[#FFF0E6]" : "text-[#756860]"
                           }`}
                         >
                           {cat.testsIncluded.length} Key Tests
@@ -150,16 +150,16 @@ export function DiagnosticsPage() {
             </div>
 
             {/* Selected Category Detail Card (8 cols) */}
-            <div className="lg:col-span-8 bg-white p-6 sm:p-8 rounded-2xl border border-[#F0D9CB] shadow-sm space-y-6 text-left">
-              <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-xl overflow-hidden bg-[#FCECE2]">
+            <div className="lg:col-span-8 bg-white p-6 sm:p-8 rounded-2xl border border-[#E9D8CE] shadow-xs space-y-6 text-left">
+              <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-xl overflow-hidden bg-[#FFF0E6]">
                 <img
                   src={activeCategory.image}
                   alt={activeCategory.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#252B33]/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#C63D1B]/80 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
-                  <span className="text-xs font-bold text-[#F6D8C5] uppercase tracking-wider block">
+                  <span className="text-xs font-bold text-[#FFF0E6] uppercase tracking-wider block">
                     Diagnostic Category
                   </span>
                   <h3 className="text-xl sm:text-2xl font-black text-white">
@@ -169,26 +169,26 @@ export function DiagnosticsPage() {
               </div>
 
               <div className="space-y-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#252B33]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#C63D1B]">
                   What This Test Is For
                 </h4>
-                <p className="text-xs sm:text-sm text-[#59616B] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#4A403B] leading-relaxed">
                   {activeCategory.shortDesc}
                 </p>
               </div>
 
               {/* Verified Tests in this category */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#252B33]">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#C63D1B]">
                   Common Tests in this Unit
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   {activeCategory.testsIncluded.map((test, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-lg bg-[#FFF8F2] border border-[#F0D9CB] flex items-center gap-2 text-[#252B33] font-medium"
+                      className="p-3 rounded-lg bg-[#FFF9F3] border border-[#E9D8CE] flex items-center gap-2 text-[#262626] font-medium"
                     >
-                      <CheckCircle2 className="w-4 h-4 text-[#C65332] shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-[#E94B1C] shrink-0" />
                       <span>{test}</span>
                     </div>
                   ))}
@@ -196,12 +196,12 @@ export function DiagnosticsPage() {
               </div>
 
               {/* Preparation Guidelines */}
-              <div className="p-4 rounded-xl bg-[#FCECE2] border border-[#F0D9CB] space-y-1.5 text-xs text-[#252B33]">
-                <div className="flex items-center gap-2 font-bold text-[#252B33]">
-                  <AlertCircle className="w-4 h-4 text-[#C65332] shrink-0" />
+              <div className="p-4 rounded-xl bg-[#FFF0E6] border border-[#E9D8CE] space-y-1.5 text-xs text-[#262626]">
+                <div className="flex items-center gap-2 font-bold text-[#C63D1B]">
+                  <AlertCircle className="w-4 h-4 text-[#E94B1C] shrink-0" />
                   <span>How to Prepare for Your Test:</span>
                 </div>
-                <p className="leading-relaxed pl-6 text-[#59616B]">
+                <p className="leading-relaxed pl-6 text-[#4A403B]">
                   {activeCategory.preparationNotice}
                 </p>
               </div>
@@ -216,14 +216,14 @@ export function DiagnosticsPage() {
                     variant="primary"
                     size="md"
                     icon={Phone}
-                    className="w-full bg-[#C65332] hover:bg-[#A84328] text-white"
+                    className="w-full bg-[#E94B1C] hover:bg-[#A83218] text-white rounded-full"
                   >
                     Check Test Availability: {HOSPITAL_INFO.phone}
                   </Button>
                 </a>
 
                 <Link to="/contact" className="w-full sm:w-auto">
-                  <Button variant="secondary" size="md" className="w-full text-xs bg-white border-[#F0D9CB] text-[#252B33] hover:bg-[#FCECE2]">
+                  <Button variant="secondary" size="md" className="w-full text-xs bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] rounded-full">
                     Ask Reception Desk
                   </Button>
                 </Link>
@@ -234,45 +234,45 @@ export function DiagnosticsPage() {
       </section>
 
       {/* Test Enquiry Instructions */}
-      <section className="py-16 bg-[#FFF8F2] border-b border-[#F0D9CB]">
+      <section className="py-16 bg-[#FFF9F3] border-b border-[#E9D8CE]">
         <Container>
           <div className="max-w-3xl mx-auto space-y-6 text-left">
             <div className="text-center space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#B96645]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF8A3D]">
                 SIMPLE 3-STEP GUIDE
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#252B33] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#C63D1B] tracking-tight">
                 How to Get Your Lab Tests Done
               </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 text-xs">
-              <div className="p-5 rounded-xl border border-[#F0D9CB] bg-white space-y-2">
-                <span className="w-7 h-7 rounded-full bg-[#C65332] text-white flex items-center justify-center font-bold text-xs">
+              <div className="p-5 rounded-xl border border-[#E9D8CE] bg-white space-y-2 shadow-xs">
+                <span className="w-7 h-7 rounded-full bg-[#E94B1C] text-white flex items-center justify-center font-bold text-xs">
                   1
                 </span>
-                <h4 className="font-bold text-[#252B33] text-sm">Bring Doctor's Advice</h4>
-                <p className="text-[#59616B] leading-relaxed">
+                <h4 className="font-bold text-[#262626] text-sm">Bring Doctor's Advice</h4>
+                <p className="text-[#756860] leading-relaxed">
                   Bring your doctor's prescription or slip showing which tests or scans are needed.
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl border border-[#F0D9CB] bg-white space-y-2">
-                <span className="w-7 h-7 rounded-full bg-[#C65332] text-white flex items-center justify-center font-bold text-xs">
+              <div className="p-5 rounded-xl border border-[#E9D8CE] bg-white space-y-2 shadow-xs">
+                <span className="w-7 h-7 rounded-full bg-[#E94B1C] text-white flex items-center justify-center font-bold text-xs">
                   2
                 </span>
-                <h4 className="font-bold text-[#252B33] text-sm">Follow Preparation Tips</h4>
-                <p className="text-[#59616B] leading-relaxed">
+                <h4 className="font-bold text-[#262626] text-sm">Follow Preparation Tips</h4>
+                <p className="text-[#756860] leading-relaxed">
                   Check if fasting (overnight without food) or drinking water (for scans) is needed before you come.
                 </p>
               </div>
 
-              <div className="p-5 rounded-xl border border-[#F0D9CB] bg-white space-y-2">
-                <span className="w-7 h-7 rounded-full bg-[#C65332] text-white flex items-center justify-center font-bold text-xs">
+              <div className="p-5 rounded-xl border border-[#E9D8CE] bg-white space-y-2 shadow-xs">
+                <span className="w-7 h-7 rounded-full bg-[#E94B1C] text-white flex items-center justify-center font-bold text-xs">
                   3
                 </span>
-                <h4 className="font-bold text-[#252B33] text-sm">Give Sample & Get Reports</h4>
-                <p className="text-[#59616B] leading-relaxed">
+                <h4 className="font-bold text-[#262626] text-sm">Give Sample & Get Reports</h4>
+                <p className="text-[#756860] leading-relaxed">
                   Submit blood or urine at reception. Your doctor will review the results with you promptly.
                 </p>
               </div>

@@ -57,17 +57,17 @@ export function TestimonialCarousel() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="space-y-3 text-left max-w-xl">
             <AnimateIn animation="slide-left">
-              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#A84328]">
-                <span className="w-2 h-2 rounded-full bg-[#A84328]" />
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#E94B1C]">
+                <span className="w-2 h-2 rounded-full bg-[#E94B1C]" />
                 <span>PATIENT STORIES</span>
               </div>
             </AnimateIn>
 
             <AnimateIn animation="slide-left" delay={100}>
-              <h2 className="text-4xl sm:text-5xl font-serif-heading font-bold text-[#1A1D20] tracking-tight leading-tight">
+              <h2 className="text-4xl sm:text-5xl font-serif-heading font-bold text-[#262626] tracking-tight leading-tight">
                 Real People.
                 <br />
-                Real Experiences. <span className="inline-block w-8 h-1 bg-[#A84328] align-middle ml-1 rounded-full" />
+                Real Experiences. <span className="inline-block w-8 h-1 bg-[#E94B1C] align-middle ml-1 rounded-full" />
               </h2>
             </AnimateIn>
 
@@ -76,7 +76,7 @@ export function TestimonialCarousel() {
               <button
                 type="button"
                 onClick={() => scroll("left")}
-                className="w-10 h-10 rounded-full border border-[#E2D9D0] bg-white hover:bg-[#F8E6DC] text-[#1A1D20] flex items-center justify-center transition active:scale-95 shadow-xs"
+                className="w-10 h-10 rounded-full border border-[#E9D8CE] bg-white hover:bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center transition active:scale-95 shadow-xs cursor-pointer"
                 aria-label="Previous stories"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -84,7 +84,7 @@ export function TestimonialCarousel() {
               <button
                 type="button"
                 onClick={() => scroll("right")}
-                className="w-10 h-10 rounded-full border border-[#E2D9D0] bg-white hover:bg-[#F8E6DC] text-[#1A1D20] flex items-center justify-center transition active:scale-95 shadow-xs"
+                className="w-10 h-10 rounded-full border border-[#E9D8CE] bg-white hover:bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center transition active:scale-95 shadow-xs cursor-pointer"
                 aria-label="Next stories"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -94,12 +94,12 @@ export function TestimonialCarousel() {
 
           {/* Right Floating Editorial Text Callout matching Mockup */}
           <div className="lg:text-right max-w-sm">
-            <div className="font-serif-heading text-2xl sm:text-3xl font-bold text-[#1A1D20] leading-tight">
+            <div className="font-serif-heading text-2xl sm:text-3xl font-bold text-[#262626] leading-tight">
               Your Health.
               <br />
-              <span className="font-editorial-italic text-[#A84328]">Our Priority.</span>
+              <span className="font-editorial-italic text-[#C63D1B]">Our Priority.</span>
             </div>
-            <p className="text-xs sm:text-sm text-[#62666D] mt-1.5 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#756860] mt-1.5 leading-relaxed">
               Compassionate care for today, a healthier tomorrow.
             </p>
           </div>
@@ -115,18 +115,18 @@ export function TestimonialCarousel() {
               key={item.id}
               animation="fade-up"
               delay={idx * 120}
-              className="bg-white rounded-2xl border border-[#E2D9D0] p-6 shadow-xs hover:shadow-xl hover:border-[#A84328] transition-all duration-300 flex flex-col justify-between text-left relative group"
+              className="bg-white rounded-2xl border border-[#E9D8CE] p-6 shadow-xs hover:shadow-xl hover:border-[#E94B1C] transition-all duration-300 flex flex-col justify-between text-left relative group"
             >
               <div className="space-y-4">
                 {/* Quote Icon */}
-                <Quote className="w-7 h-7 text-[#A84328]/20" />
+                <Quote className="w-7 h-7 text-[#FF8A3D]/40" />
 
-                <p className="text-sm text-[#1A1D20] leading-relaxed font-normal">
+                <p className="text-sm text-[#262626] leading-relaxed font-normal">
                   "{item.quote}"
                 </p>
 
                 {/* 5-Star Rating */}
-                <div className="flex items-center gap-1 text-amber-500">
+                <div className="flex items-center gap-1 text-[#F26A21]">
                   {[...Array(item.rating)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-current" />
                   ))}
@@ -134,11 +134,11 @@ export function TestimonialCarousel() {
               </div>
 
               {/* Patient Avatar & Name */}
-              <div className="pt-6 border-t border-[#E2D9D0]/70 flex items-center gap-3 mt-6">
+              <div className="pt-6 border-t border-[#F0E2D9] flex items-center gap-3 mt-6">
                 <img
                   src={item.avatar}
                   alt={item.name}
-                  className="w-10 h-10 rounded-full object-cover border border-[#E2D9D0]"
+                  className="w-10 h-10 rounded-full object-cover border border-[#E9D8CE]"
                 />
                 <div>
                   <h4 className="text-sm font-bold text-[#1A1D20] leading-tight">

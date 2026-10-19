@@ -15,31 +15,31 @@ export function Button({
   ...props
 }) {
   const baseStyles =
-    "inline-flex items-center justify-center font-bold tracking-tight transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E56A2E] disabled:opacity-60 disabled:cursor-not-allowed select-none cursor-pointer transform-gpu hover:-translate-y-0.5 active:translate-y-0 active:scale-97";
+    "inline-flex items-center justify-center font-bold tracking-tight transition-all duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E94B1C] disabled:opacity-60 disabled:cursor-not-allowed select-none cursor-pointer transform-gpu hover:-translate-y-0.5 active:translate-y-0 active:scale-97";
 
   const sizeStyles = {
-    sm: "px-4 py-2 text-xs rounded-lg gap-1.5",
-    md: "px-5 py-2.5 text-sm rounded-xl gap-2",
-    lg: "px-7 py-3.5 text-base rounded-xl gap-2.5",
+    sm: "px-4 py-2 text-xs rounded-full gap-1.5",
+    md: "px-5 py-2.5 text-sm rounded-full gap-2",
+    lg: "px-7 py-3.5 text-base rounded-full gap-2.5",
   };
 
   const variantStyles = {
     primary:
-      "bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] text-white shadow-sm hover:shadow-md focus:ring-[#A84328]",
+      "bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#E94B1C]",
     terracotta:
-      "bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] text-white shadow-sm hover:shadow-md focus:ring-[#A84328]",
+      "bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#E94B1C]",
     navy:
-      "bg-[#1A1D20] hover:bg-[#082E37] text-white shadow-sm hover:shadow-md focus:ring-[#1A1D20]",
+      "bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#C63D1B]",
     accent:
-      "bg-[#A84328] hover:bg-[#8F371F] text-white shadow-sm hover:shadow-md focus:ring-[#A84328]",
+      "bg-[#F26A21] hover:bg-[#C63D1B] text-white shadow-sm hover:shadow-md focus:ring-[#F26A21]",
     emergency:
-      "bg-[#A84328] hover:bg-[#8F371F] text-white shadow-lg hover:shadow-xl focus:ring-[#A84328]",
+      "bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-lg hover:shadow-xl focus:ring-[#C63D1B]",
     secondary:
-      "bg-white border border-[#E2D9D0] text-[#1A1D20] hover:bg-[#FFF9F3] hover:text-[#A84328] hover:border-[#A84328] shadow-xs focus:ring-[#A84328]",
+      "bg-white border border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] hover:border-[#E94B1C] shadow-xs focus:ring-[#E94B1C]",
     outline:
-      "border border-[#E2D9D0] bg-transparent text-[#1A1D20] hover:bg-[#FFF9F3] hover:text-[#A84328] hover:border-[#A84328] focus:ring-[#A84328]",
+      "border border-[#E9D8CE] bg-transparent text-[#C63D1B] hover:bg-[#FFF0E6] hover:border-[#E94B1C] focus:ring-[#E94B1C]",
     ghost:
-      "text-[#1A1D20] hover:bg-[#F8E6DC]/40 hover:text-[#A84328] focus:ring-[#A84328]",
+      "text-[#C63D1B] hover:bg-[#FFF0E6] hover:text-[#A83218] focus:ring-[#E94B1C]",
   };
 
   const combinedClasses = `${baseStyles} ${sizeStyles[size] || sizeStyles.md} ${

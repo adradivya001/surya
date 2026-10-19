@@ -17,21 +17,21 @@ export function EmergencyPage() {
   }, []);
 
   return (
-    <div className="w-full bg-[#FFF9F3]">
-      {/* High-priority Emergency Hero Banner */}
-      <section className="bg-[#1A1D20] text-white pt-28 sm:pt-32 pb-14 md:pb-20 border-b border-white/10">
+    <div className="w-full bg-[#FFFFFF]">
+      {/* High-priority Emergency Hero Banner (Warm Cream & Deep Orange) */}
+      <section className="bg-gradient-to-br from-[#FFF0E6] via-[#FFF9F3] to-[#FFF0E6] text-[#262626] pt-28 sm:pt-32 pb-14 md:pb-20 border-b border-[#F0E2D9]">
         <Container>
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#A84328] text-white shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#C63D1B] text-white shadow-sm">
               <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
               <span>24/7 EMERGENCY CARE OPEN NOW</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif-heading font-bold text-white tracking-tight leading-tight">
-              24/7 Emergency & Casualty Care
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif-heading font-bold text-[#C63D1B] tracking-tight leading-tight">
+              24/7 Emergency &amp; Casualty Care
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-[#E2D9D0] leading-relaxed max-w-3xl mx-auto font-normal">
+            <p className="text-base sm:text-lg md:text-xl text-[#4A403B] leading-relaxed max-w-3xl mx-auto font-normal">
               Our emergency team is open day and night for accidents, sudden chest pain, breathing difficulties, high fevers, and wound care in Sai Nagar, Anantapur.
             </p>
 
@@ -39,7 +39,7 @@ export function EmergencyPage() {
             <div className="pt-2">
               <a
                 href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                className="inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-2xl text-base sm:text-lg font-bold bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] text-white shadow-xl transition transform hover:scale-[1.02] active:scale-98 w-full sm:w-auto text-center"
+                className="inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-xl hover:shadow-2xl transition transform hover:scale-[1.02] active:scale-98 w-full sm:w-auto text-center"
               >
                 <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse shrink-0 text-white" />
                 <span>Call Emergency Casualty: {HOSPITAL_INFO.phone}</span>
@@ -47,18 +47,18 @@ export function EmergencyPage() {
             </div>
 
             {/* Address & Direct Navigation */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-[13px] text-[#E2D9D0]">
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-[13px] text-[#756860]">
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#C85235] shrink-0" />
+                <MapPin className="w-4 h-4 text-[#E94B1C] shrink-0" />
                 <span>{HOSPITAL_INFO.fullAddress}</span>
               </div>
               <a
                 href={HOSPITAL_INFO.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold transition border border-white/20"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-[#FFF0E6] text-[#C63D1B] font-bold transition border border-[#E9D8CE] shadow-2xs"
               >
-                <Navigation className="w-3.5 h-3.5 text-[#B69A65]" />
+                <Navigation className="w-3.5 h-3.5 text-[#E94B1C]" />
                 <span>Get Directions</span>
               </a>
             </div>
@@ -66,19 +66,19 @@ export function EmergencyPage() {
         </Container>
       </section>
 
-      {/* National Emergency 112 Notice as Required */}
-      <section className="py-8 bg-white border-b border-[#DED7D7]">
+      {/* National Emergency 112 Notice */}
+      <section className="py-8 bg-white border-b border-[#F0E2D9]">
         <Container>
-          <div className="max-w-4xl mx-auto flex items-start gap-4 text-xs sm:text-sm text-[#29252A]">
-            <AlertCircle className="w-5 h-5 text-[#641D2D] shrink-0 mt-0.5" />
+          <div className="max-w-4xl mx-auto flex items-start gap-4 text-xs sm:text-sm text-[#262626]">
+            <AlertCircle className="w-5 h-5 text-[#C63D1B] shrink-0 mt-0.5" />
             <div className="space-y-1 text-left">
-              <h4 className="font-bold text-[#29252A] text-sm sm:text-base">
+              <h4 className="font-bold text-[#262626] text-sm sm:text-base">
                 National All-India Emergency Helpline:
               </h4>
-              <p className="leading-relaxed text-[#6F686B]">
+              <p className="leading-relaxed text-[#756860]">
                 For severe life-threatening emergencies requiring government police, fire, or national disaster services across India, dial <strong>112</strong> right away.
               </p>
-              <p className="text-[11px] text-[#8A8487]">
+              <p className="text-[11px] text-[#756860]/80">
                 National 112 is a public helpline operated by Government of India authorities.
               </p>
             </div>
@@ -87,29 +87,29 @@ export function EmergencyPage() {
       </section>
 
       {/* Emergency Guidance: Symptoms & What to Bring */}
-      <section className="py-18 bg-[#FCFAF7] border-b border-[#DED7D7]">
+      <section className="py-18 bg-[#FFF0E6]/40 border-b border-[#F0E2D9]">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-5xl mx-auto">
             {/* When to visit casualty */}
-            <div className="p-7 sm:p-9 rounded-2xl bg-white border border-[#DED7D7] shadow-2xs space-y-4">
+            <div className="p-7 sm:p-9 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center font-bold">
+                <div className="w-11 h-11 rounded-xl bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center font-bold">
                   <AlertTriangle className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#29252A]">
+                  <h3 className="text-xl font-bold text-[#262626]">
                     When to Come to Emergency
                   </h3>
-                  <span className="text-xs text-[#641D2D] font-bold">
-                    Warning Signs & Sudden Symptoms
+                  <span className="text-xs text-[#C63D1B] font-bold">
+                    Warning Signs &amp; Sudden Symptoms
                   </span>
                 </div>
               </div>
 
-              <ul className="space-y-2.5 text-xs sm:text-sm text-[#6F686B]">
+              <ul className="space-y-2.5 text-xs sm:text-sm text-[#756860]">
                 {HOSPITAL_INFO.emergencyGuidance.whenToVisit.map((symptom, idx) => (
                   <li key={idx} className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-[#641D2D] mt-2 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-[#E94B1C] mt-2 shrink-0" />
                     <span>{symptom}</span>
                   </li>
                 ))}
@@ -117,32 +117,32 @@ export function EmergencyPage() {
             </div>
 
             {/* What to bring to casualty */}
-            <div className="p-7 sm:p-9 rounded-2xl bg-white border border-[#DED7D7] shadow-2xs space-y-4">
+            <div className="p-7 sm:p-9 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-[#E8D8D9] text-[#641D2D] flex items-center justify-center font-bold">
+                <div className="w-11 h-11 rounded-xl bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center font-bold">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#29252A]">
+                  <h3 className="text-xl font-bold text-[#262626]">
                     What to Bring (If Possible)
                   </h3>
-                  <span className="text-xs text-[#641D2D] font-bold">
+                  <span className="text-xs text-[#C63D1B] font-bold">
                     Helpful Medical Papers
                   </span>
                 </div>
               </div>
 
-              <ul className="space-y-2.5 text-xs sm:text-sm text-[#6F686B]">
+              <ul className="space-y-2.5 text-xs sm:text-sm text-[#756860]">
                 {HOSPITAL_INFO.emergencyGuidance.whatToBring.map((doc, idx) => (
                   <li key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#641D2D] mt-0.5 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#E94B1C] mt-0.5 shrink-0" />
                     <span>{doc}</span>
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-4 p-3.5 rounded-xl bg-[#FCFAF7] border border-[#DED7D7] text-xs text-[#6F686B]">
-                <strong className="text-[#29252A]">Care First, Papers Later:</strong> If you do not have documents with you, please come directly to our hospital. Your immediate medical safety is our first priority.
+              <div className="mt-4 p-3.5 rounded-xl bg-[#FFF0E6]/60 border border-[#E9D8CE] text-xs text-[#756860]">
+                <strong className="text-[#262626]">Care First, Papers Later:</strong> If you do not have documents with you, please come directly to our hospital. Your immediate medical safety is our first priority.
               </div>
             </div>
           </div>
@@ -150,59 +150,59 @@ export function EmergencyPage() {
       </section>
 
       {/* Casualty Process Flow */}
-      <section className="py-16 bg-[#FFF9F3] border-b border-[#E9D7C7]">
+      <section className="py-16 bg-[#FFF9F3] border-b border-[#F0E2D9]">
         <Container>
           <div className="max-w-4xl mx-auto space-y-8 text-left">
             <div className="text-center space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#C65332]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#C63D1B]">
                 CLEAR CARE STEPS
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#292D32] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#262626] tracking-tight">
                 What Happens When You Reach Emergency
               </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-              <div className="p-4 rounded-xl bg-white border border-[#E9D7C7] space-y-2 shadow-2xs">
-                <span className="text-xl font-black text-[#C65332]">01</span>
-                <h4 className="font-bold text-[#292D32] text-sm">Immediate Check</h4>
-                <p className="text-[#62666D] leading-relaxed">
+              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
+                <span className="text-xl font-black text-[#C63D1B]">01</span>
+                <h4 className="font-bold text-[#262626] text-sm">Immediate Check</h4>
+                <p className="text-[#756860] leading-relaxed">
                   Our duty nurse checks pulse, blood pressure, oxygen level, and pain right away.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#E9D7C7] space-y-2 shadow-2xs">
-                <span className="text-xl font-black text-[#C65332]">02</span>
-                <h4 className="font-bold text-[#292D32] text-sm">Doctor's Examination</h4>
-                <p className="text-[#62666D] leading-relaxed">
+              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
+                <span className="text-xl font-black text-[#C63D1B]">02</span>
+                <h4 className="font-bold text-[#262626] text-sm">Doctor's Examination</h4>
+                <p className="text-[#756860] leading-relaxed">
                   Our doctor examines you immediately to identify the cause of the problem.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#E9D7C7] space-y-2 shadow-2xs">
-                <span className="text-xl font-black text-[#C65332]">03</span>
-                <h4 className="font-bold text-[#292D32] text-sm">Quick Relief & Treatment</h4>
-                <p className="text-[#62666D] leading-relaxed">
+              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
+                <span className="text-xl font-black text-[#C63D1B]">03</span>
+                <h4 className="font-bold text-[#262626] text-sm">Quick Relief &amp; Treatment</h4>
+                <p className="text-[#756860] leading-relaxed">
                   Oxygen, IV fluids, pain medication, ECG, or wound care are given without delay.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-[#E9D7C7] space-y-2 shadow-2xs">
-                <span className="text-xl font-black text-[#C65332]">04</span>
-                <h4 className="font-bold text-[#292D32] text-sm">Next Steps Explained</h4>
-                <p className="text-[#62666D] leading-relaxed">
+              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
+                <span className="text-xl font-black text-[#C63D1B]">04</span>
+                <h4 className="font-bold text-[#262626] text-sm">Next Steps Explained</h4>
+                <p className="text-[#756860] leading-relaxed">
                   The doctor explains clearly whether room stay, observation, or home care is best.
                 </p>
               </div>
             </div>
 
             {/* Direct Location Card */}
-            <div className="p-6 rounded-2xl bg-white border border-[#E9D7C7] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="p-6 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="space-y-1">
-                <h4 className="text-base font-bold text-[#292D32]">
+                <h4 className="text-base font-bold text-[#262626]">
                   Surya Hospital Emergency Entrance
                 </h4>
-                <p className="text-xs text-[#62666D]">
+                <p className="text-xs text-[#756860]">
                   12-3-367, 9th Cross Road, behind Ambedkar Bhavan, Sai Nagar, Anantapur.
                 </p>
               </div>
@@ -210,9 +210,9 @@ export function EmergencyPage() {
                 href={HOSPITAL_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#292D32] hover:bg-[#C65332] transition"
+                className="shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition shadow-sm"
               >
-                <Navigation className="w-4 h-4 text-[#C65332]" />
+                <Navigation className="w-4 h-4 text-[#FFF0E6]" />
                 <span>Open in Google Maps</span>
               </a>
             </div>

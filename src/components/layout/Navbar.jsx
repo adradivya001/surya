@@ -48,33 +48,10 @@ export function Navbar() {
   const navLinks = [
     { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
-    {
-      label: "Services",
-      path: "/specialities",
-      hasDropdown: true,
-      dropdownKey: "services",
-      items: [
-        { label: "General Medicine", path: "/specialities" },
-        { label: "General & Laparoscopic Surgery", path: "/specialities" },
-        { label: "Orthopedics & Fracture Care", path: "/specialities" },
-        { label: "24/7 Emergency Care", path: "/emergency" },
-        { label: "In-House Diagnostics & Lab", path: "/specialities" },
-        { label: "24/7 In-House Pharmacy", path: "/contact" },
-      ],
-    },
+    { label: "Services", path: "/specialities" },
     { label: "Our Doctors", path: "/doctors" },
-    {
-      label: "Patient Resources",
-      path: "/insurance-partners",
-      hasDropdown: true,
-      dropdownKey: "resources",
-      items: [
-        { label: "Insurance Partners", path: "/insurance-partners" },
-        { label: "Visiting Timings & OPD", path: "/contact" },
-        { label: "Inpatient Rooms & Admission", path: "/about" },
-        { label: "Emergency Guidance", path: "/emergency" },
-      ],
-    },
+    { label: "Insurance", path: "/insurance-partners" },
+    { label: "Emergency", path: "/emergency" },
     { label: "Contact", path: "/contact" },
   ];
 
@@ -86,7 +63,7 @@ export function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 pb-2 px-3 sm:px-5 lg:px-6 transition-all duration-300 pointer-events-none ${
-          isScrolled ? "bg-gradient-to-b from-[#FFF9F3]/90 via-[#FFF9F3]/50 to-transparent backdrop-blur-[6px]" : ""
+          isScrolled ? "bg-gradient-to-b from-white/90 via-white/50 to-transparent backdrop-blur-[6px]" : ""
         }`}
       >
         <div
@@ -100,8 +77,8 @@ export function Navbar() {
           <motion.div
             layout
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`flex items-center gap-3 lg:gap-4 bg-white/98 backdrop-blur-xl rounded-full border border-[#E2D9D0] shadow-[0_8px_30px_rgb(0,0,0,0.12)] px-4 sm:px-6 py-2 sm:py-2.5 transition-all duration-300 ${
-              isCollapsed ? "shadow-2xl border-[#A84328]/40 shrink-0" : "flex-1 justify-between"
+            className={`flex items-center gap-3 lg:gap-4 bg-white/98 backdrop-blur-xl rounded-full border border-[#E9D8CE] shadow-[0_8px_30px_rgba(233,75,28,0.06)] px-4 sm:px-6 py-2 sm:py-2.5 transition-all duration-300 ${
+              isCollapsed ? "shadow-2xl border-[#E94B1C]/30 shrink-0" : "flex-1 justify-between"
             }`}
           >
             {/* 1. Left: Surya Hospital Official Brand Logo */}
@@ -115,7 +92,7 @@ export function Navbar() {
               </Link>
             </div>
 
-            {/* 2. Middle: Desktop Navigation Links with Dropdowns - Animated Collapse on downward scroll */}
+            {/* 2. Middle: Desktop Navigation Links - Clean Direct Links */}
             <AnimatePresence>
               {!isCollapsed && (
                 <motion.nav
@@ -125,83 +102,21 @@ export function Navbar() {
                   transition={{ duration: 0.2 }}
                   className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 whitespace-nowrap"
                 >
-                  {navLinks.map((link) => {
-                    if (!link.hasDropdown) {
-                      return (
-                        <NavLink
-                          key={link.label}
-                          to={link.path}
-                          className={({ isActive }) =>
-                            `px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 ${
-                              isActive
-                                ? "text-[#1A1D20] font-bold bg-[#F8E6DC]/40"
-                                : "text-[#1A1D20]/90 hover:text-[#A84328] hover:bg-[#F8E6DC]/20"
-                            }`
-                          }
-                        >
-                          {link.label}
-                        </NavLink>
-                      );
-                    }
-
-                    const isOpen =
-                      link.dropdownKey === "services"
-                        ? servicesOpen
-                        : resourcesOpen;
-
-                    const setOpen =
-                      link.dropdownKey === "services"
-                        ? setServicesOpen
-                        : setResourcesOpen;
-
-                    return (
-                      <div
-                        key={link.label}
-                        className="relative"
-                        onMouseEnter={() => setOpen(true)}
-                        onMouseLeave={() => setOpen(false)}
-                      >
-                        <button
-                          type="button"
-                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold text-[#1A1D20]/90 hover:text-[#A84328] hover:bg-[#F8E6DC]/20 transition-colors focus:outline-none cursor-pointer"
-                          onClick={() => setOpen(!isOpen)}
-                          aria-expanded={isOpen}
-                        >
-                          <span>{link.label}</span>
-                          <ChevronDown
-                            className={`w-3.5 h-3.5 text-[#62666D] transition-transform duration-200 ${
-                              isOpen ? "rotate-180 text-[#A84328]" : ""
-                            }`}
-                          />
-                        </button>
-
-                        <AnimatePresence>
-                          {isOpen && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                              animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                              transition={{ duration: 0.15 }}
-                              className="absolute left-0 top-full pt-2 w-64 z-[9999]"
-                            >
-                              <div className="bg-white rounded-2xl shadow-2xl border border-[#E2D9D0] py-2 overflow-hidden">
-                                {link.items.map((subItem) => (
-                                  <Link
-                                    key={subItem.label}
-                                    to={subItem.path}
-                                    onClick={() => setOpen(false)}
-                                    className="block px-4 py-2.5 text-xs font-semibold text-[#1A1D20] hover:bg-[#F8E6DC]/50 hover:text-[#A84328] transition-colors"
-                                  >
-                                    {subItem.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  })}
+                  {navLinks.map((link) => (
+                    <NavLink
+                      key={link.label}
+                      to={link.path}
+                      className={({ isActive }) =>
+                        `px-3.5 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 ${
+                          isActive
+                            ? "text-[#C63D1B] font-bold bg-[#FFF0E6]"
+                            : "text-[#262626]/90 hover:text-[#E94B1C] hover:bg-[#FFF0E6]/50"
+                        }`
+                      }
+                    >
+                      {link.label}
+                    </NavLink>
+                  ))}
                 </motion.nav>
               )}
             </AnimatePresence>
@@ -211,7 +126,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="p-1.5 rounded-xl text-[#1A1D20] hover:bg-[#F8E6DC] transition focus:outline-none"
+                className="p-1.5 rounded-xl text-[#262626] hover:bg-[#FFF0E6] transition focus:outline-none"
                 aria-label="Toggle navigation menu"
               >
                 {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -219,7 +134,7 @@ export function Navbar() {
             </div>
           </motion.div>
 
-          {/* Right Separate Action Pill - Displays when at top, hovered, or scrolling up, and gently hides on downward scroll */}
+          {/* Right Separate Action Pill */}
           <AnimatePresence>
             {!isCollapsed && (
               <motion.div
@@ -227,7 +142,7 @@ export function Navbar() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-2 sm:gap-3 bg-white/98 backdrop-blur-xl rounded-full border border-[#E2D9D0] shadow-[0_8px_30px_rgb(0,0,0,0.12)] px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
+                className="flex items-center gap-2 sm:gap-3 bg-white/98 backdrop-blur-xl rounded-full border border-[#E9D8CE] shadow-[0_8px_30px_rgba(233,75,28,0.06)] px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
               >
                 {/* Phone Call Info */}
                 <a
@@ -235,14 +150,14 @@ export function Navbar() {
                   className="hidden sm:inline-flex items-center gap-2 py-1 px-1 text-left group transition-all"
                   title="24/7 Emergency Helpline"
                 >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F8E6DC] text-[#A84328] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     <Phone className="w-3.5 h-3.5 fill-current" />
                   </div>
                   <div className="pr-1">
-                    <span className="block text-xs font-bold text-[#1A1D20] tracking-tight leading-none">
+                    <span className="block text-xs font-bold text-[#262626] tracking-tight leading-none">
                       +91 85009 04999
                     </span>
-                    <span className="block text-[10px] text-[#62666D] font-medium leading-tight mt-0.5">
+                    <span className="block text-[10px] text-[#756860] font-medium leading-tight mt-0.5">
                       24/7 Emergency
                     </span>
                   </div>
@@ -251,7 +166,7 @@ export function Navbar() {
                 {/* Book Appointment Button */}
                 <Link
                   to="/appointment"
-                  className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] shadow-sm hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] shadow-sm hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
                 >
                   <span>Book Appointment</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -283,7 +198,7 @@ export function Navbar() {
               className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col justify-between overflow-y-auto"
             >
               <div>
-                <div className="px-6 py-5 border-b border-[#E2D9D0] flex items-center justify-between bg-[#FFF9F3]">
+                <div className="px-6 py-5 border-b border-[#E9D8CE] flex items-center justify-between bg-[#FFF0E6]/50">
                   <img
                     src="/images/surya-hospital-horizontal-logo.png"
                     alt="Surya Hospital"
@@ -292,7 +207,7 @@ export function Navbar() {
                   <button
                     type="button"
                     onClick={() => setMenuOpen(false)}
-                    className="p-2 rounded-full hover:bg-[#F8E6DC] text-[#1A1D20] transition"
+                    className="p-2 rounded-full hover:bg-[#FFF0E6] text-[#262626] transition"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -306,10 +221,10 @@ export function Navbar() {
                         to={item.path}
                         onClick={() => setMenuOpen(false)}
                         className={({ isActive }) =>
-                          `block px-3 py-2.5 rounded-xl text-sm font-bold transition ${
+                          `block px-3.5 py-2.5 rounded-xl text-sm font-bold transition ${
                             isActive
-                              ? "bg-[#F8E6DC] text-[#A84328]"
-                              : "text-[#1A1D20] hover:bg-[#FFF9F3]"
+                              ? "bg-[#FFF0E6] text-[#E94B1C]"
+                              : "text-[#262626] hover:bg-[#FFF0E6]/50"
                           }`
                         }
                       >
@@ -318,24 +233,24 @@ export function Navbar() {
                     ))}
                   </div>
 
-                  <div className="pt-4 border-t border-[#E2D9D0] space-y-3">
+                  <div className="pt-4 border-t border-[#E9D8CE] space-y-3">
                     <a
                       href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-[#FFF9F3] border border-[#E2D9D0] text-[#1A1D20]"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-[#FFF9F3] border border-[#E9D8CE] text-[#262626]"
                     >
-                      <div className="w-9 h-9 rounded-full bg-[#F8E6DC] text-[#A84328] flex items-center justify-center">
+                      <div className="w-9 h-9 rounded-full bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center">
                         <Phone className="w-4 h-4 fill-current" />
                       </div>
                       <div>
                         <div className="text-xs font-bold">+91 85009 04999</div>
-                        <div className="text-[11px] text-[#62666D]">24/7 Emergency Casualty</div>
+                        <div className="text-[11px] text-[#756860]">24/7 Emergency Casualty</div>
                       </div>
                     </a>
 
                     <Link
                       to="/appointment"
                       onClick={() => setMenuOpen(false)}
-                      className="w-full py-3 rounded-xl text-center text-xs font-bold text-white bg-[#A84328] hover:bg-[#8F371F] block shadow-md"
+                      className="w-full py-3 rounded-xl text-center text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] block shadow-md"
                     >
                       Book Appointment Online
                     </Link>
@@ -343,7 +258,7 @@ export function Navbar() {
                 </div>
               </div>
 
-              <div className="p-6 border-t border-[#E2D9D0] bg-[#FFF9F3] text-xs text-[#62666D]">
+              <div className="p-6 border-t border-[#E9D8CE] bg-[#FFF9F3] text-xs text-[#756860]">
                 Behind Ambedkar Bhavan, 9th Cross Road, Sai Nagar, Anantapur
               </div>
             </motion.div>

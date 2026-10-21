@@ -117,7 +117,7 @@ export function Navbar() {
             }`}
           >
             {/* 1. Left: Surya Hospital Official Brand Logo */}
-            <div className="shrink-0 flex items-center py-0.5">
+            <div className="shrink-0 flex items-center py-1">
               <Link
                 to="/"
                 className="inline-flex items-center group focus:outline-none"
@@ -133,7 +133,7 @@ export function Navbar() {
                   }}
                   src="/images/surya-hospital-orange-emblem-logo.png"
                   alt="Surya Hospital Logo"
-                  className="h-12 sm:h-14 md:h-16 lg:h-16 w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
+                  className="h-16 sm:h-18 md:h-20 lg:h-20 xl:h-[84px] w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
                 />
               </Link>
             </div>
@@ -463,7 +463,7 @@ export function Navbar() {
                   <img
                     src="/images/surya-hospital-orange-emblem-logo.png"
                     alt="Surya Hospital"
-                    className="h-10 w-auto object-contain"
+                    className="h-14 sm:h-16 w-auto object-contain"
                   />
                   <button
                     type="button"

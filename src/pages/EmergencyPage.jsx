@@ -42,7 +42,7 @@ export function EmergencyPage() {
   return (
     <div className="w-full bg-[#FFFFFF]">
       {/* High-priority Emergency Hero Banner with Pulse Radar & Live Status */}
-      <section className="relative bg-gradient-to-br from-[#FFF0E6] via-[#FFF9F3] to-[#FFF0E6] text-[#262626] pt-28 sm:pt-32 pb-14 md:pb-20 border-b border-[#F0E2D9] overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#FFF0E6] via-[#FFF9F3] to-[#FFF0E6] text-[#262626] pt-36 sm:pt-40 md:pt-44 pb-14 md:pb-20 border-b border-[#F0E2D9] overflow-hidden">
         {/* Radar concentric pulse rings in background */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none opacity-20">
           <motion.div

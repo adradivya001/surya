@@ -13,7 +13,7 @@ export function PageHero({
   badge,
 }) {
   return (
-    <div className="relative bg-[#FFF9F3] border-b border-[#E9D8CE] pt-28 sm:pt-32 pb-14 sm:pb-18 md:pb-24 overflow-hidden">
+    <div className="relative bg-[#FFF9F3] border-b border-[#E9D8CE] pt-36 sm:pt-40 md:pt-44 pb-14 sm:pb-18 md:pb-24 overflow-hidden">
       {/* Brand warm peach background accents */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#FFF0E6]/80 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-10 left-10 w-72 h-72 bg-[#FF8A3D]/10 rounded-full blur-2xl pointer-events-none" />

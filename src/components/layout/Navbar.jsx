@@ -16,6 +16,7 @@ import {
   SURGICAL_SPECIALITIES,
 } from "../../constants/specialitiesData";
 import { motion, AnimatePresence } from "framer-motion";
+import suryaLogo from "../../../Surya Hospital 3D Logo.png";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -131,7 +132,7 @@ export function Navbar() {
                     delay: 0.15,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  src="/images/surya-hospital-orange-emblem-logo.png"
+                  src={suryaLogo}
                   alt="Surya Hospital Logo"
                   className="h-16 sm:h-18 md:h-20 lg:h-20 xl:h-[84px] w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
                 />
@@ -461,7 +462,7 @@ export function Navbar() {
               <div>
                 <div className="px-6 py-5 border-b border-[#E9D8CE] flex items-center justify-between bg-[#FFF0E6]/50">
                   <img
-                    src="/images/surya-hospital-orange-emblem-logo.png"
+                    src={suryaLogo}
                     alt="Surya Hospital"
                     className="h-14 sm:h-16 w-auto object-contain"
                   />

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Clock, ArrowRight, ArrowUp } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
+import suryaLogo from "../../../Surya Hospital 3D Logo.png";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -28,7 +29,7 @@ export function Footer() {
           <div className="lg:col-span-4 space-y-4 text-left">
             <Link to="/" className="inline-block focus:outline-none">
               <img
-                src="/images/surya-hospital-orange-emblem-logo.png"
+                src={suryaLogo}
                 alt="Surya Hospital Logo"
                 className="h-16 sm:h-20 md:h-24 w-auto object-contain"
               />

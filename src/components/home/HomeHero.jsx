@@ -248,50 +248,7 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* ── 3. FLOATING ACTION WIDGET PILL (RIGHT EDGE) ── */}
-      <div className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-2 bg-white/92 backdrop-blur-xl border border-white/80 shadow-[0_12px_36px_rgba(0,0,0,0.12)] rounded-full py-4 px-2.5">
-        {/* WhatsApp */}
-        <a
-          href="https://wa.me/918500904999?text=Hello%20Surya%20Hospital"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex flex-col items-center gap-1 p-1 rounded-full hover:bg-emerald-50 text-slate-700 transition-colors"
-          title="Chat on WhatsApp"
-        >
-          <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all">
-            <MessageCircle className="w-5 h-5 fill-current" />
-          </div>
-          <span className="text-[9px] font-bold text-slate-600 group-hover:text-emerald-700">WhatsApp</span>
-        </a>
 
-        <div className="w-6 h-[1px] bg-slate-200/80" />
-
-        {/* Online Portal */}
-        <Link
-          to="/appointment"
-          className="group flex flex-col items-center gap-1 p-1 rounded-full hover:bg-amber-50 text-slate-700 transition-colors"
-          title="Online Patient Portal"
-        >
-          <div className="w-10 h-10 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
-            <Globe className="w-5 h-5" />
-          </div>
-          <span className="text-[9px] font-bold text-slate-600 group-hover:text-amber-700 text-center leading-tight">Online<br />Portal</span>
-        </Link>
-
-        <div className="w-6 h-[1px] bg-slate-200/80" />
-
-        {/* 24/7 Call */}
-        <a
-          href="tel:+918500904999"
-          className="group flex flex-col items-center gap-1 p-1 rounded-full hover:bg-orange-50 text-slate-700 transition-colors"
-          title="Call 24/7 Casualty Desk"
-        >
-          <div className="w-10 h-10 rounded-full bg-orange-500/10 text-orange-600 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-all">
-            <Phone className="w-4 h-4 fill-current" />
-          </div>
-          <span className="text-[9px] font-bold text-slate-600 group-hover:text-orange-700 text-center leading-tight">24/7<br />Call</span>
-        </a>
-      </div>
 
       {/* ── 4. REFERENCE GLASS STATS BAR (DOCK AT BOTTOM) ── */}
       <motion.div

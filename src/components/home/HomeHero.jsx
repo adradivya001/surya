@@ -305,17 +305,18 @@ export function HomeHero() {
 
           {/* Stats Group matching reference layout with orange icons */}
           <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8 sm:gap-14 divide-x divide-slate-200/80">
-            {/* Stat 1: 24/7 Care & Emergency */}
+            {/* Stat 1: Open 24 Hours Hospital */}
             <div className="flex items-center gap-3.5 text-left">
               <div className="w-11 h-11 rounded-2xl bg-[#E88C38]/15 text-[#D9771E] flex items-center justify-center shrink-0">
                 <Ambulance className="w-6 h-6 stroke-[2]" />
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-[#14233C] tracking-tight leading-none">
-                  24/7
+                <div className="text-2xl sm:text-3xl font-extrabold text-[#14233C] tracking-tight leading-none flex items-center gap-1.5">
+                  <span>24 Hours</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 </div>
                 <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#758295] mt-1">
-                  CARE &amp; EMERGENCY
+                  OPEN 24/7 ALL 365 DAYS
                 </div>
               </div>
             </div>

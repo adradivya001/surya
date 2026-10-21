@@ -401,11 +401,11 @@ export function Navbar() {
                 transition={{ duration: 0.2 }}
                 className="flex items-center gap-2 sm:gap-3 bg-white/98 backdrop-blur-xl rounded-full border border-[#E9D8CE] shadow-[0_8px_30px_rgba(233,75,28,0.06)] px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
               >
-                {/* Phone Call Info */}
+                {/* Phone Call Info & 24 Hours Badge */}
                 <a
                   href={`tel:${HOSPITAL_INFO.phoneRaw}`}
                   className="hidden sm:inline-flex items-center gap-2 py-1 px-1 text-left group transition-all"
-                  title="24/7 Emergency Helpline"
+                  title="Hospital Open 24 Hours / 7 Days - Call Helpline"
                 >
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                     <Phone className="w-3.5 h-3.5 fill-current" />
@@ -414,8 +414,9 @@ export function Navbar() {
                     <span className="block text-xs font-bold text-[#262626] tracking-tight leading-none">
                       +91 85009 04999
                     </span>
-                    <span className="block text-[10px] text-[#756860] font-medium leading-tight mt-0.5">
-                      24/7 Emergency
+                    <span className="inline-flex items-center gap-1 text-[10px] text-emerald-700 font-bold leading-tight mt-0.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Open 24 Hours
                     </span>
                   </div>
                 </a>

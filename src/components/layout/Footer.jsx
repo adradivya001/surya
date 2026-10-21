@@ -92,8 +92,12 @@ export function Footer() {
               <div className="flex items-start gap-2">
                 <Clock className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-[#1A1D20]">OPD: 09:00 AM – 02:00 PM</span>
-                  <p className="text-[11px] text-[#62666D]">05:00 PM – 09:00 PM (Mon – Sat)</p>
+                  <span className="font-bold text-[#1A1D20] flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    Hospital Open 24 Hours / 7 Days
+                  </span>
+                  <p className="text-[11px] text-[#62666D]">Casualty, Inpatient, Dialysis & Pharmacy: 24/7</p>
+                  <p className="text-[11px] text-[#62666D]">Doctor OPD: 09:00 AM – 02:00 PM & 05:00 PM – 09:00 PM</p>
                 </div>
               </div>
             </div>

@@ -244,7 +244,7 @@ export function AboutPage() {
                 Our Milestones & Growth in Sai Nagar
               </h2>
               <p className="text-base text-[#756860] leading-relaxed">
-                From a dedicated physician clinic to an integrated multi-speciality hospital with round-the-clock emergency care.
+                Dedicated healthcare service providing patient-first medical treatments and round-the-clock emergency care at Surya Hospital.
               </p>
             </div>
 

@@ -94,7 +94,7 @@ export function HomeHero() {
               className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-[#A86B3D]"
             >
               <span className="w-5 h-[2px] bg-[#D9771E] rounded-full shrink-0" />
-              <span>SURYA MULTI-SPECIALITY HOSPITAL • ANANTAPUR</span>
+              <span>SURYA HOSPITAL • ANANTAPUR</span>
             </motion.div>
 
             {/* 2. Main Editorial Heading — Balanced 2-line optical hierarchy */}

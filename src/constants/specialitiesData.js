@@ -274,7 +274,7 @@ export const APPROVED_SPECIALITIES = [
       },
       {
         question: "Can earwax be cleaned safely at home?",
-        answer: "You should never insert cotton swabs or sharp objects into your ears, as they push wax deeper and risk puncturing the eardrum. Visit our E.N.T. clinic for safe, gentle earwax removal.",
+        answer: "You should never insert cotton swabs or sharp objects into your ears, as they push wax deeper and risk puncturing the eardrum. Visit Surya Hospital for safe, gentle earwax removal.",
       },
     ],
     doctors: [
@@ -524,7 +524,7 @@ export const APPROVED_SPECIALITIES = [
     faqs: [
       {
         question: "Is psychiatric consultation completely confidential?",
-        answer: "Yes. All consultations and discussions are strictly confidential. Our clinic provides a safe, welcoming, and non-judgmental environment.",
+        answer: "Yes. All consultations and discussions are strictly confidential. Surya Hospital provides a safe, welcoming, and non-judgmental environment.",
       },
       {
         question: "Are psychiatric medications safe and necessary for everyone?",

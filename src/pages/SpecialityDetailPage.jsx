@@ -285,7 +285,7 @@ export function SpecialityDetailPage() {
                 Our {speciality.name} Specialists
               </h2>
               <p className="text-xs sm:text-sm text-[#756860]">
-                Consult verified doctors providing inpatient care and outpatient clinics at Surya Hospital.
+                Consult verified doctors providing inpatient care and outpatient consultations at Surya Hospital.
               </p>
             </div>
 

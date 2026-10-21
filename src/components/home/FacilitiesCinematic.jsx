@@ -47,14 +47,21 @@ export function FacilitiesCinematic() {
 
   return (
     <section className="relative w-full py-28 sm:py-36 bg-[#082E37] text-white overflow-hidden">
-      {/* Background Large Cinematic Media with deep teal lighting matching Mockup */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={facilities[activeFacility].image}
-          alt={facilities[activeFacility].title}
-          className="w-full h-full object-cover object-center filter brightness-[0.62] contrast-[1.12] transition-all duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#082E37] via-[#082E37]/75 to-[#082E37]/45" />
+      {/* Background Large Cinematic Media with smooth AnimatePresence cross-fade */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <AnimatePresence mode="sync">
+          <motion.img
+            key={facilities[activeFacility].id}
+            src={facilities[activeFacility].image}
+            alt={facilities[activeFacility].title}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.62] contrast-[1.12]"
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#082E37] via-[#082E37]/75 to-[#082E37]/45 pointer-events-none" />
       </div>
 
       {/* Top Organic Wave Transition from Specialties */}
@@ -189,7 +196,7 @@ export function FacilitiesCinematic() {
             </AnimateIn>
           </div>
 
-          {/* Right Column: Stacked Facility Selector Cards (Exact Reference Mockup) */}
+          {/* Right Column: Stacked Facility Selector Cards (Changes on cursor hover/movement) */}
           <div className="lg:col-span-5 space-y-3.5">
             {facilities.map((fac, idx) => {
               const isSelected = activeFacility === idx;
@@ -197,10 +204,11 @@ export function FacilitiesCinematic() {
                 <div
                   key={fac.id}
                   onClick={() => setActiveFacility(idx)}
+                  onMouseEnter={() => setActiveFacility(idx)}
                   className={`flex items-center justify-between p-3.5 sm:p-4 rounded-2xl cursor-pointer transition-all duration-300 border ${
                     isSelected
                       ? "bg-white text-[#1A1D20] border-white shadow-xl scale-[1.02]"
-                      : "bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25"
+                      : "bg-white/15 backdrop-blur-md text-white border-white/20 hover:bg-white/25 hover:border-white/40"
                   }`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0">

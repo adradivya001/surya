@@ -34,7 +34,7 @@ export const HOSPITAL_INFO = {
 
   // About the Hospital: Written in warm, clear, patient-friendly language
   about: {
-    overview: "Surya Hospital is a friendly multi-speciality hospital in Sai Nagar, Anantapur. We help individuals and families feel better with everyday doctor visits, surgical treatments, 24/7 emergency care, inpatient observation, and supportive recovery under one roof.",
+    overview: "Surya Hospital is a friendly hospital in Sai Nagar, Anantapur. We help individuals and families feel better with everyday doctor visits, surgical treatments, 24/7 emergency care, inpatient observation, and supportive recovery under one roof.",
     missionDraft: "To give every family in Anantapur clear medical advice, safe treatments, and caring personal attention whenever they need health support.",
     visionDraft: "To be the most trusted and helpful hospital in our community, known for honest doctor guidance, modern equipment, and dependable patient care.",
     philosophy: "We treat every patient like family. We listen carefully, explain your health conditions in simple words, and recommend only the care you genuinely need.",
@@ -900,7 +900,7 @@ export const HOSPITAL_INFO = {
       iconName: "UserCheck",
       image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1000&q=80",
       shortDesc: "Consult experienced specialist physicians for everyday health checks, seasonal fevers, and long-term care.",
-      details: "Morning and evening clinic hours with comfortable waiting areas, polite nursing care, and clean hospital rooms for patients who need overnight observation.",
+      details: "Morning and evening OPD consultation hours with comfortable waiting areas, polite nursing care, and clean hospital rooms for patients who need overnight observation.",
     },
     {
       id: "surgical-care",

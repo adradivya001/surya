@@ -79,55 +79,57 @@ export function HomeHero() {
 
       {/* ── 2. MAIN TWO-COLUMN CONTENT ── */}
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-32 sm:pt-36 lg:pt-32 pb-24 flex-1 flex items-center">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-2 items-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
 
-          {/* ── LEFT COLUMN: EDITORIAL CONTENT & ACTION CTAs ── */}
+          {/* ── LEFT COLUMN: EDITORIAL CONTENT & ACTION CTAs (CLEAN OPTICAL ALIGNMENT) ── */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-5 xl:col-span-5 flex flex-col items-start text-left space-y-5 lg:pr-4 z-10"
+            className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left space-y-5 lg:pr-6 z-10"
           >
-            {/* Eyebrow badge */}
+            {/* 1. Eyebrow badge — Crisp left alignment */}
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#A86B3D]"
+              className="inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-[#A86B3D]"
             >
-              <span className="w-4 h-[2px] bg-[#E58A3C]" />
+              <span className="w-5 h-[2px] bg-[#D9771E] rounded-full shrink-0" />
               <span>SURYA MULTI-SPECIALITY HOSPITAL • ANANTAPUR</span>
             </motion.div>
 
-            {/* Main Editorial Serif Heading: "Comprehensive Medical Care." */}
+            {/* 2. Main Editorial Heading — Balanced 2-line optical hierarchy */}
             <motion.div variants={itemVariants}>
-              <h1 className="font-serif-heading text-[2.8rem] sm:text-[3.6rem] md:text-[4.2rem] lg:text-[4.4rem] font-bold text-[#14233C] tracking-tight leading-[1.04]">
-                Comprehensive<br />
-                <span className="text-[#D9771E]">Medical Care.</span>
+              <h1 className="font-serif-heading text-[2.75rem] sm:text-[3.5rem] md:text-[4rem] lg:text-[4.35rem] font-bold text-[#14233C] tracking-tight leading-[1.06]">
+                Your Health,<br />
+                <span className="text-[#D9771E]">In Expert Hands.</span>
               </h1>
             </motion.div>
 
-            {/* Cursive Calligraphic Sub-heading */}
-            <motion.div variants={itemVariants} className="w-full overflow-visible -mt-1">
-              <p className="font-script text-[2.1rem] sm:text-[2.6rem] md:text-[3.1rem] lg:text-[3.3rem] text-[#C97B38] whitespace-nowrap leading-[1.15] select-none">
-                Committed to Your Well-being.
-              </p>
+            {/* 3. Accent Sub-headline — Balanced inline lockup */}
+            <motion.div variants={itemVariants} className="pt-0.5">
+              <div className="inline-flex items-center gap-3 text-lg sm:text-xl font-semibold text-[#B86828] tracking-tight">
+                <span>Advanced Care</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D9771E] shrink-0" />
+                <span>Compassionate Healing</span>
+              </div>
             </motion.div>
 
-            {/* Description Body */}
+            {/* 4. Description Body — Perfectly balanced 2-line text, NO orphan words */}
             <motion.p
               variants={itemVariants}
-              className="text-sm sm:text-[15px] lg:text-base text-[#4A5568] font-medium leading-relaxed max-w-lg"
+              className="text-base sm:text-[17px] text-[#4A5568] font-normal leading-relaxed max-w-xl text-pretty"
+              style={{ textWrap: "pretty" }}
             >
-              Advanced medical treatment, experienced doctors, modern
-              facilities and 24/7 emergency services — all under one roof
-              at Surya Hospital.
+              Advanced medical treatment, experienced doctors, modern facilities,
+              and 24/7 emergency care — all under one roof at Surya Hospital.
             </motion.p>
 
-            {/* Action Buttons Row */}
+            {/* 5. Action Buttons Row — Side-by-side horizontal alignment */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 sm:gap-5 pt-2">
               <motion.div
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="rounded-full shadow-[0_8px_24px_rgba(217,119,30,0.38)]"
+                className="rounded-full shadow-[0_8px_20px_rgba(217,119,30,0.32)]"
               >
                 <Link
                   to="/appointment"
@@ -142,7 +144,7 @@ export function HomeHero() {
 
               <Link
                 to="/specialities"
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm sm:text-base font-bold text-[#14233C] bg-white/85 hover:bg-white border border-slate-200/80 shadow-xs transition-all hover:text-[#D9771E]"
+                className="inline-flex items-center gap-2 px-7 py-4 rounded-full text-sm sm:text-base font-bold text-[#14233C] bg-white/90 hover:bg-white border border-[#E2D9D0] shadow-xs transition-all hover:text-[#D9771E]"
               >
                 <LayoutGrid className="w-4 h-4 text-[#D9771E]" />
                 <span>Explore Our Specialities</span>
@@ -150,13 +152,13 @@ export function HomeHero() {
               </Link>
             </motion.div>
 
-            {/* Trust Badges matching reference 3-column pill markers */}
+            {/* 6. Trust Badges — Crisp 3-column pill markers aligned with buttons */}
             <motion.div
               variants={itemVariants}
               className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 w-full max-w-xl"
             >
               {/* Badge 1 */}
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/75 backdrop-blur-xs border border-white/80 shadow-xs">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/80 backdrop-blur-xs border border-white/90 shadow-xs">
                 <div className="w-7 h-7 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
@@ -166,7 +168,7 @@ export function HomeHero() {
               </div>
 
               {/* Badge 2 */}
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/75 backdrop-blur-xs border border-white/80 shadow-xs">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/80 backdrop-blur-xs border border-white/90 shadow-xs">
                 <div className="w-7 h-7 rounded-full bg-orange-500/10 text-orange-600 flex items-center justify-center shrink-0">
                   <Ambulance className="w-4 h-4" />
                 </div>
@@ -176,7 +178,7 @@ export function HomeHero() {
               </div>
 
               {/* Badge 3 */}
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/75 backdrop-blur-xs border border-white/80 shadow-xs">
+              <div className="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-white/80 backdrop-blur-xs border border-white/90 shadow-xs">
                 <div className="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
                   <Sparkles className="w-4 h-4" />
                 </div>
@@ -187,8 +189,8 @@ export function HomeHero() {
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT COLUMN: SEAMLESSLY MERGED ARCHITECTURAL VIDEO (ENLARGED + SHARPENED) ── */}
-          <div className="lg:col-span-7 xl:col-span-7 relative flex items-center justify-center lg:justify-end">
+          {/* ── RIGHT COLUMN: SEAMLESSLY MERGED ARCHITECTURAL VIDEO (PROPORTIONAL & PROMINENT) ── */}
+          <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center lg:justify-end">
             {/* SVG convolution sharpening filter definition */}
             <svg className="sr-only" aria-hidden="true">
               <defs>
@@ -210,7 +212,7 @@ export function HomeHero() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[1450px] xl:max-w-[1580px] flex items-center justify-center lg:scale-[1.65] xl:scale-[1.72] origin-center lg:origin-right lg:-mr-16 xl:-mr-28"
+              className="relative w-full max-w-[920px] xl:max-w-[1020px] flex items-center justify-center lg:scale-[1.22] xl:scale-[1.28] origin-center lg:origin-right"
             >
               {/* Seamless container:
                   1. Matching #FFF5EC backdrop
@@ -221,9 +223,9 @@ export function HomeHero() {
                 style={{
                   backgroundColor: "#FFF5EC",
                   WebkitMaskImage:
-                    "radial-gradient(50% 50% at 50% 50%, black 72%, rgba(0,0,0,0.92) 85%, rgba(0,0,0,0.3) 95%, transparent 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, black 70%, rgba(0,0,0,0.92) 84%, rgba(0,0,0,0.3) 94%, transparent 100%)",
                   maskImage:
-                    "radial-gradient(50% 50% at 50% 50%, black 72%, rgba(0,0,0,0.92) 85%, rgba(0,0,0,0.3) 95%, transparent 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, black 70%, rgba(0,0,0,0.92) 84%, rgba(0,0,0,0.3) 94%, transparent 100%)",
                 }}
               >
                 <video

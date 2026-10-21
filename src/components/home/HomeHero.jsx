@@ -1,291 +1,359 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
+  motion,
+  useSpring,
+  useTransform,
+  useInView,
+} from "framer-motion";
+import {
   ArrowRight,
-  Shield,
-  Activity,
-  HeartPulse,
-  Sparkles,
-  MapPin,
-  Clock,
-  UserCheck,
-  Pill,
-  Stethoscope,
+  Calendar,
+  LayoutGrid,
   ShieldCheck,
-  ChevronRight,
+  Ambulance,
+  Sparkles,
+  Phone,
+  MessageCircle,
+  Globe,
+  Users,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+
+function StatCounter({ value, suffix = "", inView }) {
+  const springValue = useSpring(0, { stiffness: 70, damping: 20 });
+  const displayValue = useTransform(springValue, (v) =>
+    Math.round(v).toLocaleString()
+  );
+  useEffect(() => {
+    if (inView) springValue.set(value);
+  }, [inView, springValue, value]);
+  return (
+    <span className="inline-flex items-center">
+      <motion.span>{displayValue}</motion.span>
+      {suffix && <span>{suffix}</span>}
+    </span>
+  );
+}
 
 export function HomeHero() {
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const statsRef = useRef(null);
+  const isStatsInView = useInView(statsRef, { once: true, amount: 0.3 });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  const trustHighlights = [
-    {
-      label: "24/7",
-      sub: "Emergency Care",
-      iconSvg: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#FF8A3D] drop-shadow-[0_2px_8px_rgba(233,75,28,0.35)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2L4 6.5v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12v-6L12 2z" stroke="#FF8A3D" />
-          <path d="M12 7v10" stroke="#E94B1C" />
-          <path d="M7 12h10" stroke="#E94B1C" />
-        </svg>
-      ),
-    },
-    {
-      label: "12",
-      sub: "Medical Services",
-      iconSvg: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#FF8A3D] drop-shadow-[0_2px_8px_rgba(233,75,28,0.35)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="5" stroke="#FF8A3D" />
-          <circle cx="12" cy="12" r="3.5" stroke="#E94B1C" />
-          <path d="M12 5v2m0 10v2m-7-7h2m10 0h2" stroke="#FF8A3D" />
-        </svg>
-      ),
-    },
-    {
-      label: "20",
-      sub: "Expert Doctors",
-      iconSvg: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#FF8A3D] drop-shadow-[0_2px_8px_rgba(233,75,28,0.35)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="7" r="4" stroke="#FF8A3D" />
-          <path d="M5.5 21a6.5 6.5 0 0 1 13 0" stroke="#E94B1C" />
-          <path d="M12 11v3m-1.5-1.5h3" stroke="#FF8A3D" />
-        </svg>
-      ),
-    },
-    {
-      label: "1000+",
-      sub: "Happy Patients",
-      iconSvg: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#FF8A3D] drop-shadow-[0_2px_8px_rgba(233,75,28,0.35)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#E94B1C" />
-          <circle cx="9" cy="7" r="4" stroke="#FF8A3D" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="#FF8A3D" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#E94B1C" />
-        </svg>
-      ),
-    },
-  ];
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+    setMousePos({
+      x: (clientX / innerWidth - 0.5) * 2,
+      y: (clientY / innerHeight - 0.5) * 2,
+    });
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+  };
 
   return (
-    <section id="home-hero" className="relative w-full overflow-hidden bg-[#1A1D20] text-white">
-      {/* 1. Full-Bleed Hospital Exterior with Cinematic Scrim — Strict Single Viewport Fit */}
-      <div className="relative w-full h-screen min-h-[580px] max-h-[100vh] flex flex-col justify-between pt-24 sm:pt-26 lg:pt-28 pb-4 sm:pb-6 lg:pb-6">
-        {/* Background Media - High-Resolution Hospital Building Exterior with Subtle Cinematic Zoom */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <motion.img
-            src="/images/modern-surya-hospital-facade.png"
-            alt="Surya Hospital Modern Facade"
-            initial={{ scale: 1 }}
-            animate={{ scale: 1.02 }}
-            transition={{ duration: 18, ease: "easeOut", repeat: Infinity, repeatType: "reverse" }}
-            className="w-full h-full object-cover object-[52%_40%] filter brightness-[0.98] contrast-[1.03]"
-            loading="eager"
-          />
-          {/* Natural Soft Warm Ivory Scrim */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(255, 249, 243, 0.94) 0%, rgba(255, 249, 243, 0.88) 28%, rgba(255, 249, 243, 0.58) 48%, rgba(255, 249, 243, 0.18) 68%, rgba(255, 249, 243, 0.0) 88%)",
-            }}
-          />
-          {/* Subtle bottom shadow vignette to ground the stats bar cleanly */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
-        </div>
+    <section
+      id="home-hero"
+      onMouseMove={handleMouseMove}
+      className="relative w-full min-h-[940px] lg:h-screen lg:max-h-[1020px] flex flex-col justify-between overflow-hidden text-slate-800"
+    >
+      {/* ── 1. BACKGROUND: SURYA HOSPITAL RECEPTION WAITING ROOM (FULL HERO BG) ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+        <img
+          src="/images/surya-reception-waiting-room.png"
+          alt="Surya Hospital Reception & Waiting Room"
+          className="w-full h-full object-cover object-center filter blur-[1.5px] scale-105"
+          style={{
+            transform: `translate3d(${mousePos.x * -8}px, ${mousePos.y * -5}px, 0) scale(1.04)`,
+            transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+          loading="eager"
+        />
 
-        {/* 2. Overlaid Hero Content Container - Exact clearance below floating navbar */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 my-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            
-            {/* Left Column: Headline & Actions */}
-            <div className="lg:col-span-8 xl:col-span-7 text-left space-y-2.5 sm:space-y-3 max-w-2xl">
-              
-              {/* Step 2: Eyebrow */}
+        {/* Soft atmospheric white-to-cream gradient overlay on left for razor-sharp typography contrast */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-white/95 via-white/88 to-white/20" />
+        {/* Subtle overall warm glow */}
+        <div className="absolute inset-0 bg-amber-50/20 mix-blend-color" />
+        {/* Bottom soft feathering into stats dock */}
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white/70 via-white/30 to-transparent" />
+      </div>
+
+      {/* ── 2. MAIN TWO-COLUMN CONTENT ── */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-32 sm:pt-36 lg:pt-32 pb-24 flex-1 flex items-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-2 items-center">
+
+          {/* ── LEFT COLUMN: EDITORIAL CONTENT & ACTION CTAs ── */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left space-y-5 lg:pr-6"
+          >
+            {/* Eyebrow badge */}
+            <motion.div
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#A86B3D]"
+            >
+              <span className="w-4 h-[2px] bg-[#E58A3C]" />
+              <span>SURYA MULTI-SPECIALITY HOSPITAL • ANANTAPUR</span>
+            </motion.div>
+
+            {/* Main Editorial Serif Heading: "Comprehensive Medical Care." */}
+            <motion.div variants={itemVariants}>
+              <h1 className="font-serif-heading text-[2.8rem] sm:text-[3.6rem] md:text-[4.2rem] lg:text-[4.6rem] font-bold text-[#14233C] tracking-tight leading-[1.04]">
+                Comprehensive<br />
+                <span className="text-[#D9771E]">Medical Care.</span>
+              </h1>
+            </motion.div>
+
+            {/* Cursive Calligraphic Sub-heading: single line */}
+            <motion.div variants={itemVariants} className="w-full overflow-visible -mt-1">
+              <p className="font-script text-[2.2rem] sm:text-[2.8rem] md:text-[3.4rem] lg:text-[3.6rem] text-[#C97B38] whitespace-nowrap leading-[1.15] select-none">
+                Committed to Your Well-being.
+              </p>
+            </motion.div>
+
+            {/* Description Body: Exact wording from reference */}
+            <motion.p
+              variants={itemVariants}
+              className="text-sm sm:text-[15px] lg:text-base text-[#4A5568] font-medium leading-relaxed max-w-lg"
+            >
+              Advanced medical treatment, experienced doctors, modern
+              facilities and 24/7 emergency services — all under one roof
+              at Surya Hospital.
+            </motion.p>
+
+            {/* Action Buttons Row */}
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 sm:gap-5 pt-2">
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45 }}
-                className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-[#E94B1C]"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#E94B1C]" />
-                <span>SURYA HOSPITAL • ANANTAPUR</span>
-              </motion.div>
-
-              {/* Step 3: Main headline and second headline */}
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.08 }}
-                className="space-y-0.5"
-              >
-                <h1
-                  className="font-serif-heading font-bold text-[#262626] tracking-tight leading-[1.1]"
-                  style={{ fontSize: "clamp(1.85rem, 3.2vw, 3rem)" }}
-                >
-                  Comprehensive Medical Care.
-                </h1>
-                <p
-                  className="font-editorial-italic text-[#E94B1C] tracking-tight leading-[1.1]"
-                  style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.65rem)" }}
-                >
-                  Committed to Your Well-being.
-                </p>
-              </motion.div>
-
-              {/* Step 4: Supporting description */}
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.16 }}
-                className="text-xs sm:text-sm lg:text-[15px] text-[#4A403B] max-w-xl font-normal leading-relaxed drop-shadow-xs"
-              >
-                Quality healthcare from experienced doctors, modern medical facilities, and round-the-clock emergency services for you and your family.
-              </motion.p>
-
-              {/* Step 5: Primary CTA & Secondary CTA Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.24 }}
-                className="pt-1 flex flex-wrap items-center gap-3 sm:gap-3.5"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="rounded-full shadow-[0_8px_24px_rgba(217,119,30,0.38)]"
               >
                 <Link
                   to="/appointment"
-                  className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#E94B1C] focus:ring-offset-2"
+                  id="hero-primary-cta"
+                  className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-sm sm:text-base font-bold text-white bg-gradient-to-r from-[#D9771E] via-[#E68A2E] to-[#D9771E] hover:brightness-105 transition-all"
                 >
+                  <Calendar className="w-4 h-4 text-white" />
                   <span>Book an Appointment</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-
-                <Link
-                  to="/specialities"
-                  className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold text-[#C63D1B] bg-white hover:bg-[#FFF0E6] border border-[#E9D8CE] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#E94B1C]/40"
-                >
-                  <span>Explore Our Services</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform ml-0.5" />
                 </Link>
               </motion.div>
-            </div>
 
-          </div>
-        </div>
+              <Link
+                to="/specialities"
+                className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm sm:text-base font-bold text-[#14233C] bg-white/85 hover:bg-white border border-slate-200/80 shadow-xs transition-all hover:text-[#D9771E]"
+              >
+                <LayoutGrid className="w-4 h-4 text-[#D9771E]" />
+                <span>Explore Our Specialities</span>
+                <ArrowRight className="w-4 h-4 ml-0.5" />
+              </Link>
+            </motion.div>
 
-        {/* 3. Bottom Translucent Stats Bar — Step 6 Animation & Warm Charcoal System */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.32 }}
-          className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-auto mb-1 sm:mb-2"
-        >
-          <div className="w-full rounded-2xl bg-[#1C1613]/85 backdrop-blur-md border border-[#E9D8CE]/20 shadow-[0_10px_28px_-6px_rgba(0,0,0,0.55),0_0_20px_0_rgba(233,75,28,0.06)_inset] px-3.5 sm:px-5 lg:px-6 py-2.5 sm:py-3 flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4">
-            
-            {/* Left 4 Information Items with Subtle Warm Separators */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-2 flex-1 w-full items-center">
-              {trustHighlights.map((stat, i) => (
-                <div key={i} className="flex items-center gap-2.5 px-1 sm:px-2 border-r-0 sm:border-r border-white/10 last:border-r-0">
-                  {stat.iconSvg}
-                  <div className="text-left select-none">
-                    <div className="text-sm sm:text-base font-bold text-white tracking-tight leading-tight">
-                      {stat.label}
-                    </div>
-                    <div className="text-[10px] sm:text-[11px] text-[#FFF0E6]/80 font-medium leading-tight whitespace-nowrap mt-0.5">
-                      {stat.sub}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Right Location Panel Integrated into the Same Visual System */}
-            <div className="w-full lg:w-auto shrink-0 flex items-center justify-start lg:justify-end border-t lg:border-t-0 border-white/10 pt-2 lg:pt-0 lg:pl-3">
-              <div className="flex items-center gap-2.5 rounded-xl bg-white/5 border border-white/10 px-3 py-1.5 backdrop-blur-sm">
-                <div className="w-7 h-7 rounded-full bg-[#E94B1C]/20 text-[#FF8A3D] flex items-center justify-center shrink-0 border border-[#E94B1C]/30 shadow-xs">
-                  <MapPin className="w-3.5 h-3.5 text-[#FF8A3D]" />
-                </div>
-                <div className="text-left select-none">
-                  <div className="text-xs font-bold text-white leading-tight">
-                    Sai Nagar, Anantapur
-                  </div>
-                  <div className="text-[10px] text-[#FFF0E6]/75 leading-tight mt-0.5 whitespace-nowrap">
-                    Behind Ambedkar Bhavan 9th Cross Road
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </motion.div>
-
-        {/* 4. Organic Flowing Bottom Wave Divider sweeping into About Section */}
-        <div className="curve-hero-bottom">
-          <svg viewBox="0 0 1440 180" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-full">
-            <defs>
-              <linearGradient id="heroRibbon1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.25" />
-                <stop offset="30%" stopColor="#FFF0E6" stopOpacity="0.45" />
-                <stop offset="70%" stopColor="#FFF9F3" stopOpacity="0.30" />
-                <stop offset="100%" stopColor="#E9D8CE" stopOpacity="0.50" />
-              </linearGradient>
-              <linearGradient id="heroRibbon2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FFF9F3" stopOpacity="0.65" />
-                <stop offset="45%" stopColor="#FFF0E6" stopOpacity="0.80" />
-                <stop offset="100%" stopColor="#FFF9F3" stopOpacity="0.90" />
-              </linearGradient>
-            </defs>
-
-            {/* Background Faded Ribbon Wave */}
-            <path
-              d="M0,100 C340,150 680,80 1020,110 C1220,128 1360,75 1440,55 L1440,180 L0,180 Z"
-              fill="url(#heroRibbon1)"
-            />
-
-            {/* Mid Faded Translucent Ambient Wave */}
-            <path
-              d="M0,125 C300,85 620,150 960,115 C1180,92 1340,135 1440,105 L1440,180 L0,180 Z"
-              fill="url(#heroRibbon2)"
-            />
-
-            {/* Foreground Solid Warm Canvas Wave */}
-            <path
-              d="M0,140 C320,165 620,125 940,145 C1160,158 1320,120 1440,110 L1440,180 L0,180 Z"
-              fill="#FFF9F3"
-            />
-          </svg>
-        </div>
-      </div>
-
-      {/* Video Modal */}
-      <AnimatePresence>
-        {videoModalOpen && (
-          <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+            {/* Trust Badges matching reference 3-column pill markers */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/20"
+              variants={itemVariants}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 w-full max-w-xl"
             >
-              <div className="p-4 bg-[#1A1D20] flex items-center justify-between text-white border-b border-white/10">
-                <span className="font-bold text-sm">Surya Hospital Building & Campus Tour</span>
-                <button
-                  type="button"
-                  onClick={() => setVideoModalOpen(false)}
-                  className="px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold"
-                >
-                  Close
-                </button>
+              {/* Badge 1 */}
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/75 backdrop-blur-xs border border-white/80 shadow-xs">
+                <div className="w-7 h-7 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <span className="text-[11px] font-bold text-slate-800 leading-tight">
+                  NABH Standard Infrastructure
+                </span>
               </div>
-              <div className="aspect-video w-full bg-black">
-                <video
-                  src="/images/surya-hospital-building.mp4"
-                  controls
-                  autoPlay
-                  className="w-full h-full object-contain"
+
+              {/* Badge 2 */}
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/75 backdrop-blur-xs border border-white/80 shadow-xs">
+                <div className="w-7 h-7 rounded-full bg-orange-500/10 text-orange-600 flex items-center justify-center shrink-0">
+                  <Ambulance className="w-4 h-4" />
+                </div>
+                <span className="text-[11px] font-bold text-slate-800 leading-tight">
+                  24/7 Emergency Care
+                </span>
+              </div>
+
+              {/* Badge 3 */}
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/75 backdrop-blur-xs border border-white/80 shadow-xs">
+                <div className="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <span className="text-[11px] font-bold text-slate-800 leading-tight">
+                  Safe &amp; Hygienic Environment
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* ── RIGHT COLUMN: EXACT DOCTORS & 3D GOLDEN RIBBON CLUSTER FROM USER BANNER ── */}
+          <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[620px] pointer-events-auto"
+            >
+              {/* EXACT DOCTORS & RIBBON ASSET EXTRACTED DIRECTLY FROM USER'S BANNER */}
+              <div className="relative group overflow-visible">
+                <img
+                  src="/images/surya-doctors-ribbon-exact.png"
+                  alt="Surya Hospital Expert Doctors Team - Chief Surgeon, ENT Specialist, Spine & Ortho, Obstetrics & Gyn, and Senior Consultant"
+                  className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(217,119,30,0.25)] transition-transform duration-500 group-hover:scale-[1.01]"
+                  style={{
+                    transform: `translate3d(${mousePos.x * 6}px, ${mousePos.y * 4}px, 0)`,
+                  }}
                 />
               </div>
             </motion.div>
           </div>
-        )}
-      </AnimatePresence>
+
+        </div>
+      </div>
+
+      {/* ── 3. FLOATING ACTION WIDGET PILL (RIGHT EDGE) ── */}
+      <div className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-2 bg-white/92 backdrop-blur-xl border border-white/80 shadow-[0_12px_36px_rgba(0,0,0,0.12)] rounded-full py-4 px-2.5">
+        {/* WhatsApp */}
+        <a
+          href="https://wa.me/918500904999?text=Hello%20Surya%20Hospital"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex flex-col items-center gap-1 p-1 rounded-full hover:bg-emerald-50 text-slate-700 transition-colors"
+          title="Chat on WhatsApp"
+        >
+          <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all">
+            <MessageCircle className="w-5 h-5 fill-current" />
+          </div>
+          <span className="text-[9px] font-bold text-slate-600 group-hover:text-emerald-700">WhatsApp</span>
+        </a>
+
+        <div className="w-6 h-[1px] bg-slate-200/80" />
+
+        {/* Online Portal */}
+        <Link
+          to="/appointment"
+          className="group flex flex-col items-center gap-1 p-1 rounded-full hover:bg-amber-50 text-slate-700 transition-colors"
+          title="Online Patient Portal"
+        >
+          <div className="w-10 h-10 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
+            <Globe className="w-5 h-5" />
+          </div>
+          <span className="text-[9px] font-bold text-slate-600 group-hover:text-amber-700 text-center leading-tight">Online<br />Portal</span>
+        </Link>
+
+        <div className="w-6 h-[1px] bg-slate-200/80" />
+
+        {/* 24/7 Call */}
+        <a
+          href="tel:+918500904999"
+          className="group flex flex-col items-center gap-1 p-1 rounded-full hover:bg-orange-50 text-slate-700 transition-colors"
+          title="Call 24/7 Casualty Desk"
+        >
+          <div className="w-10 h-10 rounded-full bg-orange-500/10 text-orange-600 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-all">
+            <Phone className="w-4 h-4 fill-current" />
+          </div>
+          <span className="text-[9px] font-bold text-slate-600 group-hover:text-orange-700 text-center leading-tight">24/7<br />Call</span>
+        </a>
+      </div>
+
+      {/* ── 4. REFERENCE GLASS STATS BAR (DOCK AT BOTTOM) ── */}
+      <motion.div
+        ref={statsRef}
+        initial={{ opacity: 0, y: 30 }}
+        animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: 0.2 }}
+        className="relative z-20 w-full max-w-[1360px] mx-auto px-4 sm:px-6 pb-6 pointer-events-auto"
+      >
+        <div className="bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_16px_40px_rgba(0,0,0,0.08)] rounded-3xl px-6 sm:px-10 py-5 sm:py-6 flex flex-col lg:flex-row items-center justify-between gap-6">
+
+          {/* Stats Group matching reference layout with orange icons */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8 sm:gap-14 divide-x divide-slate-200/80">
+            {/* Stat 1: 24/7 Care & Emergency */}
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-11 h-11 rounded-2xl bg-[#E88C38]/15 text-[#D9771E] flex items-center justify-center shrink-0">
+                <Ambulance className="w-6 h-6 stroke-[2]" />
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-[#14233C] tracking-tight leading-none">
+                  24/7
+                </div>
+                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#758295] mt-1">
+                  CARE &amp; EMERGENCY
+                </div>
+              </div>
+            </div>
+
+            {/* Stat 2: 15+ Specialties */}
+            <div className="pl-8 sm:pl-14 flex items-center gap-3.5 text-left">
+              <div className="w-11 h-11 rounded-2xl bg-[#E88C38]/15 text-[#D9771E] flex items-center justify-center shrink-0">
+                <Users className="w-6 h-6 stroke-[2]" />
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-[#14233C] tracking-tight leading-none">
+                  <StatCounter value={15} suffix="+" inView={isStatsInView} />
+                </div>
+                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#758295] mt-1">
+                  SPECIALTIES
+                </div>
+              </div>
+            </div>
+
+            {/* Stat 3: 400+ Doctors & Staff */}
+            <div className="pl-8 sm:pl-14 flex items-center gap-3.5 text-left">
+              <div className="w-11 h-11 rounded-2xl bg-[#E88C38]/15 text-[#D9771E] flex items-center justify-center shrink-0">
+                <Users className="w-6 h-6 stroke-[2]" />
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-[#14233C] tracking-tight leading-none">
+                  <StatCounter value={400} suffix="+" inView={isStatsInView} />
+                </div>
+                <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#758295] mt-1">
+                  DOCTORS &amp; STAFF
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Middle: Scroll to Explore */}
+          <div className="hidden xl:flex flex-col items-center text-slate-500 hover:text-slate-800 transition-colors cursor-pointer">
+            <div className="w-6 h-9 rounded-full border-2 border-slate-400/80 flex items-start justify-center p-1">
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1 h-2 bg-slate-600 rounded-full"
+              />
+            </div>
+            <span className="text-[11px] font-semibold tracking-wide text-slate-500 mt-1">Scroll to Explore</span>
+          </div>
+
+          {/* Right: Hospital Location Pin */}
+          <div className="flex items-center gap-3 text-left">
+            <div className="w-10 h-10 rounded-full bg-[#E88C38]/15 text-[#D9771E] flex items-center justify-center shrink-0">
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+              </svg>
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-bold text-[#14233C] leading-snug">
+                Sai Nagar, Anantapur,
+              </div>
+              <div className="text-[11px] sm:text-xs text-[#6A7686] leading-snug">
+                Behind Ambedkar Bhavan, 9th Cross Road
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </motion.div>
     </section>
   );
 }

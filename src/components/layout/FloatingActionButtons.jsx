@@ -7,6 +7,11 @@ export function FloatingActionButtons() {
   const [inHero, setInHero] = useState(false);
   const location = useLocation();
 
+  // On home page ("/"), the reference UI already has its own integrated action buttons or hero docking
+  if (location.pathname === "/") {
+    return null;
+  }
+
   useEffect(() => {
     // Only detect hero on the homepage ("/")
     if (location.pathname !== "/") {
@@ -49,11 +54,10 @@ export function FloatingActionButtons() {
   return (
     <aside
       aria-label="Quick Action Buttons"
-      className={`fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none select-none transition-all duration-300 ease-out ${
-        inHero
+      className={`fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3 pointer-events-none select-none transition-all duration-300 ease-out ${inHero
           ? "opacity-0 translate-x-12 pointer-events-none"
           : "opacity-100 translate-x-0"
-      }`}
+        }`}
     >
       {/* 1. WhatsApp Tab (Emerald Teal with frosted inner icon circle) */}
       <a

@@ -447,7 +447,7 @@ export function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-xs"
+              className="fixed inset-0 bg-white/70 backdrop-blur-md"
               onClick={() => setMenuOpen(false)}
             />
 

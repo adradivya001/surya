@@ -722,9 +722,9 @@ export function DoctorsPage() {
         </Container>
       </section>
 
-      {/* Individual Doctor Profile Modal */}
+      {/* Individual Doctor Profile Modal with White Glassmorphism Backdrop */}
       {activeDoctorModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs transition-opacity duration-200" onClick={() => setActiveDoctorModal(null)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-white/70 backdrop-blur-md transition-opacity duration-200" onClick={() => setActiveDoctorModal(null)}>
           <div className="bg-white rounded-2xl max-w-xl w-full p-5 sm:p-8 shadow-2xl border border-[#E9D8CE] space-y-5 max-h-[88vh] overflow-y-auto transform transition-all duration-300 ease-out animate-in fade-in zoom-in-95 text-left" onClick={(e) => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[#F0E2D9]">

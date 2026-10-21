@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Container } from "../components/ui/Container";
 import {
   PhoneCall,
@@ -8,40 +9,96 @@ import {
   AlertCircle,
   FileText,
   Navigation,
+  Activity,
+  Radio,
+  Clock,
+  ShieldAlert,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
 
 export function EmergencyPage() {
+  const [liveTime, setLiveTime] = useState(() => {
+    return new Date().toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  });
+
   useEffect(() => {
     document.title = "24/7 Emergency Care | Surya Hospital, Sai Nagar, Anantapur";
+    const timer = setInterval(() => {
+      setLiveTime(
+        new Date().toLocaleTimeString("en-IN", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="w-full bg-[#FFFFFF]">
-      {/* High-priority Emergency Hero Banner (Warm Cream & Deep Orange) */}
-      <section className="bg-gradient-to-br from-[#FFF0E6] via-[#FFF9F3] to-[#FFF0E6] text-[#262626] pt-28 sm:pt-32 pb-14 md:pb-20 border-b border-[#F0E2D9]">
+      {/* High-priority Emergency Hero Banner with Pulse Radar & Live Status */}
+      <section className="relative bg-gradient-to-br from-[#FFF0E6] via-[#FFF9F3] to-[#FFF0E6] text-[#262626] pt-28 sm:pt-32 pb-14 md:pb-20 border-b border-[#F0E2D9] overflow-hidden">
+        {/* Radar concentric pulse rings in background */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none opacity-20">
+          <motion.div
+            animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
+            className="absolute inset-0 rounded-full border-2 border-[#C63D1B]"
+          />
+          <motion.div
+            animate={{ scale: [1, 1.5], opacity: [0.7, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 0.8 }}
+            className="absolute inset-16 rounded-full border border-[#E94B1C]"
+          />
+        </div>
+
         <Container>
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#C63D1B] text-white shadow-sm">
-              <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping" />
-              <span>24/7 EMERGENCY CARE OPEN NOW</span>
+          <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+            
+            {/* Live Casualty Desk Indicator */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#C63D1B] text-white shadow-md">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+                </span>
+                <span>24/7 EMERGENCY CASUALTY ACTIVE</span>
+              </div>
+
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>On-Duty Doctor &amp; Triage Team Ready • {liveTime}</span>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif-heading font-bold text-[#C63D1B] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-serif-heading font-black text-[#C63D1B] tracking-tight leading-snug">
               24/7 Emergency &amp; Casualty Care
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-[#4A403B] leading-relaxed max-w-3xl mx-auto font-normal">
+            <p className="text-sm sm:text-base md:text-lg text-[#4A403B] leading-relaxed max-w-2xl mx-auto font-normal">
               Our emergency team is open day and night for accidents, sudden chest pain, breathing difficulties, high fevers, and wound care in Sai Nagar, Anantapur.
             </p>
 
-            {/* Large Call Hospital Button */}
-            <div className="pt-2">
+            {/* Large Call Hospital Button with Interactive Pulse Ring */}
+            <div className="pt-2 relative inline-block">
+              {/* Pulsing ring around button */}
+              <motion.div
+                animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.2, 0.6] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -inset-2 rounded-full bg-[#E94B1C]/30 blur-xs"
+              />
               <a
                 href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                className="inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-xl hover:shadow-2xl transition transform hover:scale-[1.02] active:scale-98 w-full sm:w-auto text-center"
+                className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-black bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-xl hover:shadow-2xl transition transform hover:scale-[1.03] active:scale-98 w-full sm:w-auto text-center"
               >
-                <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse shrink-0 text-white" />
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                  <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce shrink-0 text-white" />
+                </div>
                 <span>Call Emergency Casualty: {HOSPITAL_INFO.phone}</span>
               </a>
             </div>

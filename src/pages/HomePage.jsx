@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { HomeHero } from "../components/home/HomeHero";
-import { HomeSpecialitiesGrid } from "../components/home/HomeSpecialitiesGrid";
 import { FacilitiesCinematic } from "../components/home/FacilitiesCinematic";
 import { SpecialtiesDoctorsPoster } from "../components/home/SpecialtiesDoctorsPoster";
 import { TestimonialCarousel } from "../components/home/TestimonialCarousel";
@@ -17,10 +16,7 @@ export function HomePage() {
       {/* 1. Hero Section with Integrated Stats & Organic Flowing Bottom Wave */}
       <HomeHero />
 
-      {/* 2. Services Section with 15 Expert Specialties Grid */}
-      <HomeSpecialitiesGrid />
-
-      {/* 4. Advanced Technology & Facilities Section in Deep Clinical Teal */}
+      {/* 2. Advanced Technology & Facilities Section in Deep Clinical Teal */}
       <FacilitiesCinematic />
 
       {/* 5. Complete 12 Specialties & 19 Doctors Section matching reference poster */}

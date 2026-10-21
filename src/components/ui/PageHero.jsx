@@ -53,12 +53,12 @@ export function PageHero({
             )}
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-[#C63D1B] tracking-tight leading-[1.12]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#C63D1B] tracking-tight leading-snug">
             {title}
           </h1>
 
           {description && (
-            <p className="text-base sm:text-lg md:text-xl text-[#4A403B] leading-relaxed max-w-3xl pt-1 font-normal">
+            <p className="text-sm sm:text-base text-[#4A403B] leading-relaxed max-w-2xl pt-0.5 font-normal">
               {description}
             </p>
           )}

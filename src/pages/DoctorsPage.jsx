@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../components/ui/Container";
 import { PageHero } from "../components/ui/PageHero";
 import { Button } from "../components/ui/Button";
@@ -16,6 +17,8 @@ import {
   PhoneCall,
   CheckCircle2,
   User,
+  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
 
@@ -30,6 +33,7 @@ export function DoctorsPage() {
 
   const departments = [
     "All",
+    "Internal Medicine",
     "Cardiology",
     "Gastroenterology",
     "Nephrology",
@@ -44,8 +48,36 @@ export function DoctorsPage() {
     "Psychiatry",
   ];
 
+  const quickSymptoms = [
+    { label: "Chest Pain / Heart", query: "heart" },
+    { label: "Joint / Spine Pain", query: "spine" },
+    { label: "Acidity / Digestion", query: "gastro" },
+    { label: "Kidney / Dialysis", query: "kidney" },
+    { label: "Ear / Sinus / Throat", query: "ent" },
+    { label: "Diabetes / BP", query: "diabetes" },
+    { label: "Asthma / Breathing", query: "breathing" },
+    { label: "Headache / Nerve", query: "neuro" },
+  ];
+
   // Approved, verified clinical keywords mapped strictly to verified doctors and hospital data
   const CLINICAL_FOCUS_KEYWORDS = {
+    "dr-d-surya-prakash": [
+      "surya",
+      "surya prakash",
+      "managing director",
+      "internal medicine",
+      "physician",
+      "general physician",
+      "diabetes",
+      "sugar",
+      "blood pressure",
+      "bp",
+      "cholesterol",
+      "fever",
+      "infection",
+      "inpatient",
+      "health check",
+    ],
     "dr-k-vamsi-krishna": [
       "heart",
       "cardiology",
@@ -432,25 +464,63 @@ export function DoctorsPage() {
               </div>
             </div>
 
-            {/* Department Filter Chips */}
+            {/* Quick Symptom Suggestion Tags */}
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs pt-1">
+              <span className="text-[11px] font-bold text-[#756860] shrink-0 mr-1 flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-[#E94B1C]" /> Common Concerns:
+              </span>
+              {quickSymptoms.map((sym) => (
+                <button
+                  key={sym.query}
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery(sym.query);
+                    setSelectedDepartment("All");
+                  }}
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap transition cursor-pointer ${
+                    searchQuery.toLowerCase() === sym.query.toLowerCase()
+                      ? "bg-[#E94B1C] text-white shadow-2xs"
+                      : "bg-[#FFF9F3] text-[#4A403B] hover:bg-[#FFF0E6] border border-[#E9D8CE]"
+                  }`}
+                >
+                  {sym.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Department Filter Chips with Animated Highlight */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs" role="region" aria-label="Department filters">
               <span className="text-[11px] font-bold uppercase tracking-wider text-[#756860] shrink-0 mr-1 flex items-center gap-1">
                 <Filter className="w-3.5 h-3.5 text-[#E94B1C]" /> Department:
               </span>
-              {departments.map((dept) => (
-                <button
-                  key={dept}
-                  type="button"
-                  onClick={() => setSelectedDepartment(dept)}
-                  className={`px-3.5 py-1.5 rounded-full font-bold transition whitespace-nowrap cursor-pointer ${
-                    selectedDepartment === dept
-                      ? "bg-[#E94B1C] text-white shadow-xs"
-                      : "bg-[#FFF0E6]/60 text-[#262626] border border-[#E9D8CE] hover:bg-[#FFF0E6]"
-                  }`}
-                >
-                  {dept}
-                </button>
-              ))}
+              {departments.map((dept) => {
+                const isSelected = selectedDepartment === dept;
+                const count = dept === "All"
+                  ? HOSPITAL_INFO.doctors.length
+                  : HOSPITAL_INFO.doctors.filter(d => d.department.toLowerCase().includes(dept.toLowerCase())).length;
+
+                return (
+                  <button
+                    key={dept}
+                    type="button"
+                    onClick={() => setSelectedDepartment(dept)}
+                    className={`relative px-3.5 py-1.5 rounded-full font-bold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                      isSelected
+                        ? "text-white bg-[#E94B1C] shadow-xs"
+                        : "bg-[#FFF0E6]/60 text-[#262626] border border-[#E9D8CE] hover:bg-[#FFF0E6]"
+                    }`}
+                  >
+                    <span>{dept}</span>
+                    {count > 0 && (
+                      <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-extrabold ${
+                        isSelected ? "bg-white/25 text-white" : "bg-white text-[#C63D1B] border border-[#E9D8CE]"
+                      }`}>
+                        {count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Priority Emergency Guidance Callout (Only appears for acute emergency search queries) */}
@@ -499,101 +569,116 @@ export function DoctorsPage() {
             </div>
           </div>
 
-          {/* Doctors Grid: 4 columns desktop, 2 tablet, 1-2 mobile */}
+          {/* Doctors Grid with Framer-Motion AnimatePresence */}
           {filteredDoctors.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
-              {filteredDoctors.map((doc) => (
-                <div
-                  key={doc.id}
-                  className={`bg-white rounded-2xl border border-[#E9D8CE] shadow-xs hover:border-[#E94B1C] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between group ${
-                    doc.isManagingDirector
-                      ? "ring-1 ring-[#E94B1C]/30"
-                      : ""
-                  }`}
-                >
-                  {/* Clean Text-Focused Header without photo */}
-                  <div className="p-5 pb-3.5 bg-gradient-to-br from-white via-[#FFF0E6]/20 to-[#FFF0E6]/50 border-b border-[#F0E2D9]">
-                    <div className="flex items-center justify-between gap-2 mb-2.5">
-                      <span className="text-[10px] sm:text-[11px] font-bold text-[#C63D1B] uppercase tracking-wider bg-[#FFF0E6] px-2.5 py-1 rounded-md border border-[#E9D8CE]">
-                        {doc.department}
-                      </span>
-                      <span
-                        className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                          doc.isManagingDirector
-                            ? "bg-[#E94B1C] text-white"
-                            : "bg-white text-[#756860] border border-[#E9D8CE]"
-                        }`}
-                      >
-                        {doc.status}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg sm:text-xl font-black text-[#C63D1B] leading-snug group-hover:text-[#A83218] transition-colors">
-                      {doc.name}
-                    </h3>
-                  </div>
-
-                  {/* Body Content */}
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4 text-left">
-                    <div className="space-y-1">
-                      <div className="text-xs sm:text-sm font-bold text-[#C63D1B]">
-                        {doc.qualifications}
-                      </div>
-                      <div className="text-xs font-semibold text-[#262626]">
-                        {doc.designation}
-                      </div>
-                      <p className="text-xs text-[#756860] leading-relaxed pt-0.5 line-clamp-2">
-                        {doc.experience}
-                      </p>
-                    </div>
-
-                    {/* Key Areas of Care - clean and concise */}
-                    <div className="pt-2.5 border-t border-[#F0E2D9] space-y-1.5">
-                      <ul className="space-y-1.5 text-xs text-[#756860]">
-                        {doc.specialties.slice(0, 3).map((spec, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#E94B1C] shrink-0 mt-1.5" />
-                            <span className="leading-snug">{spec}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Consultation Schedule & Dual Actions */}
-                    <div className="pt-2.5 border-t border-[#F0E2D9] space-y-3">
-                      <div className="flex items-start gap-2 text-xs text-[#756860]">
-                        <Clock className="w-3.5 h-3.5 text-[#FF8A3D] shrink-0 mt-0.5" />
-                        <span className="text-[11px] leading-snug">{doc.opdTimings}</span>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-2 pt-0.5">
-                        <button
-                          type="button"
-                          onClick={() => setActiveDoctorModal(doc)}
-                          className="w-full py-2 px-2.5 rounded-full text-xs font-bold border border-[#E9D8CE] bg-white hover:bg-[#FFF0E6] text-[#C63D1B] transition cursor-pointer active:scale-95 shadow-2xs"
+            <motion.div
+              layout
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredDoctors.map((doc, idx) => (
+                  <motion.div
+                    key={doc.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.94, y: 12 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.92, y: 8 }}
+                    transition={{
+                      duration: 0.25,
+                      delay: Math.min(idx * 0.02, 0.2),
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
+                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                    className={`bg-white rounded-2xl border border-[#E9D8CE] shadow-xs hover:border-[#E94B1C] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between group ${
+                      doc.isManagingDirector
+                        ? "ring-1 ring-[#E94B1C]/30"
+                        : ""
+                    }`}
+                  >
+                    {/* Clean Text-Focused Header without photo */}
+                    <div className="p-5 pb-3.5 bg-gradient-to-br from-white via-[#FFF0E6]/20 to-[#FFF0E6]/50 border-b border-[#F0E2D9]">
+                      <div className="flex items-center justify-between gap-2 mb-2.5">
+                        <span className="text-[10px] sm:text-[11px] font-bold text-[#C63D1B] uppercase tracking-wider bg-[#FFF0E6] px-2.5 py-1 rounded-md border border-[#E9D8CE]">
+                          {doc.department}
+                        </span>
+                        <span
+                          className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                            doc.isManagingDirector
+                              ? "bg-[#E94B1C] text-white"
+                              : "bg-white text-[#756860] border border-[#E9D8CE]"
+                          }`}
                         >
-                          View Profile
-                        </button>
+                          {doc.status}
+                        </span>
+                      </div>
 
-                        <Link
-                          to={`/appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.department)}`}
-                          className="w-full"
-                        >
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            fullWidth
-                            className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-xs font-bold py-2 rounded-full active:scale-95 shadow-xs"
+                      <h3 className="text-lg sm:text-xl font-black text-[#C63D1B] leading-snug group-hover:text-[#A83218] transition-colors">
+                        {doc.name}
+                      </h3>
+                    </div>
+
+                    {/* Body Content */}
+                    <div className="p-5 flex-1 flex flex-col justify-between space-y-4 text-left">
+                      <div className="space-y-1">
+                        <div className="text-xs sm:text-sm font-bold text-[#C63D1B]">
+                          {doc.qualifications}
+                        </div>
+                        <div className="text-xs font-semibold text-[#262626]">
+                          {doc.designation}
+                        </div>
+                        <p className="text-xs text-[#756860] leading-relaxed pt-0.5 line-clamp-2">
+                          {doc.experience}
+                        </p>
+                      </div>
+
+                      {/* Key Areas of Care - clean and concise */}
+                      <div className="pt-2.5 border-t border-[#F0E2D9] space-y-1.5">
+                        <ul className="space-y-1.5 text-xs text-[#756860]">
+                          {doc.specialties.slice(0, 3).map((spec, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#E94B1C] shrink-0 mt-1.5" />
+                              <span className="leading-snug">{spec}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Consultation Schedule & Dual Actions */}
+                      <div className="pt-2.5 border-t border-[#F0E2D9] space-y-3">
+                        <div className="flex items-start gap-2 text-xs text-[#756860]">
+                          <Clock className="w-3.5 h-3.5 text-[#FF8A3D] shrink-0 mt-0.5" />
+                          <span className="text-[11px] leading-snug">{doc.opdTimings}</span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 pt-0.5">
+                          <button
+                            type="button"
+                            onClick={() => setActiveDoctorModal(doc)}
+                            className="w-full py-2 px-2.5 rounded-full text-xs font-bold border border-[#E9D8CE] bg-white hover:bg-[#FFF0E6] text-[#C63D1B] transition cursor-pointer active:scale-95 shadow-2xs"
                           >
-                            Book Visit
-                          </Button>
-                        </Link>
+                            View Profile
+                          </button>
+
+                          <Link
+                            to={`/appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.department)}`}
+                            className="w-full"
+                          >
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              fullWidth
+                              className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-xs font-bold py-2 rounded-full active:scale-95 shadow-xs"
+                            >
+                              Book Visit
+                            </Button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
           ) : (
             <div className="text-center py-12 sm:py-16 px-4 bg-white rounded-2xl border border-[#E9D8CE] space-y-4 max-w-2xl mx-auto shadow-xs">
               <div className="w-12 h-12 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center mx-auto border border-[#E9D8CE]">
@@ -644,9 +729,19 @@ export function DoctorsPage() {
             {/* Header */}
             <div className="flex items-start justify-between pb-4 border-b border-[#F0E2D9]">
               <div className="flex items-center gap-3.5">
-                <div className="w-13 h-13 sm:w-16 sm:h-16 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 border border-[#E9D8CE]">
-                  <User className="w-7 h-7 sm:w-8 sm:h-8" />
-                </div>
+                {activeDoctorModal.image && activeDoctorModal.image.startsWith("/") ? (
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-[#FFF0E6] shrink-0 border border-[#E9D8CE] shadow-xs">
+                    <img
+                      src={activeDoctorModal.image}
+                      alt={activeDoctorModal.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-13 h-13 sm:w-16 sm:h-16 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 border border-[#E9D8CE]">
+                    <User className="w-7 h-7 sm:w-8 sm:h-8" />
+                  </div>
+                )}
                 <div>
                   <h3 className="text-xl font-black text-[#C63D1B]">
                     {activeDoctorModal.name}

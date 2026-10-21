@@ -15,6 +15,7 @@ import { EmergencyPage } from "./pages/EmergencyPage";
 import { ContactPage } from "./pages/ContactPage";
 import { AppointmentPage } from "./pages/AppointmentPage";
 import { InsurancePartnersPage } from "./pages/InsurancePartnersPage";
+import { SpecialityDetailPage } from "./pages/SpecialityDetailPage";
 
 export function App() {
   return (
@@ -32,7 +33,11 @@ export function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/doctors" element={<DoctorsPage />} />
             <Route path="/specialities" element={<SpecialitiesPage />} />
+            <Route path="/specialities/:slug" element={<SpecialityDetailPage />} />
+            <Route path="/departments" element={<Navigate to="/specialities" replace />} />
+            <Route path="/departments/:slug" element={<SpecialityDetailPage />} />
             <Route path="/services" element={<Navigate to="/specialities" replace />} />
+            <Route path="/services/:slug" element={<SpecialityDetailPage />} />
             <Route path="/diagnostics" element={<Navigate to="/specialities" replace />} />
             <Route path="/emergency" element={<EmergencyPage />} />
             <Route path="/insurance-partners" element={<InsurancePartnersPage />} />

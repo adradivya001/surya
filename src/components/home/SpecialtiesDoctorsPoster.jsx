@@ -220,10 +220,24 @@ export function SpecialtiesDoctorsPoster() {
                   </Link>
 
                   <Link
-                    to="/doctors"
+                    to={
+                      dept.specialty === "CARDIOLOGY" ? "/specialities/cardiology" :
+                      dept.specialty === "GASTROENTEROLOGY" ? "/specialities/gastroenterology" :
+                      dept.specialty === "NEPHROLOGY" ? "/specialities/nephrology" :
+                      dept.specialty === "E.N.T." ? "/specialities/ent" :
+                      dept.specialty === "ORTHOPEDIC" ? "/specialities/orthopedics-spine" :
+                      dept.specialty === "PULMONOLOGY" ? "/specialities/pulmonology" :
+                      dept.specialty === "ANESTHESIA & INTENSIVIST" ? "/specialities/anesthesia-critical-care" :
+                      dept.specialty === "ONCOLOGY" ? "/specialities/medical-oncology" :
+                      dept.specialty === "NEUROLOGY" ? "/specialities/neurology" :
+                      dept.specialty === "UROLOGY" ? "/specialities/urology" :
+                      dept.specialty === "GENERAL SURGERY" ? "/specialities/general-laparoscopic-surgery" :
+                      dept.specialty === "PSYCHIATRY" ? "/specialities/psychiatry" :
+                      "/doctors"
+                    }
                     className="font-semibold text-[#756860] hover:text-[#E94B1C] transition-colors text-[11px] sm:text-xs"
                   >
-                    Details →
+                    View Page →
                   </Link>
                 </div>
               </div>

@@ -65,6 +65,28 @@ export const HOSPITAL_INFO = {
 
   // Verified Doctors & Medical Consultants
   doctors: [
+    // Clinical Leadership & Internal Medicine
+    {
+      id: "dr-d-surya-prakash",
+      name: "Dr. D. Surya Prakash Chowdary",
+      designation: "Managing Director & Consultant Physician",
+      department: "Internal Medicine",
+      qualifications: "M.D. Internal Medicine (Manipal)",
+      experience: "Founder, Managing Director & Senior Consultant Physician",
+      image: "/images/dr-d-surya-prakash.png",
+      fallbackImage: "/images/dr-d-surya-prakash.png",
+      opdTimings: "Mon – Sat: 09:30 AM – 01:30 PM & 05:00 PM – 08:30 PM",
+      status: "Managing Director",
+      isManagingDirector: true,
+      specialties: [
+        "Diabetes, Hypertension & Cholesterol Management",
+        "Adult Illness Diagnosis & Inpatient Medical Care",
+        "Fever, Infections & Seasonal Illness Care",
+        "Comprehensive Preventive Health Checkups",
+      ],
+      bio: "Dr. D. Surya Prakash Chowdary is the founder and Managing Director of Surya Hospital. With specialized post-graduate training in Internal Medicine from Manipal, he oversees all clinical standards, patient safety protocols, and hospital inpatient care while leading comprehensive consultations for adult medical conditions.",
+    },
+
     // Cardiology
     {
       id: "dr-k-vamsi-krishna",
@@ -470,8 +492,41 @@ export const HOSPITAL_INFO = {
     },
   ],
 
-  // Verified Hospital Specialities - 12 Core Clinical Departments matching exact prompt specifications
+  // Verified Hospital Specialities
   specialities: [
+    {
+      id: "internal-medicine",
+      name: "Internal Medicine",
+      category: "General & Adult Medicine",
+      iconName: "Stethoscope",
+      shortDescription:
+        "Comprehensive adult healthcare, management of chronic conditions like diabetes and hypertension, fever, and inpatient medical care.",
+      overview:
+        "Internal Medicine focuses on the prevention, diagnosis, and non-surgical treatment of adult diseases. Led by Founder & Managing Director Dr. D. Surya Prakash Chowdary, our department provides compassionate, holistic medical guidance for acute illnesses, chronic metabolic disorders, and hospital inpatient management.",
+      conditions: [
+        "Diabetes mellitus, blood sugar control & complications.",
+        "Hypertension, blood pressure monitoring & lifestyle care.",
+        "High cholesterol and cardiovascular metabolic risk factors.",
+        "Seasonal fevers, viral infections, dengue & typhoid care.",
+        "Infectious diseases, cough, cold, chest infections & asthma.",
+        "Digestive upsets, weakness, fatigue, and multisystem health problems.",
+      ],
+      services: [
+        "Comprehensive adult health consultations & routine checks.",
+        "Long-term chronic disease management & medication reviews.",
+        "Inpatient observation and medical stabilization care.",
+        "Preventive diagnostic screening & lifestyle counsel.",
+        "Pre-operative medical fitness evaluations.",
+      ],
+      whenToConsult:
+        "Consult for persistent fevers, uncontrolled blood sugar or BP levels, unexplained fatigue, adult illnesses, or when you need trusted general physician guidance.",
+      consultants: [
+        {
+          name: "Dr. D. Surya Prakash Chowdary",
+          qualifications: "M.D. Internal Medicine (Manipal)",
+        },
+      ],
+    },
     {
       id: "cardiology",
       name: "Cardiology",

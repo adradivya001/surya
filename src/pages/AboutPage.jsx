@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Container } from "../components/ui/Container";
 import { PageHero } from "../components/ui/PageHero";
 import { Button } from "../components/ui/Button";
@@ -7,6 +8,12 @@ import {
   ShieldCheck,
   CheckCircle2,
   Stethoscope,
+  Award,
+  Building2,
+  Activity,
+  Heart,
+  Clock,
+  Sparkles,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
 import { AnimateIn } from "../components/ui/AnimateIn";
@@ -183,7 +190,7 @@ export function AboutPage() {
         </Container>
       </section>
 
-      {/* Core Values & Commitments */}
+      {/* Core Values & Commitments with Interactive Spring Lift */}
       <section className="py-18 sm:py-24 bg-[#FFF9F3] border-b border-[#F0E2D9]">
         <Container>
           <div className="max-w-5xl mx-auto space-y-12">
@@ -200,57 +207,131 @@ export function AboutPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {HOSPITAL_INFO.values.map((val) => (
-                <div
+              {HOSPITAL_INFO.values.map((val, idx) => (
+                <motion.div
                   key={val.title}
-                  className="bg-white p-7 rounded-2xl border border-[#E9D8CE] shadow-xs text-left space-y-3 flex flex-col justify-between hover:border-[#E94B1C] transition"
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 20 }}
+                  className="bg-white p-7 rounded-2xl border border-[#E9D8CE] shadow-xs text-left space-y-3 flex flex-col justify-between hover:border-[#E94B1C] hover:shadow-lg transition-colors cursor-pointer group"
                 >
-                  <div className="space-y-2.5">
-                    <div className="w-11 h-11 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center border border-[#E9D8CE]">
-                      <CheckCircle2 className="w-5 h-5" />
+                  <div className="space-y-3">
+                    <div className="w-12 h-12 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center border border-[#E9D8CE] group-hover:bg-[#E94B1C] group-hover:text-white transition-colors duration-300 shadow-2xs">
+                      <CheckCircle2 className="w-6 h-6 stroke-[2.2]" />
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-[#C63D1B]">{val.title}</h3>
+                    <h3 className="text-base sm:text-lg font-bold text-[#C63D1B] group-hover:text-[#E94B1C] transition-colors">{val.title}</h3>
                     <p className="text-xs sm:text-sm text-[#756860] leading-relaxed font-normal">{val.desc}</p>
                   </div>
-                </div>
+                  <div className="pt-3 border-t border-[#F0E2D9] text-[11px] font-bold text-[#FF8A3D] flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Pillar 0{idx + 1} of Excellence</span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Verified Facilities & Services */}
-      <section className="py-18 bg-white border-b border-[#F0E2D9]">
+      {/* ── Interactive Milestone Timeline ── */}
+      <section className="py-18 sm:py-24 bg-white border-b border-[#F0E2D9]">
         <Container>
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#FFF0E6] text-[#C63D1B] border border-[#E9D8CE]">
-              HOSPITAL FACILITIES
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#C63D1B] tracking-tight">
-              Modern Facilities for Your Comfort & Safety
-            </h2>
-            <p className="text-base text-[#756860] leading-relaxed font-normal">
-              From sterile surgical suites to 24/7 casualty and pharmacy, everything is set up to help you heal quickly.
-            </p>
-          </div>
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div className="text-center space-y-3 max-w-2xl mx-auto">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-widest bg-[#FFF0E6] text-[#C63D1B] border border-[#E9D8CE]">
+                JOURNEY OF SERVICE
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#C63D1B] tracking-tight">
+                Our Milestones & Growth in Sai Nagar
+              </h2>
+              <p className="text-base text-[#756860] leading-relaxed">
+                From a dedicated physician clinic to an integrated multi-speciality hospital with round-the-clock emergency care.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {HOSPITAL_INFO.services.map((svc) => (
-              <div
-                key={svc.id}
-                className="p-6 rounded-2xl border border-[#E9D8CE] bg-white text-left space-y-2.5 shadow-xs hover:border-[#E94B1C] hover:shadow-md transition"
+            <div className="relative border-l-2 border-[#E9D8CE] ml-4 sm:ml-8 pl-6 sm:pl-10 space-y-10">
+              {/* Milestone 1 */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="relative group text-left"
               >
-                <div className="text-[11px] font-bold text-[#E94B1C] uppercase tracking-wider">
-                  Verified Service
+                <div className="absolute -left-[35px] sm:-left-[51px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-[#E94B1C] group-hover:scale-125 transition-transform" />
+                <div className="bg-[#FFF9F3] border border-[#E9D8CE] rounded-2xl p-5 sm:p-6 shadow-xs hover:border-[#E94B1C] transition">
+                  <div className="flex items-center justify-between gap-4 flex-wrap mb-2">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#C63D1B] bg-[#FFF0E6] px-3 py-1 rounded-md border border-[#E9D8CE]">
+                      Founding Chapter
+                    </span>
+                    <span className="text-xs font-bold text-[#756860]">Sai Nagar, Anantapur</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-[#1A1D20]">
+                    Surya Hospital Established by Dr. D. Surya Prakash
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#4A403B] mt-1.5 leading-relaxed">
+                    Started with outpatient consultations in Internal Medicine, fever care, and chronic illness monitoring to deliver transparent clinical attention.
+                  </p>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#262626]">{svc.name}</h3>
-                <p className="text-xs sm:text-sm text-[#756860] leading-relaxed font-normal">{svc.details}</p>
-              </div>
-            ))}
-          </div>
+              </motion.div>
 
-          {/* Cross-page Navigation CTA */}
-          <AnimateIn animation="pop" delay={150} className="mt-14 p-8 sm:p-12 rounded-3xl bg-[#FFF0E6] border border-[#E9D8CE] text-[#262626] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-sm">
+              {/* Milestone 2 */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="relative group text-left"
+              >
+                <div className="absolute -left-[35px] sm:-left-[51px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-[#FF8A3D] group-hover:scale-125 transition-transform" />
+                <div className="bg-[#FFF9F3] border border-[#E9D8CE] rounded-2xl p-5 sm:p-6 shadow-xs hover:border-[#E94B1C] transition">
+                  <div className="flex items-center justify-between gap-4 flex-wrap mb-2">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#FF8A3D] bg-[#FFF0E6] px-3 py-1 rounded-md border border-[#E9D8CE]">
+                      Inpatient & Surgical Wing
+                    </span>
+                    <span className="text-xs font-bold text-[#756860]">Infrastructure Expansion</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-[#1A1D20]">
+                    Sterile Operation Theatres & Monitored Recovery Beds
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#4A403B] mt-1.5 leading-relaxed">
+                    Expanded with fully equipped operating suites for General, Laparoscopic, Orthopedic, and ENT surgeries, ensuring patient safety.
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Milestone 3 */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="relative group text-left"
+              >
+                <div className="absolute -left-[35px] sm:-left-[51px] top-1.5 w-6 h-6 rounded-full bg-white border-4 border-[#006677] group-hover:scale-125 transition-transform" />
+                <div className="bg-[#FFF9F3] border border-[#E9D8CE] rounded-2xl p-5 sm:p-6 shadow-xs hover:border-[#E94B1C] transition">
+                  <div className="flex items-center justify-between gap-4 flex-wrap mb-2">
+                    <span className="text-xs font-black uppercase tracking-wider text-[#006677] bg-[#E6F4F7] px-3 py-1 rounded-md border border-[#BDE0E8]">
+                      24/7 Critical Services
+                    </span>
+                    <span className="text-xs font-bold text-[#756860]">Continuous Care</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-[#1A1D20]">
+                    24/7 Casualty Desk, Pharmacy & Dialysis Unit
+                  </h4>
+                  <p className="text-xs sm:text-sm text-[#4A403B] mt-1.5 leading-relaxed">
+                    Commissioned emergency casualty support, round-the-clock on-premise pharmacy, and dedicated dialysis units for patients across Anantapur district.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Cross-page Navigation CTA */}
+      <section className="py-14 bg-white border-b border-[#F0E2D9]">
+        <Container>
+          <AnimateIn animation="pop" delay={100} className="p-8 sm:p-12 rounded-3xl bg-[#FFF0E6] border border-[#E9D8CE] text-[#262626] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-sm">
             <div className="space-y-1.5">
               <h3 className="text-xl sm:text-2xl font-black text-[#C63D1B]">
                 Have questions about our doctors or departments?

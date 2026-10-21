@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
 import { AnimateIn } from "../components/ui/AnimateIn";
 import {
@@ -18,14 +19,23 @@ import {
   PhoneCall,
   Search,
   ExternalLink,
+  X,
+  Download,
+  Check,
 } from "lucide-react";
 
 export function InsurancePartnersPage() {
+  const [tpaSearch, setTpaSearch] = useState("");
+  const [isChecklistOpen, setIsChecklistOpen] = useState(false);
+
   useEffect(() => {
     document.title = "Our Insurance Partners & Cashless Facility | Surya Hospital, Anantapur";
   }, []);
 
   const partners = HOSPITAL_INFO.insurancePartners;
+  const filteredPartners = partners.filter((p) =>
+    p.name.toLowerCase().includes(tpaSearch.toLowerCase().trim())
+  );
 
   const scrollToGrid = (e) => {
     e.preventDefault();
@@ -104,7 +114,7 @@ export function InsurancePartnersPage() {
           </AnimateIn>
 
           <AnimateIn animation="fade-up" delay={100}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#C63D1B] tracking-tight leading-tight uppercase">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#C63D1B] tracking-tight leading-snug uppercase">
               Our Insurance Partners
             </h1>
           </AnimateIn>
@@ -136,6 +146,14 @@ export function InsurancePartnersPage() {
               >
                 <span>View Insurance Partners</span>
                 <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsChecklistOpen(true)}
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-bold text-[#006677] bg-[#E6F4F7] hover:bg-[#D4EEF2] border border-[#BDE0E8] transition-all shadow-xs active:scale-95 cursor-pointer"
+              >
+                <FileCheck2 className="w-4 h-4" />
+                <span>Documents Checklist</span>
               </button>
             </div>
           </AnimateIn>
@@ -231,27 +249,91 @@ export function InsurancePartnersPage() {
             </AnimateIn>
           </div>
 
-          {/* 3 Columns Desktop, 2 Columns Tablet, 1-2 Columns Mobile */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-            {partners.map((partner, idx) => (
-              <AnimateIn
-                key={partner.id}
-                animation="fade-up"
-                delay={Math.min(idx * 25, 350)}
-              >
-                <div
-                  className="group relative bg-white rounded-[18px] sm:rounded-[20px] border-[1.8px] border-[#E9D8CE] overflow-hidden shadow-xs hover:shadow-xl hover:border-[#E94B1C] transition-all duration-300 p-3 sm:p-3.5 flex items-center justify-center min-h-[92px] sm:min-h-[110px] md:min-h-[120px]"
-                  title={partner.name}
+          {/* Live Search & Filter Bar */}
+          <div className="max-w-xl mx-auto mb-10">
+            <div className="relative">
+              <Search className="w-5 h-5 text-[#C63D1B] absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                value={tpaSearch}
+                onChange={(e) => setTpaSearch(e.target.value)}
+                placeholder="Search TPA or Insurance Provider (e.g. Star Health, Medi Assist, HDFC, Vidal)..."
+                className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white border border-[#E9D8CE] text-sm text-[#1A1D20] placeholder-[#756860]/70 focus:outline-none focus:border-[#E94B1C] shadow-sm transition"
+              />
+              {tpaSearch && (
+                <button
+                  type="button"
+                  onClick={() => setTpaSearch("")}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#756860] hover:text-[#C63D1B] p-1 cursor-pointer"
                 >
-                  <img
-                    src={partner.logo}
-                    alt={`${partner.name} logo`}
-                    className="w-full h-auto max-h-[75px] sm:max-h-[90px] md:max-h-[100px] object-contain transition-transform duration-300 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                </div>
-              </AnimateIn>
-            ))}
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            {tpaSearch && (
+              <div className="flex items-center justify-between text-xs text-[#756860] mt-2 px-2">
+                <span>
+                  Showing <strong>{filteredPartners.length}</strong> of {partners.length} partners
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setTpaSearch("")}
+                  className="text-[#C63D1B] hover:underline font-semibold cursor-pointer"
+                >
+                  Clear search
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Clean 5-Column Borderless Grid with live search result */}
+          <div className="bg-white/80 rounded-3xl p-6 sm:p-10 md:p-14 shadow-sm border border-[#E9D8CE]/60">
+            {filteredPartners.length === 0 ? (
+              <div className="py-12 text-center space-y-3">
+                <HelpCircle className="w-10 h-10 text-[#C63D1B] mx-auto opacity-70" />
+                <h4 className="text-base font-bold text-[#1A1D20]">No matching partner found for "{tpaSearch}"</h4>
+                <p className="text-xs text-[#756860] max-w-md mx-auto">
+                  Don't worry! Surya Hospital handles reimbursement claims and additional TPAs. Call our 24/7 Insurance Desk at{" "}
+                  <a href="tel:8500904999" className="text-[#E94B1C] font-bold underline">8500904999</a> to verify.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setTpaSearch("")}
+                  className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition shadow-xs cursor-pointer"
+                >
+                  Reset Search
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-10 md:gap-12 items-center justify-items-center">
+                {filteredPartners.map((partner, idx) => (
+                  <motion.div
+                    key={partner.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full flex items-center justify-center"
+                  >
+                    <div
+                      className="group w-full flex flex-col items-center justify-center p-2.5 transition-all duration-300"
+                      title={partner.name}
+                    >
+                      <img
+                        src={partner.logo}
+                        alt={`${partner.name} logo`}
+                        className="max-h-12 sm:max-h-14 md:max-h-16 w-auto max-w-[140px] sm:max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-110 filter drop-shadow-2xs"
+                        loading="lazy"
+                      />
+                      <span className="text-[11px] font-semibold text-[#756860] group-hover:text-[#C63D1B] mt-1.5 text-center line-clamp-1 transition-colors">
+                        {partner.name}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Notice pill below grid */}
@@ -464,6 +546,115 @@ export function InsurancePartnersPage() {
 
         </div>
       </section>
+
+      {/* ── Document Checklist Modal ── */}
+      <AnimatePresence>
+        {isChecklistOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsChecklistOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-xs"
+            />
+
+            {/* Modal Dialog */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              className="relative w-full max-w-xl bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-[#E9D8CE] z-10 text-left overflow-hidden max-h-[90vh] overflow-y-auto"
+            >
+              <div className="flex items-start justify-between gap-4 pb-4 border-b border-[#F0E2D9]">
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF0E6] text-[#C63D1B] text-[11px] font-bold uppercase tracking-wider mb-2">
+                    <FileCheck2 className="w-3.5 h-3.5" />
+                    <span>Patient Verification Guide</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black text-[#1A1D20]">
+                    Cashless Admission Checklist
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#756860] mt-0.5">
+                    Keep these documents handy during planned or emergency admission at Surya Hospital.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsChecklistOpen(false)}
+                  className="w-9 h-9 rounded-full bg-[#FFF0E6] text-[#756860] hover:text-[#C63D1B] flex items-center justify-center shrink-0 transition cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="py-5 space-y-4">
+                <div className="p-3.5 rounded-2xl bg-[#FFF9F3] border border-[#E9D8CE] space-y-2">
+                  <span className="text-xs font-bold text-[#C63D1B] uppercase tracking-wide">
+                    1. Primary Insurance Documents
+                  </span>
+                  <ul className="space-y-2 text-xs sm:text-sm text-[#262626]">
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#006677] shrink-0 mt-0.5" />
+                      <span>Original Health Insurance Card or Digital E-Card copy.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#006677] shrink-0 mt-0.5" />
+                      <span>Current Year Insurance Policy Schedule showing member names.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-[#FFF9F3] border border-[#E9D8CE] space-y-2">
+                  <span className="text-xs font-bold text-[#C63D1B] uppercase tracking-wide">
+                    2. Patient & Proposer Identification (KYC)
+                  </span>
+                  <ul className="space-y-2 text-xs sm:text-sm text-[#262626]">
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#006677] shrink-0 mt-0.5" />
+                      <span>Aadhaar Card or Voter ID of the patient.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#006677] shrink-0 mt-0.5" />
+                      <span>PAN Card of the primary policyholder (mandatory for claims above ₹1 Lakh).</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-[#FFF9F3] border border-[#E9D8CE] space-y-2">
+                  <span className="text-xs font-bold text-[#C63D1B] uppercase tracking-wide">
+                    3. Medical Documentation
+                  </span>
+                  <ul className="space-y-2 text-xs sm:text-sm text-[#262626]">
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#006677] shrink-0 mt-0.5" />
+                      <span>Doctor’s initial consultation prescription advising hospitalisation.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-[#006677] shrink-0 mt-0.5" />
+                      <span>Past relevant medical records, discharge summaries, or diagnostic reports.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-[#F0E2D9] flex flex-col sm:flex-row items-center justify-between gap-3">
+                <span className="text-xs text-[#756860]">
+                  Need real-time help? Call <strong className="text-[#1A1D20]">8500904999</strong>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsChecklistOpen(false)}
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition shadow-xs cursor-pointer"
+                >
+                  Got It, Thanks!
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

@@ -49,22 +49,23 @@ export function InsuranceCashlessSection() {
           </AnimateIn>
         </div>
 
-        {/* 4 Cards Responsive Grid on Desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
-          {partners.slice(0, 4).map((partner, idx) => (
+        {/* Clean Logo Grid without borders or boxes matching reference */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-6 sm:gap-8 lg:gap-10 items-center justify-items-center max-w-5xl mx-auto py-4">
+          {partners.slice(0, 12).map((partner, idx) => (
             <AnimateIn
               key={partner.id}
               animation="fade-up"
-              delay={Math.min(idx * 40, 200)}
+              delay={Math.min(idx * 30, 250)}
+              className="w-full flex items-center justify-center"
             >
               <div
-                className="group relative bg-white rounded-[20px] border-[1.8px] border-[#E9D8CE] overflow-hidden shadow-xs hover:shadow-lg hover:border-[#E94B1C] transition-all duration-300 p-3 sm:p-4 flex items-center justify-center min-h-[95px] sm:min-h-[110px] md:min-h-[120px]"
+                className="group w-full flex items-center justify-center p-2 transition-all duration-300"
                 title={partner.name}
               >
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="w-full h-auto max-h-[70px] sm:max-h-[85px] md:max-h-[90px] object-contain transition-transform duration-300 group-hover:scale-[1.04]"
+                  className="max-h-12 sm:max-h-14 w-auto max-w-[140px] sm:max-w-[160px] object-contain transition-transform duration-300 group-hover:scale-108"
                   loading="lazy"
                 />
               </div>

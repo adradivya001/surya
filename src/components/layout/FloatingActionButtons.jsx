@@ -7,16 +7,7 @@ export function FloatingActionButtons() {
   return (
     <aside
       aria-label="Quick Action Buttons"
-      className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-2.5 py-4 px-3 rounded-full select-none transition-transform duration-300 hover:scale-105"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(58, 38, 22, 0.72) 0%, rgba(38, 24, 14, 0.78) 50%, rgba(48, 32, 20, 0.82) 100%)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        border: "1px solid rgba(255, 255, 255, 0.45)",
-        boxShadow:
-          "0 18px 45px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.2)",
-      }}
+      className="fixed right-3 sm:right-5 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-2.5 py-4 px-3 rounded-full select-none transition-transform duration-300 hover:scale-105 bg-white/95 backdrop-blur-xl border border-[#E9D8CE] shadow-[0_12px_36px_rgba(233,75,28,0.14)]"
     >
       {/* 1. WhatsApp */}
       <a
@@ -27,13 +18,8 @@ export function FloatingActionButtons() {
         title="WhatsApp: 8500904999"
         className="group flex flex-col items-center gap-1.5 p-1 rounded-full transition-transform active:scale-95"
       >
-        <div
-          className="w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-          style={{
-            background: "rgba(35, 48, 30, 0.65)",
-          }}
-        >
-          <div className="w-7 h-7 rounded-full bg-[#00A884] flex items-center justify-center shadow-[0_2px_8px_rgba(0,168,132,0.4)]">
+        <div className="w-11 h-11 rounded-full bg-[#E6F7F2] border border-[#BDEBDC] flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs">
+          <div className="w-7 h-7 rounded-full bg-[#00A884] flex items-center justify-center shadow-[0_2px_8px_rgba(0,168,132,0.35)]">
             <svg
               className="w-4 h-4 text-white fill-current"
               viewBox="0 0 24 24"
@@ -43,16 +29,13 @@ export function FloatingActionButtons() {
             </svg>
           </div>
         </div>
-        <span className="text-[11px] font-medium tracking-tight text-[#8FA9C4] group-hover:text-white transition-colors">
+        <span className="text-[11px] font-bold tracking-tight text-[#262626] group-hover:text-[#00A884] transition-colors">
           WhatsApp
         </span>
       </a>
 
       {/* Divider */}
-      <div
-        className="w-7 h-[1.5px] rounded-full"
-        style={{ background: "rgba(255, 255, 255, 0.45)" }}
-      />
+      <div className="w-8 h-[1px] bg-[#E9D8CE] rounded-full" />
 
       {/* 2. Book Appointment */}
       <Link
@@ -61,24 +44,16 @@ export function FloatingActionButtons() {
         title="Book Appointment"
         className="group flex flex-col items-center gap-1.5 p-1 rounded-full transition-transform active:scale-95"
       >
-        <div
-          className="w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-          style={{
-            background: "rgba(65, 38, 16, 0.7)",
-          }}
-        >
-          <Calendar className="w-5 h-5 text-[#F28B24] stroke-[2.2]" />
+        <div className="w-11 h-11 rounded-full bg-[#FFF0E6] border border-[#E9D8CE] flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs">
+          <Calendar className="w-5 h-5 text-[#E94B1C] stroke-[2.2]" />
         </div>
-        <span className="text-[11px] font-medium tracking-tight text-[#8FA9C4] group-hover:text-white text-center leading-[1.2] max-w-[68px] transition-colors">
+        <span className="text-[11px] font-bold tracking-tight text-[#262626] group-hover:text-[#E94B1C] text-center leading-[1.2] max-w-[68px] transition-colors">
           Book<br />Appointment
         </span>
       </Link>
 
       {/* Divider */}
-      <div
-        className="w-7 h-[1.5px] rounded-full"
-        style={{ background: "rgba(255, 255, 255, 0.45)" }}
-      />
+      <div className="w-8 h-[1px] bg-[#E9D8CE] rounded-full" />
 
       {/* 3. 24/7 Call */}
       <a
@@ -87,15 +62,10 @@ export function FloatingActionButtons() {
         title="Call 24/7 Casualty Desk: 8500904999"
         className="group flex flex-col items-center gap-1.5 p-1 rounded-full transition-transform active:scale-95"
       >
-        <div
-          className="w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-          style={{
-            background: "rgba(75, 42, 28, 0.7)",
-          }}
-        >
-          <Phone className="w-4 h-4 text-[#F05A28] fill-current" />
+        <div className="w-11 h-11 rounded-full bg-[#FFF0E6] border border-[#E9D8CE] flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs">
+          <Phone className="w-4 h-4 text-[#C63D1B] fill-current" />
         </div>
-        <span className="text-[11px] font-medium tracking-tight text-[#8FA9C4] group-hover:text-white text-center leading-[1.2] transition-colors">
+        <span className="text-[11px] font-bold tracking-tight text-[#262626] group-hover:text-[#C63D1B] text-center leading-[1.2] transition-colors">
           24/7<br />Call
         </span>
       </a>

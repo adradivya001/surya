@@ -63,26 +63,18 @@ export function HomeHero() {
       id="home-hero"
       onMouseMove={handleMouseMove}
       className="relative w-full min-h-[940px] lg:h-screen lg:max-h-[1020px] flex flex-col justify-between overflow-hidden text-slate-800"
+      style={{ background: "linear-gradient(135deg, #FFF9F3 0%, #FFF5EC 40%, #FFF3E8 70%, #FFFAF6 100%)" }}
     >
-      {/* ── 1. BACKGROUND: SURYA HOSPITAL RECEPTION WAITING ROOM (FULL HERO BG) ── */}
+      {/* ── 1. CLEAN PREMIUM BACKGROUND — Soft warm cream with subtle ambient lighting ── */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
-        <img
-          src="/images/surya-reception-waiting-room.png"
-          alt="Surya Hospital Reception & Waiting Room"
-          className="w-full h-full object-cover object-center filter blur-[1.5px] scale-105"
-          style={{
-            transform: `translate3d(${mousePos.x * -8}px, ${mousePos.y * -5}px, 0) scale(1.04)`,
-            transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
-          }}
-          loading="eager"
-        />
-
-        {/* Soft atmospheric white-to-cream gradient overlay on left for razor-sharp typography contrast */}
-        <div className="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-white/95 via-white/88 to-white/20" />
-        {/* Subtle overall warm glow */}
-        <div className="absolute inset-0 bg-amber-50/20 mix-blend-color" />
-        {/* Bottom soft feathering into stats dock */}
-        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-white/70 via-white/30 to-transparent" />
+        {/* Top-left warm golden ambient bloom */}
+        <div className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-amber-300/15 blur-[100px]" />
+        {/* Right-side soft orange ambient bloom behind the video */}
+        <div className="absolute top-0 right-0 w-[700px] h-[800px] rounded-full bg-orange-300/10 blur-[120px]" />
+        {/* Bottom center soft glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[200px] bg-gradient-to-t from-amber-100/40 to-transparent blur-[60px]" />
+        {/* Very subtle dot-grid texture */}
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "radial-gradient(circle, #D9771E 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
       </div>
 
       {/* ── 2. MAIN TWO-COLUMN CONTENT ── */}
@@ -94,7 +86,7 @@ export function HomeHero() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left space-y-5 lg:pr-6"
+            className="lg:col-span-5 xl:col-span-5 flex flex-col items-start text-left space-y-5 lg:pr-4 z-10"
           >
             {/* Eyebrow badge */}
             <motion.div
@@ -107,20 +99,20 @@ export function HomeHero() {
 
             {/* Main Editorial Serif Heading: "Comprehensive Medical Care." */}
             <motion.div variants={itemVariants}>
-              <h1 className="font-serif-heading text-[2.8rem] sm:text-[3.6rem] md:text-[4.2rem] lg:text-[4.6rem] font-bold text-[#14233C] tracking-tight leading-[1.04]">
+              <h1 className="font-serif-heading text-[2.8rem] sm:text-[3.6rem] md:text-[4.2rem] lg:text-[4.4rem] font-bold text-[#14233C] tracking-tight leading-[1.04]">
                 Comprehensive<br />
                 <span className="text-[#D9771E]">Medical Care.</span>
               </h1>
             </motion.div>
 
-            {/* Cursive Calligraphic Sub-heading: single line */}
+            {/* Cursive Calligraphic Sub-heading */}
             <motion.div variants={itemVariants} className="w-full overflow-visible -mt-1">
-              <p className="font-script text-[2.2rem] sm:text-[2.8rem] md:text-[3.4rem] lg:text-[3.6rem] text-[#C97B38] whitespace-nowrap leading-[1.15] select-none">
+              <p className="font-script text-[2.1rem] sm:text-[2.6rem] md:text-[3.1rem] lg:text-[3.3rem] text-[#C97B38] whitespace-nowrap leading-[1.15] select-none">
                 Committed to Your Well-being.
               </p>
             </motion.div>
 
-            {/* Description Body: Exact wording from reference */}
+            {/* Description Body */}
             <motion.p
               variants={itemVariants}
               className="text-sm sm:text-[15px] lg:text-base text-[#4A5568] font-medium leading-relaxed max-w-lg"
@@ -195,22 +187,58 @@ export function HomeHero() {
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT COLUMN: EXACT DOCTORS & 3D GOLDEN RIBBON CLUSTER FROM USER BANNER ── */}
-          <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center lg:justify-end">
+          {/* ── RIGHT COLUMN: SEAMLESSLY MERGED ARCHITECTURAL VIDEO (ENLARGED + SHARPENED) ── */}
+          <div className="lg:col-span-7 xl:col-span-7 relative flex items-center justify-center lg:justify-end">
+            {/* SVG convolution sharpening filter definition */}
+            <svg className="sr-only" aria-hidden="true">
+              <defs>
+                <filter id="hero-video-sharpen">
+                  {/* Subtle 3x3 unsharp convolution kernel: boosts high-frequency edge details */}
+                  <feConvolveMatrix
+                    order="3"
+                    preserveAlpha="true"
+                    kernelMatrix="
+                      0 -0.4  0
+                     -0.4 2.6 -0.4
+                      0 -0.4  0"
+                  />
+                </filter>
+              </defs>
+            </svg>
+
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[620px] pointer-events-auto"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[1450px] xl:max-w-[1580px] flex items-center justify-center lg:scale-[1.65] xl:scale-[1.72] origin-center lg:origin-right lg:-mr-16 xl:-mr-28"
             >
-              {/* EXACT DOCTORS & RIBBON ASSET EXTRACTED DIRECTLY FROM USER'S BANNER */}
-              <div className="relative group overflow-visible">
-                <img
-                  src="/images/surya-doctors-ribbon-exact.png"
-                  alt="Surya Hospital Expert Doctors Team - Chief Surgeon, ENT Specialist, Spine & Ortho, Obstetrics & Gyn, and Senior Consultant"
-                  className="w-full h-auto object-contain drop-shadow-[0_20px_35px_rgba(217,119,30,0.25)] transition-transform duration-500 group-hover:scale-[1.01]"
+              {/* Seamless container:
+                  1. Matching #FFF5EC backdrop
+                  2. Broadened radial mask preserving building 100% while dissolving outer canvas edges
+                  3. Hardware-accelerated sharpening filter + calibrated contrast/saturation */}
+              <div
+                className="relative w-full overflow-hidden rounded-3xl"
+                style={{
+                  backgroundColor: "#FFF5EC",
+                  WebkitMaskImage:
+                    "radial-gradient(50% 50% at 50% 50%, black 72%, rgba(0,0,0,0.92) 85%, rgba(0,0,0,0.3) 95%, transparent 100%)",
+                  maskImage:
+                    "radial-gradient(50% 50% at 50% 50%, black 72%, rgba(0,0,0,0.92) 85%, rgba(0,0,0,0.3) 95%, transparent 100%)",
+                }}
+              >
+                <video
+                  src="/hero-video.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="w-full h-auto block select-none pointer-events-none"
                   style={{
-                    transform: `translate3d(${mousePos.x * 6}px, ${mousePos.y * 4}px, 0)`,
+                    mixBlendMode: "multiply",
+                    filter: "url(#hero-video-sharpen) contrast(1.22) brightness(1.04) saturate(1.3)",
+                    transform: `translate3d(${mousePos.x * 5}px, ${mousePos.y * 3}px, 0)`,
+                    transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
                   }}
                 />
               </div>
@@ -292,14 +320,14 @@ export function HomeHero() {
               </div>
             </div>
 
-            {/* Stat 2: 15+ Specialties */}
+            {/* Stat 2: 12+ Specialties */}
             <div className="pl-8 sm:pl-14 flex items-center gap-3.5 text-left">
               <div className="w-11 h-11 rounded-2xl bg-[#E88C38]/15 text-[#D9771E] flex items-center justify-center shrink-0">
                 <Users className="w-6 h-6 stroke-[2]" />
               </div>
               <div>
                 <div className="text-2xl sm:text-3xl font-extrabold text-[#14233C] tracking-tight leading-none">
-                  <StatCounter value={15} suffix="+" inView={isStatsInView} />
+                  <StatCounter value={12} suffix="+" inView={isStatsInView} />
                 </div>
                 <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#758295] mt-1">
                   SPECIALTIES
@@ -307,14 +335,14 @@ export function HomeHero() {
               </div>
             </div>
 
-            {/* Stat 3: 400+ Doctors & Staff */}
+            {/* Stat 3: 20+ Doctors & Staff */}
             <div className="pl-8 sm:pl-14 flex items-center gap-3.5 text-left">
               <div className="w-11 h-11 rounded-2xl bg-[#E88C38]/15 text-[#D9771E] flex items-center justify-center shrink-0">
                 <Users className="w-6 h-6 stroke-[2]" />
               </div>
               <div>
                 <div className="text-2xl sm:text-3xl font-extrabold text-[#14233C] tracking-tight leading-none">
-                  <StatCounter value={400} suffix="+" inView={isStatsInView} />
+                  <StatCounter value={20} suffix="+" inView={isStatsInView} />
                 </div>
                 <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#758295] mt-1">
                   DOCTORS &amp; STAFF
@@ -323,17 +351,6 @@ export function HomeHero() {
             </div>
           </div>
 
-          {/* Middle: Scroll to Explore */}
-          <div className="hidden xl:flex flex-col items-center text-slate-500 hover:text-slate-800 transition-colors cursor-pointer">
-            <div className="w-6 h-9 rounded-full border-2 border-slate-400/80 flex items-start justify-center p-1">
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-2 bg-slate-600 rounded-full"
-              />
-            </div>
-            <span className="text-[11px] font-semibold tracking-wide text-slate-500 mt-1">Scroll to Explore</span>
-          </div>
 
           {/* Right: Hospital Location Pin */}
           <div className="flex items-center gap-3 text-left">

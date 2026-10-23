@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
 import { AnimateIn } from "../ui/AnimateIn";
+import { useAppointmentModal } from "../../context/AppointmentModalContext";
 
 const SLUG_MAP = {
   "CARDIOLOGY": "/specialities/cardiology",
@@ -37,6 +38,7 @@ const SLUG_MAP = {
 };
 
 export function SpecialtiesDoctorsPoster() {
+  const { openModal } = useAppointmentModal();
   const departmentsData = [
     { specialty: "CARDIOLOGY", icon: HeartPulse, doctors: [
       { name: "Dr. K. Vamsi Krishna", qualifications: "MD, DM (OSM)" },
@@ -187,13 +189,14 @@ export function SpecialtiesDoctorsPoster() {
 
                 {/* Actions */}
                 <div className="mt-4 pt-3 border-t border-[#F0E2D9] flex items-center justify-between text-xs">
-                  <Link
-                    to={`/appointment?dept=${encodeURIComponent(dept.specialty)}`}
-                    className="group/link font-bold text-[#C63D1B] hover:text-[#A83218] inline-flex items-center gap-1.5 transition-colors text-[11px] sm:text-xs"
+                  <button
+                    type="button"
+                    onClick={() => openModal(dept.specialty)}
+                    className="group/link font-bold text-[#C63D1B] hover:text-[#A83218] inline-flex items-center gap-1.5 transition-colors text-[11px] sm:text-xs cursor-pointer bg-transparent border-0 p-0"
                   >
                     <Calendar className="w-3.5 h-3.5 text-[#E94B1C]" />
                     <span>Book OPD</span>
-                  </Link>
+                  </button>
                   <Link
                     to={SLUG_MAP[dept.specialty] || "/doctors"}
                     className="font-semibold text-[#756860] hover:text-[#E94B1C] transition-colors text-[11px] sm:text-xs inline-flex items-center gap-1"
@@ -239,12 +242,13 @@ export function SpecialtiesDoctorsPoster() {
                 <Phone className="w-3.5 h-3.5" />
                 <span>Call {HOSPITAL_INFO.phone}</span>
               </a>
-              <Link
-                to="/appointment"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-[#C63D1B] bg-[#FFF0E6] hover:bg-[#FFE4D3] border border-[#E9D8CE] transition-colors"
+              <button
+                type="button"
+                onClick={() => openModal()}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-[#C63D1B] bg-[#FFF0E6] hover:bg-[#FFE4D3] border border-[#E9D8CE] transition-colors cursor-pointer"
               >
                 <span>Book Visit</span>
-              </Link>
+              </button>
             </div>
           </div>
         </AnimateIn>

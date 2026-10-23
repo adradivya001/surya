@@ -19,8 +19,10 @@ import { getSpecialityBySlug, APPROVED_SPECIALITIES } from "../constants/special
 import { HOSPITAL_INFO } from "../constants/hospitalData";
 import { PageHero } from "../components/ui/PageHero";
 import { Container } from "../components/ui/Container";
+import { useAppointmentModal } from "../context/AppointmentModalContext";
 
 export function SpecialityDetailPage() {
+  const { openModal } = useAppointmentModal();
   const { slug } = useParams();
   const speciality = getSpecialityBySlug(slug);
 
@@ -58,15 +60,14 @@ export function SpecialityDetailPage() {
         ]}
         badge="Speciality Department"
       >
-        <Link to={`/appointment?dept=${encodeURIComponent(speciality.name)}`}>
-          <button
-            type="button"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] shadow-md hover:shadow-lg transition-all cursor-pointer active:scale-95"
-          >
-            <Calendar className="w-4 h-4" />
-            <span>Book an Appointment</span>
-          </button>
-        </Link>
+        <button
+          type="button"
+          onClick={() => openModal(speciality.name)}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] shadow-md hover:shadow-lg transition-all cursor-pointer active:scale-95 border-0"
+        >
+          <Calendar className="w-4 h-4" />
+          <span>Book an Appointment</span>
+        </button>
         <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
           <button
             type="button"
@@ -96,12 +97,13 @@ export function SpecialityDetailPage() {
                 </a>
               ))}
             </div>
-            <Link
-              to={`/appointment?dept=${encodeURIComponent(speciality.name)}`}
-              className="shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition shadow-xs hidden md:inline-block"
+            <button
+              type="button"
+              onClick={() => openModal(speciality.name)}
+              className="shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition shadow-xs hidden md:inline-block cursor-pointer border-0"
             >
               Book OPD Slot
-            </Link>
+            </button>
           </div>
         </Container>
       </div>
@@ -324,17 +326,13 @@ export function SpecialityDetailPage() {
                       <span className="text-[11px] leading-snug">{doc.opdTimings}</span>
                     </div>
 
-                    <Link
-                      to={`/appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(speciality.name)}`}
-                      className="block"
+                    <button
+                      type="button"
+                      onClick={() => openModal(speciality.name)}
+                      className="w-full py-2.5 px-4 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-colors shadow-xs cursor-pointer active:scale-95 border-0"
                     >
-                      <button
-                        type="button"
-                        className="w-full py-2.5 px-4 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-colors shadow-xs cursor-pointer active:scale-95"
-                      >
-                        Book Consultation
-                      </button>
-                    </Link>
+                      Book Consultation
+                    </button>
                   </div>
                 </div>
               ))}

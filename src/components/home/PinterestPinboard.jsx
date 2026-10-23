@@ -16,9 +16,11 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
+import { useAppointmentModal } from "../../context/AppointmentModalContext";
 import "./PinterestPinboard.css";
 
 export function PinterestPinboard() {
+  const { openModal } = useAppointmentModal();
   const [activeCategory, setActiveCategory] = useState("all");
 
   const chips = [
@@ -217,13 +219,14 @@ export function PinterestPinboard() {
             </p>
           </div>
 
-          <Link
-            to="/appointment"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-md transition shrink-0"
+          <button
+            type="button"
+            onClick={() => openModal()}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-md transition shrink-0 cursor-pointer border-0"
           >
             <Calendar className="w-3.5 h-3.5" />
             <span>Book Doctor Consultation</span>
-          </Link>
+          </button>
         </div>
 
         {/* Pinterest Style Filter Chips Bar */}
@@ -261,14 +264,29 @@ export function PinterestPinboard() {
 
                 {/* Hover Save / Fast Action Overlay (Pinterest Signature Pattern) */}
                 <div className="pin-hover-action-bar">
-                  <Link
-                    to={pin.actionLink}
-                    className="pin-save-btn"
-                    title={pin.actionText}
-                  >
-                    <span>{pin.actionText}</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </Link>
+                  {pin.actionLink?.startsWith("/appointment") ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const urlParams = new URLSearchParams(pin.actionLink.split("?")[1] || "");
+                        openModal(urlParams.get("dept") || undefined);
+                      }}
+                      className="pin-save-btn cursor-pointer border-0"
+                      title={pin.actionText}
+                    >
+                      <span>{pin.actionText}</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  ) : (
+                    <Link
+                      to={pin.actionLink}
+                      className="pin-save-btn"
+                      title={pin.actionText}
+                    >
+                      <span>{pin.actionText}</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
                 </div>
               </div>
 

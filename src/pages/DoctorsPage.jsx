@@ -21,8 +21,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
+import { useAppointmentModal } from "../context/AppointmentModalContext";
 
 export function DoctorsPage() {
+  const { openModal } = useAppointmentModal();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("All");
   const [activeDoctorModal, setActiveDoctorModal] = useState(null);
@@ -383,16 +385,15 @@ export function DoctorsPage() {
         breadcrumbs={[{ label: "Doctors" }]}
         badge="Experienced Medical Team"
       >
-        <Link to="/appointment">
-          <Button
-            variant="primary"
-            size="sm"
-            icon={Calendar}
-            className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold shadow-sm"
-          >
-            Book an Appointment
-          </Button>
-        </Link>
+        <Button
+          variant="primary"
+          size="sm"
+          icon={Calendar}
+          onClick={() => openModal()}
+          className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold shadow-sm"
+        >
+          Book an Appointment
+        </Button>
         <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
           <Button
             variant="secondary"
@@ -407,165 +408,56 @@ export function DoctorsPage() {
 
       <section className="py-14 md:py-20 bg-[#FFF9F3] border-b border-[#F0E2D9]">
         <Container>
-          {/* Hospital Leadership & Help Box */}
-          <div className="mb-8 p-4 rounded-xl bg-white border border-[#E9D8CE] shadow-xs flex items-start gap-3 text-xs sm:text-sm text-[#262626]">
-            <AlertCircle className="w-5 h-5 text-[#E94B1C] shrink-0 mt-0.5" />
-            <div className="space-y-1 text-left">
-              <p className="font-bold text-[#C63D1B]">Doctor Availability & Booking Help:</p>
-              <p className="text-[#756860] leading-relaxed">
-                Surya Hospital's team of super-specialists across <strong>Cardiology, Gastroenterology, Nephrology, E.N.T., Orthopedics, Pulmonology, Neurology, Oncology, Urology, General Surgery, and Psychiatry</strong> are available for regular outpatient consultations and inpatient treatment. Need help choosing the right specialist or checking today's visiting hours? Call our front desk at {HOSPITAL_INFO.phone}.
+          {/* Direct Doctors Header & Sleek Department Filter Pills */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF0E6] text-[#E94B1C] text-[11px] font-extrabold uppercase tracking-wider border border-[#FADCCB] mb-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Verified Medical Specialists</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-[#14233C] tracking-tight">
+                Our Doctors & Specialists ({filteredDoctors.length})
+              </h2>
+              <p className="text-xs sm:text-sm text-[#756860] mt-1">
+                Explore our experienced medical team below. Click any doctor to view their complete credentials, clinical focus, and visiting hours.
               </p>
             </div>
-          </div>
 
-          {/* Search & Filter Toolbar */}
-          <div className="bg-white p-5 sm:p-7 rounded-2xl border border-[#E9D8CE] mb-10 space-y-4 shadow-xs">
-            <div className="flex flex-col md:flex-row gap-3.5 items-stretch md:items-center justify-between">
-              {/* Search input with label & clear button */}
-              <div className="relative flex-1">
-                <label htmlFor="doctor-search" className="sr-only">
-                  Search doctors by name, medical specialty, or clinical health problem
-                </label>
-                <Search className="w-4 h-4 text-[#756860] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                <input
-                  id="doctor-search"
-                  type="text"
-                  placeholder="Search by doctor name, health problem (e.g. heart, kidney, spine, fracture)..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-9 py-3 text-xs sm:text-sm rounded-xl border border-[#E9D8CE] bg-white text-[#262626] placeholder-[#756860] focus:outline-none focus:ring-2 focus:ring-[#E94B1C]/20 focus:border-[#E94B1C] transition"
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-[#756860] hover:text-[#C63D1B] rounded-full focus:outline-none focus:ring-2 focus:ring-[#E94B1C]"
-                    aria-label="Clear search input"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-
-              {/* Status and Reset Toolbar Actions */}
-              <div className="flex items-center justify-between md:justify-end gap-3 shrink-0">
-                <div className="text-xs text-[#756860] font-medium">
-                  Showing <strong className="text-[#C63D1B]">{filteredDoctors.length}</strong> {filteredDoctors.length === 1 ? "doctor" : "doctors"}
-                </div>
-                {(searchQuery || selectedDepartment !== "All") && (
-                  <button
-                    type="button"
-                    onClick={handleResetSearch}
-                    className="text-xs font-bold text-[#C63D1B] hover:underline cursor-pointer"
-                  >
-                    Reset all filters
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Quick Symptom Suggestion Tags */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs pt-1">
-              <span className="text-[11px] font-bold text-[#756860] shrink-0 mr-1 flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-[#E94B1C]" /> Common Concerns:
-              </span>
-              {quickSymptoms.map((sym) => (
-                <button
-                  key={sym.query}
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery(sym.query);
-                    setSelectedDepartment("All");
-                  }}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold whitespace-nowrap transition cursor-pointer ${
-                    searchQuery.toLowerCase() === sym.query.toLowerCase()
-                      ? "bg-[#E94B1C] text-white shadow-2xs"
-                      : "bg-[#FFF9F3] text-[#4A403B] hover:bg-[#FFF0E6] border border-[#E9D8CE]"
-                  }`}
-                >
-                  {sym.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Department Filter Chips with Animated Highlight */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs" role="region" aria-label="Department filters">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#756860] shrink-0 mr-1 flex items-center gap-1">
-                <Filter className="w-3.5 h-3.5 text-[#E94B1C]" /> Department:
-              </span>
+            {/* Clean, minimalist department filter pills */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
               {departments.map((dept) => {
                 const isSelected = selectedDepartment === dept;
-                const count = dept === "All"
-                  ? HOSPITAL_INFO.doctors.length
-                  : HOSPITAL_INFO.doctors.filter(d => d.department.toLowerCase().includes(dept.toLowerCase())).length;
+                const count =
+                  dept === "All"
+                    ? HOSPITAL_INFO.doctors.length
+                    : HOSPITAL_INFO.doctors.filter((d) =>
+                        d.department.toLowerCase().includes(dept.toLowerCase())
+                      ).length;
 
                 return (
                   <button
                     key={dept}
                     type="button"
                     onClick={() => setSelectedDepartment(dept)}
-                    className={`relative px-3.5 py-1.5 rounded-full font-bold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
                       isSelected
-                        ? "text-white bg-[#E94B1C] shadow-xs"
-                        : "bg-[#FFF0E6]/60 text-[#262626] border border-[#E9D8CE] hover:bg-[#FFF0E6]"
+                        ? "bg-[#E94B1C] text-white shadow-xs"
+                        : "bg-white text-[#5A5049] border border-[#E9D8CE] hover:bg-[#FFF0E6] hover:text-[#E94B1C]"
                     }`}
                   >
                     <span>{dept}</span>
-                    {count > 0 && (
-                      <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-extrabold ${
-                        isSelected ? "bg-white/25 text-white" : "bg-white text-[#C63D1B] border border-[#E9D8CE]"
-                      }`}>
-                        {count}
-                      </span>
-                    )}
+                    <span
+                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                        isSelected
+                          ? "bg-white/20 text-white"
+                          : "bg-[#FFF0E6] text-[#C63D1B]"
+                      }`}
+                    >
+                      {count}
+                    </span>
                   </button>
                 );
               })}
-            </div>
-
-            {/* Priority Emergency Guidance Callout (Only appears for acute emergency search queries) */}
-            {isEmergencyQuery && (
-              <div className="p-3.5 sm:p-4 rounded-xl bg-red-50 border-2 border-red-200 text-left space-y-2 animate-fadeIn">
-                <div className="flex items-start gap-2.5">
-                  <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-                  <div className="space-y-1 flex-1">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <h4 className="text-xs sm:text-sm font-bold text-red-950">
-                        Urgent Medical Emergency Notice: Immediate Care Available 24/7
-                      </h4>
-                      <span className="text-[10px] font-bold uppercase tracking-wider bg-red-100 text-red-700 px-2 py-0.5 rounded">
-                        24/7 Casualty Desk
-                      </span>
-                    </div>
-                    <p className="text-xs text-red-900 leading-relaxed">
-                      For sudden, severe conditions such as chest pain, breathing difficulties, fainting, seizures, or serious trauma, <strong>do not wait for an OPD consultation or appointment</strong>. Surya Hospital provides continuous 24/7 emergency casualty care.
-                    </p>
-                    <div className="flex flex-wrap items-center gap-2 pt-1.5">
-                      <a
-                        href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-bold transition shadow-xs"
-                      >
-                        <PhoneCall className="w-3.5 h-3.5 animate-pulse" />
-                        <span>Call 24/7 Casualty: {HOSPITAL_INFO.phone}</span>
-                      </a>
-                      <Link
-                        to="/emergency"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-red-300 text-red-800 hover:bg-red-50 text-xs font-bold transition"
-                      >
-                        <span>View Emergency Guidance</span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Non-Diagnostic Directory Note */}
-            <div className="pt-2 border-t border-[#F0E2D9] text-[11px] text-[#756860] flex items-start gap-1.5 leading-relaxed">
-              <span className="font-semibold text-[#C63D1B] shrink-0">Directory Notice:</span>
-              <span>
-                Search matches doctors by verified department, qualifications, and known clinical areas of care. This directory is provided for informational convenience and is not a medical diagnostic or triage tool. If you are unsure which specialist to consult, please call our reception desk at {HOSPITAL_INFO.phone} for guidance.
-              </span>
             </div>
           </div>
 
@@ -620,7 +512,11 @@ export function DoctorsPage() {
                         </div>
 
                         {/* Doctor Avatar / Initials + Name + Specialization */}
-                        <div className="flex items-start gap-2.5">
+                        <div
+                          onClick={() => setActiveDoctorModal(doc)}
+                          className="flex items-start gap-2.5 cursor-pointer group/doc"
+                          title="Click to view doctor profile"
+                        >
                           {doc.image && doc.image.startsWith("/") ? (
                             <div className="w-10 h-10 rounded-xl overflow-hidden bg-[#FFF0E6] shrink-0 border border-[#E9D8CE] shadow-2xs">
                               <img
@@ -660,19 +556,15 @@ export function DoctorsPage() {
                           View Profile
                         </button>
 
-                        <Link
-                          to={`/appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.department)}`}
-                          className="w-full"
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          fullWidth
+                          onClick={() => openModal(doc.department)}
+                          className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-[11px] font-bold py-1.5 px-2 rounded-full active:scale-95 shadow-xs"
                         >
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            fullWidth
-                            className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-[11px] font-bold py-1.5 px-2 rounded-full active:scale-95 shadow-xs"
-                          >
-                            Book Visit
-                          </Button>
-                        </Link>
+                          Book Visit
+                        </Button>
                       </div>
                     </motion.div>
                   );
@@ -812,21 +704,20 @@ export function DoctorsPage() {
 
             {/* Modal Actions */}
             <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
-              <Link
-                to={`/appointment?doctor=${encodeURIComponent(activeDoctorModal.name)}&dept=${encodeURIComponent(activeDoctorModal.department)}`}
-                onClick={() => setActiveDoctorModal(null)}
-                className="w-full sm:flex-1"
-              >
                 <Button
                   variant="primary"
                   size="md"
                   icon={Calendar}
                   fullWidth
+                  onClick={() => {
+                    const dept = activeDoctorModal.department;
+                    setActiveDoctorModal(null);
+                    openModal(dept);
+                  }}
                   className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold rounded-full py-2.5 shadow-sm"
                 >
                   Book with {activeDoctorModal.name}
                 </Button>
-              </Link>
 
               <a
                 href={`tel:${HOSPITAL_INFO.phoneRaw}`}

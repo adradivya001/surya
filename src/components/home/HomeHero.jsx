@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import HeroTrustStrip from "./HeroTrustStrip";
+import { useAppointmentModal } from "../../context/AppointmentModalContext";
 
 
 /* ─── Vision Pillars (Simple, Clear & Relatable) ─── */
@@ -57,6 +58,7 @@ const VISION_TABS = [
 ];
 
 export function HomeHero() {
+  const { openModal } = useAppointmentModal();
   const videoRef = useRef(null);
 
   const [activeTab, setActiveTab] = useState(VISION_TABS[0]);
@@ -272,15 +274,16 @@ export function HomeHero() {
 
             {/* 5. Book Appointment and About Our Founder Buttons */}
             <div className="pt-1 flex flex-wrap items-center gap-3.5 w-full">
-              <Link
-                to="/appointment"
+              <button
+                type="button"
+                onClick={() => openModal()}
                 id="hero-book-cta"
                 className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-sm font-bold text-white bg-gradient-to-r from-[#E94B1C] via-[#F26A21] to-[#C63D1B] hover:from-[#C63D1B] hover:to-[#A83218] transition-all shadow-[0_8px_25px_rgba(233,75,28,0.32)] hover:shadow-[0_12px_32px_rgba(233,75,28,0.45)] hover:-translate-y-0.5 cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-white" />
                 <span>Book Appointment</span>
                 <ArrowRight className="w-4 h-4 text-white/80" />
-              </Link>
+              </button>
 
               <a
                 href="#founder-story"

@@ -1,22 +1,56 @@
-import React, { useState } from "react";
-import { X, AlertCircle, CheckCircle2, HeartPulse } from "lucide-react";
-import { Button } from "../ui/Button";
+import React, { useState, useEffect } from "react";
+import {
+  X,
+  AlertCircle,
+  CheckCircle2,
+  Calendar,
+  Phone,
+  User,
+  Clock,
+  FileText,
+  MessageCircle,
+  Stethoscope,
+} from "lucide-react";
 
 export function AppointmentModal({ isOpen, onClose, defaultDepartment = "" }) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    department: defaultDepartment || "General Medicine",
+    department: defaultDepartment || "General Medicine (Physician)",
     date: "",
+    timeSlot: "Morning (09:30 AM – 01:30 PM)",
     note: "",
   });
+
+  // Update department if prop changes
+  useEffect(() => {
+    if (defaultDepartment) {
+      setFormData((prev) => ({ ...prev, department: defaultDepartment }));
+    }
+  }, [defaultDepartment]);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") onClose();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) return;
+    if (!formData.name.trim() || !formData.phone.trim()) return;
     setSubmitted(true);
   };
 
@@ -25,150 +59,280 @@ export function AppointmentModal({ isOpen, onClose, defaultDepartment = "" }) {
     setFormData({
       name: "",
       phone: "",
-      department: "General Medicine",
+      department: "General Medicine (Physician)",
       date: "",
+      timeSlot: "Morning (09:30 AM – 01:30 PM)",
       note: "",
     });
     onClose();
   };
 
+  // WhatsApp quick confirmation link
+  const whatsappUrl = `https://wa.me/918500904999?text=${encodeURIComponent(
+    `Hello Surya Hospital, I would like to confirm my doctor consultation for ${formData.name || "Patient"}. Phone: ${formData.phone}, Department: ${formData.department}, Date: ${formData.date || "Next available"}.`
+  )}`;
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surya-navy-950/70 backdrop-blur-sm animate-in fade-in duration-200">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#0a121e]/75 backdrop-blur-md animate-in fade-in duration-200"
+      onClick={onClose}
+    >
       <div
-        className="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-surya-slate-200 overflow-hidden relative"
+        className="bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-[#E9D8CE] overflow-hidden relative animate-in zoom-in-95 duration-200 max-h-[92vh] flex flex-col"
         role="dialog"
         aria-modal="true"
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="bg-surya-navy-900 text-white p-5 sm:p-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-surya-navy-800 flex items-center justify-center text-surya-teal-400 ring-1 ring-surya-teal-500/20">
-              <HeartPulse className="w-5 h-5" />
+        <div className="bg-gradient-to-r from-[#14233C] via-[#1A2E4C] to-[#14233C] text-white p-5 sm:p-6 flex items-center justify-between border-b border-white/10 shrink-0">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#E94B1C] to-[#C63D1B] flex items-center justify-center text-white shadow-md shadow-[#E94B1C]/30 shrink-0">
+              <Calendar className="w-5 h-5 stroke-[2.2]" />
             </div>
             <div>
-              <h3 className="text-lg font-bold tracking-tight">Book an Appointment</h3>
-              <p className="text-xs text-surya-slate-300">Surya Hospital • Anantapur</p>
+              <h3 className="text-lg sm:text-xl font-black tracking-tight text-white leading-tight">
+                Book Doctor Appointment
+              </h3>
+              <p className="text-xs text-white/70 font-medium">
+                Surya Hospital • Sai Nagar, Anantapur
+              </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-surya-slate-400 hover:text-white hover:bg-surya-navy-800 transition-colors"
+            className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center transition-all cursor-pointer"
             aria-label="Close dialog"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Emergency Triage Notice */}
-        <div className="bg-surya-emergency-50 border-b border-surya-emergency-100 p-3.5 px-6 flex items-start gap-2.5 text-xs text-surya-emergency-800">
-          <AlertCircle className="w-4 h-4 text-surya-emergency-600 shrink-0 mt-0.5" />
-          <div>
-            <span className="font-semibold">Urgent Medical Need?</span> For acute chest pain, trauma, or breathing distress, visit our <strong>24/7 Emergency Care</strong> directly without waiting for a scheduled appointment.
+        {/* 24/7 Casualty Notice */}
+        <div className="bg-[#FFF5EC] border-b border-[#F5D8C3] py-2.5 px-5 sm:px-6 flex items-center justify-between text-xs text-[#7A3E1D] shrink-0">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span>Need immediate casualty or emergency help?</span>
           </div>
+          <a
+            href="tel:+918500904999"
+            className="font-black text-[#E94B1C] hover:underline shrink-0 ml-2"
+          >
+            Call: +91 85009 04999
+          </a>
         </div>
 
-        {/* Modal Content */}
-        <div className="p-6">
+        {/* Modal Scrollable Content */}
+        <div className="p-5 sm:p-6 overflow-y-auto flex-1">
           {submitted ? (
             <div className="text-center py-6 space-y-4">
-              <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-7 h-7" />
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                <CheckCircle2 className="w-9 h-9" />
               </div>
-              <h4 className="text-xl font-bold text-surya-slate-900">
-                Appointment Request Submitted
-              </h4>
-              <p className="text-sm text-surya-slate-600 max-w-sm mx-auto leading-relaxed">
-                Thank you, <strong>{formData.name}</strong>. The Surya Hospital front desk coordinator will contact you at <strong>{formData.phone}</strong> to confirm your consultation timing.
+              <div>
+                <h4 className="text-2xl font-black text-[#14233C] tracking-tight">
+                  Appointment Request Sent!
+                </h4>
+                <p className="text-xs font-bold text-[#E94B1C] mt-1 uppercase tracking-wider">
+                  Token ID: #{Math.floor(1000 + Math.random() * 9000)}
+                </p>
+              </div>
+
+              <div className="bg-[#FFF9F3] border border-[#F0E2D9] rounded-2xl p-4 text-left space-y-2 max-w-sm mx-auto text-xs text-[#5A5049]">
+                <div className="flex justify-between">
+                  <span className="text-[#8C7A70]">Patient:</span>
+                  <span className="font-bold text-[#14233C]">{formData.name}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#8C7A70]">Phone:</span>
+                  <span className="font-bold text-[#14233C]">{formData.phone}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#8C7A70]">Department:</span>
+                  <span className="font-bold text-[#14233C]">{formData.department}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#8C7A70]">Preferred Slot:</span>
+                  <span className="font-bold text-[#14233C]">
+                    {formData.date ? `${formData.date} • ` : ""}
+                    {formData.timeSlot.split(" ")[0]}
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-xs text-[#6A6059] max-w-sm mx-auto leading-relaxed">
+                Our hospital front desk team will call you within 15 minutes to confirm your appointment time.
               </p>
-              <div className="pt-2">
-                <Button variant="primary" onClick={handleReset}>
-                  Done
-                </Button>
+
+              <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-black text-white bg-emerald-600 hover:bg-emerald-700 shadow-md shadow-emerald-600/30 transition-all cursor-pointer"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Confirm on WhatsApp</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-bold text-[#14233C] bg-[#FFF0E6] hover:bg-[#FFE0D0] transition-colors cursor-pointer"
+                >
+                  Close Window
+                </button>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Patient Name */}
               <div>
-                <label className="block text-xs font-semibold text-surya-slate-700 uppercase tracking-wider mb-1.5">
-                  Patient Full Name *
+                <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-[#E94B1C]" />
+                  <span>Patient Full Name <span className="text-red-500">*</span></span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Enter patient full name"
+                  placeholder="e.g. Ramesh Kumar"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-surya-slate-300 focus:border-surya-teal-600 focus:ring-2 focus:ring-surya-teal-500/20 outline-none transition"
+                  className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] placeholder:text-[#A0938A] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
                 />
               </div>
 
+              {/* Mobile Number */}
               <div>
-                <label className="block text-xs font-semibold text-surya-slate-700 uppercase tracking-wider mb-1.5">
-                  Phone Number *
+                <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[#E94B1C]" />
+                  <span>Phone Number <span className="text-red-500">*</span></span>
                 </label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="10-digit mobile number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-surya-slate-300 focus:border-surya-teal-600 focus:ring-2 focus:ring-surya-teal-500/20 outline-none transition"
-                />
-              </div>
-
-              <div className="input-row-half">
-                <div>
-                  <label className="block text-xs font-semibold text-surya-slate-700 uppercase tracking-wider mb-1.5">
-                    Department
-                  </label>
-                  <select
-                    value={formData.department}
-                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-surya-slate-300 bg-white focus:border-surya-teal-600 focus:ring-2 focus:ring-surya-teal-500/20 outline-none transition"
-                  >
-                    <option value="General Medicine">General Medicine</option>
-                    <option value="General Surgery">General Surgery</option>
-                    <option value="Laparoscopic Surgery">Laparoscopic Surgery</option>
-                    <option value="Orthopedic Surgery">Orthopedic Surgery</option>
-                    <option value="Day-Care Surgery">Day-Care Surgeries</option>
-                    <option value="Physiotherapy & Rehab">Physiotherapy & Rehab</option>
-                    <option value="Diagnostic Lab & Imaging">Diagnostics & Imaging</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-surya-slate-700 uppercase tracking-wider mb-1.5">
-                    Preferred Date
-                  </label>
+                <div className="relative">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-black text-[#8C7A70]">
+                    +91
+                  </span>
                   <input
-                    type="date"
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-surya-slate-300 focus:border-surya-teal-600 focus:ring-2 focus:ring-surya-teal-500/20 outline-none transition"
+                    type="tel"
+                    required
+                    maxLength={10}
+                    placeholder="98765 43210"
+                    value={formData.phone}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, "");
+                      setFormData({ ...formData, phone: val });
+                    }}
+                    className="w-full pl-12 pr-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] placeholder:text-[#A0938A] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium tracking-wide"
                   />
                 </div>
               </div>
 
+              {/* Department & Date Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                  <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                    <Stethoscope className="w-3.5 h-3.5 text-[#E94B1C]" />
+                    <span>Department</span>
+                  </label>
+                  <select
+                    value={formData.department}
+                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                    className="w-full px-3.5 py-3 text-xs sm:text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
+                  >
+                    <option value="General Medicine (Physician)">General Medicine (Physician)</option>
+                    <option value="General & Laparoscopic Surgery">General &amp; Laparoscopic Surgery</option>
+                    <option value="Orthopedics & Joint Replacement">Orthopedics &amp; Joint Care</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Nephrology & Dialysis">Nephrology &amp; Dialysis</option>
+                    <option value="Pulmonology & Chest Medicine">Pulmonology &amp; Chest</option>
+                    <option value="Gastroenterology">Gastroenterology</option>
+                    <option value="E.N.T.">E.N.T.</option>
+                    <option value="Urology">Urology</option>
+                    <option value="Diagnostic Lab & Imaging">Diagnostics &amp; Lab</option>
+                    <option value="Physiotherapy & Rehab">Physiotherapy &amp; Rehab</option>
+                    <option value="24/7 Casualty & Emergency">24/7 Emergency Care</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#E94B1C]" />
+                    <span>Preferred Date</span>
+                  </label>
+                  <input
+                    type="date"
+                    min={new Date().toISOString().split("T")[0]}
+                    value={formData.date}
+                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                    className="w-full px-3.5 py-3 text-xs sm:text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
+                  />
+                </div>
+              </div>
+
+              {/* Preferred Slot */}
               <div>
-                <label className="block text-xs font-semibold text-surya-slate-700 uppercase tracking-wider mb-1.5">
-                  Brief Medical Concern (Optional)
+                <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[#E94B1C]" />
+                  <span>Preferred Visiting Slot</span>
+                </label>
+                <div className="grid grid-cols-2 gap-2.5">
+                  {[
+                    "Morning (09:30 AM – 01:30 PM)",
+                    "Evening (05:00 PM – 08:30 PM)",
+                  ].map((slot) => {
+                    const isSelected = formData.timeSlot === slot;
+                    return (
+                      <button
+                        type="button"
+                        key={slot}
+                        onClick={() => setFormData({ ...formData, timeSlot: slot })}
+                        className={`px-3 py-2.5 rounded-xl border text-xs font-bold transition-all text-left cursor-pointer ${
+                          isSelected
+                            ? "border-[#E94B1C] bg-[#FFF0E6] text-[#E94B1C] shadow-2xs"
+                            : "border-[#E9D8CE] bg-white text-[#5A5049] hover:bg-[#FFF9F3]"
+                        }`}
+                      >
+                        <div className="leading-tight">{slot.split(" ")[0]}</div>
+                        <div className="text-[10px] font-semibold opacity-75 mt-0.5">
+                          {slot.substring(slot.indexOf("("))}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Brief Health Concern (Optional) */}
+              <div>
+                <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5 text-[#E94B1C]" />
+                  <span>Brief Health Issue / Symptoms <span className="text-[#8C7A70] font-normal">(Optional)</span></span>
                 </label>
                 <textarea
                   rows={2}
-                  placeholder="Mention brief symptoms or specialist requested..."
+                  placeholder="e.g. Fever for 2 days, knee pain, routine consultation..."
                   value={formData.note}
                   onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-lg border border-surya-slate-300 focus:border-surya-teal-600 focus:ring-2 focus:ring-surya-teal-500/20 outline-none transition resize-none"
+                  className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] placeholder:text-[#A0938A] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition resize-none font-medium"
                 />
               </div>
 
-              <div className="pt-2 flex items-center justify-end gap-3">
-                <Button variant="ghost" size="md" onClick={onClose}>
+              {/* Bottom Submit Action */}
+              <div className="pt-2 flex items-center justify-between gap-3 border-t border-[#F0E2D9]">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-5 py-3 rounded-full text-xs font-bold text-[#5A5049] hover:text-[#14233C] hover:bg-[#FFF0E6]/50 transition-colors cursor-pointer"
+                >
                   Cancel
-                </Button>
-                <Button variant="primary" size="md" type="submit">
-                  Confirm Request
-                </Button>
+                </button>
+
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 px-7 py-3 rounded-full text-xs sm:text-sm font-black text-white bg-gradient-to-r from-[#E94B1C] via-[#F26A21] to-[#C63D1B] hover:from-[#C63D1B] hover:to-[#A83218] shadow-[0_8px_20px_rgba(233,75,28,0.3)] hover:shadow-[0_12px_28px_rgba(233,75,28,0.45)] hover:-translate-y-0.5 transition-all cursor-pointer"
+                >
+                  <Calendar className="w-4 h-4 text-white" />
+                  <span>Confirm Appointment</span>
+                </button>
               </div>
             </form>
           )}
@@ -177,3 +341,5 @@ export function AppointmentModal({ isOpen, onClose, defaultDepartment = "" }) {
     </div>
   );
 }
+
+export default AppointmentModal;

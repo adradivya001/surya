@@ -15,6 +15,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
+import { useAppointmentModal } from "../context/AppointmentModalContext";
 
 const iconMap = {
   FlaskConical,
@@ -25,6 +26,7 @@ const iconMap = {
 };
 
 export function DiagnosticsPage() {
+  const { openModal } = useAppointmentModal();
   const [activeCategory, setActiveCategory] = useState(HOSPITAL_INFO.diagnostics[0]);
 
   useEffect(() => {
@@ -46,11 +48,15 @@ export function DiagnosticsPage() {
             Call Lab Desk: {HOSPITAL_INFO.phone}
           </Button>
         </a>
-        <Link to="/appointment">
-          <Button variant="secondary" size="sm" icon={Calendar} className="bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6]">
-            Book a Visit or Test
-          </Button>
-        </Link>
+        <Button
+          variant="secondary"
+          size="sm"
+          icon={Calendar}
+          onClick={() => openModal()}
+          className="bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6]"
+        >
+          Book a Visit or Test
+        </Button>
       </PageHero>
 
       {/* Diagnostics Overview */}

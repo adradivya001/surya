@@ -4,6 +4,7 @@ import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { MobileBottomBar } from "./components/layout/MobileBottomBar";
 import { ScrollToTop } from "./components/layout/ScrollToTop";
+import { AppointmentModalProvider } from "./context/AppointmentModalContext";
 
 // Critical landing page loaded eagerly
 import { HomePage } from "./pages/HomePage";
@@ -29,43 +30,45 @@ function RouteFallback() {
 export function App() {
   return (
     <BrowserRouter>
-      <div className="w-full min-h-screen flex flex-col bg-[#FFF9F3] text-[#62666D] antialiased font-sans overflow-x-clip selection:bg-[#F8E6DC] selection:text-[#A84328]">
-        <ScrollToTop />
+      <AppointmentModalProvider>
+        <div className="w-full min-h-screen flex flex-col bg-[#FFF9F3] text-[#62666D] antialiased font-sans overflow-x-clip selection:bg-[#F8E6DC] selection:text-[#A84328]">
+          <ScrollToTop />
 
-        {/* 4. Reusable Navbar that appears consistently on every page */}
-        <Navbar />
+          {/* 4. Reusable Navbar that appears consistently on every page */}
+          <Navbar />
 
-        {/* Route Pages Container */}
-        <main className="w-full flex-1 pb-18 lg:pb-0">
-          <Suspense fallback={<RouteFallback />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/doctors" element={<DoctorsPage />} />
-              <Route path="/specialities" element={<SpecialitiesPage />} />
-              <Route path="/specialities/:slug" element={<SpecialityDetailPage />} />
-              <Route path="/departments" element={<Navigate to="/specialities" replace />} />
-              <Route path="/departments/:slug" element={<SpecialityDetailPage />} />
-              <Route path="/services" element={<Navigate to="/specialities" replace />} />
-              <Route path="/services/:slug" element={<SpecialityDetailPage />} />
-              <Route path="/diagnostics" element={<Navigate to="/specialities" replace />} />
-              <Route path="/emergency" element={<EmergencyPage />} />
-              <Route path="/insurance-partners" element={<InsurancePartnersPage />} />
-              <Route path="/insurance" element={<Navigate to="/insurance-partners" replace />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/appointment" element={<AppointmentPage />} />
-              {/* Fallback to Home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Suspense>
-        </main>
+          {/* Route Pages Container */}
+          <main className="w-full flex-1 pb-18 lg:pb-0">
+            <Suspense fallback={<RouteFallback />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/doctors" element={<DoctorsPage />} />
+                <Route path="/specialities" element={<SpecialitiesPage />} />
+                <Route path="/specialities/:slug" element={<SpecialityDetailPage />} />
+                <Route path="/departments" element={<Navigate to="/specialities" replace />} />
+                <Route path="/departments/:slug" element={<SpecialityDetailPage />} />
+                <Route path="/services" element={<Navigate to="/specialities" replace />} />
+                <Route path="/services/:slug" element={<SpecialityDetailPage />} />
+                <Route path="/diagnostics" element={<Navigate to="/specialities" replace />} />
+                <Route path="/emergency" element={<EmergencyPage />} />
+                <Route path="/insurance-partners" element={<InsurancePartnersPage />} />
+                <Route path="/insurance" element={<Navigate to="/insurance-partners" replace />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/appointment" element={<AppointmentPage />} />
+                {/* Fallback to Home */}
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Suspense>
+          </main>
 
-        {/* Reusable Institutional Footer on every page */}
-        <Footer />
+          {/* Reusable Institutional Footer on every page */}
+          <Footer />
 
-        {/* Dedicated Sticky Mobile Bottom Bar (< 992px) */}
-        <MobileBottomBar />
-      </div>
+          {/* Dedicated Sticky Mobile Bottom Bar (< 992px) */}
+          <MobileBottomBar />
+        </div>
+      </AppointmentModalProvider>
     </BrowserRouter>
   );
 }

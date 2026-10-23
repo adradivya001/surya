@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { Phone, Calendar } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
 import { AnimateIn } from "../ui/AnimateIn";
+import { useAppointmentModal } from "../../context/AppointmentModalContext";
 
 export function HomeAboutPreview() {
+  const { openModal } = useAppointmentModal();
   // Six facility images matching the exact prompt specifications:
   // 1. Hospital building — front view
   // 2. Hospital building — alternate exterior view
@@ -163,13 +165,14 @@ export function HomeAboutPreview() {
                 </p>
 
                 <div className="pt-4 flex flex-wrap items-center justify-center sm:justify-start gap-3">
-                  <Link
-                    to="/appointment"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-colors shadow-sm"
+                  <button
+                    type="button"
+                    onClick={() => openModal("General Medicine")}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-colors shadow-sm cursor-pointer"
                   >
                     <Calendar className="w-3.5 h-3.5" />
                     <span>Book Consultation</span>
-                  </Link>
+                  </button>
 
                   <a
                     href={`tel:${HOSPITAL_INFO.phoneRaw}`}

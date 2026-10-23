@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Calendar, Phone } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
+import { useAppointmentModal } from "../../context/AppointmentModalContext";
 
 export function FloatingActionButtons() {
+  const { openModal } = useAppointmentModal();
   return (
     <aside
       aria-label="Quick Action Buttons"
@@ -38,11 +39,12 @@ export function FloatingActionButtons() {
       <div className="w-8 h-[1px] bg-[#E9D8CE] rounded-full" />
 
       {/* 2. Book Appointment */}
-      <Link
-        to="/appointment"
+      <button
+        type="button"
+        onClick={() => openModal()}
         aria-label="Book Doctor Appointment"
         title="Book Appointment"
-        className="group flex flex-col items-center gap-1.5 p-1 rounded-full transition-transform active:scale-95"
+        className="group flex flex-col items-center gap-1.5 p-1 rounded-full transition-transform active:scale-95 cursor-pointer bg-transparent border-0"
       >
         <div className="w-11 h-11 rounded-full bg-[#FFF0E6] border border-[#E9D8CE] flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs">
           <Calendar className="w-5 h-5 text-[#E94B1C] stroke-[2.2]" />
@@ -50,7 +52,7 @@ export function FloatingActionButtons() {
         <span className="text-[11px] font-bold tracking-tight text-[#262626] group-hover:text-[#E94B1C] text-center leading-[1.2] max-w-[68px] transition-colors">
           Book<br />Appointment
         </span>
-      </Link>
+      </button>
 
       {/* Divider */}
       <div className="w-8 h-[1px] bg-[#E9D8CE] rounded-full" />

@@ -1,791 +1,384 @@
-import React, { useState, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Container } from "../components/ui/Container";
-import { PageHero } from "../components/ui/PageHero";
-import { Button } from "../components/ui/Button";
+import React, { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   Calendar,
   CheckCircle2,
-  AlertCircle,
   PhoneCall,
-  Loader2,
   Clock,
   User,
   Stethoscope,
-  ChevronRight,
-  Sun,
-  Moon,
-  Zap,
+  FileText,
+  ShieldCheck,
+  MessageCircle,
+  MapPin,
+  HeartPulse,
 } from "lucide-react";
+import { Container } from "../components/ui/Container";
+import { PageHero } from "../components/ui/PageHero";
 import { HOSPITAL_INFO } from "../constants/hospitalData";
 
 export function AppointmentPage() {
   const [searchParams] = useSearchParams();
-  const initialDoctor = searchParams.get("doctor") || "";
   const paramDept = (searchParams.get("dept") || "").toLowerCase().trim();
 
   const departmentOptions = [
     "General Medicine (Physician)",
     "General & Laparoscopic Surgery",
-    "Cardiology",
     "Orthopedics & Joint Replacement",
-    "Gastroenterology",
-    "Nephrology",
-    "E.N.T.",
+    "Cardiology",
+    "Nephrology & Dialysis",
     "Pulmonology & Chest Medicine",
-    "Neurology",
-    "Medical & Surgical Oncology",
+    "Gastroenterology",
+    "E.N.T.",
     "Urology",
-    "Psychiatry",
+    "Diagnostic Lab & Imaging",
+    "Physiotherapy & Rehab",
     "24/7 Casualty & Emergency",
   ];
 
-  // Match URL department intelligently (case-insensitive substring match)
-  const matchedDept = departmentOptions.find((opt) =>
-    paramDept && (opt.toLowerCase().includes(paramDept) || paramDept.includes(opt.toLowerCase()))
-  ) || "General Medicine (Physician)";
+  const matchedDept =
+    departmentOptions.find(
+      (opt) =>
+        paramDept &&
+        (opt.toLowerCase().includes(paramDept) || paramDept.includes(opt.toLowerCase()))
+    ) || "General Medicine (Physician)";
 
-  const [currentStep, setCurrentStep] = useState(1); // 1: Department & Doctor, 2: Date & Slot, 3: Patient Info
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    patientName: "",
+    name: "",
     phone: "",
-    email: "",
     department: matchedDept,
-    preferredDoctor: initialDoctor,
-    preferredDate: "",
-    preferredTime: "Morning (09:30 AM – 01:30 PM)",
-    reason: "",
-    consent: false,
+    date: "",
+    timeSlot: "Morning (09:30 AM – 01:30 PM)",
+    note: "",
   });
-
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [confirmedBooking, setConfirmedBooking] = useState(null);
-
-  useEffect(() => {
-    document.title = "Book an Appointment | Surya Hospital, Sai Nagar, Anantapur";
-  }, []);
-
-
-
-  const timeSlots = [
-    "Morning (09:30 AM – 01:30 PM)",
-    "Evening (05:00 PM – 08:30 PM)",
-    "Casualty / Emergency (Immediate)",
-  ];
-
-  // Prevent selecting past dates
-  const todayStr = new Date().toISOString().split("T")[0];
-
-  const validate = () => {
-    const errs = {};
-    if (!formData.patientName.trim()) {
-      errs.patientName = "Please enter patient full name";
-    }
-
-    const cleanPhone = formData.phone.replace(/[^0-9]/g, "");
-    if (!formData.phone.trim()) {
-      errs.phone = "Please enter your mobile phone number";
-    } else if (cleanPhone.length !== 10) {
-      errs.phone = "Please enter a valid 10-digit mobile number";
-    }
-
-    if (formData.email.trim()) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email.trim())) {
-        errs.email = "Please enter a valid email address";
-      }
-    }
-
-    if (!formData.preferredDate) {
-      errs.preferredDate = "Please choose your preferred visit date";
-    } else if (formData.preferredDate < todayStr) {
-      errs.preferredDate = "Please choose today or a future date";
-    }
-
-    if (!formData.consent) {
-      errs.consent = "Please check the box to confirm booking enquiry";
-    }
-
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-
-    // Simulate instant local resolution without external failure
-    setTimeout(() => {
-      setIsSubmitting(false);
-      const generatedToken = `SURYA-${Math.floor(100000 + Math.random() * 900000)}`;
-      setConfirmedBooking({
-        refNumber: generatedToken,
-        patientName: formData.patientName,
-        phone: formData.phone,
-        department: formData.department,
-        doctor: formData.preferredDoctor || "Consultant on Duty",
-        date: formData.preferredDate,
-        timeSlot: formData.preferredTime,
-      });
-
-      // Reset form fields
-      setFormData({
-        patientName: "",
-        phone: "",
-        email: "",
-        department: "General Medicine (Physician)",
-        preferredDoctor: "",
-        preferredDate: "",
-        preferredTime: "Morning (09:30 AM – 01:30 PM)",
-        reason: "",
-        consent: false,
-      });
-      setErrors({});
-    }, 600);
+    if (!formData.name.trim() || !formData.phone.trim()) return;
+    setSubmitted(true);
   };
 
+  const handleReset = () => {
+    setSubmitted(false);
+    setFormData({
+      name: "",
+      phone: "",
+      department: "General Medicine (Physician)",
+      date: "",
+      timeSlot: "Morning (09:30 AM – 01:30 PM)",
+      note: "",
+    });
+  };
+
+  const whatsappUrl = `https://wa.me/918500904999?text=${encodeURIComponent(
+    `Hello Surya Hospital, I would like to book an appointment for ${formData.name || "Patient"}. Phone: ${formData.phone}, Department: ${formData.department}, Date: ${formData.date || "Next available"}.`
+  )}`;
+
   return (
-    <div className="w-full">
+    <div className="bg-[#FFF9F3] min-h-screen text-[#14233C] pt-24 pb-20">
       {/* Page Hero */}
       <PageHero
-        eyebrow="APPOINTMENTS & VISITING TOKENS"
+        badge="Appointments & Visiting Tokens"
         title="Book Doctor Consultation"
-        description="Schedule a visit with our experienced doctors in internal medicine, general surgery, or joint and bone care. We will confirm your visiting slot promptly."
-        breadcrumbs={[{ label: "Appointment" }]}
-        badge="Sai Nagar Campus"
-      >
-        <a href={`tel:${HOSPITAL_INFO.phoneRaw}`}>
-          <Button variant="primary" size="sm" icon={PhoneCall} className="bg-[#E94B1C] hover:bg-[#A83218] text-white">
-            Call for Immediate Token: {HOSPITAL_INFO.phone}
-          </Button>
-        </a>
-      </PageHero>
+        description="Enter your simple details below. Our hospital front desk coordinator will confirm your visiting slot promptly."
+      />
 
-      <section className="py-14 md:py-20 bg-[#FFF9F3] border-b border-[#F0E2D9]">
-        <Container>
-          <div className="max-w-4xl mx-auto">
-            {/* Helpful Notice Banner */}
-            <div className="mb-8 p-4 rounded-xl bg-white border border-[#E9D8CE] text-xs sm:text-sm text-[#262626] flex items-start gap-3 shadow-xs">
-              <AlertCircle className="w-5 h-5 text-[#E94B1C] shrink-0 mt-0.5" />
-              <div className="space-y-1 text-left">
-                <p className="font-bold text-[#C63D1B]">Need Same-Day or Emergency Care?</p>
-                <p className="text-[#756860]">
-                  For urgent health issues, severe pain, accidents, or same-day doctor visits, please call our 24/7 reception desk at <strong>{HOSPITAL_INFO.phone}</strong> or visit our hospital directly in Sai Nagar, Anantapur.
-                </p>
-              </div>
-            </div>
+      <Container className="mt-8 max-w-5xl">
+        {/* Emergency Notice */}
+        <div className="mb-8 p-4 rounded-2xl bg-[#FFF5EC] border border-[#F5D8C3] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm text-[#7A3E1D] shadow-xs">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span>
+              <strong>Need Immediate Emergency or Casualty Care?</strong> For acute trauma, severe pain, or urgent hospitalization, visit our hospital directly.
+            </span>
+          </div>
+          <a
+            href="tel:+918500904999"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-black text-white bg-[#E94B1C] hover:bg-[#C63D1B] transition-colors shrink-0 whitespace-nowrap cursor-pointer"
+          >
+            <PhoneCall className="w-3.5 h-3.5" />
+            <span>Call 24/7 Desk: +91 85009 04999</span>
+          </a>
+        </div>
 
-            {/* Success Receipt State */}
-            {confirmedBooking ? (
-              <div className="bg-white rounded-2xl border border-[#E9D8CE] p-6 sm:p-10 shadow-sm text-left space-y-6 animate-fadeIn">
-                <div className="flex items-center gap-3 pb-4 border-b border-[#F0E2D9]">
-                  <div className="w-12 h-12 rounded-xl bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 border border-[#E9D8CE]">
-                    <CheckCircle2 className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#C63D1B]">
-                      APPOINTMENT REQUEST RECEIVED
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-[#C63D1B]">
-                      We Have Received Your Booking Request
-                    </h3>
-                  </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Main Booking Form Card */}
+          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-[#E9D8CE] shadow-[0_12px_40px_rgba(200,90,40,0.06)]">
+            {submitted ? (
+              <div className="text-center py-8 space-y-5">
+                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                  <CheckCircle2 className="w-9 h-9" />
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm bg-[#FFF9F3] p-5 rounded-xl border border-[#E9D8CE]">
-                  <div>
-                    <span className="text-[#756860] block text-[11px] uppercase font-bold">
-                      Booking Reference:
-                    </span>
-                    <span className="font-mono font-bold text-[#C63D1B] text-sm sm:text-base">
-                      {confirmedBooking.refNumber}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[#756860] block text-[11px] uppercase font-bold">
-                      Patient Name:
-                    </span>
-                    <span className="font-bold text-[#262626] text-sm sm:text-base">
-                      {confirmedBooking.patientName}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[#756860] block text-[11px] uppercase font-bold">
-                      Department:
-                    </span>
-                    <span className="font-bold text-[#C63D1B]">
-                      {confirmedBooking.department}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[#756860] block text-[11px] uppercase font-bold">
-                      Doctor:
-                    </span>
-                    <span className="font-bold text-[#262626]">
-                      {confirmedBooking.doctor}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[#756860] block text-[11px] uppercase font-bold">
-                      Requested Date:
-                    </span>
-                    <span className="font-bold text-[#262626]">
-                      {confirmedBooking.date}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-[#756860] block text-[11px] uppercase font-bold">
-                      Preferred Time:
-                    </span>
-                    <span className="font-bold text-[#262626]">
-                      {confirmedBooking.timeSlot}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-xl bg-[#FFF0E6]/50 border border-[#E9D8CE] text-xs sm:text-sm text-[#262626] space-y-1">
-                  <span className="font-bold block text-[#C63D1B]">Next Steps & What to Expect:</span>
-                  <p className="text-[#756860]">
-                    Our reception desk will call you shortly on your mobile number to confirm your exact token time. Please arrive 15 minutes before your time at Surya Hospital, Sai Nagar, Anantapur, and bring any past doctor prescriptions or medical reports with you.
+                <div>
+                  <h3 className="text-2xl font-black text-[#14233C] tracking-tight">
+                    Appointment Request Received!
+                  </h3>
+                  <p className="text-xs font-bold text-[#E94B1C] mt-1 uppercase tracking-wider">
+                    Token ID: #{Math.floor(1000 + Math.random() * 9000)}
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
-                  <a href={`tel:${HOSPITAL_INFO.phoneRaw}`} className="w-full sm:w-auto">
-                    <Button variant="primary" size="md" icon={PhoneCall} className="w-full sm:w-auto bg-[#E94B1C] hover:bg-[#A83218] text-white rounded-full">
-                      Call Reception: {HOSPITAL_INFO.phone}
-                    </Button>
-                  </a>
-                  <Button
-                    variant="outline"
-                    size="md"
-                    className="w-full sm:w-auto border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] rounded-full"
-                    onClick={() => setConfirmedBooking(null)}
-                  >
-                    Book Another Visit
-                  </Button>
-                  <Link to="/" className="w-full sm:w-auto">
-                    <Button variant="ghost" size="md" className="w-full sm:w-auto rounded-full">
-                      Back to Home
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <div className="bg-white rounded-3xl border border-[#E9D8CE] p-5 sm:p-8 md:p-10 shadow-sm text-left">
-                {/* 3-Step Progress Indicator */}
-                <div className="mb-8 pb-6 border-b border-[#F0E2D9]">
-                  <div className="grid grid-cols-3 gap-2 sm:gap-4">
-                    {[
-                      { step: 1, title: "Department & Doctor", icon: Stethoscope },
-                      { step: 2, title: "Date & Visiting Slot", icon: Clock },
-                      { step: 3, title: "Patient Details", icon: User },
-                    ].map((s) => {
-                      const IconComp = s.icon;
-                      const isActive = currentStep === s.step;
-                      const isCompleted = currentStep > s.step;
-
-                      return (
-                        <button
-                          key={s.step}
-                          type="button"
-                          onClick={() => {
-                            if (isCompleted || s.step < currentStep) setCurrentStep(s.step);
-                          }}
-                          className={`flex flex-col sm:flex-row items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-2xl transition-all text-left ${
-                            isActive
-                              ? "bg-[#FFF0E6] border-2 border-[#E94B1C]"
-                              : isCompleted
-                              ? "bg-[#FFF9F3] border border-[#E9D8CE] cursor-pointer hover:bg-[#FFF0E6]/50"
-                              : "bg-slate-50 border border-slate-200 opacity-60 cursor-not-allowed"
-                          }`}
-                        >
-                          <div
-                            className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
-                              isCompleted
-                                ? "bg-[#006677] text-white"
-                                : isActive
-                                ? "bg-[#E94B1C] text-white shadow-xs"
-                                : "bg-slate-200 text-slate-600"
-                            }`}
-                          >
-                            {isCompleted ? <CheckCircle2 className="w-4 h-4" /> : s.step}
-                          </div>
-                          <div className="overflow-hidden">
-                            <span className="block text-[10px] uppercase font-bold text-[#756860]">
-                              Step {s.step}
-                            </span>
-                            <span className="text-xs sm:text-[13px] font-bold text-[#1A1D20] truncate block">
-                              {s.title}
-                            </span>
-                          </div>
-                        </button>
-                      );
-                    })}
+                <div className="bg-[#FFF9F3] border border-[#F0E2D9] rounded-2xl p-5 text-left space-y-2.5 max-w-md mx-auto text-xs sm:text-sm text-[#5A5049]">
+                  <div className="flex justify-between">
+                    <span className="text-[#8C7A70]">Patient:</span>
+                    <span className="font-bold text-[#14233C]">{formData.name}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#8C7A70]">Phone Number:</span>
+                    <span className="font-bold text-[#14233C]">{formData.phone}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#8C7A70]">Department:</span>
+                    <span className="font-bold text-[#14233C]">{formData.department}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#8C7A70]">Preferred Slot:</span>
+                    <span className="font-bold text-[#14233C]">
+                      {formData.date ? `${formData.date} • ` : ""}
+                      {formData.timeSlot}
+                    </span>
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* STEP 1: Department & Doctor Selection */}
-                  {currentStep === 1 && (
-                    <motion.div
-                      key="step1"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.25 }}
-                      className="space-y-6"
-                    >
-                      <div className="space-y-1">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#C63D1B]">
-                          Step 1 of 3
-                        </span>
-                        <h3 className="text-lg sm:text-xl font-black text-[#1A1D20]">
-                          Select Clinical Department & Specialist Doctor
-                        </h3>
-                        <p className="text-xs text-[#756860]">
-                          Choose the medical or surgical department you wish to consult.
-                        </p>
-                      </div>
+                <p className="text-xs text-[#6A6059] max-w-sm mx-auto leading-relaxed">
+                  Thank you, <strong>{formData.name}</strong>. Our front desk team will call you within 15 minutes to confirm your doctor visit timing.
+                </p>
 
-                      <div className="space-y-4">
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-bold text-[#262626]">
-                            Choose Department <span className="text-[#E94B1C]">*</span>
-                          </label>
-                          <select
-                            value={formData.department}
-                            onChange={(e) => {
-                              setFormData({
-                                ...formData,
-                                department: e.target.value,
-                                preferredDoctor: "",
-                              });
-                            }}
-                            className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-white text-[#262626] font-semibold focus:outline-none focus:border-[#E94B1C] focus:ring-1 focus:ring-[#E94B1C]"
-                          >
-                            {departmentOptions.map((dept) => (
-                              <option key={dept} value={dept}>
-                                {dept}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
+                <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs font-black text-white bg-emerald-600 hover:bg-emerald-700 shadow-md shadow-emerald-600/30 transition-all cursor-pointer"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Confirm on WhatsApp</span>
+                  </a>
 
-                        {/* Filtered Doctor Cards or Any Doctor option */}
-                        <div className="space-y-2 pt-2">
-                          <label className="text-xs font-bold text-[#262626]">
-                            Choose Doctor (Optional)
-                          </label>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <button
-                              type="button"
-                              onClick={() => setFormData({ ...formData, preferredDoctor: "" })}
-                              className={`p-3.5 rounded-2xl border text-left transition cursor-pointer flex items-center justify-between ${
-                                formData.preferredDoctor === ""
-                                  ? "border-[#E94B1C] bg-[#FFF0E6]/70 shadow-xs"
-                                  : "border-[#E9D8CE] bg-white hover:bg-[#FFF9F3]"
-                              }`}
-                            >
-                              <div>
-                                <span className="text-xs font-bold text-[#1A1D20] block">
-                                  Any Available Doctor
-                                </span>
-                                <span className="text-[11px] text-[#756860]">
-                                  Consult the duty specialist for faster booking
-                                </span>
-                              </div>
-                              {formData.preferredDoctor === "" && (
-                                <CheckCircle2 className="w-4 h-4 text-[#E94B1C] shrink-0" />
-                              )}
-                            </button>
-
-                            {HOSPITAL_INFO.doctors
-                              .filter((doc) => {
-                                const deptLower = formData.department.toLowerCase();
-                                const docDept = doc.department.toLowerCase();
-                                return (
-                                  docDept.includes(deptLower) ||
-                                  deptLower.includes(docDept) ||
-                                  (deptLower.includes("general medicine") && docDept.includes("internal medicine")) ||
-                                  (deptLower.includes("surgery") && docDept.includes("surgery"))
-                                );
-                              })
-                              .map((doc) => {
-                                const isSelected = formData.preferredDoctor === doc.name;
-                                return (
-                                  <button
-                                    key={doc.id}
-                                    type="button"
-                                    onClick={() =>
-                                      setFormData({ ...formData, preferredDoctor: doc.name })
-                                    }
-                                    className={`p-3.5 rounded-2xl border text-left transition cursor-pointer flex items-center justify-between ${
-                                      isSelected
-                                        ? "border-[#E94B1C] bg-[#FFF0E6]/70 shadow-xs"
-                                        : "border-[#E9D8CE] bg-white hover:bg-[#FFF9F3]"
-                                    }`}
-                                  >
-                                    <div className="overflow-hidden pr-2">
-                                      <span className="text-xs font-bold text-[#1A1D20] block truncate">
-                                        {doc.name}
-                                      </span>
-                                      <span className="text-[11px] text-[#C63D1B] font-semibold block">
-                                        {doc.qualifications}
-                                      </span>
-                                      <span className="text-[10px] text-[#756860] block truncate mt-0.5">
-                                        {doc.opdTimings}
-                                      </span>
-                                    </div>
-                                    {isSelected && (
-                                      <CheckCircle2 className="w-4 h-4 text-[#E94B1C] shrink-0" />
-                                    )}
-                                  </button>
-                                );
-                              })}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="pt-4 flex justify-end">
-                        <Button
-                          type="button"
-                          variant="primary"
-                          size="md"
-                          onClick={() => setCurrentStep(2)}
-                          className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold px-7 py-3 rounded-full flex items-center gap-2 cursor-pointer"
-                        >
-                          <span>Next: Choose Date &amp; Time</span>
-                          <ChevronRight className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* STEP 2: Date & Interactive Time Slot Chips */}
-                  {currentStep === 2 && (
-                    <motion.div
-                      key="step2"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.25 }}
-                      className="space-y-6"
-                    >
-                      <div className="space-y-1">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#C63D1B]">
-                          Step 2 of 3
-                        </span>
-                        <h3 className="text-lg sm:text-xl font-black text-[#1A1D20]">
-                          Choose Preferred Date &amp; Time Slot
-                        </h3>
-                        <p className="text-xs text-[#756860]">
-                          Select your consultation date and morning or evening shift.
-                        </p>
-                      </div>
-
-                      <div className="space-y-5">
-                        {/* Preferred Date */}
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-bold text-[#262626]">
-                            Preferred Date <span className="text-[#E94B1C]">*</span>
-                          </label>
-                          <input
-                            type="date"
-                            min={todayStr}
-                            value={formData.preferredDate}
-                            onChange={(e) =>
-                              setFormData({ ...formData, preferredDate: e.target.value })
-                            }
-                            className={`w-full px-4 py-3 text-sm rounded-xl border bg-white text-[#262626] font-semibold focus:outline-none transition ${
-                              errors.preferredDate
-                                ? "border-red-400 ring-1 ring-red-300"
-                                : "border-[#E9D8CE] focus:border-[#E94B1C] focus:ring-1 focus:ring-[#E94B1C]"
-                            }`}
-                          />
-                          {errors.preferredDate && (
-                            <p className="text-[11px] text-red-500">{errors.preferredDate}</p>
-                          )}
-                        </div>
-
-                        {/* Interactive Slot Chips */}
-                        <div className="space-y-2">
-                          <label className="text-xs font-bold text-[#262626]">
-                            Preferred Time Shift <span className="text-[#E94B1C]">*</span>
-                          </label>
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            {[
-                              {
-                                id: "Morning (09:30 AM – 01:30 PM)",
-                                label: "Morning OPD",
-                                time: "09:30 AM – 01:30 PM",
-                                icon: Sun,
-                                color: "text-amber-600",
-                              },
-                              {
-                                id: "Evening (05:00 PM – 08:30 PM)",
-                                label: "Evening OPD",
-                                time: "05:00 PM – 08:30 PM",
-                                icon: Moon,
-                                color: "text-indigo-600",
-                              },
-                              {
-                                id: "Casualty / Emergency (Immediate)",
-                                label: "Casualty / 24x7",
-                                time: "Open 24 Hours",
-                                icon: Zap,
-                                color: "text-[#E94B1C]",
-                              },
-                            ].map((slot) => {
-                              const SlotIcon = slot.icon;
-                              const isSelected = formData.preferredTime === slot.id;
-                              return (
-                                <button
-                                  key={slot.id}
-                                  type="button"
-                                  onClick={() =>
-                                    setFormData({ ...formData, preferredTime: slot.id })
-                                  }
-                                  className={`p-4 rounded-2xl border text-left transition cursor-pointer flex flex-col justify-between ${
-                                    isSelected
-                                      ? "border-[#E94B1C] bg-[#FFF0E6] shadow-sm ring-1 ring-[#E94B1C]"
-                                      : "border-[#E9D8CE] bg-white hover:bg-[#FFF9F3]"
-                                  }`}
-                                >
-                                  <div className="flex items-center justify-between">
-                                    <SlotIcon className={`w-4 h-4 ${slot.color}`} />
-                                    {isSelected && (
-                                      <CheckCircle2 className="w-4 h-4 text-[#E94B1C]" />
-                                    )}
-                                  </div>
-                                  <div className="mt-3">
-                                    <span className="text-xs font-bold text-[#1A1D20] block">
-                                      {slot.label}
-                                    </span>
-                                    <span className="text-[11px] text-[#756860] font-semibold block mt-0.5">
-                                      {slot.time}
-                                    </span>
-                                  </div>
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        {/* Health Concern Reason */}
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-bold text-[#262626]">
-                            Main Health Concern or Symptoms{" "}
-                            <span className="text-[#756860] font-normal">(Optional)</span>
-                          </label>
-                          <textarea
-                            rows={3}
-                            placeholder="e.g. Fever checkup, diabetes review, knee pain, stomach ache, piles consultation..."
-                            value={formData.reason}
-                            onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-                            className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-white text-[#262626] focus:outline-none focus:border-[#E94B1C] focus:ring-1 focus:ring-[#E94B1C] placeholder-[#756860]"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="pt-4 flex items-center justify-between">
-                        <button
-                          type="button"
-                          onClick={() => setCurrentStep(1)}
-                          className="px-5 py-2.5 rounded-full text-xs font-bold text-[#756860] hover:text-[#262626] cursor-pointer"
-                        >
-                          ← Back
-                        </button>
-                        <Button
-                          type="button"
-                          variant="primary"
-                          size="md"
-                          onClick={() => {
-                            if (!formData.preferredDate) {
-                              setErrors({ preferredDate: "Please choose your preferred visit date" });
-                              return;
-                            }
-                            setErrors({});
-                            setCurrentStep(3);
-                          }}
-                          className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold px-7 py-3 rounded-full flex items-center gap-2 cursor-pointer"
-                        >
-                          <span>Next: Patient Info</span>
-                          <ChevronRight className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* STEP 3: Patient Information & Final Confirmation */}
-                  {currentStep === 3 && (
-                    <motion.div
-                      key="step3"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ duration: 0.25 }}
-                      className="space-y-6"
-                    >
-                      <div className="space-y-1">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#C63D1B]">
-                          Step 3 of 3
-                        </span>
-                        <h3 className="text-lg sm:text-xl font-black text-[#1A1D20]">
-                          Enter Patient Details &amp; Confirm
-                        </h3>
-                        <p className="text-xs text-[#756860]">
-                          Our reception desk will call this number to confirm your exact token slot.
-                        </p>
-                      </div>
-
-                      {/* Booking Summary Box */}
-                      <div className="p-4 rounded-2xl bg-[#FFF9F3] border border-[#E9D8CE] text-xs flex flex-wrap items-center justify-between gap-3">
-                        <div>
-                          <span className="text-[10px] uppercase font-bold text-[#756860] block">
-                            Department &amp; Doctor
-                          </span>
-                          <span className="font-bold text-[#1A1D20]">
-                            {formData.department}{" "}
-                            {formData.preferredDoctor ? `• Dr. ${formData.preferredDoctor}` : ""}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-[10px] uppercase font-bold text-[#756860] block">
-                            Schedule
-                          </span>
-                          <span className="font-bold text-[#C63D1B]">
-                            {formData.preferredDate} ({formData.preferredTime.split(" ")[0]})
-                          </span>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setCurrentStep(1)}
-                          className="text-[11px] font-bold text-[#E94B1C] hover:underline"
-                        >
-                          Change
-                        </button>
-                      </div>
-
-                      <div className="space-y-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-[#262626]">
-                              Patient Full Name <span className="text-[#E94B1C]">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="e.g. Ramesh Kumar"
-                              value={formData.patientName}
-                              onChange={(e) =>
-                                setFormData({ ...formData, patientName: e.target.value })
-                              }
-                              className={`w-full px-4 py-3 text-sm rounded-xl border bg-white text-[#262626] font-semibold focus:outline-none transition ${
-                                errors.patientName
-                                  ? "border-red-400 ring-1 ring-red-300"
-                                  : "border-[#E9D8CE] focus:border-[#E94B1C] focus:ring-1 focus:ring-[#E94B1C]"
-                              }`}
-                            />
-                            {errors.patientName && (
-                              <p className="text-[11px] text-red-500">{errors.patientName}</p>
-                            )}
-                          </div>
-
-                          <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-[#262626]">
-                              Mobile Phone Number <span className="text-[#E94B1C]">*</span>
-                            </label>
-                            <input
-                              type="tel"
-                              placeholder="e.g. 9876543210"
-                              value={formData.phone}
-                              onChange={(e) =>
-                                setFormData({ ...formData, phone: e.target.value })
-                              }
-                              className={`w-full px-4 py-3 text-sm rounded-xl border bg-white text-[#262626] font-semibold focus:outline-none transition ${
-                                errors.phone
-                                  ? "border-red-400 ring-1 ring-red-300"
-                                  : "border-[#E9D8CE] focus:border-[#E94B1C] focus:ring-1 focus:ring-[#E94B1C]"
-                              }`}
-                            />
-                            {errors.phone && (
-                              <p className="text-[11px] text-red-500">{errors.phone}</p>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-bold text-[#262626]">
-                            Email Address{" "}
-                            <span className="text-[#756860] font-normal">(Optional)</span>
-                          </label>
-                          <input
-                            type="email"
-                            placeholder="e.g. patient@example.com"
-                            value={formData.email}
-                            onChange={(e) =>
-                              setFormData({ ...formData, email: e.target.value })
-                            }
-                            className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-white text-[#262626] focus:outline-none focus:border-[#E94B1C] focus:ring-1 focus:ring-[#E94B1C]"
-                          />
-                        </div>
-
-                        <div className="space-y-1 pt-2">
-                          <label className="flex items-start gap-2.5 text-xs text-[#756860] cursor-pointer">
-                            <input
-                              type="checkbox"
-                              checked={formData.consent}
-                              onChange={(e) =>
-                                setFormData({ ...formData, consent: e.target.checked })
-                              }
-                              className="mt-0.5 rounded text-[#E94B1C] focus:ring-[#E94B1C]"
-                            />
-                            <span>
-                              I agree to let Surya Hospital front desk call or message me at this phone number to confirm this doctor visit.
-                            </span>
-                          </label>
-                          {errors.consent && (
-                            <p className="text-[11px] text-red-500">{errors.consent}</p>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="pt-4 flex items-center justify-between border-t border-[#F0E2D9]">
-                        <button
-                          type="button"
-                          onClick={() => setCurrentStep(2)}
-                          className="px-5 py-2.5 rounded-full text-xs font-bold text-[#756860] hover:text-[#262626] cursor-pointer"
-                        >
-                          ← Back
-                        </button>
-                        <Button
-                          type="submit"
-                          variant="primary"
-                          size="lg"
-                          disabled={isSubmitting}
-                          icon={isSubmitting ? Loader2 : Calendar}
-                          className="bg-[#E94B1C] hover:bg-[#A83218] text-white font-bold py-3.5 px-8 text-sm shadow-md rounded-full cursor-pointer active:scale-95"
-                        >
-                          {isSubmitting ? "Confirming Slot..." : "Confirm & Request Token"}
-                        </Button>
-                      </div>
-                    </motion.div>
-                  )}
-                </form>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-bold text-[#14233C] bg-[#FFF0E6] hover:bg-[#FFE0D0] transition-colors cursor-pointer"
+                  >
+                    Book Another Appointment
+                  </button>
+                </div>
               </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="border-b border-[#F0E2D9] pb-4">
+                  <h2 className="text-xl font-black text-[#14233C] tracking-tight">
+                    Patient &amp; Consultation Details
+                  </h2>
+                  <p className="text-xs text-[#7A6E65] mt-1 font-medium">
+                    Fill in these few details to reserve your consultation slot.
+                  </p>
+                </div>
+
+                {/* Patient Name */}
+                <div>
+                  <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-[#E94B1C]" />
+                    <span>Patient Full Name <span className="text-red-500">*</span></span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter patient full name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] placeholder:text-[#A0938A] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
+                  />
+                </div>
+
+                {/* Phone Number */}
+                <div>
+                  <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                    <PhoneCall className="w-3.5 h-3.5 text-[#E94B1C]" />
+                    <span>Phone Number <span className="text-red-500">*</span></span>
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-black text-[#8C7A70]">
+                      +91
+                    </span>
+                    <input
+                      type="tel"
+                      required
+                      maxLength={10}
+                      placeholder="10-digit mobile number"
+                      value={formData.phone}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/\D/g, "");
+                        setFormData({ ...formData, phone: val });
+                      }}
+                      className="w-full pl-12 pr-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] placeholder:text-[#A0938A] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
+                    />
+                  </div>
+                </div>
+
+                {/* Department Selection */}
+                <div>
+                  <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                    <Stethoscope className="w-3.5 h-3.5 text-[#E94B1C]" />
+                    <span>Choose Department</span>
+                  </label>
+                  <select
+                    value={formData.department}
+                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                    className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
+                  >
+                    {departmentOptions.map((dept) => (
+                      <option key={dept} value={dept}>
+                        {dept}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Preferred Date & Visiting Slot */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-[#E94B1C]" />
+                      <span>Preferred Date</span>
+                    </label>
+                    <input
+                      type="date"
+                      min={new Date().toISOString().split("T")[0]}
+                      value={formData.date}
+                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-[#E94B1C]" />
+                      <span>Visiting Slot</span>
+                    </label>
+                    <select
+                      value={formData.timeSlot}
+                      onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
+                      className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition font-medium"
+                    >
+                      <option value="Morning (09:30 AM – 01:30 PM)">
+                        Morning (09:30 AM – 01:30 PM)
+                      </option>
+                      <option value="Evening (05:00 PM – 08:30 PM)">
+                        Evening (05:00 PM – 08:30 PM)
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Symptoms / Note */}
+                <div>
+                  <label className="block text-xs font-bold text-[#14233C] mb-1.5 flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5 text-[#E94B1C]" />
+                    <span>Brief Health Issue / Symptoms <span className="text-[#8C7A70] font-normal">(Optional)</span></span>
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="e.g. Cough and fever for 2 days, knee pain, consultation with general surgeon..."
+                    value={formData.note}
+                    onChange={(e) => setFormData({ ...formData, note: e.target.value })}
+                    className="w-full px-4 py-3 text-sm rounded-xl border border-[#E9D8CE] bg-[#FFFDFC] text-[#14233C] placeholder:text-[#A0938A] focus:border-[#E94B1C] focus:ring-2 focus:ring-[#E94B1C]/20 outline-none transition resize-none font-medium"
+                  />
+                </div>
+
+                {/* Submit Action */}
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    className="w-full py-4 rounded-full text-sm sm:text-base font-black text-white bg-gradient-to-r from-[#E94B1C] via-[#F26A21] to-[#C63D1B] hover:from-[#C63D1B] hover:to-[#A83218] shadow-[0_10px_28px_rgba(233,75,28,0.32)] hover:shadow-[0_14px_36px_rgba(233,75,28,0.45)] hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center gap-2.5"
+                  >
+                    <Calendar className="w-4 h-4 text-white" />
+                    <span>Confirm Doctor Appointment</span>
+                  </button>
+                </div>
+              </form>
             )}
           </div>
-        </Container>
-      </section>
+
+          {/* Quick Info & Helpline Sidebar */}
+          <div className="lg:col-span-5 space-y-5">
+            {/* Direct Helpline Card */}
+            <div className="bg-white rounded-3xl p-6 border border-[#E9D8CE] shadow-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-2xl bg-[#FFF0E6] flex items-center justify-center text-[#E94B1C]">
+                  <PhoneCall className="w-5 h-5 stroke-[2.2]" />
+                </div>
+                <div>
+                  <h3 className="text-base font-black text-[#14233C]">Call Front Desk</h3>
+                  <p className="text-xs text-[#7A6E65]">Immediate telephone tokens</p>
+                </div>
+              </div>
+              <a
+                href="tel:+918500904999"
+                className="block w-full py-3 rounded-2xl bg-[#FFF5EC] border border-[#F5D8C3] text-center text-sm font-black text-[#E94B1C] hover:bg-[#FFE8D6] transition-colors cursor-pointer"
+              >
+                +91 85009 04999
+              </a>
+              <p className="text-[11px] text-[#8C7A70] text-center mt-2 font-medium">
+                Available 24 hours a day, 365 days a year
+              </p>
+            </div>
+
+            {/* OPD Timings */}
+            <div className="bg-white rounded-3xl p-6 border border-[#E9D8CE] shadow-sm">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#FFF0E6] flex items-center justify-center text-[#E94B1C]">
+                  <Clock className="w-5 h-5 stroke-[2.2]" />
+                </div>
+                <div>
+                  <h3 className="text-base font-black text-[#14233C]">Visiting Timings</h3>
+                  <p className="text-xs text-[#7A6E65]">Doctor consultation hours</p>
+                </div>
+              </div>
+              <div className="space-y-2 text-xs text-[#5A5049] pt-1">
+                <div className="flex justify-between py-1.5 border-b border-[#F0E2D9]">
+                  <span className="font-semibold text-[#14233C]">Morning OPD:</span>
+                  <span className="font-bold text-[#E94B1C]">09:00 AM – 02:00 PM</span>
+                </div>
+                <div className="flex justify-between py-1.5 border-b border-[#F0E2D9]">
+                  <span className="font-semibold text-[#14233C]">Evening OPD:</span>
+                  <span className="font-bold text-[#E94B1C]">05:00 PM – 09:00 PM</span>
+                </div>
+                <div className="flex justify-between py-1.5">
+                  <span className="font-semibold text-[#14233C]">Emergency &amp; Casualty:</span>
+                  <span className="font-black text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
+                    24/7 Always Open
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Cashless & Location */}
+            <div className="bg-white rounded-3xl p-6 border border-[#E9D8CE] shadow-sm space-y-4">
+              <div className="flex items-start gap-3">
+                <ShieldCheck className="w-5 h-5 text-[#E94B1C] shrink-0 mt-0.5 stroke-[2.2]" />
+                <div>
+                  <h4 className="text-xs font-black text-[#14233C]">100% Cashless Available</h4>
+                  <p className="text-[11px] text-[#7A6E65] mt-0.5">
+                    Star Health, Care Health &amp; all major insurance TPAs accepted.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 pt-3 border-t border-[#F0E2D9]">
+                <MapPin className="w-5 h-5 text-[#E94B1C] shrink-0 mt-0.5 stroke-[2.2]" />
+                <div>
+                  <h4 className="text-xs font-black text-[#14233C]">Surya Hospital Campus</h4>
+                  <p className="text-[11px] text-[#7A6E65] mt-0.5">
+                    Behind Ambedkar Bhavan, 9th Cross Road, Sai Nagar, Anantapur - 515004
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
     </div>
   );
 }

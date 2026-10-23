@@ -17,8 +17,10 @@ import {
 } from "../../constants/specialitiesData";
 import { motion, AnimatePresence } from "framer-motion";
 import suryaLogo from "../../../Surya Hospital Logo.png";
+import { useAppointmentModal } from "../../context/AppointmentModalContext";
 
 export function Navbar() {
+  const { openModal } = useAppointmentModal();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollDirection, setScrollDirection] = useState("up"); // "up" | "down"
@@ -278,15 +280,16 @@ export function Navbar() {
                                     Select any department to view full details
                                   </div>
                                 </div>
-                                <Link
-                                  to="/appointment"
-                                  onClick={() =>
-                                    setDepartmentsDropdownOpen(false)
-                                  }
-                                  className="shrink-0 text-[11px] font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] px-3.5 py-1.5 rounded-full transition-colors"
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setDepartmentsDropdownOpen(false);
+                                    openModal();
+                                  }}
+                                  className="shrink-0 text-[11px] font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
                                 >
                                   Book OPD
-                                </Link>
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -352,14 +355,15 @@ export function Navbar() {
             {/* 3. Right: CTA Button directly inside the unified pill */}
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
 
-              {/* Book Appointment CTA Button - always visible inside the pill with attractive eye-catching blink */}
-              <Link
-                to="/appointment"
-                className="animate-cta-blink inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-all active:scale-[0.98] cursor-pointer whitespace-nowrap shrink-0"
+              {/* Book Appointment CTA Button - opens the simple appointment pop-up form */}
+              <button
+                type="button"
+                onClick={() => openModal()}
+                className="animate-cta-blink inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-all active:scale-[0.98] cursor-pointer whitespace-nowrap shrink-0 shadow-xs"
               >
                 <span>Book Appointment</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              </button>
 
               {/* Mobile Hamburger Trigger inside navbar (< lg) */}
               <div className="lg:hidden flex items-center">
@@ -601,13 +605,16 @@ export function Navbar() {
                       </div>
                     </a>
 
-                    <Link
-                      to="/appointment"
-                      onClick={() => setMenuOpen(false)}
-                      className="w-full py-3 rounded-xl text-center text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] block shadow-md"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMenuOpen(false);
+                        openModal();
+                      }}
+                      className="w-full py-3 rounded-xl text-center text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] block shadow-md cursor-pointer"
                     >
                       Book Appointment Online
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

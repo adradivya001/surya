@@ -6,35 +6,20 @@
   :root {
     /* Official Surya Hospital Orange-Only Brand Design Tokens */
     --color-primary: #E94B1C;
-    /* Primary Brand Orange */
     --color-primary-deep: #C63D1B;
-    /* Deep Orange */
     --color-primary-hover: #A83218;
-    /* Dark Orange Hover */
     --color-warm-orange: #F26A21;
-    /* Warm Orange */
     --color-accent-orange: #FF8A3D;
-    /* Bright Orange Accent */
     --color-soft-peach: #FFF0E6;
-    /* Soft Peach */
     --color-bg-page: #FFF9F3;
-    /* Pale Warm Cream */
     --color-card-bg: #FFFFFF;
-    /* Pure White */
     --color-border: #E9D8CE;
-    /* Neutral Border */
     --color-border-subtle: #F0E2D9;
-    /* Subtle Divider */
     --color-heading: #262626;
-    /* Primary Text */
     --color-text-secondary: #4A403B;
-    /* Secondary Text */
     --color-text: #756860;
-    /* Muted Text */
     --color-emergency: #C63D1B;
-    /* Deep Orange Emergency Action */
     --color-whatsapp: #00A884;
-    /* WhatsApp Assistance */
   }
 
   html {
@@ -57,30 +42,20 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Sticky mobile bottom bar padding clearance on screens < 992px */
   @media (max-width: 991px) {
     body {
       padding-bottom: 0px;
     }
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     color: #1A1D20;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
 
-  /* Accessibility: Prefers reduced motion overrides */
   @media (prefers-reduced-motion: reduce) {
-
-    *,
-    ::before,
-    ::after {
+    *, ::before, ::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -91,7 +66,6 @@
 
 /* ============================================================
    GLOBAL CONTAINER & RESPONSIVE PADDING
-   Transitions from desktop padding (0 2rem) to mobile (0 16px to 18px)
    ============================================================ */
 .container,
 .global-container {
@@ -104,9 +78,7 @@
 }
 
 @media (max-width: 768px) {
-
-  .container,
-  .global-container {
+  .container, .global-container {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -115,26 +87,19 @@
 /* ============================================================
    FORMS, BOOKING WIZARDS & GRID LAYOUTS
    ============================================================ */
-
-/* 2-column input rows that collapse to 1fr on max-width: 768px */
-.input-row-half,
-.datetime-selection-grid {
+.input-row-half, .datetime-selection-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
 @media (max-width: 768px) {
-
-  .input-row-half,
-  .datetime-selection-grid {
+  .input-row-half, .datetime-selection-grid {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* Content cards & service grids: collapse repeat(2, 1fr) / repeat(3, 1fr) to 1fr on 768px */
 @media (max-width: 768px) {
-
   .service-grid-adaptive,
   .content-cards-grid,
   .grid-cols-1.sm\:grid-cols-2,
@@ -145,9 +110,7 @@
   }
 }
 
-/* Profile & Doctor Cards: avatar + bio horizontal on desktop, vertical stacked & centered on <= 640px */
-.doctor-card-profile,
-.doctor-header-bio {
+.doctor-card-profile, .doctor-header-bio {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -155,26 +118,20 @@
 }
 
 @media (max-width: 640px) {
-
-  .doctor-card-profile,
-  .doctor-header-bio {
+  .doctor-card-profile, .doctor-header-bio {
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
     gap: 0.75rem !important;
   }
-
-  .doctor-card-profile .doctor-avatar,
-  .doctor-header-bio .doctor-avatar {
+  .doctor-card-profile .doctor-avatar, .doctor-header-bio .doctor-avatar {
     margin: 0 auto;
   }
 }
 
 /* ============================================================
-   ORGANIC SECTION CURVE GEOMETRY & EDITORIAL UTILITIES
-   Matching Reference Flowing Asymmetric and Wave Contours
+   TYPOGRAPHY UTILITIES
    ============================================================ */
-
 .font-serif-heading {
   font-family: 'Playfair Display', Georgia, serif;
 }
@@ -189,7 +146,9 @@
   font-weight: 500;
 }
 
-/* Organic Hero Bottom Curve Divider: Sweeps from deep hero to warm canvas */
+/* ============================================================
+   ORGANIC SECTION CURVE DIVIDERS
+   ============================================================ */
 .curve-hero-bottom {
   position: absolute;
   bottom: -1px;
@@ -209,18 +168,12 @@
 }
 
 @media (min-width: 768px) {
-  .curve-hero-bottom svg {
-    height: 64px;
-  }
+  .curve-hero-bottom svg { height: 64px; }
 }
-
 @media (min-width: 1200px) {
-  .curve-hero-bottom svg {
-    height: 84px;
-  }
+  .curve-hero-bottom svg { height: 84px; }
 }
 
-/* Section Wave Dividers (Top & Bottom for Dark Facilities & CTA) */
 .organic-divider-top {
   position: absolute;
   top: -1px;
@@ -243,7 +196,6 @@
   pointer-events: none;
 }
 
-/* Reference Card Styling */
 .ref-pill-card {
   background: #FFFFFF;
   border: 1px solid #E2D9D0;
@@ -257,46 +209,311 @@
   border-color: #C85235;
 }
 
+/* ============================================================
+   PREMIUM ANIMATIONS & MICRO-INTERACTIONS
+   ============================================================ */
 @layer utilities {
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
 
-    100% {
-      transform: translateX(-33.333333%);
+  /* ── TEXT SHIMMER: Animated highlight sweep across text ── */
+  @keyframes textShimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .animate-text-shimmer {
+    background-size: 200% auto;
+    animation: textShimmer 4s linear infinite;
+  }
+
+  /* ── AURORA GLOW: Soft pulsating ambient light ── */
+  @keyframes auroraGlow {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1) rotate(0deg);
     }
+    33% {
+      opacity: 0.6;
+      transform: scale(1.1) rotate(2deg);
+    }
+    66% {
+      opacity: 0.45;
+      transform: scale(0.95) rotate(-1deg);
+    }
+  }
+
+  .animate-aurora {
+    animation: auroraGlow 8s ease-in-out infinite;
+  }
+
+  /* ── FLOAT: Gentle floating motion ── */
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .animate-float {
+    animation: gentleFloat 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: gentleFloat 10s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: gentleFloat 7s ease-in-out 2s infinite;
+  }
+
+  /* ── GRADIENT BORDER MORPH: Rotating gradient on borders ── */
+  @keyframes gradientBorderRotate {
+    0% { --angle: 0deg; }
+    100% { --angle: 360deg; }
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .gradient-border-animated {
+    --angle: 0deg;
+    border: 2px solid transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-image:
+      linear-gradient(#fff, #fff),
+      conic-gradient(from var(--angle), #E94B1C, #FF8A3D, #FFF0E6, #E94B1C);
+    animation: gradientBorderRotate 4s linear infinite;
+  }
+
+  /* ── MARQUEE STRIP ── */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-33.333333%); }
   }
 
   .animate-marquee {
     animation: marquee 40s linear infinite;
   }
 
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
-  }
-
+  /* ── SCROLLBAR HIDE ── */
+  .scrollbar-none::-webkit-scrollbar { display: none; }
   .scrollbar-none {
     -ms-overflow-style: none;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
 
-  @keyframes lightBorderBlink {
-
-    0%,
-    100% {
-      border-color: rgba(200, 82, 53, 0.95);
-      box-shadow: 0 0 0 2px rgba(200, 82, 53, 0.45), 0 10px 25px -4px rgba(200, 82, 53, 0.25);
+  /* ── CTA PULSE GLOW ── */
+  @keyframes ctaBlinkGlow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(233, 75, 28, 0.65), 0 8px 24px -2px rgba(233, 75, 28, 0.4);
+      transform: scale(1);
     }
-
     50% {
-      border-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 0 0 4px rgba(200, 82, 53, 0.15), 0 14px 30px -4px rgba(200, 82, 53, 0.35);
+      box-shadow: 0 0 0 9px rgba(233, 75, 28, 0), 0 12px 32px 2px rgba(233, 75, 28, 0.55);
+      transform: scale(1.035);
     }
   }
 
-  .animate-border-blink {
-    animation: lightBorderBlink 1.8s infinite ease-in-out;
+  @keyframes ctaSubtleBlink {
+    0%, 100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 8px rgba(233, 75, 28, 0.45));
+    }
+    50% {
+      opacity: 0.88;
+      filter: drop-shadow(0 0 18px rgba(233, 75, 28, 0.85));
+    }
+  }
+
+  .animate-cta-blink {
+    animation: ctaBlinkGlow 2.1s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-cta-glow {
+    animation: ctaSubtleBlink 1.6s infinite ease-in-out;
+  }
+
+  /* ── EMERGENCY RED BLINK ── */
+  @keyframes redEmergencyBlink {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.8), 0 8px 24px -2px rgba(220, 38, 38, 0.6);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.08);
+      box-shadow: 0 0 0 14px rgba(220, 38, 38, 0), 0 14px 34px 4px rgba(220, 38, 38, 0.8);
+      opacity: 0.95;
+    }
+  }
+
+  .animate-emergency-red-blink {
+    animation: redEmergencyBlink 1.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── CARD MAGNETIC TILT ── */
+  .magnetic-card {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  }
+
+  .magnetic-card:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow:
+      0 20px 40px -12px rgba(233, 75, 28, 0.12),
+      0 8px 16px -4px rgba(0, 0, 0, 0.06);
+  }
+
+  /* ── STAGGERED REVEAL ── */
+  @keyframes slideUpReveal {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-reveal {
+    animation: slideUpReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* ── SCALE IN ── */
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* ── TYPING CURSOR ── */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ── SHINE SWEEP ON CARDS ── */
+  @keyframes shineSweep {
+    0% { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(200%) skewX(-15deg); }
+  }
+
+  .card-shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: translateX(-100%) skewX(-15deg);
+    pointer-events: none;
+  }
+
+  .card-shine-effect:hover::after {
+    animation: shineSweep 0.8s ease-out;
+  }
+
+  /* ── INSURANCE LOGO INFINITE SCROLL ── */
+  @keyframes insuranceScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-insurance-scroll {
+    animation: insuranceScroll 30s linear infinite;
+  }
+
+  .animate-insurance-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* ── HEARTBEAT PULSE ── */
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+  }
+
+  /* ── PLACEHOLDER SHAPE BLINK ON CURSOR HOVER ── */
+  @keyframes placeholderShapeBlink {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+      background-color: #FFF0E6;
+      border-color: #E9D8CE;
+      color: #E94B1C;
+      box-shadow: 0 0 0 0 rgba(233, 75, 28, 0);
+    }
+    30% {
+      opacity: 0.2;
+      transform: scale(0.92);
+      background-color: #FFDECC;
+      border-color: #E94B1C;
+      color: #E94B1C;
+      box-shadow: 0 0 10px 1px rgba(233, 75, 28, 0.4);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.08);
+      background-color: #E94B1C;
+      border-color: #C63D1B;
+      color: #FFFFFF;
+      box-shadow: 0 0 20px 4px rgba(233, 75, 28, 0.7);
+    }
+    85% {
+      opacity: 0.4;
+      transform: scale(0.96);
+      background-color: #FFBFA3;
+      border-color: #E94B1C;
+      color: #A83218;
+      box-shadow: 0 0 8px 1px rgba(233, 75, 28, 0.35);
+    }
+  }
+
+  @keyframes cardBorderBlink {
+    0%, 100% {
+      border-color: #E9D8CE;
+      box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05);
+    }
+    50% {
+      border-color: #E94B1C;
+      box-shadow: 0 0 22px 2px rgba(233, 75, 28, 0.3);
+    }
+  }
+
+  .hover-blink-card {
+    transition: all 0.25s ease-in-out;
+  }
+
+  .hover-blink-card:hover {
+    animation: cardBorderBlink 0.9s ease-in-out infinite;
+  }
+
+  .hover-blink-card:hover .placeholder-shape,
+  .placeholder-shape:hover {
+    animation: placeholderShapeBlink 0.75s ease-in-out infinite !important;
   }
 }

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { HomeHero } from "../components/home/HomeHero";
+import { FounderStorySection } from "../components/home/FounderStorySection";
 import { FacilitiesCinematic } from "../components/home/FacilitiesCinematic";
 import { SpecialtiesDoctorsPoster } from "../components/home/SpecialtiesDoctorsPoster";
 import { TestimonialCarousel } from "../components/home/TestimonialCarousel";
@@ -13,8 +14,11 @@ export function HomePage() {
 
   return (
     <div className="w-full bg-[#FFF9F3]">
-      {/* 1. Hero Section with Integrated Stats & Organic Flowing Bottom Wave */}
+      {/* 1. Hero Section with Concise Founder Introduction & Building Video */}
       <HomeHero />
+
+      {/* 1B. Dedicated Founder Story Section: "The Vision Behind Our Care" */}
+      <FounderStorySection />
 
       {/* 2. Advanced Technology & Facilities Section in Deep Clinical Teal */}
       <FacilitiesCinematic />

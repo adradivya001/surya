@@ -143,136 +143,76 @@ export function EmergencyPage() {
         </Container>
       </section>
 
-      {/* Emergency Guidance: Symptoms & What to Bring */}
-      <section className="py-18 bg-[#FFF0E6]/40 border-b border-[#F0E2D9]">
+      {/* Emergency Guidance: Symptoms & Care Priority */}
+      <section className="py-12 bg-[#FFF0E6]/40 border-b border-[#F0E2D9]">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
             {/* When to visit casualty */}
-            <div className="p-7 sm:p-9 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center font-bold">
-                  <AlertTriangle className="w-5 h-5" />
+            <div className="p-6 rounded-2xl bg-white border border-[#E9D8CE] shadow-2xs space-y-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center font-bold">
+                  <AlertTriangle className="w-4 h-4" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#262626]">
-                    When to Come to Emergency
-                  </h3>
-                  <span className="text-xs text-[#C63D1B] font-bold">
-                    Warning Signs &amp; Sudden Symptoms
-                  </span>
-                </div>
+                <h3 className="text-base font-bold text-[#262626]">
+                  When to Seek Emergency Care
+                </h3>
               </div>
 
-              <ul className="space-y-2.5 text-xs sm:text-sm text-[#756860]">
-                {HOSPITAL_INFO.emergencyGuidance.whenToVisit.map((symptom, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-[#E94B1C] mt-2 shrink-0" />
+              <ul className="space-y-2 text-xs text-[#756860]">
+                {HOSPITAL_INFO.emergencyGuidance.whenToVisit.slice(0, 5).map((symptom, idx) => (
+                  <li key={idx} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E94B1C] shrink-0" />
                     <span>{symptom}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* What to bring to casualty */}
-            <div className="p-7 sm:p-9 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center font-bold">
-                  <FileText className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-[#262626]">
-                    What to Bring (If Possible)
+            {/* Immediate Care Protocol */}
+            <div className="p-6 rounded-2xl bg-white border border-[#E9D8CE] shadow-2xs space-y-3 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2.5 mb-2">
+                  <div className="w-9 h-9 rounded-xl bg-[#FFF0E6] text-[#C63D1B] flex items-center justify-center font-bold">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#262626]">
+                    Immediate Medical Priority
                   </h3>
-                  <span className="text-xs text-[#C63D1B] font-bold">
-                    Helpful Medical Papers
-                  </span>
                 </div>
+                <p className="text-xs text-[#756860] leading-relaxed">
+                  Do not delay emergency visits if you don't have medical records. Our triage desk handles patient stabilization first.
+                </p>
               </div>
 
-              <ul className="space-y-2.5 text-xs sm:text-sm text-[#756860]">
-                {HOSPITAL_INFO.emergencyGuidance.whatToBring.map((doc, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#E94B1C] mt-0.5 shrink-0" />
-                    <span>{doc}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-4 p-3.5 rounded-xl bg-[#FFF0E6]/60 border border-[#E9D8CE] text-xs text-[#756860]">
-                <strong className="text-[#262626]">Care First, Papers Later:</strong> If you do not have documents with you, please come directly to our hospital. Your immediate medical safety is our first priority.
+              <div className="p-3 rounded-xl bg-[#FFF0E6] border border-[#E9D8CE] text-[11px] text-[#C63D1B] font-bold">
+                Direct Emergency Line: 8500904999 (24/7 Casualty Desk)
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Casualty Process Flow */}
-      <section className="py-16 bg-[#FFF9F3] border-b border-[#F0E2D9]">
+      {/* Direct Location Card */}
+      <section className="py-12 bg-[#FFF9F3] border-b border-[#F0E2D9]">
         <Container>
-          <div className="max-w-4xl mx-auto space-y-8 text-left">
-            <div className="text-center space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#C63D1B]">
-                CLEAR CARE STEPS
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#262626] tracking-tight">
-                What Happens When You Reach Emergency
-              </h2>
+          <div className="max-w-4xl mx-auto p-6 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="space-y-1 text-left">
+              <h4 className="text-base font-bold text-[#262626]">
+                Surya Hospital Emergency Entrance
+              </h4>
+              <p className="text-xs text-[#756860]">
+                12-3-367, 9th Cross Road, behind Ambedkar Bhavan, Sai Nagar, Anantapur.
+              </p>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
-                <span className="text-xl font-black text-[#C63D1B]">01</span>
-                <h4 className="font-bold text-[#262626] text-sm">Immediate Check</h4>
-                <p className="text-[#756860] leading-relaxed">
-                  Our duty nurse checks pulse, blood pressure, oxygen level, and pain right away.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
-                <span className="text-xl font-black text-[#C63D1B]">02</span>
-                <h4 className="font-bold text-[#262626] text-sm">Doctor's Examination</h4>
-                <p className="text-[#756860] leading-relaxed">
-                  Our doctor examines you immediately to identify the cause of the problem.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
-                <span className="text-xl font-black text-[#C63D1B]">03</span>
-                <h4 className="font-bold text-[#262626] text-sm">Quick Relief &amp; Treatment</h4>
-                <p className="text-[#756860] leading-relaxed">
-                  Oxygen, IV fluids, pain medication, ECG, or wound care are given without delay.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-[#E9D8CE] space-y-2 shadow-xs">
-                <span className="text-xl font-black text-[#C63D1B]">04</span>
-                <h4 className="font-bold text-[#262626] text-sm">Next Steps Explained</h4>
-                <p className="text-[#756860] leading-relaxed">
-                  The doctor explains clearly whether room stay, observation, or home care is best.
-                </p>
-              </div>
-            </div>
-
-            {/* Direct Location Card */}
-            <div className="p-6 rounded-2xl bg-white border border-[#E9D8CE] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div className="space-y-1">
-                <h4 className="text-base font-bold text-[#262626]">
-                  Surya Hospital Emergency Entrance
-                </h4>
-                <p className="text-xs text-[#756860]">
-                  12-3-367, 9th Cross Road, behind Ambedkar Bhavan, Sai Nagar, Anantapur.
-                </p>
-              </div>
-              <a
-                href={HOSPITAL_INFO.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition shadow-sm"
-              >
-                <Navigation className="w-4 h-4 text-[#FFF0E6]" />
-                <span>Open in Google Maps</span>
-              </a>
-            </div>
+            <a
+              href={HOSPITAL_INFO.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition shadow-sm"
+            >
+              <Navigation className="w-4 h-4 text-[#FFF0E6]" />
+              <span>Open in Google Maps</span>
+            </a>
           </div>
         </Container>
       </section>

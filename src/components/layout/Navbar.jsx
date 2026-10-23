@@ -16,7 +16,7 @@ import {
   SURGICAL_SPECIALITIES,
 } from "../../constants/specialitiesData";
 import { motion, AnimatePresence } from "framer-motion";
-import suryaLogo from "../../../Surya Hospital 3D Logo.png";
+import suryaLogo from "../../../Surya Hospital Logo.png";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -93,32 +93,12 @@ export function Navbar() {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 w-full pt-3 sm:pt-4 pb-2 px-3 sm:px-5 lg:px-6 transition-all duration-300 pointer-events-none ${
-          isScrolled
-            ? "bg-gradient-to-b from-white/90 via-white/50 to-transparent backdrop-blur-[6px]"
-            : ""
-        }`}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 w-full bg-[#FFF9F3]/95 backdrop-blur-md border-b border-[#E9D8CE] shadow-[0_2px_12px_rgba(40,20,10,0.03)] transition-colors duration-200"
       >
-        <div
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className={`max-w-[1440px] mx-auto pointer-events-auto flex items-center gap-3 lg:gap-4 transition-all duration-300 ${
-            isCollapsed ? "justify-center" : "justify-between"
-          }`}
-        >
-          {/* Main Left/Center Navigation Pill */}
-          <motion.div
-            layout
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`flex items-center gap-3 lg:gap-4 bg-white/98 backdrop-blur-xl rounded-full border border-[#E9D8CE] shadow-[0_8px_30px_rgba(233,75,28,0.06)] px-4 sm:px-6 py-2 sm:py-2.5 transition-all duration-300 ${
-              isCollapsed
-                ? "shadow-2xl border-[#E94B1C]/30 shrink-0"
-                : "flex-1 justify-between"
-            }`}
-          >
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-1.5 sm:py-2 flex items-center justify-between">
             {/* 1. Left: Surya Hospital Official Brand Logo */}
-            <div className="shrink-0 flex items-center py-1">
+            <div className="shrink-0 flex items-center py-0.5">
               <Link
                 to="/"
                 className="inline-flex items-center group focus:outline-none"
@@ -134,21 +114,13 @@ export function Navbar() {
                   }}
                   src={suryaLogo}
                   alt="Surya Hospital Logo"
-                  className="h-16 sm:h-18 md:h-20 lg:h-20 xl:h-[84px] w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
+                  className="h-14 sm:h-16 md:h-18 lg:h-18 xl:h-20 w-auto object-contain group-hover:scale-[1.03] transition-transform duration-200"
                 />
               </Link>
             </div>
 
             {/* 2. Middle: Desktop Navigation Links */}
-            <AnimatePresence>
-              {!isCollapsed && (
-                <motion.nav
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 whitespace-nowrap"
-                >
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2.5 whitespace-nowrap">
                   <NavLink
                     to="/"
                     className={({ isActive }) =>
@@ -375,64 +347,32 @@ export function Navbar() {
                   >
                     Contact
                   </NavLink>
-                </motion.nav>
-              )}
-            </AnimatePresence>
+            </nav>
 
-            {/* Mobile Hamburger Trigger inside main pill (< lg) */}
-            <div className="lg:hidden flex items-center">
-              <button
-                type="button"
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="p-1.5 rounded-xl text-[#262626] hover:bg-[#FFF0E6] transition focus:outline-none cursor-pointer"
-                aria-label="Toggle navigation menu"
+            {/* 3. Right: CTA Button directly inside the unified pill */}
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+
+              {/* Book Appointment CTA Button - always visible inside the pill with attractive eye-catching blink */}
+              <Link
+                to="/appointment"
+                className="animate-cta-blink inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] transition-all active:scale-[0.98] cursor-pointer whitespace-nowrap shrink-0"
               >
-                {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
+                <span>Book Appointment</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+
+              {/* Mobile Hamburger Trigger inside navbar (< lg) */}
+              <div className="lg:hidden flex items-center">
+                <button
+                  type="button"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="p-1.5 rounded-xl text-[#262626] hover:bg-[#FFF0E6] transition focus:outline-none cursor-pointer"
+                  aria-label="Toggle navigation menu"
+                >
+                  {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
-          </motion.div>
-
-          {/* Right Separate Action Pill */}
-          <AnimatePresence>
-            {!isCollapsed && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center gap-2 sm:gap-3 bg-white/98 backdrop-blur-xl rounded-full border border-[#E9D8CE] shadow-[0_8px_30px_rgba(233,75,28,0.06)] px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
-              >
-                {/* Phone Call Info & 24 Hours Badge */}
-                <a
-                  href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                  className="hidden sm:inline-flex items-center gap-2 py-1 px-1 text-left group transition-all"
-                  title="Hospital Open 24 Hours / 7 Days - Call Helpline"
-                >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFF0E6] text-[#E94B1C] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                    <Phone className="w-3.5 h-3.5 fill-current" />
-                  </div>
-                  <div className="pr-1">
-                    <span className="block text-xs font-bold text-[#262626] tracking-tight leading-none">
-                      +91 85009 04999
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-[10px] text-emerald-700 font-bold leading-tight mt-0.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Open 24 Hours
-                    </span>
-                  </div>
-                </a>
-
-                {/* Book Appointment Button */}
-                <Link
-                  to="/appointment"
-                  className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] shadow-sm hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
-                >
-                  <span>Book Appointment</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
       </motion.header>
 

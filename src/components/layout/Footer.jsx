@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Clock, ArrowRight, ArrowUp } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
-import suryaLogo from "../../../Surya Hospital 3D Logo.png";
+import suryaLogo from "../../../Surya Hospital Logo.png";
 
 export function Footer() {
   const scrollToTop = () => {

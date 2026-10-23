@@ -75,7 +75,7 @@ export function HomeSpecialitiesGrid() {
 
           <AnimateIn animation="fade-up" delay={150}>
             <p className="text-sm sm:text-base md:text-lg text-[#4A403B] font-medium leading-relaxed max-w-2xl mx-auto">
-              Our hospital provides complete multi-speciality consultations, diagnostic services, and advanced surgical care under one roof.
+              Our hospital provides complete medical consultations, diagnostic services, and advanced surgical care under one roof.
             </p>
           </AnimateIn>
         </div>

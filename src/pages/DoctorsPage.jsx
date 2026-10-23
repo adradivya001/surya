@@ -569,114 +569,114 @@ export function DoctorsPage() {
             </div>
           </div>
 
-          {/* Doctors Grid with Framer-Motion AnimatePresence */}
+          {/* Doctors Grid with Framer-Motion AnimatePresence - Compact Minimal Cards */}
           {filteredDoctors.length > 0 ? (
             <motion.div
               layout
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3.5 sm:gap-4"
             >
               <AnimatePresence mode="popLayout">
-                {filteredDoctors.map((doc, idx) => (
-                  <motion.div
-                    key={doc.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.94, y: 12 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.92, y: 8 }}
-                    transition={{
-                      duration: 0.25,
-                      delay: Math.min(idx * 0.02, 0.2),
-                      ease: [0.16, 1, 0.3, 1]
-                    }}
-                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                    className={`bg-white rounded-2xl border border-[#E9D8CE] shadow-xs hover:border-[#E94B1C] hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between group ${
-                      doc.isManagingDirector
-                        ? "ring-1 ring-[#E94B1C]/30"
-                        : ""
-                    }`}
-                  >
-                    {/* Clean Text-Focused Header without photo */}
-                    <div className="p-5 pb-3.5 bg-gradient-to-br from-white via-[#FFF0E6]/20 to-[#FFF0E6]/50 border-b border-[#F0E2D9]">
-                      <div className="flex items-center justify-between gap-2 mb-2.5">
-                        <span className="text-[10px] sm:text-[11px] font-bold text-[#C63D1B] uppercase tracking-wider bg-[#FFF0E6] px-2.5 py-1 rounded-md border border-[#E9D8CE]">
-                          {doc.department}
-                        </span>
-                        <span
-                          className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                            doc.isManagingDirector
-                              ? "bg-[#E94B1C] text-white"
-                              : "bg-white text-[#756860] border border-[#E9D8CE]"
-                          }`}
+                {filteredDoctors.map((doc, idx) => {
+                  const initials = doc.name
+                    .replace(/^Dr\.\s*/i, "")
+                    .split(" ")
+                    .map((n) => n[0])
+                    .filter(Boolean)
+                    .slice(0, 2)
+                    .join("");
+
+                  return (
+                    <motion.div
+                      key={doc.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.92, y: 6 }}
+                      transition={{
+                        duration: 0.22,
+                        delay: Math.min(idx * 0.015, 0.15),
+                        ease: [0.16, 1, 0.3, 1]
+                      }}
+                      whileHover={{ y: -3, transition: { duration: 0.18 } }}
+                      className={`bg-white rounded-2xl border border-[#E9D8CE] shadow-xs hover:border-[#E94B1C] hover:shadow-md transition-all duration-200 flex flex-col justify-between p-3.5 sm:p-4 group text-left ${
+                        doc.isManagingDirector ? "ring-1.5 ring-[#E94B1C]/40 bg-gradient-to-b from-[#FFFDFB] to-white" : ""
+                      }`}
+                    >
+                      {/* Top Row: Specialization Badge + MD tag */}
+                      <div>
+                        <div className="flex items-center justify-between gap-1.5 mb-3">
+                          <span className="text-[10px] font-bold text-[#C63D1B] uppercase tracking-wider bg-[#FFF0E6] px-2 py-0.5 rounded-md border border-[#E9D8CE] truncate">
+                            {doc.department}
+                          </span>
+                          {doc.isManagingDirector ? (
+                            <span className="text-[9px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#E94B1C] text-white shrink-0">
+                              MD
+                            </span>
+                          ) : (
+                            <span className="text-[9px] font-bold text-[#756860] uppercase px-1.5 py-0.5 rounded-full bg-slate-50 border border-[#E9D8CE] shrink-0">
+                              {doc.status}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Doctor Avatar / Initials + Name + Specialization */}
+                        <div className="flex items-start gap-2.5">
+                          {doc.image && doc.image.startsWith("/") ? (
+                            <div className="w-10 h-10 rounded-xl overflow-hidden bg-[#FFF0E6] shrink-0 border border-[#E9D8CE] shadow-2xs">
+                              <img
+                                src={doc.image}
+                                alt={doc.name}
+                                className="w-full h-full object-cover object-top"
+                                loading="lazy"
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-10 h-10 rounded-xl bg-[#FFF0E6] text-[#E94B1C] font-black text-xs flex items-center justify-center shrink-0 border border-[#FADCCB]">
+                              {initials || "DR"}
+                            </div>
+                          )}
+
+                          <div className="min-w-0 flex-1">
+                            <h3 className="text-[14px] sm:text-[15px] font-black text-[#14233C] group-hover:text-[#E94B1C] transition-colors leading-tight truncate" title={doc.name}>
+                              {doc.name}
+                            </h3>
+                            <p className="text-[11px] font-bold text-[#E94B1C] mt-0.5 truncate">
+                              {doc.qualifications}
+                            </p>
+                            <p className="text-[10px] text-[#756860] font-medium truncate mt-0.5">
+                              {doc.designation}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card Action Buttons: View Profile (Opens Complete Profile) + Book Visit */}
+                      <div className="pt-3 mt-3 border-t border-[#F0E2D9] grid grid-cols-2 gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setActiveDoctorModal(doc)}
+                          className="w-full py-1.5 px-2 rounded-full text-[11px] font-bold border border-[#E9D8CE] bg-white hover:bg-[#FFF0E6] text-[#C63D1B] transition-colors cursor-pointer text-center active:scale-95"
                         >
-                          {doc.status}
-                        </span>
-                      </div>
+                          View Profile
+                        </button>
 
-                      <h3 className="text-lg sm:text-xl font-black text-[#C63D1B] leading-snug group-hover:text-[#A83218] transition-colors">
-                        {doc.name}
-                      </h3>
-                    </div>
-
-                    {/* Body Content */}
-                    <div className="p-5 flex-1 flex flex-col justify-between space-y-4 text-left">
-                      <div className="space-y-1">
-                        <div className="text-xs sm:text-sm font-bold text-[#C63D1B]">
-                          {doc.qualifications}
-                        </div>
-                        <div className="text-xs font-semibold text-[#262626]">
-                          {doc.designation}
-                        </div>
-                        <p className="text-xs text-[#756860] leading-relaxed pt-0.5 line-clamp-2">
-                          {doc.experience}
-                        </p>
-                      </div>
-
-                      {/* Key Areas of Care - clean and concise */}
-                      <div className="pt-2.5 border-t border-[#F0E2D9] space-y-1.5">
-                        <ul className="space-y-1.5 text-xs text-[#756860]">
-                          {doc.specialties.slice(0, 3).map((spec, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#E94B1C] shrink-0 mt-1.5" />
-                              <span className="leading-snug">{spec}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Consultation Schedule & Dual Actions */}
-                      <div className="pt-2.5 border-t border-[#F0E2D9] space-y-3">
-                        <div className="flex items-start gap-2 text-xs text-[#756860]">
-                          <Clock className="w-3.5 h-3.5 text-[#FF8A3D] shrink-0 mt-0.5" />
-                          <span className="text-[11px] leading-snug">{doc.opdTimings}</span>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2 pt-0.5">
-                          <button
-                            type="button"
-                            onClick={() => setActiveDoctorModal(doc)}
-                            className="w-full py-2 px-2.5 rounded-full text-xs font-bold border border-[#E9D8CE] bg-white hover:bg-[#FFF0E6] text-[#C63D1B] transition cursor-pointer active:scale-95 shadow-2xs"
+                        <Link
+                          to={`/appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.department)}`}
+                          className="w-full"
+                        >
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            fullWidth
+                            className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-[11px] font-bold py-1.5 px-2 rounded-full active:scale-95 shadow-xs"
                           >
-                            View Profile
-                          </button>
-
-                          <Link
-                            to={`/appointment?doctor=${encodeURIComponent(doc.name)}&dept=${encodeURIComponent(doc.department)}`}
-                            className="w-full"
-                          >
-                            <Button
-                              variant="primary"
-                              size="sm"
-                              fullWidth
-                              className="bg-[#E94B1C] hover:bg-[#A83218] text-white text-xs font-bold py-2 rounded-full active:scale-95 shadow-xs"
-                            >
-                              Book Visit
-                            </Button>
-                          </Link>
-                        </div>
+                            Book Visit
+                          </Button>
+                        </Link>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </AnimatePresence>
             </motion.div>
           ) : (

@@ -23,28 +23,7 @@ import { HOSPITAL_INFO } from "../constants/hospitalData";
 export function AppointmentPage() {
   const [searchParams] = useSearchParams();
   const initialDoctor = searchParams.get("doctor") || "";
-  const initialDept = searchParams.get("dept") || "General Medicine (Physician)";
-
-  const [currentStep, setCurrentStep] = useState(1); // 1: Department & Doctor, 2: Date & Slot, 3: Patient Info
-  const [formData, setFormData] = useState({
-    patientName: "",
-    phone: "",
-    email: "",
-    department: initialDept,
-    preferredDoctor: initialDoctor,
-    preferredDate: "",
-    preferredTime: "Morning (09:30 AM – 01:30 PM)",
-    reason: "",
-    consent: false,
-  });
-
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [confirmedBooking, setConfirmedBooking] = useState(null);
-
-  useEffect(() => {
-    document.title = "Book an Appointment | Surya Hospital, Sai Nagar, Anantapur";
-  }, []);
+  const paramDept = (searchParams.get("dept") || "").toLowerCase().trim();
 
   const departmentOptions = [
     "General Medicine (Physician)",
@@ -61,6 +40,34 @@ export function AppointmentPage() {
     "Psychiatry",
     "24/7 Casualty & Emergency",
   ];
+
+  // Match URL department intelligently (case-insensitive substring match)
+  const matchedDept = departmentOptions.find((opt) =>
+    paramDept && (opt.toLowerCase().includes(paramDept) || paramDept.includes(opt.toLowerCase()))
+  ) || "General Medicine (Physician)";
+
+  const [currentStep, setCurrentStep] = useState(1); // 1: Department & Doctor, 2: Date & Slot, 3: Patient Info
+  const [formData, setFormData] = useState({
+    patientName: "",
+    phone: "",
+    email: "",
+    department: matchedDept,
+    preferredDoctor: initialDoctor,
+    preferredDate: "",
+    preferredTime: "Morning (09:30 AM – 01:30 PM)",
+    reason: "",
+    consent: false,
+  });
+
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [confirmedBooking, setConfirmedBooking] = useState(null);
+
+  useEffect(() => {
+    document.title = "Book an Appointment | Surya Hospital, Sai Nagar, Anantapur";
+  }, []);
+
+
 
   const timeSlots = [
     "Morning (09:30 AM – 01:30 PM)",

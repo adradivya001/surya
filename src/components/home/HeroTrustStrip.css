@@ -1,0 +1,154 @@
+/* ============================================================
+   HERO TRUST STRIP — GLASSMORPHIC MEDICAL TRUST RIBBON
+   ============================================================ */
+
+/* CONTAINER & POSITIONING */
+.hero-trust-strip-bar {
+  position: absolute;
+  bottom: 1.5rem; /* Positioned cleanly over bottom seam */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 20;
+  padding: 0 1.5rem;
+  background: transparent;
+  pointer-events: none; /* Allows clicks to pass through empty margins */
+}
+
+/* CONTINUOUS AMBIENT BREATHING FLOAT */
+.trust-strip-continuous-float {
+  animation: floatBreathing 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floatBreathing {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes ribbonReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FROSTED GLASS PILL CONTAINER */
+.trust-strip-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  padding: 0.85rem 2.25rem;
+  border-radius: 999px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  animation: ribbonReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: auto; /* Re-enables hover & click on the pill itself */
+  transition: all 0.3s ease;
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+/* INDIVIDUAL TRUST ITEM */
+.trust-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.trust-strip-item:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* FOCUS-DIM SIBLINGS EFFECT */
+.trust-strip-container:hover .trust-strip-item:not(:hover) {
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+/* GLOWING STATUS BULLET */
+.trust-item-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #E94B1C;
+  box-shadow: 0 0 12px rgba(233, 75, 28, 0.65);
+  flex-shrink: 0;
+}
+
+/* TWO-TIER TEXT HIERARCHY */
+.trust-item-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.trust-item-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #14233C;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.trust-item-detail {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #64748B;
+  margin-top: 0.1rem;
+}
+
+/* RESPONSIVE LAYOUTS */
+@media (max-width: 1280px) {
+  .trust-strip-container {
+    gap: 1.5rem;
+    padding: 0.85rem 1.75rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-trust-strip-bar {
+    position: relative;
+    bottom: auto;
+    padding: 1rem 1rem 1.5rem;
+  }
+  .trust-strip-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 24px;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trust-strip-container {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 20px;
+    padding: 1.25rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .trust-strip-container {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 1rem 1.25rem;
+  }
+}

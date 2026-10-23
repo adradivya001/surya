@@ -25,15 +25,15 @@ export function Button({
 
   const variantStyles = {
     primary:
-      "bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#E94B1C]",
+      "bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#E94B1C] animate-cta-blink",
     terracotta:
-      "bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#E94B1C]",
+      "bg-[#E94B1C] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#E94B1C] animate-cta-blink",
     navy:
       "bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-sm hover:shadow-md focus:ring-[#C63D1B]",
     accent:
-      "bg-[#F26A21] hover:bg-[#C63D1B] text-white shadow-sm hover:shadow-md focus:ring-[#F26A21]",
+      "bg-[#F26A21] hover:bg-[#C63D1B] text-white shadow-sm hover:shadow-md focus:ring-[#F26A21] animate-cta-blink",
     emergency:
-      "bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-lg hover:shadow-xl focus:ring-[#C63D1B]",
+      "bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-lg hover:shadow-xl focus:ring-[#C63D1B] animate-cta-blink",
     secondary:
       "bg-white border border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] hover:border-[#E94B1C] shadow-xs focus:ring-[#E94B1C]",
     outline:

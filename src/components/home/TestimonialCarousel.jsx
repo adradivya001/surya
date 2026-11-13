@@ -1,7 +1,8 @@
 import { CrowdCanvas } from "../ui/skiper39";
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Quote, MessageSquareQuote, CheckCircle2 } from "lucide-react";
+import { Quote, MessageSquareQuote, CheckCircle2, ArrowRight } from "lucide-react";
 
 // Google G SVG Icon for genuine verified Google reviews
 function GoogleIcon({ className = "w-4 h-4" }) {
@@ -140,7 +141,7 @@ const col1 = [realReviews[0], realReviews[4], realReviews[6], realReviews[11], r
 const col2 = [realReviews[1], realReviews[5], realReviews[7], realReviews[10]];
 const col3 = [realReviews[2], realReviews[3], realReviews[8], realReviews[9]];
 
-// Smooth infinite vertical scrolling column matching TalentOps animation
+// Smooth infinite vertical scrolling column matching original TalentOps vertical animation
 function TestimonialsColumn({ reviews, duration = 32, className = "" }) {
   return (
     <div className={`relative flex-1 min-w-[280px] max-w-sm ${className}`}>
@@ -219,7 +220,7 @@ function TestimonialsColumn({ reviews, duration = 32, className = "" }) {
 
 export function TestimonialCarousel() {
   return (
-    <section className="relative py-10 sm:py-14 bg-gradient-to-b from-[#FFF9F3] via-[#FAF3EC] to-[#FFF6ED] text-[#1A1D20] overflow-hidden border-t border-[#F0E4D8]/70">
+    <section id="patient-journey" className="relative py-10 sm:py-14 bg-gradient-to-b from-[#FFF9F3] via-[#FAF3EC] to-[#FFF6ED] text-[#1A1D20] overflow-hidden border-t border-[#F0E4D8]/70 scroll-mt-20">
       {/* Dynamic Keyframes for butter-smooth vertical infinite marquee with pause on hover */}
       <style>{`
         @keyframes testimonialVerticalLoop {
@@ -262,7 +263,7 @@ export function TestimonialCarousel() {
           <div className="space-y-3.5 text-left max-w-xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#FFF0E6] to-[#FFE8D6] border border-[#FADCCB] text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#E94B1C] shadow-xs">
               <MessageSquareQuote className="w-3.5 h-3.5" />
-              <span>AUTHENTIC PATIENT VOICES</span>
+              <span>PATIENT EXPERIENCES</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#14233C] tracking-tight leading-[1.15]">
@@ -295,7 +296,7 @@ export function TestimonialCarousel() {
           </div>
         </div>
 
-        {/* ── 3-COLUMN INFINITE VERTICAL SCROLLING MARQUEE (TALENT OPS ANIMATION) ── */}
+        {/* ── 3-COLUMN INFINITE VERTICAL SCROLLING MARQUEE (TALENT OPS ANIMATION WITH PAUSE ON HOVER) ── */}
         <div
           className="testimonials-marquee-container flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] max-h-[520px] sm:max-h-[560px] overflow-hidden"
           role="region"

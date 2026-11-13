@@ -36,7 +36,7 @@ export function FounderStorySection() {
   return (
     <section
       ref={sectionRef}
-      id="founder-story"
+      id="hero"
       className="relative w-full pt-20 sm:pt-24 lg:pt-32 xl:pt-36 pb-12 sm:pb-14 lg:pb-16 overflow-hidden scroll-mt-20"
       style={{
         background:
@@ -63,8 +63,12 @@ export function FounderStorySection() {
         animate={isInView ? "visible" : "hidden"}
         className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8"
       >
-        {/* ── TOP SECTION HEADER (Live Editorial Header) ── */}
-        <motion.div variants={itemVariants} className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+        {/* ── TOP SECTION HEADER (Live Editorial Header / Home Region) ── */}
+        <motion.div
+          id="home"
+          variants={itemVariants}
+          className="text-center max-w-3xl mx-auto mb-6 sm:mb-8"
+        >
           <div className="flex items-center justify-center gap-3 sm:gap-4 mb-2.5">
             <span className="w-8 sm:w-16 h-[1.5px] bg-gradient-to-r from-transparent to-[#E94B1C]" />
             <span className="text-[11px] sm:text-xs font-bold tracking-[0.22em] text-[#E94B1C] uppercase font-sans">
@@ -86,8 +90,11 @@ export function FounderStorySection() {
           </p>
         </motion.div>
 
-        {/* ── MAIN 3-COLUMN SHOWCASE: NO SLOPPY LOGOS, DEEP 3D PLINTH ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-6 xl:gap-8 items-center">
+        {/* ── MAIN 3-COLUMN SHOWCASE (About Region: Founder's Story, Philosophy, Credentials & Journey) ── */}
+        <div
+          id="about-hero"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-6 xl:gap-8 items-center scroll-mt-24"
+        >
           
           {/* 1. LEFT COLUMN: OUR PHILOSOPHY (Upper on Mobile: order-1; Left column on Desktop: lg:order-1) */}
           <motion.div

@@ -28,8 +28,8 @@ export function SpecialtiesDoctorsPoster() {
 
   return (
     <section
-      id="doctors-specialists"
-      className="relative py-10 sm:py-14 bg-gradient-to-b from-[#FFF9F3] via-[#FFF5ED] to-[#FFF9F3] text-[#262626] overflow-hidden"
+      id="doctors"
+      className="relative py-10 sm:py-14 bg-gradient-to-b from-[#FFF9F3] via-[#FFF5ED] to-[#FFF9F3] text-[#262626] overflow-hidden scroll-mt-20"
     >
       {/* Dynamic Keyframes for smooth Left-to-Right Infinite Loop marquee */}
       <style>{`
@@ -74,7 +74,7 @@ export function SpecialtiesDoctorsPoster() {
           </p>
         </div>
 
-        {/* 2. Auto-Scroll Loop Carousel Container (Smooth Left-to-Right Loop) */}
+        {/* 2. Auto-Scroll Loop Carousel Container (Smooth Left-to-Right Loop Animation) */}
         <div
           className="relative overflow-x-auto scrollbar-none py-2 mb-3"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -119,7 +119,7 @@ export function SpecialtiesDoctorsPoster() {
   );
 }
 
-// Compact, Clean Doctor Card without clutter
+// Compact, Clean Doctor Card with smooth hover animation
 function DoctorCard({ doctor, onBookOpd }) {
   const initials = doctor.name
     .replace(/^Dr\.\s*/i, "")
@@ -129,7 +129,6 @@ function DoctorCard({ doctor, onBookOpd }) {
     .slice(0, 2)
     .join("");
 
-  // Primary focus chip text
   const primaryFocus = doctor.specialties && doctor.specialties.length > 0
     ? doctor.specialties[0]
     : doctor.experience || "Comprehensive Specialist Care";
@@ -150,9 +149,12 @@ function DoctorCard({ doctor, onBookOpd }) {
           {initials || "DR"}
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="text-[14.5px] font-bold text-[#14233C] group-hover:text-[#D8451D] transition-colors leading-tight truncate">
+          <Link
+            to="/doctors"
+            className="text-[14.5px] font-bold text-[#14233C] group-hover:text-[#D8451D] transition-colors leading-tight truncate block"
+          >
             {doctor.name}
-          </h3>
+          </Link>
           <p className="text-[11px] font-bold text-[#A83B1E] leading-tight mt-0.5 truncate">
             {doctor.qualifications}
           </p>

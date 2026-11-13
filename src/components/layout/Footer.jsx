@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Clock, ArrowRight, ArrowUp } from "lucide-react";
+import { MapPin, Phone, Clock, Send, Calendar, ExternalLink, ArrowUp } from "lucide-react";
 import { HOSPITAL_INFO } from "../../constants/hospitalData";
-import suryaLogo from "../../../Surya Hospital Logo.png";
+import { HalftoneWordmarkFooter } from "../ui/halftone-wordmark-footer";
+import suryaLogo from "../../assets/surya-hospital-logo.png";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -12,157 +13,242 @@ export function Footer() {
   const quickLinks = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
-    { name: "Services", path: "/specialities" },
-    { name: "Our Doctors", path: "/doctors" },
-    { name: "Insurance Partners", path: "/insurance-partners" },
-    { name: "Contact Us", path: "/contact" },
+    { name: "Doctors", path: "/doctors" },
+    { name: "Departments", path: "/specialities" },
+    { name: "Facilities", path: "/facilities" },
+    { name: "Contact", path: "/contact" },
+  ];
+
+  const services = [
+    { name: "General Medicine & Diabetology", path: "/specialities/general-medicine" },
+    { name: "Nephrology & Dialysis", path: "/specialities/nephrology" },
+    { name: "Critical Care & ICU", path: "/specialities/critical-care" },
+    { name: "Pulmonology & Chest Medicine", path: "/specialities/pulmonology" },
+    { name: "General & Laparoscopic Surgery", path: "/specialities/general-surgery" },
   ];
 
   return (
-    <footer className="relative bg-[#FFF9F3] text-[#1A1D20] pt-16 sm:pt-20 pb-0 m-0 border-none overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Main 4-Column Directory Grid (Exact Reference Footer Layout) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-14 border-none">
-          
-          {/* Column 1: Hospital Logo, Tagline & Address (4 Cols) */}
-          <div className="lg:col-span-4 space-y-4 text-left">
-            <Link to="/" className="inline-block focus:outline-none">
-              <img
-                src={suryaLogo}
-                alt="Surya Hospital Logo"
-                className="h-16 sm:h-20 md:h-24 w-auto object-contain"
-              />
-            </Link>
+    <>
+      {/* ── 1. Main Footer Directory Section (Light Ivory Theme) ── */}
+      <footer id="contact" className="relative bg-[#FFF9F3] text-[#1A1D20] pt-14 sm:pt-16 pb-12 sm:pb-14 border-t border-[#F2E5D8]/80 scroll-mt-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 items-start">
+            
+            {/* Column 1: Hospital Brand & Mission (Col span 3) */}
+            <div className="lg:col-span-3 space-y-4 text-left">
+              <Link to="/" className="inline-block focus:outline-none">
+                <img
+                  src={suryaLogo}
+                  alt="Surya Hospital Logo"
+                  className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+                />
+              </Link>
 
-            <p className="text-xs text-[#62666D] font-medium leading-relaxed">
-              Comprehensive Healthcare. Compassionate Care.
-            </p>
-
-            <div className="flex items-start gap-2.5 text-xs text-[#62666D] pt-2">
-              <MapPin className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
-              <p className="leading-relaxed">
-                Sainagar, 9th Cross, Anantapur - 515001
+              <p className="text-xs sm:text-[13px] text-[#555C66] font-normal leading-relaxed max-w-sm">
+                Dedicated healthcare services and personalized clinical care to support patients and families throughout their healing journey.
               </p>
             </div>
-          </div>
 
-          {/* Column 2: Quick Links (2 Cols) */}
-          <div className="lg:col-span-2 space-y-3.5 text-left">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1A1D20]">
-              Quick Links
-            </h4>
-            <ul className="space-y-2 text-xs text-[#62666D]">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    className="hover:text-[#A84328] transition-colors"
+            {/* Column 2: Quick Links (Col span 2) */}
+            <div className="lg:col-span-2 space-y-3.5 text-left">
+              <h3 className="text-sm font-serif font-bold text-[#14233C] relative inline-block">
+                Quick Links
+                <span className="block w-6 h-[2px] bg-[#E94B1C] mt-1 rounded-full" />
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-[13px] text-[#555C66]">
+                {quickLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.path}
+                      className="group inline-flex items-center gap-1.5 hover:text-[#E94B1C] transition-colors"
+                    >
+                      <span className="text-[#C8B8AB] group-hover:text-[#E94B1C] transition-colors text-[10px]">›</span>
+                      <span>{link.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Our Services / Key Departments (Col span 2) */}
+            <div className="lg:col-span-2 space-y-3.5 text-left">
+              <h3 className="text-sm font-serif font-bold text-[#14233C] relative inline-block">
+                Our Services
+                <span className="block w-6 h-[2px] bg-[#E94B1C] mt-1 rounded-full" />
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-[13px] text-[#555C66]">
+                {services.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.path}
+                      className="group inline-flex items-center gap-1.5 hover:text-[#E94B1C] transition-colors"
+                    >
+                      <span className="text-[#C8B8AB] group-hover:text-[#E94B1C] transition-colors text-[10px]">›</span>
+                      <span>{item.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 4: Contact Us (Col span 3) */}
+            <div className="lg:col-span-3 space-y-3.5 text-left">
+              <h3 className="text-sm font-serif font-bold text-[#14233C] relative inline-block">
+                Contact Us
+                <span className="block w-6 h-[2px] bg-[#E94B1C] mt-1 rounded-full" />
+              </h3>
+
+              <div className="space-y-3 text-xs sm:text-[13px] text-[#555C66]">
+                {/* Address */}
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-[#E94B1C] shrink-0 mt-0.5" />
+                  <div>
+                    <p className="leading-snug text-[#343D48]">
+                      9th Cross Road, Sai Nagar,
+                      <br />
+                      Anantapur, Andhra Pradesh 515001.
+                    </p>
+                    <a
+                      href={HOSPITAL_INFO.directionsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#E94B1C] hover:underline mt-1.5"
+                    >
+                      <Send className="w-3 h-3 rotate-45" />
+                      <span>Get Directions →</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div className="flex items-center gap-2.5 pt-1">
+                  <Phone className="w-4 h-4 text-[#E94B1C] shrink-0" />
+                  <a
+                    href={`tel:${HOSPITAL_INFO.phoneRaw}`}
+                    className="font-bold text-[#14233C] hover:text-[#E94B1C] transition-colors"
                   >
-                    • {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Contact Us (3 Cols) */}
-          <div className="lg:col-span-3 space-y-3.5 text-left">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1A1D20]">
-              Contact Us
-            </h4>
-
-            <div className="space-y-2.5 text-xs text-[#62666D]">
-              <div className="flex items-start gap-2">
-                <Phone className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
-                <div>
-                  <a href={`tel:${HOSPITAL_INFO.phoneRaw}`} className="font-bold text-[#1A1D20] hover:text-[#A84328]">
-                    8500904999
+                    +91 85009 04999
                   </a>
-                  <p className="text-[11px] text-[#62666D]">24 Hours / 7 Days (Emergency)</p>
+                </div>
+
+                {/* Working Hours */}
+                <div className="flex items-start gap-2.5 pt-1">
+                  <Clock className="w-4 h-4 text-[#E94B1C] shrink-0 mt-0.5" />
+                  <div className="leading-snug">
+                    <p className="font-semibold text-[#14233C]">
+                      Open 24 Hours / 7 Days
+                    </p>
+                    <p className="text-[11px] text-[#717984] mt-0.5">
+                      OPD: 9:00 AM – 2:00 PM & 5:00 PM – 9:00 PM
+                    </p>
+                  </div>
+                </div>
+
+                {/* Book an Appointment Button */}
+                <div className="pt-2">
+                  <Link
+                    to="/appointment"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold text-white bg-gradient-to-r from-[#E94B1C] to-[#C63D1B] hover:from-[#C63D1B] hover:to-[#A83218] transition-all shadow-[0_4px_14px_rgba(233,75,28,0.25)] hover:shadow-[0_6px_20px_rgba(233,75,28,0.35)] hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Book an Appointment</span>
+                  </Link>
                 </div>
               </div>
+            </div>
 
-              <div className="flex items-start gap-2">
-                <Mail className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
-                <a href="mailto:suryahospitalatp@gmail.com" className="hover:text-[#A84328] break-all">
-                  suryahospitalatp@gmail.com
+            {/* Column 5: Google Map Embed Preview Card (Col span 2) */}
+            <div className="lg:col-span-2 text-left">
+              <div className="relative rounded-2xl overflow-hidden border border-[#E8DCD1] bg-white shadow-xs group h-[210px] w-full">
+                {/* Top Open in Maps Pill */}
+                <a
+                  href={HOSPITAL_INFO.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-2.5 left-2.5 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-xs text-[11px] font-semibold text-[#14233C] shadow-sm hover:text-[#E94B1C] transition-colors border border-slate-200"
+                >
+                  <span>Open in Maps</span>
+                  <ExternalLink className="w-3 h-3 text-[#717984]" />
+                </a>
+
+                {/* Interactive iframe map focused on Surya Hospital, 9th Cross Sainagar */}
+                <iframe
+                  title="Surya Hospital Location Map"
+                  src={HOSPITAL_INFO.googleMapsEmbed}
+                  className="w-full h-full border-0 pointer-events-auto"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+
+                {/* Location pin hover banner at bottom */}
+                <a
+                  href={HOSPITAL_INFO.directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-xs px-2.5 py-1.5 text-[10px] font-semibold text-[#14233C] border-t border-slate-200/80 flex items-center justify-between group-hover:bg-[#FFF5EC] transition-colors"
+                >
+                  <span className="truncate">Surya Hospital, 9th Cross</span>
+                  <span className="text-[#E94B1C] shrink-0 font-bold">Directions →</span>
                 </a>
               </div>
-
-              <div className="flex items-start gap-2">
-                <Clock className="w-4 h-4 text-[#A84328] shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-bold text-[#1A1D20] flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    Hospital Open 24 Hours / 7 Days
-                  </span>
-                  <p className="text-[11px] text-[#62666D]">Casualty, Inpatient, Dialysis & Pharmacy: 24/7</p>
-                  <p className="text-[11px] text-[#62666D]">Doctor OPD: 09:00 AM – 02:00 PM & 05:00 PM – 09:00 PM</p>
-                </div>
-              </div>
             </div>
+
           </div>
-
-          {/* Column 4: Our Location Card with Direct Directions CTA (3 Cols) */}
-          <div className="lg:col-span-3 space-y-3 text-left">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-[#1A1D20]">
-              Our Location
-            </h4>
-
-            <div className="rounded-2xl border border-[#E2D9D0] bg-white p-3 shadow-xs space-y-3">
-              <div className="flex items-center gap-2 p-2 rounded-xl bg-[#FFF9F3] border border-[#E2D9D0]/60">
-                <div className="w-7 h-7 rounded-full bg-[#F8E6DC] text-[#A84328] flex items-center justify-center shrink-0">
-                  <MapPin className="w-3.5 h-3.5 fill-current" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-[#1A1D20]">Surya Hospital</div>
-                  <div className="text-[10px] text-[#62666D]">Sainagar, 9th Cross, Anantapur - 515001</div>
-                </div>
-              </div>
-
-              <a
-                href={HOSPITAL_INFO.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2.5 rounded-xl text-center text-xs font-bold text-white bg-gradient-to-r from-[#C85235] to-[#A84328] hover:from-[#A84328] hover:to-[#8F371F] flex items-center justify-center gap-2 shadow-xs transition cursor-pointer"
-              >
-                <span>Get Directions</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-
         </div>
+      </footer>
+
+      {/* ── 2. Full-Bleed Halftone Wordmark Banner ("surya hospital") ── */}
+      <div className="w-full relative border-t border-[#1C3256]/40 overflow-hidden bg-[#0D1728] block leading-none">
+        <HalftoneWordmarkFooter
+          wordmark="surya hospital"
+          height="clamp(90px, 10.5vw, 150px)"
+          dotGap={6}
+          radius={85}
+          crop={0.2}
+          grain={0.4}
+          interactive={true}
+          palette={{
+            background: "#0D1728",
+            ink: "#B2CEE2",
+            warm: "#E94B1C",
+          }}
+          showTopColumns={false}
+        />
       </div>
 
-      {/* Bottom Copyright & Legal Strip with Back-to-Top Button (Dark Charcoal Strip matching Reference) */}
-      <div className="mt-10 bg-[#1A1D20] text-white/80 py-5 border-none w-full m-0">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <div>
-            © 2026 Surya Hospital. All rights reserved.
-          </div>
+      {/* ── 3. Bottom Copyright & Legal Strip (Dark Navy Background) ── */}
+      <div className="w-full bg-[#090F1B] text-slate-400 border-t border-[#1C3256]/40 py-4 font-sans text-xs">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-center sm:text-left text-slate-400 text-[11px] sm:text-xs">
+            © {new Date().getFullYear()} Surya Hospital. All rights reserved.
+          </p>
 
-          <div className="flex items-center gap-6 text-xs text-[#E2D9D0]/80">
-            <Link to="/about" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <span>•</span>
-            <Link to="/about" className="hover:text-white transition-colors">Terms & Conditions</Link>
-            <span>•</span>
-            <Link to="/contact" className="hover:text-white transition-colors">Sitemap</Link>
+          <div className="flex items-center gap-5 sm:gap-6 text-[11px] sm:text-xs text-slate-400">
+            <Link to="/about" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-slate-600">•</span>
+            <Link to="/about" className="hover:text-white transition-colors">
+              Terms & Conditions
+            </Link>
+            <span className="text-slate-600">•</span>
+            <Link to="/contact" className="hover:text-white transition-colors">
+              Sitemap
+            </Link>
           </div>
 
           <button
             type="button"
             onClick={scrollToTop}
-            className="w-9 h-9 rounded-full bg-white text-[#1A1D20] hover:bg-[#F8E6DC] hover:text-[#A84328] flex items-center justify-center transition shadow-md"
+            className="w-9 h-9 rounded-full bg-[#13233B] text-slate-200 hover:bg-[#E94B1C] hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm cursor-pointer group"
             aria-label="Scroll to top"
             title="Scroll to top"
           >
-            <ArrowUp className="w-4 h-4" />
+            <ArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
       </div>
-    </footer>
+    </>
   );
 }
 

@@ -309,8 +309,8 @@ export function FacilitiesServicesSection() {
 
   return (
     <section
-      id="facilities-services"
-      className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#FFF9F3] via-[#FAF3EC] to-[#FFF6ED] text-[#14233C] overflow-hidden border-t border-[#F0E4D8]/80"
+      id="facilities"
+      className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#FFF9F3] via-[#FAF3EC] to-[#FFF6ED] text-[#14233C] overflow-hidden border-t border-[#F0E4D8]/80 scroll-mt-20"
     >
       {/* Ambient warm brand glow accents matching other sections */}
       <div className="absolute top-10 left-1/4 w-[600px] h-[350px] bg-[#E94B1C]/[0.035] blur-[120px] rounded-full pointer-events-none" />

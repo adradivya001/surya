@@ -15,6 +15,7 @@ const DoctorsPage = lazy(() => import("./pages/DoctorsPage").then((m) => ({ defa
 const SpecialitiesPage = lazy(() => import("./pages/SpecialitiesPage").then((m) => ({ default: m.SpecialitiesPage })));
 const EmergencyPage = lazy(() => import("./pages/EmergencyPage").then((m) => ({ default: m.EmergencyPage })));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
+const FacilitiesPage = lazy(() => import("./pages/FacilitiesPage").then((m) => ({ default: m.FacilitiesPage })));
 const AppointmentPage = lazy(() => import("./pages/AppointmentPage").then((m) => ({ default: m.AppointmentPage })));
 const InsurancePartnersPage = lazy(() => import("./pages/InsurancePartnersPage").then((m) => ({ default: m.InsurancePartnersPage })));
 const SpecialityDetailPage = lazy(() => import("./pages/SpecialityDetailPage").then((m) => ({ default: m.SpecialityDetailPage })));
@@ -55,8 +56,9 @@ export function App() {
                 <Route path="/services/:slug" element={<SpecialityDetailPage />} />
                 <Route path="/diagnostics" element={<Navigate to="/specialities" replace />} />
                 <Route path="/emergency" element={<EmergencyPage />} />
-                <Route path="/insurance-partners" element={<InsurancePartnersPage />} />
-                <Route path="/insurance" element={<Navigate to="/insurance-partners" replace />} />
+                <Route path="/insurance" element={<InsurancePartnersPage />} />
+                <Route path="/insurance-partners" element={<Navigate to="/insurance" replace />} />
+                <Route path="/facilities" element={<FacilitiesPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/appointment" element={<AppointmentPage />} />
                 {/* Fallback to Home */}

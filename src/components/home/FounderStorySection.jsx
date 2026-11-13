@@ -37,7 +37,7 @@ export function FounderStorySection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative w-full pt-20 sm:pt-24 lg:pt-32 xl:pt-36 pb-12 sm:pb-14 lg:pb-16 overflow-hidden scroll-mt-20"
+      className="relative w-full pt-28 sm:pt-32 lg:pt-36 xl:pt-40 pb-12 sm:pb-14 lg:pb-16 overflow-hidden scroll-mt-24"
       style={{
         background:
           "radial-gradient(ellipse at 50% 28%, #FFFDF9 0%, #FAF2EB 38%, #F4E8DC 75%, #ECD9CC 100%)",

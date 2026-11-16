@@ -197,20 +197,20 @@ export function Footer() {
         </div>
       </footer>
 
-      {/* ── 2. Full-Bleed Halftone Wordmark Banner ("SURYA HOSPITAL") ── */}
+      {/* ── 2. Full-Bleed Halftone Wordmark Banner ("surya hospital") ── */}
       <div className="w-full relative border-t border-[#1C3256]/40 overflow-hidden bg-[#0D1728] block leading-none">
         <HalftoneWordmarkFooter
-          wordmark="SURYA HOSPITAL"
-          height="clamp(100px, 12vw, 160px)"
-          dotGap={4}
+          wordmark="surya hospital"
+          height="clamp(90px, 10.5vw, 150px)"
+          dotGap={6}
           radius={85}
-          crop={0.05}
-          grain={0.2}
+          crop={0.2}
+          grain={0.4}
           interactive={true}
           palette={{
             background: "#0D1728",
-            ink: "#CBE2F4",
-            warm: "#FF6E3A",
+            ink: "#B2CEE2",
+            warm: "#E9762B",
           }}
           showTopColumns={false}
         />

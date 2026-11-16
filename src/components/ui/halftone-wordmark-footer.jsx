@@ -20,7 +20,7 @@ export function hwfHex(hex) {
 
 export function hwfRadius(coverage, gap) {
   const c = coverage < 0 ? 0 : coverage > 1 ? 1 : coverage;
-  return Math.sqrt(c) * gap * 0.44;
+  return Math.sqrt(c) * gap * 0.56;
 }
 
 export function hwfStep(x, y, vx, vy, hx, hy, px, py, r) {
@@ -57,19 +57,19 @@ const HWF_CSS = `
 `;
 
 export function HalftoneWordmarkFooter({
-  wordmark = "SURYA HOSPITAL",
+  wordmark = "surya hospital",
   preset = "surya",
   palette = null,
-  dotGap = 4,
+  dotGap = 6,
   repelRadius = 90,
   radius = 90,
-  crop = 0.05,
-  grain = 0.2,
+  crop = 0.2,
+  grain = 0.4,
   interactive = true,
   fontFamily = SANS_STACK,
-  fontWeight = 700,
+  fontWeight = 800,
   monoFamily = MONO_STACK,
-  height = "clamp(100px, 11vw, 160px)",
+  height = "clamp(90px, 10.5vw, 150px)",
   className = "",
   showTopColumns = false,
 }) {
@@ -121,15 +121,15 @@ export function HalftoneWordmarkFooter({
       const face = o.fontWeight + " 100px " + o.fontFamily;
       m.font = face;
       const word = o.wordmark || " ";
-      // Fit text width comfortably leaving elegant margin (92% of banner width)
-      const fit = hwfFitSize(m.measureText(word).width, w * 0.92);
+      const fit = hwfFitSize(m.measureText(word).width, w * 0.98);
       m.font = o.fontWeight + " " + fit + "px " + o.fontFamily;
       const box = m.measureText(word);
       const cap = box.actualBoundingBoxAscent || fit * 0.72;
+      const c = Math.max(0, Math.min(0.6, o.crop));
       m.fillStyle = "#000";
-      m.textBaseline = "middle";
-      // Vertically center the wordmark cleanly so letters are complete and perfectly legible
-      m.fillText(word, (w - box.width) / 2, h / 2);
+      m.textBaseline = "alphabetic";
+      const baseline = Math.min(h + cap * c, cap + 12);
+      m.fillText(word, (w - box.width) / 2, baseline);
       const img = m.getImageData(0, 0, w, h).data;
 
       const gap = Math.max(3, o.dotGap);

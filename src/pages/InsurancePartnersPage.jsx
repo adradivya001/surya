@@ -105,7 +105,8 @@ export function InsurancePartnersPage() {
           </div>
         </div>
 
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        {/* Main Banner Content Container: 92% width up to 1600px */}
+        <div className="w-[min(92%,1600px)] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 text-center relative z-10">
           <AnimateIn animation="fade-up">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#E9D8CE] text-[#C63D1B] text-xs font-bold uppercase tracking-widest mb-4 shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-[#E94B1C]" />
@@ -114,7 +115,7 @@ export function InsurancePartnersPage() {
           </AnimateIn>
 
           <AnimateIn animation="fade-up" delay={100}>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#C63D1B] tracking-tight leading-snug uppercase">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black text-[#C63D1B] tracking-tight leading-[1.22] uppercase max-w-[1300px] mx-auto">
               Our Insurance Partners
             </h1>
           </AnimateIn>
@@ -124,7 +125,7 @@ export function InsurancePartnersPage() {
           </AnimateIn>
 
           <AnimateIn animation="fade-up" delay={200}>
-            <p className="text-sm sm:text-base md:text-lg text-[#4A403B] max-w-2xl mx-auto leading-relaxed font-normal">
+            <p className="text-sm sm:text-base md:text-lg text-[#4A403B] max-w-[1150px] mx-auto leading-relaxed font-normal">
               Explore the insurance providers and TPAs associated with Surya Hospital. Our team can help you understand the available cashless treatment process and the documentation required for your visit.
             </p>
           </AnimateIn>
@@ -150,9 +151,9 @@ export function InsurancePartnersPage() {
               <button
                 type="button"
                 onClick={() => setIsChecklistOpen(true)}
-                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-bold text-[#006677] bg-[#E6F4F7] hover:bg-[#D4EEF2] border border-[#BDE0E8] transition-all shadow-xs active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-bold text-[#C63D1B] bg-white border border-[#E9D8CE] hover:bg-[#FFF0E6] transition-all shadow-xs active:scale-95 cursor-pointer"
               >
-                <FileCheck2 className="w-4 h-4" />
+                <FileCheck2 className="w-4 h-4 text-[#E94B1C]" />
                 <span>Documents Checklist</span>
               </button>
             </div>

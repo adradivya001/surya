@@ -57,70 +57,69 @@ export function EmergencyPage() {
           />
         </div>
 
-        <Container>
-          <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
-            
-            {/* Live Casualty Desk Indicator */}
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#C63D1B] text-white shadow-md">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
-                </span>
-                <span>24/7 EMERGENCY CASUALTY ACTIVE</span>
-              </div>
-
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>On-Duty Doctor &amp; Triage Team Ready • {liveTime}</span>
-              </div>
+        {/* Expanded, Spacious Centered Content Container: 92% width up to 1600px */}
+        <div className="w-[min(92%,1600px)] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10 text-center space-y-6">
+          
+          {/* Live Casualty Desk Indicator */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-[#C63D1B] text-white shadow-md">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+              </span>
+              <span>24/7 EMERGENCY CASUALTY ACTIVE</span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-serif-heading font-black text-[#C63D1B] tracking-tight leading-snug">
-              24/7 Emergency &amp; Casualty Care
-            </h1>
-
-            <p className="text-sm sm:text-base md:text-lg text-[#4A403B] leading-relaxed max-w-2xl mx-auto font-normal">
-              Our emergency team is open day and night for accidents, sudden chest pain, breathing difficulties, high fevers, and wound care in Sai Nagar, Anantapur.
-            </p>
-
-            {/* Large Call Hospital Button with Interactive Pulse Ring */}
-            <div className="pt-2 relative inline-block">
-              {/* Pulsing ring around button */}
-              <motion.div
-                animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.2, 0.6] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -inset-2 rounded-full bg-[#E94B1C]/30 blur-xs"
-              />
-              <a
-                href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-                className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-black bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-xl hover:shadow-2xl transition transform hover:scale-[1.03] active:scale-98 w-full sm:w-auto text-center"
-              >
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                  <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce shrink-0 text-white" />
-                </div>
-                <span>Call Emergency Casualty: {HOSPITAL_INFO.phone}</span>
-              </a>
-            </div>
-
-            {/* Address & Direct Navigation */}
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-[13px] text-[#756860]">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#E94B1C] shrink-0" />
-                <span>{HOSPITAL_INFO.fullAddress}</span>
-              </div>
-              <a
-                href={HOSPITAL_INFO.directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-[#FFF0E6] text-[#C63D1B] font-bold transition border border-[#E9D8CE] shadow-2xs"
-              >
-                <Navigation className="w-3.5 h-3.5 text-[#E94B1C]" />
-                <span>Get Directions</span>
-              </a>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>On-Duty Doctor &amp; Triage Team Ready • {liveTime}</span>
             </div>
           </div>
-        </Container>
+
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[52px] font-serif-heading font-black text-[#C63D1B] tracking-tight leading-[1.22] max-w-[1300px] mx-auto">
+            24/7 Emergency &amp; Casualty Care
+          </h1>
+
+          <p className="text-sm sm:text-base md:text-lg text-[#4A403B] leading-relaxed max-w-[1150px] mx-auto font-normal">
+            Our emergency team is open day and night for accidents, sudden chest pain, breathing difficulties, high fevers, and wound care in Sai Nagar, Anantapur.
+          </p>
+
+          {/* Large Call Hospital Button with Interactive Pulse Ring */}
+          <div className="pt-2 relative inline-block">
+            {/* Pulsing ring around button */}
+            <motion.div
+              animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.2, 0.6] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -inset-2 rounded-full bg-[#E94B1C]/30 blur-xs"
+            />
+            <a
+              href={`tel:${HOSPITAL_INFO.phoneRaw}`}
+              className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-black bg-[#C63D1B] hover:bg-[#A83218] text-white shadow-xl hover:shadow-2xl transition transform hover:scale-[1.03] active:scale-98 w-full sm:w-auto text-center"
+            >
+              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce shrink-0 text-white" />
+              </div>
+              <span>Call Emergency Casualty: {HOSPITAL_INFO.phone}</span>
+            </a>
+          </div>
+
+          {/* Address & Direct Navigation */}
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs sm:text-[13px] text-[#756860]">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-4 h-4 text-[#E94B1C] shrink-0" />
+              <span>{HOSPITAL_INFO.fullAddress}</span>
+            </div>
+            <a
+              href={HOSPITAL_INFO.directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-[#FFF0E6] text-[#C63D1B] font-bold transition border border-[#E9D8CE] shadow-2xs"
+            >
+              <Navigation className="w-3.5 h-3.5 text-[#E94B1C]" />
+              <span>Get Directions</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* National Emergency 112 Notice */}

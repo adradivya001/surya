@@ -18,7 +18,8 @@ export function PageHero({
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#FFF0E6]/70 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-10 left-10 w-72 h-72 bg-[#FF8A3D]/10 rounded-full blur-2xl pointer-events-none" />
 
-      <div className="max-w-[860px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Expanded, Spacious Centered Content Container: 92% width up to 1600px */}
+      <div className="w-[min(92%,1600px)] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10 text-center">
         {/* Breadcrumb Navigation - Centered */}
         {breadcrumbs.length > 0 && (
           <ScrollReveal direction="down" delay={0.02}>
@@ -47,24 +48,24 @@ export function PageHero({
 
         {/* 1. Centered Eyebrow Pill Badge (Slides Down) */}
         <ScrollReveal direction="down" delay={0.05}>
-          <div className="inline-flex items-center justify-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#FFF0E6] text-[#E94B1C] border border-[#FADCCB] shadow-2xs mb-4">
+          <div className="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#FFF0E6] text-[#E94B1C] border border-[#FADCCB] shadow-2xs mb-4">
             <HeartPulse className="w-3.5 h-3.5 text-[#E94B1C]" />
             <span>{eyebrow}</span>
             {badge && <span className="opacity-60">• {badge}</span>}
           </div>
         </ScrollReveal>
 
-        {/* 2. Main Title in the Middle (HeadingReveal) */}
+        {/* 2. Main Title in the Middle (HeadingReveal) - Spacious width container to prevent premature wrapping */}
         <HeadingReveal delay={0.1}>
-          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-[#14233C] tracking-tight leading-[1.2] mb-3">
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] xl:text-[46px] font-bold text-[#14233C] tracking-tight leading-[1.22] mb-3.5 max-w-[1300px] mx-auto">
             {title}
           </h1>
         </HeadingReveal>
 
-        {/* 3. Subtitle / Description in the Middle */}
+        {/* 3. Subtitle / Description in the Middle - Expanded to max-w-[1150px] for balanced, natural line flow */}
         {description && (
           <ScrollReveal direction="up" delay={0.15}>
-            <p className="text-sm sm:text-base text-[#5A687A] leading-relaxed max-w-[700px] mx-auto font-normal">
+            <p className="text-sm sm:text-base md:text-[17px] text-[#5A687A] leading-relaxed max-w-[1150px] mx-auto font-normal">
               {description}
             </p>
           </ScrollReveal>
@@ -73,7 +74,7 @@ export function PageHero({
         {/* Action CTAs in the Middle */}
         {children && (
           <ScrollReveal direction="up" delay={0.2}>
-            <div className="pt-6 flex flex-wrap items-center justify-center gap-3">
+            <div className="pt-6 sm:pt-7 flex flex-wrap items-center justify-center gap-3 sm:gap-3.5">
               {children}
             </div>
           </ScrollReveal>

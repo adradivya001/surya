@@ -25,8 +25,8 @@ export function AboutPage() {
       {/* ── 1. CENTERED HERO BANNER WITH BI-DIRECTIONAL SCROLL REVEALS ── */}
       <PageHero
         eyebrow="ABOUT SURYA HOSPITAL"
-        title="Comprehensive Healthcare with Compassionate Care"
-        description="Serving the families of Sai Nagar, Anantapur, and neighboring regions with dedicated outpatient consultations, sterile surgical procedures, and 24/7 emergency response."
+        title="Compassionate Care for Every Stage of Life"
+        description="Surya Hospital is committed to providing quality healthcare through dedicated medical professionals and patient-focused services in Anantapur."
         breadcrumbs={[{ label: "About Us" }]}
         badge="Sai Nagar, Anantapur"
       >
@@ -37,7 +37,7 @@ export function AboutPage() {
             icon={Stethoscope}
             className="bg-[#E94B1C] hover:bg-[#A83218] text-white rounded-full px-6 shadow-xs"
           >
-            Meet Doctors
+            Meet Our Doctors
           </Button>
         </Link>
         <Link to="/specialities">
@@ -46,7 +46,7 @@ export function AboutPage() {
             size="sm"
             className="bg-white border-[#E9D8CE] text-[#C63D1B] hover:bg-[#FFF0E6] rounded-full px-6"
           >
-            Clinical Specialities
+            Explore Departments
           </Button>
         </Link>
       </PageHero>
@@ -83,29 +83,29 @@ export function AboutPage() {
                 </span>
 
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#14233C] tracking-tight leading-tight mt-2.5">
-                  Quality Healthcare Under One Roof
+                  Your Trusted Healthcare Partner
                 </h2>
 
                 <p className="text-sm sm:text-base text-[#4A5568] leading-relaxed font-normal">
-                  Located in Sai Nagar, Anantapur, Surya Hospital offers trusted comprehensive care, advanced surgical suites, modern diagnostics, and round-the-clock emergency casualty.
+                  Discover our hospital, medical team and patient care facilities.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 text-xs sm:text-[13px] text-[#14233C] font-semibold">
                   <div className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-[#EADBCE] shadow-2xs">
                     <CheckCircle2 className="w-4 h-4 text-[#E94B1C] shrink-0" />
-                    <span>24/7 Emergency Casualty</span>
+                    <span>Emergency Care</span>
                   </div>
                   <div className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-[#EADBCE] shadow-2xs">
                     <CheckCircle2 className="w-4 h-4 text-[#E94B1C] shrink-0" />
-                    <span>Modern Modular OTs</span>
+                    <span>Operation Theatres</span>
                   </div>
                   <div className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-[#EADBCE] shadow-2xs">
                     <CheckCircle2 className="w-4 h-4 text-[#E94B1C] shrink-0" />
-                    <span>Monitored Recovery Beds</span>
+                    <span>Inpatient Care</span>
                   </div>
                   <div className="flex items-center gap-2.5 bg-white p-3 rounded-xl border border-[#EADBCE] shadow-2xs">
                     <CheckCircle2 className="w-4 h-4 text-[#E94B1C] shrink-0" />
-                    <span>24/7 In-House Pharmacy</span>
+                    <span>Pharmacy</span>
                   </div>
                 </div>
               </ScrollReveal>
@@ -115,30 +115,30 @@ export function AboutPage() {
         </Container>
       </section>
 
-      {/* ── 3. CORE VALUES - 3 CARDS WITH STAGGERED BI-DIRECTIONAL REVEALS ── */}
+      {/* ── 3. CORE VALUES - 5 CARDS WITH STAGGERED BI-DIRECTIONAL REVEALS ── */}
       <section className="py-14 sm:py-20 bg-[#FFFDF9] border-b border-[#F0E2D9]">
         <Container>
           <div className="max-w-5xl mx-auto space-y-10">
             <div className="text-center space-y-2.5 max-w-xl mx-auto">
               <ScrollReveal direction="down" delay={0.05} amount={0.2}>
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#FFF0E6] text-[#E94B1C] border border-[#FADCCB]">
-                  OUR CORE VALUES
+                  OUR VALUES
                 </span>
               </ScrollReveal>
 
               <HeadingReveal delay={0.1}>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-[#14233C] tracking-tight">
-                  Patient-First Clinical Care
+                  Our Commitment to Patients
                 </h2>
               </HeadingReveal>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {HOSPITAL_INFO.values.map((val, idx) => (
                 <ScrollReveal
                   key={val.title}
                   direction="up"
-                  delay={0.05 + idx * 0.1}
+                  delay={0.05 + idx * 0.08}
                   amount={0.2}
                 >
                   <div className="h-full bg-white p-6 rounded-2xl border border-[#EADBCE] shadow-xs hover:border-[#E94B1C]/50 hover:shadow-md transition-all text-left flex flex-col justify-between">
@@ -164,10 +164,10 @@ export function AboutPage() {
             <div className="p-8 sm:p-12 rounded-3xl bg-[#FFF0E6] border border-[#E9D8CE] text-[#14233C] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-xs">
               <div className="space-y-1.5">
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#14233C]">
-                  Have questions about our doctors or departments?
+                  Looking for the Right Doctor?
                 </h3>
                 <p className="text-xs sm:text-sm text-[#5A687A] font-normal">
-                  Explore our full specialist roster or contact our reception desk directly.
+                  Explore our medical team or contact our hospital for assistance.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full md:w-auto shrink-0">
@@ -177,7 +177,7 @@ export function AboutPage() {
                     size="md"
                     className="w-full sm:w-auto font-bold text-xs bg-[#E94B1C] hover:bg-[#A83218] text-white rounded-full px-6 shadow-xs"
                   >
-                    View Doctor Directory
+                    Meet Our Doctors
                   </Button>
                 </Link>
                 <Link to="/contact" className="w-full sm:w-auto">

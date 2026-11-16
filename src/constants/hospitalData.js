@@ -34,32 +34,32 @@ export const HOSPITAL_INFO = {
 
   // About the Hospital: Written in warm, clear, patient-friendly language
   about: {
-    overview: "Surya Hospital is a friendly hospital in Sai Nagar, Anantapur. We help individuals and families feel better with everyday doctor visits, surgical treatments, 24/7 emergency care, inpatient observation, and supportive recovery under one roof.",
-    missionDraft: "To give every family in Anantapur clear medical advice, safe treatments, and caring personal attention whenever they need health support.",
-    visionDraft: "To be the most trusted and helpful hospital in our community, known for honest doctor guidance, modern equipment, and dependable patient care.",
-    philosophy: "We treat every patient like family. We listen carefully, explain your health conditions in simple words, and recommend only the care you genuinely need.",
+    overview: "Surya Hospital provides quality healthcare through dedicated medical professionals and patient-focused services in Sai Nagar, Anantapur.",
+    missionDraft: "To deliver clear medical guidance, safe treatments, and attentive care for our community.",
+    visionDraft: "To be a trusted hospital known for dependable doctor consultations and patient-focused care.",
+    philosophy: "We prioritize patient comfort, listen to individual health concerns, and recommend appropriate care.",
   },
 
   values: [
     {
-      title: "Care Centered on You",
-      desc: "We listen to your health concerns, answer your questions patiently, and create treatment plans that suit your everyday life.",
+      title: "Patient-First Care",
+      desc: "We prioritize patient comfort, attention and individual healthcare needs.",
     },
     {
-      title: "Easy to Reach",
-      desc: "Conveniently located at Sainagar, 9th Cross, Anantapur - 515001, making visits simple for local and visiting families.",
+      title: "Convenient Location",
+      desc: "Easily accessible in Sai Nagar, Anantapur.",
     },
     {
-      title: "Experienced Doctors & Staff",
-      desc: "Qualified doctors, caring nurses, and helpful front-desk coordinators ready to guide you at every visit.",
+      title: "Dedicated Medical Team",
+      desc: "Medical professionals committed to patient care.",
     },
     {
-      title: "Open 24/7 for Emergencies",
-      desc: "Our emergency and casualty desk is open day and night every day of the year for sudden illness or accidental injuries.",
+      title: "Emergency Support",
+      desc: "Emergency assistance available around the clock, subject to confirmed hospital operations.",
     },
     {
-      title: "Honest & Clear Advice",
-      desc: "Clear explanations of your diagnosis, upfront information about tests and costs, and dependable medical guidance you can trust.",
+      title: "Clear Communication",
+      desc: "We help patients understand their care and treatment options.",
     },
   ],
 

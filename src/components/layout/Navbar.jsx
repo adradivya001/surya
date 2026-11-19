@@ -235,7 +235,7 @@ export function Navbar() {
       }
     }
 
-    return `px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 ${
+    return `inline-flex items-center justify-center px-4 py-2 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 whitespace-nowrap ${
       isActive
         ? "text-[#C63D1B] font-bold bg-[#FFF0E6]"
         : "text-[#262626]/90 hover:text-[#E94B1C] hover:bg-[#FFF0E6]/50"
@@ -313,7 +313,7 @@ export function Navbar() {
           </div>
 
           {/* 2. Middle: Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2.5 whitespace-nowrap">
+          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2 2xl:gap-3 whitespace-nowrap">
             <NavLink
               to="/"
               className={() => getNavClass("/", "home")}
@@ -339,7 +339,7 @@ export function Navbar() {
                 to="/specialities"
                 onClick={() => setDepartmentsDropdownOpen(false)}
                 className={() =>
-                  `inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 cursor-pointer ${
+                  `inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 cursor-pointer whitespace-nowrap ${
                     (isHomePage && activeSection === "specialities") ||
                     isDepartmentsActive ||
                     departmentsDropdownOpen
@@ -498,7 +498,7 @@ export function Navbar() {
                 to="/facilities"
                 onClick={() => setFacilitiesDropdownOpen(false)}
                 className={() =>
-                  `inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 cursor-pointer ${
+                  `inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-[13px] 2xl:text-sm font-semibold transition-colors duration-150 cursor-pointer whitespace-nowrap ${
                     (isHomePage && (activeSection === "facilities" || activeSection === "insurance" || activeSection === "emergency")) ||
                     isFacilitiesActive ||
                     facilitiesDropdownOpen

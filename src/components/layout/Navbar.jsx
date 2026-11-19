@@ -615,31 +615,13 @@ export function Navbar() {
             {/* Prominent Emergency 24/7 Call Pill */}
             <a
               href={`tel:${HOSPITAL_INFO.phoneRaw}`}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-[#E94B1C] bg-[#FFF0E6] hover:bg-[#FFE4D3] border border-[#FADCCB] transition-all shrink-0 group"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold text-[#E94B1C] bg-[#FFF0E6] hover:bg-[#FFE4D3] border border-[#FADCCB] transition-all shrink-0 group"
               title="24/7 Emergency Casualty Helpline"
             >
               <span className="w-2 h-2 rounded-full bg-[#E94B1C] animate-pulse" />
-              <span className="hidden xl:inline">Emergency 24/7:</span>
-              <span className="xl:hidden">24/7:</span>
+              <span className="hidden sm:inline">Emergency 24/7:</span>
               <span className="font-extrabold">{HOSPITAL_INFO.phone}</span>
             </a>
-
-            {/* Book Appointment CTA Button */}
-            <button
-              type="button"
-              onClick={() => openModal()}
-              className="animate-cta-blink flex flex-col items-center justify-center px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-2xl sm:rounded-full text-white bg-[#E94B1C] hover:bg-[#A83218] transition-all active:scale-[0.98] cursor-pointer whitespace-nowrap shrink-0 shadow-md group"
-              title={`Book Appointment or Call ${HOSPITAL_INFO.phone}`}
-            >
-              <div className="inline-flex items-center gap-1 sm:gap-1.5 text-xs sm:text-[13px] font-extrabold tracking-tight leading-tight">
-                <span>Book Appointment</span>
-                <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-              <div className="text-[10px] sm:text-[11px] font-bold text-white/95 tracking-wide leading-tight mt-0.5 flex items-center gap-1">
-                <Phone className="w-2.5 h-2.5 fill-current opacity-90" />
-                <span>{HOSPITAL_INFO.phone}</span>
-              </div>
-            </button>
 
             {/* Mobile Hamburger Trigger inside navbar (< lg) */}
             <div className="lg:hidden flex items-center">
@@ -897,21 +879,6 @@ export function Navbar() {
                         </div>
                       </div>
                     </a>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setMenuOpen(false);
-                        openModal();
-                      }}
-                      className="w-full py-2.5 px-4 rounded-xl text-center text-xs font-bold text-white bg-[#E94B1C] hover:bg-[#A83218] block shadow-md cursor-pointer"
-                    >
-                      <div className="font-extrabold text-[13px]">Book Appointment</div>
-                      <div className="text-[11px] text-white/95 font-semibold mt-0.5 flex items-center justify-center gap-1">
-                        <Phone className="w-3 h-3 fill-current" />
-                        <span>{HOSPITAL_INFO.phone}</span>
-                      </div>
-                    </button>
                   </div>
                 </div>
               </div>
